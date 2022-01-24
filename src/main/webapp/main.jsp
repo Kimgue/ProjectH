@@ -8,7 +8,6 @@
 <title>메인화면</title>
 </head>
 <body>
-<h1>환영합니다. <br>${userId}</h1>
 <div align="center">
 <h1>환영합니다. ${userId}</h1>
 <form name="paging">
