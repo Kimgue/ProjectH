@@ -14,9 +14,9 @@ public interface IDaoNotice {
 	
 	void insert(Notice noti); // 공지사항 입력
 
-	void update(Notice noti); // 회원정보 수정
+	void update(Notice noti); // 공지사항 수정
 
-	void delete(@Param("adminCode")String adminCode,@Param("noticeCode")String noticeCode); // 회원정보 삭제
+	void delete(@Param("adminCode")String adminCode,@Param("noticeCode")String noticeCode); // 공지사항 삭제
 	
-	Notice sltone(@Param("adminCode")String adminCode);
+	Notice sltone(@Param("adminCode")String adminCode); //관리자 코드로 작성
 }
