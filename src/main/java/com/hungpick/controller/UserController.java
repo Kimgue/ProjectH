@@ -340,15 +340,15 @@ public class UserController {
 	@RequestMapping("userLoginConfirm")
 	public ModelAndView userLoginConfirm(@ModelAttribute UserDto Dto, HttpSession session) throws Exception {
 		logger.info("userLoginConfirm called ==========");
-
+		ModelAndView mav = new ModelAndView();
 		boolean result = userService.userLogin(Dto, session);
 
-		ModelAndView mav = new ModelAndView();
 		if (result == true) {
 			mav.setViewName("redirect:/main.jsp");
 			session.setAttribute("userId", Dto.getMemberId());
 		} else {
-			mav.setViewName("userLogin");
+			mav.setViewName("redirect:/userLogin");
+			session.setAttribute("notice", "올바른 아이디 혹은 비밀번호를 입력하세요");
 		}
 		return mav;
 	}

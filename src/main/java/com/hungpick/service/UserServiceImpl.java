@@ -88,30 +88,23 @@ public class UserServiceImpl implements IUserService {
 		System.out.println("memberDate : " + memberDate);
 		System.out.println("holdPoint : " + holdPoint);
 
-		System.out.println("등록전");
 		userDao.userRegist(Dto);
 		userDaoHist.userRegistHist("Insert " + Dto.toString());
-		System.out.println("등록후");
 
 		return "redirect:/userView";
 	}
 
 	@Override
 	public boolean userLogin(UserDto Dto, HttpSession session) throws Exception {
-		System.out.println("2");
 		boolean isLogin = isLogin(Dto.getMemberId());
 		boolean result = true;
-		System.out.println("3");		
 		if (!isLogin) {
-			System.out.println("4");
 			UserDto resultDto = userDao.userLogin(Dto);
-			
-			System.out.println("5");
+
 			if (resultDto == null) {
 				result = false;
 			}
 			setSession(session, Dto);
-			System.out.println(resultDto);
 			return result;
 		}
 		return !isLogin;
@@ -154,7 +147,7 @@ public class UserServiceImpl implements IUserService {
 
 	@Override
 	public void userLogout(HttpSession session) throws Exception {
-		loginUsers.remove(session.getId()); 
+		loginUsers.remove(session.getId());
 		session.invalidate(); 
 	}
 

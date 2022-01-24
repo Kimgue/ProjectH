@@ -11,7 +11,7 @@
 </head>
 <body>
 <center>
-<h1>환영합니다. ${userId}</h1>
+<h1>환영합니다. <br>${userId}</h1>
 <form name="paging">
 
 <!-- 김혜성 수정함 -->
