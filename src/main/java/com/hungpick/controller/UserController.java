@@ -26,8 +26,6 @@ import com.hungpick.Service.IQuestionSerivce;
 
 
 
-
-
 @Controller
 public class UserController {
 

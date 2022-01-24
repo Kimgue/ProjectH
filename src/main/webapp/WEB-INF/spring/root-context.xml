@@ -60,7 +60,7 @@
 
 	<!-- DAO 등록(DAO interface 위치) -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.hungpick.*" />
+		<property name="basePackage" value="com.hungpick.Dao" />
 	</bean>
 	
 	
