@@ -1,4 +1,4 @@
-package com.hungpick.dto;
+package com.hungpick.Dto;
 
 public class Question {
 	

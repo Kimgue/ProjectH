@@ -4,6 +4,9 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.hungpick.Dto.Criteria;
+import com.hungpick.Dto.Question;
+
 
 
 public interface IQuestionSerivce {
