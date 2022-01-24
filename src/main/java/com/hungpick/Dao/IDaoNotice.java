@@ -10,8 +10,6 @@ public interface IDaoNotice {
 
 	Notice select(@Param("adminCode")String adminCode,@Param("noticeCode")String noticeCode); // 단건조회
 
-
-
 	List<Notice> selectAll();
 	
 	void insert(Notice noti); // 공지사항 입력

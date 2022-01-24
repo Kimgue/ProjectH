@@ -40,6 +40,12 @@ public class QuesServiceImpl implements IQuestionSerivce{
 	@Override
 	public void insert(Question qes) throws Exception {
 		
+		Question check = daoQes.select(qes.getMemberCode(), qes.getQstnCode());
+		if(check != null)
+		{
+			throw new Exception();
+		}
+		
 		String Acode = qes.getMemberCode();
 		String Bcode = qes.getQstnCode();
 		String titl = qes.getQstnTitle();
@@ -64,6 +70,12 @@ public class QuesServiceImpl implements IQuestionSerivce{
 
 	@Override
 	public void update(Question qes)throws Exception {
+		
+		Question check = daoQes.select(qes.getMemberCode(), qes.getQstnCode());
+		if(check != null)
+		{
+			throw new Exception();
+		}
 		
 		String Acode = qes.getMemberCode();
 		String Bcode = qes.getQstnCode();
@@ -93,7 +105,12 @@ public class QuesServiceImpl implements IQuestionSerivce{
 		logger.info("입력한 CODE : {}",  memberCode);
 		logger.info("입력한 CODE : {}",  qstnCode);
 		
+		Question check = daoQes.select(memberCode, qstnCode);
 		
+		if(check == null)
+		{
+			throw new Exception();
+		}
 		
 		daoQes.delete(memberCode,qstnCode);
 		

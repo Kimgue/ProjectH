@@ -38,6 +38,14 @@ public class NoticeServiceImpl implements INoticeService {
 	@Override
 	public void insert(Notice noti) throws Exception {
 
+		
+		
+		Notice check = daoNotice.select(noti.getAdminCode(), noti.getNoticeCode());
+		
+		if(check != null)
+		{
+			throw new Exception();
+		}
 		String Acode = noti.getAdminCode();
 		String Bcode = noti.getNoticeCode();
 		String titl = noti.getNoticeTitle();
@@ -50,7 +58,7 @@ public class NoticeServiceImpl implements INoticeService {
 		logger.info("입력한 EMAIL : {}", titl);
 		logger.info("입력한 TEL : {}", cn);
 		logger.info("입력한 WEIGHT : {}", date);
-
+		
 		daoNotice.insert(noti);
 		
 
@@ -60,6 +68,14 @@ public class NoticeServiceImpl implements INoticeService {
 	@Override
 	public void update(Notice noti) throws Exception {
 
+		
+
+		Notice check = daoNotice.select(noti.getAdminCode(), noti.getNoticeCode());
+		
+		if(check != null)
+		{
+			throw new Exception();
+		}
 		String Acode = noti.getAdminCode();
 		String Bcode = noti.getNoticeCode();
 		String titl = noti.getNoticeTitle();
@@ -72,9 +88,7 @@ public class NoticeServiceImpl implements INoticeService {
 		logger.info("입력한 EMAIL : {}", titl);
 		logger.info("입력한 TEL : {}", cn);
 		logger.info("입력한 WEIGHT : {}", date);
-
 		
-
 		daoNotice.update(noti);
 		
 
@@ -89,6 +103,13 @@ public class NoticeServiceImpl implements INoticeService {
 		logger.info("입력한 CODE : {}",  noticeCode);
 		
 		
+		
+		Notice check = daoNotice.select(adminCode,noticeCode);
+		
+		if(check == null)
+		{
+			throw new Exception();
+		}
 
 		daoNotice.delete(adminCode,noticeCode);
 	
