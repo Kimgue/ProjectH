@@ -20,7 +20,10 @@
 <c:if test="${not empty userId}">
 	<a href="userLogout">로그아웃</a><br>
 </c:if>
-<a href="userRegist">회원가입</a><br>
+<c:if test="${empty userId}">
+	<a href="userRegist">회원가입</a><br> 
+</c:if>
+
 
 <input type="hidden" name="adminCode" />
 <input type="hidden" name="noticeCode" />
