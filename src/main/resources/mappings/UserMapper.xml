@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.hungpick.dao.IUserDao">
+<mapper namespace="com.hungpick.Dao.IUserDao">
 
 	<select id="sltSearch" resultType="userDto" parameterType="String">
 		SELECT MEMBER_CODE FROM MEMBERS WHERE MEMBER_CODE = #{memberCode}
@@ -13,9 +13,9 @@
 	</select>
 	
 	<select id="userLogin" resultType="userDto" parameterType="String">
-		SELECT MEMBER_ID, MEMBER_PW FROM MEMBERS WHERE MEMBER_ID = #{param1} AND MEMBER_PW = {#param2}
+		SELECT * FROM MEMBERS WHERE MEMBER_ID = #{memberId} AND MEMBER_PW = #{memberPw}
 	</select>
-
+	
 	<insert id="userRegist" parameterType="userDto">
 		INSERT INTO MEMBERS (MEMBER_CODE, MEMBER_ID, MEMBER_PW, MEMBER_NAME, MEMBER_NICKNAME, MEMBER_EMAIL, MEMBER_NUMBER, MEMBER_DATE, HOLD_POINT)
 		VALUES ( #{memberCode}, #{memberId}, #{memberPw}, #{memberName}, #{memberNickname}, #{memberEmail}, #{memberNumber}, SYSDATE, #{holdPoint} )

@@ -7,8 +7,8 @@ import com.hungpick.dto.UserDto;
 public interface IUserDao {
 
 	UserDto sltSearch(String memberCode);
-
-	UserDto userLogin(String memberId, String memberPw);
+	
+	UserDto userLogin(UserDto Dto) throws Exception;
 
 	List<UserDto> sltMulti(UserDto Dto);
 

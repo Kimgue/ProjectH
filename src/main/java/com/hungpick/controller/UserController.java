@@ -8,6 +8,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.hungpick.dto.Criteria;
 import com.hungpick.dto.MenuVo;
@@ -340,19 +343,33 @@ public class UserController {
 		return "userRegist";
 	}
 
+	// 로그인 페이지
 	@RequestMapping("userLogin")
 	public String userLogin() {
 		logger.info("login called ==========");
-		System.out.println("1");
 		return "userLogin";
 	}
 
-	@RequestMapping(value = "userLoginConfirm.do", produces = "application/text;charset=UTF-8")
-	public String userLoginConfirm(@ModelAttribute("login") String memberId, String memberPw) {
+	// 로그인
+	@RequestMapping("userLoginConfirm")
+	public ModelAndView userLoginConfirm(@ModelAttribute UserDto Dto, HttpSession session) throws Exception {
 		logger.info("userLoginConfirm called ==========");
-		System.out.println("2");
-		userService.userLogin(memberId, memberPw);
 
+		boolean result = userService.userLogin(Dto, session);
+
+		ModelAndView mav = new ModelAndView();
+		if (result == true) {
+			mav.setViewName("redirect:/main.jsp");
+			session.setAttribute("userId", Dto.getMemberId());
+		} else {
+			mav.setViewName("userLogin");
+		}
+		return mav;
+	}
+
+	@RequestMapping("userLogout")
+	public String userLogout(HttpSession session) throws Exception {
+		userService.userLogout(session);
 		return "redirect:/main.jsp";
 	}
 
@@ -360,6 +377,7 @@ public class UserController {
 	public String userRegistSubmit(UserDto Dto) throws Exception {
 		logger.info("userRegistSubmit called ==========");
 		userService.userRegist(Dto);
+
 		return "redirect:/main.jsp";
 	}
 

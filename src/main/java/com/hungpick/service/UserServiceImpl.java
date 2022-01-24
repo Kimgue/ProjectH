@@ -1,7 +1,11 @@
 package com.hungpick.service;
 
 import java.util.Date;
+import java.util.Enumeration;
+import java.util.Hashtable;
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.hungpick.dao.IUserDao;
 import com.hungpick.dao.IUserDaoHist;
 import com.hungpick.dto.UserDto;
+
 
 
 @Service("userService")
@@ -21,6 +26,9 @@ public class UserServiceImpl implements IUserService {
 	@Autowired
 	private IUserDaoHist userDaoHist;
 	
+	@Autowired 
+	private static Hashtable<String, String> loginUsers = new Hashtable<String, String>();
+
 	private static int memberCodeNum = 0;
 	private static int holdPoint = 0;
 
@@ -91,13 +99,65 @@ public class UserServiceImpl implements IUserService {
 	}
 
 	@Override
-	public UserDto userLogin(String memberId, String memberPw) {
-		System.out.println("3");
-		return userDao.userLogin(memberId, memberPw);
+	public boolean userLogin(UserDto Dto, HttpSession session) throws Exception {
+		System.out.println("2");
+		boolean isLogin = isLogin(Dto.getMemberId());
+		boolean result = true;
+		System.out.println("3");		
+		if (!isLogin) {
+			System.out.println("4");
+			UserDto resultDto = userDao.userLogin(Dto);
+			
+			System.out.println("5");
+			if (resultDto == null) {
+				result = false;
+			}
+			setSession(session, Dto);
+			System.out.println(resultDto);
+			return result;
+		}
+		return !isLogin;
+	}
+
+	// 로그인이 되어있는지 확인
+	public boolean isLogin(String id) {
+		boolean isLogin = false;
+		Enumeration<String> e = loginUsers.keys();
+		String key = "";
+		while (e.hasMoreElements()) {
+			key = (String) e.nextElement();
+			if (id.equals(loginUsers.get(key)))
+				isLogin = true;
+		}
+		return isLogin;
+	}
+
+	public boolean isUsing(String sessionId) {
+		boolean isUsing = false;
+		Enumeration<String> e = loginUsers.keys();
+		String key = "";
+		while (e.hasMoreElements()) {
+			key = (String) e.nextElement();
+			if (sessionId.equals(loginUsers.get(key)))
+				isUsing = true;
+		}
+		return isUsing;
+	}
+
+	public void setSession(HttpSession session, UserDto Dto) {
+		loginUsers.put(session.getId(), Dto.getMemberId());
+		session.setAttribute("id", Dto.getMemberId());
 	}
 
 	@Override
 	public String checkId(String memberId) {
 		return userDao.checkId(memberId);
 	}
+
+	@Override
+	public void userLogout(HttpSession session) throws Exception {
+		loginUsers.remove(session.getId()); 
+		session.invalidate(); 
+	}
+
 }
