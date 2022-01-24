@@ -4,8 +4,6 @@
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 
-
-	
 	<settings>
 		<setting name="mapUnderscoreToCamelCase" value="true"/>
 		 <setting name="jdbcTypeForNull" value="NULL" />
@@ -15,7 +13,7 @@
 		<typeAlias type="com.hungpick.Dto.Notice" alias="mbrDto"></typeAlias>
 		<typeAlias type="com.hungpick.Dto.Question" alias="QesDto"></typeAlias>
 		<typeAlias type="com.hungpick.Dto.Criteria" alias="Criteria"></typeAlias>
-		<typeAlias type="com.hungpick.Dto.UserDto" alias="userDto"></typeAlias>
+	    <typeAlias type="com.hungpick.Dto.UserDto" alias="userDto"></typeAlias> 
 	</typeAliases>
 	
 	

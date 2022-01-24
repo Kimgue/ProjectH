@@ -35,10 +35,9 @@
 	<tx:annotation-driven transaction-manager="transactionManager" />
 	
 	<!-- Annotation 기반의 Component Scan -->
-	<context:component-scan base-package="com.hungpick.controller" />
-	<context:component-scan base-package="com.hungpick.Dao" />
-	<context:component-scan base-package="com.hungpick.Dto" />
-	<context:component-scan base-package="com.hungpick.Service" />
+	<context:component-scan base-package="com.hungpick.*" />
+
+	
 	<!-- SqlSession -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
@@ -61,7 +60,7 @@
 
 	<!-- DAO 등록(DAO interface 위치) -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.hungpick.Dao" />
+		<property name="basePackage" value="com.hungpick.*" />
 	</bean>
 	
 	
