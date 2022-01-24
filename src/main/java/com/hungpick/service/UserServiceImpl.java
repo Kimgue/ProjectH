@@ -1,4 +1,4 @@
-package com.hungpick.Service;
+package com.hungpick.service;
 
 import java.util.Date;
 import java.util.List;
@@ -7,9 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.hungpick.Dao.IUserDao;
-import com.hungpick.Dao.IUserDaoHist;
-import com.hungpick.Dto.UserDto;
+import com.hungpick.dao.IUserDao;
+import com.hungpick.dao.IUserDaoHist;
+import com.hungpick.dto.UserDto;
 
 
 @Service("userService")

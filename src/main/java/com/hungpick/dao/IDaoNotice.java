@@ -1,4 +1,4 @@
-package com.hungpick.Dao;
+package com.hungpick.dao;
 
 import java.util.List;
 
@@ -6,8 +6,8 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
-import com.hungpick.Dto.Criteria;
-import com.hungpick.Dto.Notice;
+import com.hungpick.dto.Criteria;
+import com.hungpick.dto.Notice;
 
 
 public interface IDaoNotice {

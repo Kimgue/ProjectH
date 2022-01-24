@@ -1,4 +1,4 @@
-package com.hungpick.Service;
+package com.hungpick.service;
 
 import java.util.List;
 
@@ -7,9 +7,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.hungpick.Dao.IDaoQuestion;
-import com.hungpick.Dto.Criteria;
-import com.hungpick.Dto.Question;
+import com.hungpick.dao.IDaoQuestion;
+import com.hungpick.dto.Criteria;
+import com.hungpick.dto.Question;
 
 
 

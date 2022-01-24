@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hungpick.dao.IReviewDao"> <!-- "<" 는 문법오류나서  "<![CDATA[ < ]]>" 이렇게 해야한다. -->
+	
+
+
+	<resultMap type="memberDto" id="MemberDtoRm">
+	<id column="MEMBER_CODE" property="memberCode"/>
+	<result column="MEMBER_ID" property="memberId"/>
+    <result column="MEMBER_PW" property="memberPw"/>
+    <result column="MEMBER_NAME" property="memberName"/>
+    <result column="MEMBER_NICKNAME" property="memberNickname"/>
+    <result column="MEMBER_EAMIL" property="memberEmail"/>
+    <result column="MEMBER_NUMBER" property="memberNumber"/> 
+    <result column="MEMBER_DATE" property="memberDate"/>
+    <result column="HOLD_POINT" property="holdPoint"/>  
+	</resultMap>
+	
+	<resultMap type="reviewDto" id="ReviewDtoRm">
+	<id column="BRAND_CODE" property="brandCode"/>
+	<id column="MENU_CODE" property="menuCode"/>
+	<id column="REVIEW_CODE" property="reviewCode"/>
+    <id column="MEMBER_CODE" property="memberCode"/>
+    <result column="REVIEW_SCORE" property="reviewScore"/>
+    <result column="REVIEW_CONTENT" property="reviewContent"/>
+    <result column="REVIEW_DATE" property="reviewDate"/>
+    <result column="REVIEW_IMG1" property="reviewImg1"/>
+    <result column="REVIEW_IMG2" property="reviewImg2"/>
+    <result column="REVIEW_CONFIRM" property="reviewConfirm"/>
+    <result column="EARN_POINT" property="earnPoint"/>
+    <result column="EARNDATE_POINT" property="earnDatePoint"/>
+	</resultMap>
+	
+	<resultMap type="reviewVo" id="ReviewVoRm">
+        <collection property="memberDto" resultMap="MemberDtoRm"></collection >
+        <collection property="reviewDto" resultMap="ReviewDtoRm"></collection >
+	</resultMap>
+	
+	<select id="sltReviewList" parameterType="String" resultMap="ReviewVoRm">
+		SELECT A.MEMBER_NICKNAME, B.BRAND_CODE, B.MENU_CODE, B.REVIEW_CODE, B.MEMBER_CODE, 
+		B.REVIEW_SCORE, B.REVIEW_CONTENT, B.REVIEW_DATE
+		FROM MEMBERS A JOIN REVIEW B ON A.MEMBER_CODE = B.MEMBER_CODE 
+			<if test="brandCode != null and brandCode != ''">
+				AND B.BRAND_CODE = #{brandCode}
+			</if>
+			<if test="menuCode != null and menuCode != ''">
+				AND B.MENU_CODE = #{menuCode}
+			</if>
+			<!-- 
+			<if test="reviewConfirm != null and reviewConfirm != ''">
+				AND reviewConfirm = #{reviewConfirm}
+			</if>
+			 -->	
+	</select>
+	
+	<select id="sltLookUp" parameterType="String" resultMap="ReviewVoRm">
+		SELECT A.MEMBER_NICKNAME, B.REVIEW_SCORE, B.REVIEW_CONTENT, B.REVIEW_DATE, 
+		B.REVIEW_IMG1, B.REVIEW_IMG2 
+		FROM MEMBERS A JOIN REVIEW B ON A.MEMBER_CODE = B.MEMBER_CODE
+			<if test="brandCode != null and brandCode != ''">
+				AND B.BRAND_CODE = #{brandCode}
+			</if>
+			<if test="menuCode != null and menuCode != ''">
+				AND B.MENU_CODE = #{menuCode}
+			</if>
+			<if test="reviewCode != null and reviewCode != ''">
+				AND B.REVIEW_CODE = #{reviewCode}
+			</if>	
+			<if test="memberCode != null and memberCode != ''">
+				AND B.MEMBER_CODE = #{memberCode}
+			</if>
+		
+	</select>
+</mapper>

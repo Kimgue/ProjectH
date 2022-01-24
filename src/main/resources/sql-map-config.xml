@@ -10,10 +10,16 @@
 	</settings>	
 
 	<typeAliases>
-		<typeAlias type="com.hungpick.Dto.Notice" alias="mbrDto"></typeAlias>
-		<typeAlias type="com.hungpick.Dto.Question" alias="QesDto"></typeAlias>
-		<typeAlias type="com.hungpick.Dto.Criteria" alias="Criteria"></typeAlias>
-	    <typeAlias type="com.hungpick.Dto.UserDto" alias="userDto"></typeAlias> 
+		<typeAlias type="com.hungpick.dto.Notice" alias="mbrDto"></typeAlias>
+		<typeAlias type="com.hungpick.dto.Question" alias="QesDto"></typeAlias>
+		<typeAlias type="com.hungpick.dto.Criteria" alias="Criteria"></typeAlias>
+	    <typeAlias type="com.hungpick.dto.UserDto" alias="userDto"></typeAlias>
+	    <typeAlias type="com.hungpick.dto.BrandDto" alias="brandDto"></typeAlias>
+		<typeAlias type="com.hungpick.dto.MenuDto" alias="menuDto"></typeAlias>
+		<typeAlias type="com.hungpick.dto.MenuVo" alias="menuVo"></typeAlias>
+		<typeAlias type="com.hungpick.dto.MemberDto" alias="memberDto"></typeAlias>
+		<typeAlias type="com.hungpick.dto.ReviewDto" alias="reviewDto"></typeAlias>
+		<typeAlias type="com.hungpick.dto.ReviewVo" alias="reviewVo"></typeAlias> 
 	</typeAliases>
 	
 	

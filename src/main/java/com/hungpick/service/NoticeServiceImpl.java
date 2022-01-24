@@ -1,4 +1,4 @@
-package com.hungpick.Service;
+package com.hungpick.service;
 
 import java.util.List;
 
@@ -8,9 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.hungpick.Dao.IDaoNotice;
-import com.hungpick.Dto.Criteria;
-import com.hungpick.Dto.Notice;
+import com.hungpick.dao.IDaoNotice;
+import com.hungpick.dto.Criteria;
+import com.hungpick.dto.Notice;
 
 
 @Service("notice")

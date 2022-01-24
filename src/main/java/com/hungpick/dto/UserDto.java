@@ -1,4 +1,4 @@
-package com.hungpick.Dto;
+package com.hungpick.dto;
 
 import java.util.Date;
 

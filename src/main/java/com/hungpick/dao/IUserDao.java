@@ -1,18 +1,18 @@
-package com.hungpick.Service;
+package com.hungpick.dao;
 
 import java.util.List;
 
-import com.hungpick.Dto.UserDto;
+import com.hungpick.dto.UserDto;
 
-public interface IUserService {
+public interface IUserDao {
 
 	UserDto sltSearch(String memberCode);
-	
+
 	UserDto userLogin(String memberId, String memberPw);
 
 	List<UserDto> sltMulti(UserDto Dto);
 
-	String userRegist(UserDto Dto) throws Exception;
-	
+	void userRegist(UserDto Dto);
+
 	String checkId(String memberId);
 }
