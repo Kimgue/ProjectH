@@ -1,4 +1,4 @@
-package com.hungpick.service;
+package com.hungpick.Service;
 
 import java.util.List;
 

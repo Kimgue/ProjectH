@@ -1,11 +1,10 @@
-package com.hungpick.service;
+package com.hungpick.Service;
 
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
-import com.hungpick.dto.Criteria;
-import com.hungpick.dto.Question;
+
 
 public interface IQuestionSerivce {
 	

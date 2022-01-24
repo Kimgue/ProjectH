@@ -12,9 +12,9 @@
 	</settings>	
 
 	<typeAliases>
-		<typeAlias type="com.hungpick.dto.Notice" alias="mbrDto"></typeAlias>
-		<typeAlias type="com.hungpick.dto.Question" alias="QesDto"></typeAlias>
-		<typeAlias type="com.hungpick.dto.Criteria" alias="Criteria"></typeAlias>
+		<typeAlias type="com.hungpick.Dto.Notice" alias="mbrDto"></typeAlias>
+		<typeAlias type="com.hungpick.Dto.Question" alias="QesDto"></typeAlias>
+		<typeAlias type="com.hungpick.Dto.Criteria" alias="Criteria"></typeAlias>
 	</typeAliases>
 	
 	
