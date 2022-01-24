@@ -38,6 +38,10 @@ table {
 			</tr>
 		</c:forEach>
 	</table>	
+	<br>
+	<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
+    	<a href="Notice?page=${idx}">${idx}</a>
+    </c:forEach>
 	<hr>
 	
 </body>

@@ -1,4 +1,4 @@
-package com.hungpick.Dto;
+package com.hungpick.dto;
 
 public class Notice {
 	private String adminCode;

@@ -11,13 +11,15 @@
 <center>
 <h1>환영합니다.</h1>
 <form name="paging">
-	<input type="hidden" name="adminCode" />
-	<input type="hidden" name="noticeCode" />
+
+<input type="hidden" name="adminCode" />
+<input type="hidden" name="noticeCode" />
 	
-<a href='javascript:Notice("1","1")'>공지사항</a>
+<a href='javascript:Notice("1")'>공지사항</a>
+
 <br>
 	
-<a href='javascript:QnA("02")'>Q . A</a>
+<a href='javascript:QnA("00002")'>Q . A</a>
 <input type="hidden" name="memberCode" />
 <br>
 </form>

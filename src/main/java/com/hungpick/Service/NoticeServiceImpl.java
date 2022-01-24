@@ -1,4 +1,4 @@
-package com.hungpick.Service;
+package com.hungpick.service;
 
 import java.util.List;
 
@@ -8,8 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.hungpick.Dao.IDaoNotice;
-import com.hungpick.Dto.Notice;
+import com.hungpick.dao.IDaoNotice;
+import com.hungpick.dto.Criteria;
+import com.hungpick.dto.Notice;
 
 
 @Service("notice")
@@ -27,9 +28,9 @@ public class NoticeServiceImpl implements INoticeService {
 	}
 	
 	@Override
-	public List<Notice> selectAll() throws Exception {
+	public List<Notice> listPage(Criteria cri) throws Exception {
 		
-		List<Notice> list = daoNotice.selectAll();
+		List<Notice> list = daoNotice.listPage(cri);
 		
 		return list;
 	}
@@ -38,14 +39,14 @@ public class NoticeServiceImpl implements INoticeService {
 	@Override
 	public void insert(Notice noti) throws Exception {
 
-		
-		
-		Notice check = daoNotice.select(noti.getAdminCode(), noti.getNoticeCode());
+		Notice check = daoNotice.select(noti.getAdminCode(),  noti.getNoticeCode());
 		
 		if(check != null)
 		{
 			throw new Exception();
 		}
+		
+		
 		String Acode = noti.getAdminCode();
 		String Bcode = noti.getNoticeCode();
 		String titl = noti.getNoticeTitle();
@@ -67,15 +68,16 @@ public class NoticeServiceImpl implements INoticeService {
 
 	@Override
 	public void update(Notice noti) throws Exception {
-
 		
-
-		Notice check = daoNotice.select(noti.getAdminCode(), noti.getNoticeCode());
+		Notice check = daoNotice.select(noti.getAdminCode(),  noti.getNoticeCode());
 		
 		if(check != null)
 		{
 			throw new Exception();
 		}
+		
+
+		
 		String Acode = noti.getAdminCode();
 		String Bcode = noti.getNoticeCode();
 		String titl = noti.getNoticeTitle();
@@ -102,14 +104,14 @@ public class NoticeServiceImpl implements INoticeService {
 		logger.info("입력한 CODE : {}",  adminCode);
 		logger.info("입력한 CODE : {}",  noticeCode);
 		
-		
-		
-		Notice check = daoNotice.select(adminCode,noticeCode);
+		Notice check = daoNotice.select(adminCode,  noticeCode);
 		
 		if(check == null)
 		{
 			throw new Exception();
 		}
+		
+		
 
 		daoNotice.delete(adminCode,noticeCode);
 	
@@ -122,6 +124,14 @@ public class NoticeServiceImpl implements INoticeService {
 		return daoNotice.select(adminCode,NoticeCode);
 
 	}
+
+	@Override
+	public int listCount() throws Exception {
+		
+		return daoNotice.listCount();
+	}
+
+	
 
 
 	
