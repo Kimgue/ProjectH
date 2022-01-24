@@ -35,9 +35,10 @@
 	<tx:annotation-driven transaction-manager="transactionManager" />
 	
 	<!-- Annotation 기반의 Component Scan -->
-	<context:component-scan base-package="com.hungpick.*" />
-	
-	
+	<context:component-scan base-package="com.hungpick.controller" />
+	<context:component-scan base-package="com.hungpick.Dao" />
+	<context:component-scan base-package="com.hungpick.Dto" />
+	<context:component-scan base-package="com.hungpick.Service" />
 	<!-- SqlSession -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />

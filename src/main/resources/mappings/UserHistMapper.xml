@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.hungpick.dao.IUserDaoHist">
+<mapper namespace="com.hungpick.Dao.IUserDaoHist">
 	<insert id="userRegistHist">
 		INSERT INTO MBR_HIST(reg_dt, contents) VALUES ( SYSDATE, #{contents} )
 	</insert>

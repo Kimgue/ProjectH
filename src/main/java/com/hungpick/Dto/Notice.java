@@ -1,6 +1,7 @@
 package com.hungpick.Dto;
 
 public class Notice {
+	
 	private String adminCode;
 	private String noticeCode;
 	private String noticeTitle;

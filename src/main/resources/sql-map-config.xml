@@ -15,7 +15,7 @@
 		<typeAlias type="com.hungpick.Dto.Notice" alias="mbrDto"></typeAlias>
 		<typeAlias type="com.hungpick.Dto.Question" alias="QesDto"></typeAlias>
 		<typeAlias type="com.hungpick.Dto.Criteria" alias="Criteria"></typeAlias>
-		<typeAlias type="com.hungpick.dto.UserDto" alias="userDto"></typeAlias>
+		<typeAlias type="com.hungpick.Dto.UserDto" alias="userDto"></typeAlias>
 	</typeAliases>
 	
 	
