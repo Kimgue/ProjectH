@@ -1,5 +1,3 @@
-// 테스트 2시 31분
-
 package com.hungpick.controller;
 
 
@@ -34,11 +32,6 @@ import com.hungpick.service.INoticeService;
 import com.hungpick.service.IQuestionSerivce;
 import com.hungpick.service.IReviewService;
 import com.hungpick.service.IUserService;
-
-
-
-
-
 
 @Controller
 public class UserController {
