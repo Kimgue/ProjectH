@@ -15,8 +15,6 @@ import com.hungpick.dao.IUserDao;
 import com.hungpick.dao.IUserDaoHist;
 import com.hungpick.dto.UserDto;
 
-
-
 @Service("userService")
 public class UserServiceImpl implements IUserService {
 
