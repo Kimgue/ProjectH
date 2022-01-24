@@ -13,12 +13,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.hungpick.dto.Criteria;
-import com.hungpick.dto.Notice;
-import com.hungpick.dto.PageMaker;
-import com.hungpick.dto.Question;
-import com.hungpick.service.INoticeService;
-import com.hungpick.service.IQuestionSerivce;
+import com.hungpick.Dto.Criteria;
+import com.hungpick.Dto.Notice;
+import com.hungpick.Dto.PageMaker;
+import com.hungpick.Dto.Question;
+import com.hungpick.Service.INoticeService;
+import com.hungpick.Service.IQuestionSerivce;
 
 
 
