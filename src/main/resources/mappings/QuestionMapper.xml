@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hungpick.Dao.IDaoQuestion"> <!-- "<" 는 문법오류나서  "<![CDATA[ < ]]>" 이렇게 해야한다. -->
+
+	<select id="select" parameterType="String" resultType="QesDto">
+		SELECT * 
+		FROM 
+		QUESTION
+		WHERE MEMBER_CODE = #{ memberCode } AND
+		QSTN_CODE = #{ qstnCode  } 
+		
+	</select>
+	
+	<select id="listCount" resultType="int">
+	<![CDATA[
+		SELECT COUNT(QSTN_CODE)
+		  FROM QUESTION
+		 WHERE QSTN_CODE > 0
+	]]>
+	</select>
+	
+	<select id="listPage" resultType="QesDto" parameterType="Criteria">
+		SELECT  * FROM (   SELECT   ROW_NUMBER() OVER(ORDER BY QSTN_CODE DESC)
+		 NUM, A.* FROM QUESTION A ORDER BY QSTN_CODE) 
+		WHERE NUM BETWEEN #{rowStart} AND #{rowEnd}
+		ORDER BY QSTN_CODE DESC
+	</select>
+	
+	<select id="first" resultType="QesDto" parameterType="String">
+		SELECT * FROM QUESTION WHERE MEMBER_CODE = #{memberCode}
+	</select>
+	
+	<select id="first1" resultType="QesDto" parameterType="String">
+		SELECT  DISTINCT MEMBER_CODE FROM QUESTION WHERE MEMBER_CODE = #{memberCode }
+	</select>
+	 <!-- 게시판 글 작성 -->
+	
+   <insert id="insert" parameterType="QesDto">
+	   INSERT  INTO QUESTION       
+	                 VALUES(   #{ memberCode} ,QUESTION_SEQ.NEXTVAL , #{qstnTitle},#{qstnContent}, TO_DATE( #{qstnDate} ,'YYYY-MM-DD HH24:MI:SS') ,  #{qstnConfirm} )
+                
+   </insert>
+	
+	<update id="update" parameterType="QesDto">
+		UPDATE QUESTION SET QSTN_TITLE = #{ qstnTitle }, QSTN_CONTENT = #{ qstnContent }, QSTN_DATE = TO_DATE( #{qstnDate} ,'YYYY-MM-DD HH24:MI:SS'), QSTN_CONFIRM = #{qstnConfirm} WHERE MEMBER_CODE = #{ memberCode } AND QSTN_CODE = #{ qstnCode }  
+	</update>
+
+	<delete id="delete">
+		DELETE FROM QUESTION WHERE MEMBER_CODE = #{memberCode } AND QSTN_CODE = #{ qstnCode }
+	</delete>
+
+</mapper>
