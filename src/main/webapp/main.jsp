@@ -12,6 +12,11 @@
 <h1>환영합니다.</h1>
 <form name="paging">
 
+<!-- 김혜성 수정함 -->
+<a href="userView">회원조회</a><br>
+<a href="userLogin">로그인</a><br>
+<a href="userRegist">회원가입</a><br>
+
 <input type="hidden" name="adminCode" />
 <input type="hidden" name="noticeCode" />
 	
