@@ -7,6 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,13 +15,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hungpick.Dto.Criteria;
 import com.hungpick.Dto.Notice;
 import com.hungpick.Dto.PageMaker;
 import com.hungpick.Dto.Question;
+import com.hungpick.Dto.UserDto;
 import com.hungpick.Service.INoticeService;
 import com.hungpick.Service.IQuestionSerivce;
+import com.hungpick.Service.IUserService;
 
 
 
@@ -36,6 +40,11 @@ public class UserController {
 
 	@Autowired
 	private IQuestionSerivce  question;
+	
+	
+	/*------------------------김혜성------------------------*/
+	@Autowired
+	private IUserService userService;
 	
 	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
@@ -298,4 +307,63 @@ public class UserController {
 	
 	
 	
+	
+	/*------------------------김혜성------------------------*/
+	
+	@RequestMapping("userView")
+	public String userView(UserDto Dto, Model model) {
+		logger.info("userView called ==========");
+
+		List<UserDto> list = userService.sltMulti(Dto);
+
+		model.addAttribute("LIST", list);
+		return "userView";
+	}
+
+	@RequestMapping("userRegist")
+	public String userRegist() {
+		logger.info("userRegist called ==========");
+		return "userRegist";
+	}
+
+	@RequestMapping("userLogin")
+	public String userLogin() {
+		logger.info("login called ==========");
+		System.out.println("1");
+		return "userLogin";
+	}
+
+	@RequestMapping(value = "userLoginConfirm.do", produces = "application/text;charset=UTF-8")
+	public String userLoginConfirm(@ModelAttribute("login") String memberId, String memberPw) {
+		logger.info("userLoginConfirm called ==========");
+		System.out.println("2");
+		userService.userLogin(memberId, memberPw);
+
+		return "redirect:/main.jsp";
+	}
+
+	@RequestMapping("userRegistSubmit")
+	public String userRegistSubmit(UserDto Dto) throws Exception {
+		logger.info("userRegistSubmit called ==========");
+		userService.userRegist(Dto);
+		return "redirect:/main.jsp";
+	}
+
+	@RequestMapping(value = "IdChkCtrl.do", produces = "application/text;charset=UTF-8")
+	@ResponseBody
+	public String idChk(@ModelAttribute("id") String memberId) {
+		String idChk = userService.checkId(memberId);
+		boolean result = false;
+		if (idChk.equals("0")) {
+			result = true;
+		}
+
+		JSONObject jsonObj = new JSONObject();
+		jsonObj.put("result", result);
+
+		String jsonOut = jsonObj.toString();
+		System.out.println("=====" + jsonOut);
+
+		return jsonOut;
+	}
 }
