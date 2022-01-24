@@ -1,6 +1,5 @@
 package com.hungpick.controller;
 
-
 import java.text.SimpleDateFormat;
 
 import java.util.Date;
@@ -40,41 +39,36 @@ public class UserController {
 	private INoticeService notice;
 
 	@Autowired
-	private IQuestionSerivce  question;
-	
+	private IQuestionSerivce question;
+
 	/*------------------------정진욱------------------------*/
 	@Autowired
 	private IBrandService brandService;
-	
+
 	@Autowired
 	private IMenuService menuService;
-	
+
 	@Autowired
 	private IReviewService reviewService;
-	
-	/*------------------------김혜성------------------------*/
+
 	@Autowired
 	private IUserService userService;
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
 	@RequestMapping(value = "/")
-	public String home(Model model,String memberCode) {
+	public String home(Model model, String memberCode) {
 		logger.info("home called ==========");
-		
-				
+
 		return "redirect:/main.jsp";
 	}
 
 	@RequestMapping("Question")
-	public String QA(Model model,String memberCode,@ModelAttribute("cri") Criteria cri) throws Exception {
+	public String QA(Model model, String memberCode, @ModelAttribute("cri") Criteria cri) throws Exception {
 		logger.info("Q&A called ==========");
-		
-		/*List<Question> list = question.first(memberCode);*/
 
-		
-		
-		
+		/* List<Question> list = question.first(memberCode); */
+
 		List<Question> list = question.listPage(cri);
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
@@ -83,54 +77,48 @@ public class UserController {
 		Question as = question.first1(memberCode);
 		model.addAttribute("pageMaker", pageMaker);
 		model.addAttribute("currentPage", currentPage);
-			
+
 		model.addAttribute("f", list);
 		model.addAttribute("b", as);
-	
-		
+
 		return "Questionlist";
 	}
 
 	@RequestMapping("view1")
-	public String view1(Model model,String memberCode,String qstnCode) {
+	public String view1(Model model, String memberCode, String qstnCode) {
 		logger.info("insertMem called ==========");
-		
-		SimpleDateFormat format1 = new SimpleDateFormat ("yyyy-MM-dd HH:mm:ss");
+
+		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date date = new Date();
 		String time1 = format1.format(date);
 		model.addAttribute("v", question.select(memberCode, qstnCode));
-		System.out.println(question.select(memberCode, qstnCode));	
-		model.addAttribute("date", time1 );
-	
-		
+		System.out.println(question.select(memberCode, qstnCode));
+		model.addAttribute("date", time1);
+
 		return "Questionupdatelist";
 	}
 
 	@RequestMapping("insertQnA")
-	public String insertUser(Model model,String memberCode,String qstnCode) throws Exception {
-		
-		SimpleDateFormat format1 = new SimpleDateFormat ("yyyy-MM-dd HH:mm:ss");
+	public String insertUser(Model model, String memberCode, String qstnCode) throws Exception {
+
+		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date date = new Date();
 		String time1 = format1.format(date);
-		
-		
+
 		Question as = question.first1(memberCode);
-		
+
 		model.addAttribute("b", as);
 		System.out.println("memberCode " + as);
-		model.addAttribute("date", time1 );
-		
-		
-		
+		model.addAttribute("date", time1);
+
 		return "QuestioninsertQ";
 	}
 
 	@RequestMapping("Questioninsert")
-	public String updateView(Question qes,Model model,String memberCode, Criteria cri) throws Exception {
+	public String updateView(Question qes, Model model, String memberCode, Criteria cri) throws Exception {
 		logger.info("insertCn");
-		
-		
-		/*List<Question> list = question.first(memberCode);*/
+
+		/* List<Question> list = question.first(memberCode); */
 		List<Question> list = question.listPage(cri);
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
@@ -139,121 +127,116 @@ public class UserController {
 		question.insert(qes);
 		model.addAttribute("pageMaker", pageMaker);
 		model.addAttribute("currentPage", currentPage);
-		
+
 		Question as = question.first1(memberCode);
 		model.addAttribute("f", list);
 		model.addAttribute("b", as);
-		
+
 		return "Questionlist";
 	}
 
 	@RequestMapping("updatelist")
-	public String updatelist(Model model,String memberCode,String qstnCode) throws Exception {
+	public String updatelist(Model model, String memberCode, String qstnCode) throws Exception {
 		logger.info("updatelist");
-		
-		SimpleDateFormat format1 = new SimpleDateFormat ("yyyy-MM-dd HH:mm:ss");
+
+		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date date = new Date();
 		String time1 = format1.format(date);
 		Question person = question.select(memberCode, qstnCode);
 		model.addAttribute("v", person);
 		System.out.println(person);
-		model.addAttribute("date", time1 );
-		
+		model.addAttribute("date", time1);
+
 		return "Questionupdatelist";
 	}
 
 	@RequestMapping("QuestionUpdate")
-	public String updateE(Model model,String memberCode,Question qes, Criteria cri) throws Exception {
+	public String updateE(Model model, String memberCode, Question qes, Criteria cri) throws Exception {
 		logger.info("updatelist");
-		
-		
-		
-		/*List<Question> list = question.first(memberCode);*/
+
+		/* List<Question> list = question.first(memberCode); */
 		List<Question> list = question.listPage(cri);
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(question.listCount());
 		int currentPage = cri.getPage();
-		question.update(qes);		
+		question.update(qes);
 		model.addAttribute("pageMaker", pageMaker);
 		model.addAttribute("currentPage", currentPage);
 		Question as = question.first1(memberCode);
 		model.addAttribute("f", list);
 		model.addAttribute("b", as);
 
-		
 		return "Questionlist";
 	}
+
 	@RequestMapping("Questiondelete")
-	public String delete(Model model,String memberCode,String qstnCode,Question qes, Criteria cri) throws Exception {
-		
-		
-		
-		/*List<Question> list = question.first(memberCode);*/
+	public String delete(Model model, String memberCode, String qstnCode, Question qes, Criteria cri) throws Exception {
+
+		/* List<Question> list = question.first(memberCode); */
 		List<Question> list = question.listPage(cri);
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(question.listCount());
 		int currentPage = cri.getPage();
-		question.delete(memberCode, qstnCode);	
+		question.delete(memberCode, qstnCode);
 		model.addAttribute("pageMaker", pageMaker);
 		model.addAttribute("currentPage", currentPage);
 		System.out.println(list);
 		Question as = question.first1(memberCode);
-			
+
 		model.addAttribute("f", list);
 		model.addAttribute("b", as);
-		
-		return "Questionlist";
-		
-	}
-	
 
-	
-	
+		return "Questionlist";
+
+	}
+
 	@RequestMapping("Notice")
-	public String listPage(Model model,String adminCode,String noticeCode,Criteria cri) throws Exception {
+	public String listPage(Model model, String adminCode, String noticeCode, Criteria cri) throws Exception {
 		logger.info("get list page");
-		
+
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(notice.listCount());
 		int currentPage = cri.getPage();
-		
+
 		model.addAttribute("list", notice.listPage(cri));
 		model.addAttribute("a", notice.sltone(adminCode));
 		model.addAttribute("pageMaker", pageMaker);
 		model.addAttribute("currentPage", currentPage);
 		return "NoticeSWD";
-	
+
 	}
 
 	@RequestMapping("view2")
-	public String view2(Model model,String adminCode,String noticeCode) throws Exception {
-		
-		model.addAttribute("s", notice.select(adminCode,noticeCode));
-		
+	public String view2(Model model, String adminCode, String noticeCode) throws Exception {
+
+		model.addAttribute("s", notice.select(adminCode, noticeCode));
+
 		return "Noticeview2";
 	}
-	
+
 	@RequestMapping("insertNotice")
-	public String insertNotice(Model model,String adminCode) throws Exception {
-		
-		SimpleDateFormat format1 = new SimpleDateFormat ("yyyy-MM-dd HH:mm:ss");
+	public String insertNotice(Model model, String adminCode) throws Exception {
+
+		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date date = new Date();
 		String time1 = format1.format(date);
-		
-		model.addAttribute("date", time1 );
+
+		model.addAttribute("date", time1);
 		model.addAttribute("s", notice.sltone(adminCode));
-		
+
 		return "NoticeinsertN";
 	}
+
 	@RequestMapping("insertNc")
-	public String insertNoticeC(Model model,String adminCode,String noticeCode,Notice noti,Criteria cri) throws Exception {
-		
+	public String insertNoticeC(Model model, String adminCode, String noticeCode, Notice noti, Criteria cri)
+			throws Exception {
+
 		notice.insert(noti);
-		
-		SimpleDateFormat format1 = new SimpleDateFormat ("yyyy-MM-dd HH:mm:ss");
+
+		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date date = new Date();
 		String time1 = format1.format(date);
 		PageMaker pageMaker = new PageMaker();
@@ -262,64 +245,64 @@ public class UserController {
 		int currentPage = cri.getPage();
 		model.addAttribute("list", notice.listPage(cri));
 		model.addAttribute("a", notice.sltone(adminCode));
-		model.addAttribute("date", time1 );
+		model.addAttribute("date", time1);
 		model.addAttribute("pageMaker", pageMaker);
 		model.addAttribute("currentPage", currentPage);
 		return "NoticeSWD";
-		
+
 	}
+
 	@RequestMapping("Noticeupdatelist")
-	public String Noticeupdatelist(Model model,String adminCode,String noticeCode) throws Exception {
+	public String Noticeupdatelist(Model model, String adminCode, String noticeCode) throws Exception {
 		logger.info("updatelist");
-		
-		
-		Notice person =   notice.select(adminCode, noticeCode);
+
+		Notice person = notice.select(adminCode, noticeCode);
 		model.addAttribute("person", person);
 		System.out.println(person);
-		SimpleDateFormat format1 = new SimpleDateFormat ("yyyy-MM-dd HH:mm:ss");
+		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date date = new Date();
 		String time1 = format1.format(date);
-		model.addAttribute("date", time1 );
-		
+		model.addAttribute("date", time1);
+
 		return "Noticeupdatelist";
 	}
-	
-	
+
 	@RequestMapping("Noticeupdate")
-	public String Noticeupdate(Model model,String adminCode,String noticeCode,Notice noti,Criteria cri) throws Exception {
+	public String Noticeupdate(Model model, String adminCode, String noticeCode, Notice noti, Criteria cri)
+			throws Exception {
 		logger.info("update해서 간다");
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(notice.listCount());
 		int currentPage = cri.getPage();
-		
+
 		notice.update(noti);
 		model.addAttribute("list", notice.listPage(cri));
 		model.addAttribute("a", notice.sltone(adminCode));
-		SimpleDateFormat format1 = new SimpleDateFormat ("yyyy-MM-dd HH:mm:ss");
+		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date date = new Date();
 		String time1 = format1.format(date);
-		model.addAttribute("date", time1 );
+		model.addAttribute("date", time1);
 		model.addAttribute("pageMaker", pageMaker);
 		model.addAttribute("currentPage", currentPage);
-		
+
 		return "NoticeSWD";
-		
+
 	}
+
 	@RequestMapping("Noticedelete")
-	public String Noticedelete(Model model,String adminCode,String noticeCode,Notice noti,Criteria cri) throws Exception {
-		
+	public String Noticedelete(Model model, String adminCode, String noticeCode, Notice noti, Criteria cri)
+			throws Exception {
+
 		notice.delete(adminCode, noticeCode);
-		model.addAttribute("list",notice.listPage(cri));
-		
+		model.addAttribute("list", notice.listPage(cri));
+
 		return "NoticeSWD";
 	}
-	
-	
-	
-	
+
 	/*------------------------김혜성------------------------*/
-	
+
+	// 회원조회
 	@RequestMapping("userView")
 	public String userView(UserDto Dto, Model model) {
 		logger.info("userView called ==========");
@@ -330,10 +313,20 @@ public class UserController {
 		return "userView";
 	}
 
+	// 회원가입 페이지
 	@RequestMapping("userRegist")
 	public String userRegist() {
 		logger.info("userRegist called ==========");
 		return "userRegist";
+	}
+
+	// 회원가입
+	@RequestMapping("userRegistSubmit")
+	public String userRegistSubmit(UserDto Dto) throws Exception {
+		logger.info("userRegistSubmit called ==========");
+		userService.userRegist(Dto);
+
+		return "redirect:/main.jsp";
 	}
 
 	// 로그인 페이지
@@ -360,20 +353,14 @@ public class UserController {
 		return mav;
 	}
 
+	// 로그아웃
 	@RequestMapping("userLogout")
 	public String userLogout(HttpSession session) throws Exception {
 		userService.userLogout(session);
 		return "redirect:/main.jsp";
 	}
 
-	@RequestMapping("userRegistSubmit")
-	public String userRegistSubmit(UserDto Dto) throws Exception {
-		logger.info("userRegistSubmit called ==========");
-		userService.userRegist(Dto);
-
-		return "redirect:/main.jsp";
-	}
-
+	// ID 중복검사
 	@RequestMapping(value = "IdChkCtrl.do", produces = "application/text;charset=UTF-8")
 	@ResponseBody
 	public String idChk(@ModelAttribute("id") String memberId) {
@@ -391,58 +378,48 @@ public class UserController {
 
 		return jsonOut;
 	}
-	
+
 	/*------------------------정진욱------------------------*/
 	@RequestMapping("brand")
 	public void brand(Model model) throws Exception {
 		logger.info("brand called ========");
 		model.addAttribute("brand", brandService.sltMulti());
 	}
-	
+
 	@RequestMapping("menu")
 	public void menu(Model model) throws Exception {
 		logger.info("menu called ========");
 		model.addAttribute("menu", menuService.sltMulti());
-	}	
-	
+	}
+
 	@RequestMapping("menuResult")
-	public void menuVo(
-			@RequestParam(required = false) String brandName,
-			@RequestParam(required = false) String menuPrice,
-			@RequestParam(required = false) String menuIngredients,
-			@RequestParam(required = false) String menuName,
-			Model model) throws Exception {
+	public void menuVo(@RequestParam(required = false) String brandName,
+			@RequestParam(required = false) String menuPrice, @RequestParam(required = false) String menuIngredients,
+			@RequestParam(required = false) String menuName, Model model) throws Exception {
 		logger.info("menuVo called ========");
 		List<MenuVo> list = menuService.sltSearch(brandName, menuPrice, menuIngredients, menuName);
 		String ResultMsg;
-		if(list.size()>0) {
-		ResultMsg = "정상 조회되었습니다." ;
+		if (list.size() > 0) {
+			ResultMsg = "정상 조회되었습니다.";
 		} else {
-		ResultMsg = "죄송합니다. 해당되는 상품이 없습니다.";
+			ResultMsg = "죄송합니다. 해당되는 상품이 없습니다.";
 		}
 		model.addAttribute("ResultMsg", ResultMsg);
 		model.addAttribute("menuVo", menuService.sltSearch(brandName, menuPrice, menuIngredients, menuName));
 	}
-	
+
 	@RequestMapping("review")
-	public void review(
-			@RequestParam String brandCode,
-			@RequestParam String menuCode,
-			String menuName,
-			Model model) throws Exception {
+	public void review(@RequestParam String brandCode, @RequestParam String menuCode, String menuName, Model model)
+			throws Exception {
 		logger.info("review called ========");
 		model.addAttribute("menuName", menuName);
 		model.addAttribute("review", reviewService.sltReviewList(brandCode, menuCode));
 	}
-	
+
 	@RequestMapping("reviewLookup")
-	public void reviewLookup(
-			@RequestParam String brandCode,
-			@RequestParam String menuCode,
-			@RequestParam String reviewCode,
-			@RequestParam String memberCode,
-			Model model) throws Exception {
-		
+	public void reviewLookup(@RequestParam String brandCode, @RequestParam String menuCode,
+			@RequestParam String reviewCode, @RequestParam String memberCode, Model model) throws Exception {
+
 		logger.info("reviewLookup called =======");
 		model.addAttribute("Lookup", reviewService.sltLookUp(brandCode, menuCode, reviewCode, memberCode));
 	}
