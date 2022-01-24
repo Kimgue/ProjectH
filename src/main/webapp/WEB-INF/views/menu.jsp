@@ -11,6 +11,7 @@
 .container {
 	display:flex;
 }
+
 </style>
 </head>
 <body>
@@ -35,20 +36,17 @@
 				<a href="#"> 
 					<img src="<c:out value="resources/${menu.menuImg}"/>" alt="메뉴 이미지" height="270" width="270" />
 				</a>
-				<p style="font-size: 10pt">
+				<p style="font-size: 15pt">
 					<c:out value="${menu.menuName}" />
 				</p>
-				<p style="font-size: 10pt">
+				<p style="font-size: 15pt">
 					<c:out value="${menu.menuPrice}" />
 				</p>
-				<p style="font-size: 10pt">
+				<p style="font-size: 12pt">
 					<c:out value="${menu.menuDescription}" />
 				</p>
-				<p style="font-size: 10pt">
+				<p style="font-size: 12pt">
 					<c:out value="${menu.menuIngredients}" />
-				</p>
-				<p style="font-size: 10pt">
-					<a href="review">리뷰</a>
 				</p>
 			</c:forEach>
 		</div>
