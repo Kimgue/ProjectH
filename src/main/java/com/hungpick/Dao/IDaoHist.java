@@ -1,4 +1,4 @@
-package com.hungpick.Dao;
+package com.hungpick.dao;
 
 public interface IDaoHist {
 

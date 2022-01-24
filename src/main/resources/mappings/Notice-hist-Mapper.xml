@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.hungpick.Dao.IDaoNotice"> <!-- "<" 는 문법오류나서  "<![CDATA[ < ]]>" 이렇게 해야한다. -->
+<mapper namespace="com.hungpick.dao.IDaoNotice"> <!-- "<" 는 문법오류나서  "<![CDATA[ < ]]>" 이렇게 해야한다. -->
 
 	<select id="select" parameterType="String" resultType="mbrDto">
 		SELECT * 
@@ -11,6 +11,21 @@
 		WHERE ADMIN_CODE = #{ adminCode } AND
 		NOTICE_CODE = #{ noticeCode } 
 		
+	</select>
+	
+	<select id="listCount" resultType="int">
+		<![CDATA[
+			SELECT COUNT(NOTICE_CODE)
+				FROM NOTICE
+				WHERE NOTICE_CODE > 0
+		]]>
+	</select>
+	
+	<select id="listPage" resultType="mbrDto" parameterType="Criteria">
+		SELECT  * FROM (   SELECT   ROW_NUMBER() OVER(ORDER BY NOTICE_CODE DESC)
+		 NUM, A.* FROM NOTICE A ORDER BY NOTICE_CODE) 
+		WHERE NUM BETWEEN #{rowStart} AND #{rowEnd}
+		ORDER BY NOTICE_CODE DESC
 	</select>
 		
 	<select id="sltone" resultType="mbrDto">

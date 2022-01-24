@@ -13,12 +13,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.hungpick.Dto.Criteria;
-import com.hungpick.Dto.Notice;
-import com.hungpick.Dto.PageMaker;
-import com.hungpick.Dto.Question;
-import com.hungpick.Service.INoticeService;
-import com.hungpick.Service.IQuestionSerivce;
+import com.hungpick.dto.Criteria;
+import com.hungpick.dto.Notice;
+import com.hungpick.dto.PageMaker;
+import com.hungpick.dto.Question;
+import com.hungpick.service.INoticeService;
+import com.hungpick.service.IQuestionSerivce;
 
 
 @Controller
@@ -48,13 +48,13 @@ public class UserController {
 
 		
 		
-		Question as = question.first1(memberCode);
+		
 		List<Question> list = question.listPage(cri);
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(question.listCount());
 		int currentPage = cri.getPage();
-				
+		Question as = question.first1(memberCode);
 		model.addAttribute("pageMaker", pageMaker);
 		model.addAttribute("currentPage", currentPage);
 			
@@ -103,14 +103,14 @@ public class UserController {
 	public String updateView(Question qes,Model model,String memberCode, Criteria cri) throws Exception {
 		logger.info("insertCn");
 		
-		question.insert(qes);
+		
 		/*List<Question> list = question.first(memberCode);*/
 		List<Question> list = question.listPage(cri);
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(question.listCount());
 		int currentPage = cri.getPage();
-				
+		question.insert(qes);
 		model.addAttribute("pageMaker", pageMaker);
 		model.addAttribute("currentPage", currentPage);
 		
@@ -141,14 +141,14 @@ public class UserController {
 		logger.info("updatelist");
 		
 		
-		question.update(qes);
+		
 		/*List<Question> list = question.first(memberCode);*/
 		List<Question> list = question.listPage(cri);
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(question.listCount());
 		int currentPage = cri.getPage();
-				
+		question.update(qes);		
 		model.addAttribute("pageMaker", pageMaker);
 		model.addAttribute("currentPage", currentPage);
 		Question as = question.first1(memberCode);
@@ -161,7 +161,7 @@ public class UserController {
 	@RequestMapping("Questiondelete")
 	public String delete(Model model,String memberCode,String qstnCode,Question qes, Criteria cri) throws Exception {
 		
-		question.delete(memberCode, qstnCode);
+		
 		
 		/*List<Question> list = question.first(memberCode);*/
 		List<Question> list = question.listPage(cri);
@@ -169,7 +169,7 @@ public class UserController {
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(question.listCount());
 		int currentPage = cri.getPage();
-				
+		question.delete(memberCode, qstnCode);	
 		model.addAttribute("pageMaker", pageMaker);
 		model.addAttribute("currentPage", currentPage);
 		System.out.println(list);
@@ -186,11 +186,18 @@ public class UserController {
 	
 	
 	@RequestMapping("Notice")
-	public String listPage(Model model,String adminCode,String noticeCode) throws Exception {
+	public String listPage(Model model,String adminCode,String noticeCode,Criteria cri) throws Exception {
 		logger.info("get list page");
-		model.addAttribute("list", notice.selectAll());
-		model.addAttribute("a", notice.sltone(adminCode));
 		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(notice.listCount());
+		int currentPage = cri.getPage();
+		
+		model.addAttribute("list", notice.listPage(cri));
+		model.addAttribute("a", notice.sltone(adminCode));
+		model.addAttribute("pageMaker", pageMaker);
+		model.addAttribute("currentPage", currentPage);
 		return "NoticeSWD";
 	
 	}
@@ -216,17 +223,22 @@ public class UserController {
 		return "NoticeinsertN";
 	}
 	@RequestMapping("insertNc")
-	public String insertNoticeC(Model model,String adminCode,String noticeCode,Notice noti) throws Exception {
+	public String insertNoticeC(Model model,String adminCode,String noticeCode,Notice noti,Criteria cri) throws Exception {
 		
 		notice.insert(noti);
 		
 		SimpleDateFormat format1 = new SimpleDateFormat ("yyyy-MM-dd HH:mm:ss");
 		Date date = new Date();
 		String time1 = format1.format(date);
-		model.addAttribute("list", notice.selectAll());
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(notice.listCount());
+		int currentPage = cri.getPage();
+		model.addAttribute("list", notice.listPage(cri));
 		model.addAttribute("a", notice.sltone(adminCode));
 		model.addAttribute("date", time1 );
-		
+		model.addAttribute("pageMaker", pageMaker);
+		model.addAttribute("currentPage", currentPage);
 		return "NoticeSWD";
 		
 	}
@@ -248,29 +260,35 @@ public class UserController {
 	
 	
 	@RequestMapping("Noticeupdate")
-	public String Noticeupdate(Model model,String adminCode,String noticeCode,Notice noti) throws Exception {
+	public String Noticeupdate(Model model,String adminCode,String noticeCode,Notice noti,Criteria cri) throws Exception {
 		logger.info("update해서 간다");
-		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(notice.listCount());
+		int currentPage = cri.getPage();
 		
 		notice.update(noti);
-		model.addAttribute("list", notice.selectAll());
+		model.addAttribute("list", notice.listPage(cri));
 		model.addAttribute("a", notice.sltone(adminCode));
 		SimpleDateFormat format1 = new SimpleDateFormat ("yyyy-MM-dd HH:mm:ss");
 		Date date = new Date();
 		String time1 = format1.format(date);
 		model.addAttribute("date", time1 );
-	
+		model.addAttribute("pageMaker", pageMaker);
+		model.addAttribute("currentPage", currentPage);
 		
 		return "NoticeSWD";
 		
 	}
 	@RequestMapping("Noticedelete")
-	public String Noticedelete(Model model,String adminCode,String noticeCode,Notice noti) throws Exception {
+	public String Noticedelete(Model model,String adminCode,String noticeCode,Notice noti,Criteria cri) throws Exception {
 		
 		notice.delete(adminCode, noticeCode);
-		model.addAttribute("list",notice.selectAll());
+		model.addAttribute("list",notice.listPage(cri));
 		
 		return "NoticeSWD";
 	}
+	
+	
 	
 }

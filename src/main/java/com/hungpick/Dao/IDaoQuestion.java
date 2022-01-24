@@ -1,11 +1,11 @@
-package com.hungpick.Dao;
+package com.hungpick.dao;
 
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
-import com.hungpick.Dto.Criteria;
-import com.hungpick.Dto.Question;
+import com.hungpick.dto.Criteria;
+import com.hungpick.dto.Question;
 
 
 
@@ -25,5 +25,7 @@ public interface IDaoQuestion {
 	Question first1(@Param("memberCode")String memberCode);
 	
 	public int listCount()throws Exception;
+	
+	
 	
 }
