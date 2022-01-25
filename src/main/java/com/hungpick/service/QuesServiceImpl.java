@@ -33,9 +33,8 @@ public class QuesServiceImpl implements IQuestionSerivce{
 	@Override
 	public List<Question> listPage(@Param("cri")Criteria cri,@Param("memberCode")String memberCode) throws Exception {
 		
-		List<Question> list = daoQes.listPage(cri,memberCode);
-		
-		return list;
+
+		return daoQes.listPage(cri,memberCode);
 	}
 
 	@Override
