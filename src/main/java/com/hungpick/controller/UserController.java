@@ -189,15 +189,18 @@ public class UserController {
 		model.addAttribute("pageMaker", pageMaker);
 		model.addAttribute("currentPage", currentPage);
 		System.out.println(list);
-		Question as = question.MemberCode(memberCode);
+		Question member = question.MemberCode(memberCode);
 
-		model.addAttribute("f", list);
-		model.addAttribute("b", as);
+		model.addAttribute("listpage", list);
+		model.addAttribute("member", member);
 
 		return "Questionlist";
 
 	}
-
+	
+	/*--------------------------Q&A--------------------------*/
+	
+	
 	@RequestMapping("Notice")
 	public String listPage(Model model, String adminCode, String noticeCode, Criteria cri) throws Exception {
 		logger.info("get list page");
