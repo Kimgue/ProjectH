@@ -10,6 +10,9 @@
 <h2>${menuName}의 상품리뷰</h2>
 <body>
 <div align="center">
+		<br>
+		<a href="menu">메뉴 페이지로</a>
+		<br>
 		<table border="1">
 		<tr>
 			<td width=50>닉네임</td>
