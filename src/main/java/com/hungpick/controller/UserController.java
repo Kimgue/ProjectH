@@ -79,13 +79,12 @@ public class UserController {
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(question.listCount());
 		int currentPage = cri.getPage();
-		
-		Question member = question.MemberCode(memberCode);
+	
 		model.addAttribute("pageMaker", pageMaker);
 		model.addAttribute("currentPage", currentPage);
 
 		model.addAttribute("listpage", list);
-		model.addAttribute("member", member);
+		model.addAttribute("member", question.MemberCode(memberCode));
 
 		return "Questionlist";
 	}
