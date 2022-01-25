@@ -4,13 +4,16 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.hungpick.dto.UserDto;
 
 public interface IUserService {
 
 	UserDto sltSearch(String memberCode);
 	
-	boolean userLogin(UserDto Dto, HttpSession session) throws Exception;
+//	boolean userLogin(UserDto Dto, HttpSession session) throws Exception;
+	UserDto userLogin(@Param("memberId") String memberId, @Param("memberPw")String memberPw , HttpSession session) throws Exception;
 	
 	void userLogout(HttpSession session) throws Exception;
 
