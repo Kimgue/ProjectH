@@ -70,7 +70,6 @@ public class UserController {
 		logger.info("Q&A called ==========");
 
 		/* List<Question> list = question.first(memberCode); */
-
 		System.out.println(memberCode);
 		
 		List<Question> list = question.listPage(cri,memberCode);	

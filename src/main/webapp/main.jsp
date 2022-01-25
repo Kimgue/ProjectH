@@ -5,6 +5,7 @@
 <html><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="js/javascriptPagemain.js"></script>
+<script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
 <title>메인화면</title>
 </head>
 <body>
@@ -33,7 +34,7 @@
 <br>
 	
 
-<a href='javascript:QnA( "${memberDTO.memberCode}")'>Q . A</a>
+<a href='javascript:QnA("${memberDTO.memberCode}")'>Q . A</a>
 <input type="hidden" name="memberCode" />
 
 <br>

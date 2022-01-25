@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>질문 Q.A</title>
 <script>
+
 	function view(  memberCode ,   qstnCode )
 	{
 		var f = document.paging;
@@ -70,7 +71,8 @@ table {
     	<a href="Question?page=${idx}">${idx}</a>
     </c:forEach>
 <hr>	
-	<input type="button" value="작성" onClick="insert('${member.memberCode}')">	
+	<input type="button" value="작성" onClick="insert('${member.memberCode}')">
+	<input type="button" value="메인페이지" onClick="location.href='/'">
 	<input type="hidden" name="memberCode" />
 	<input type="hidden" name="qstnCode" />
 	

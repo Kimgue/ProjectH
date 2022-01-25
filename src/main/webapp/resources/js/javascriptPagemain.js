@@ -1,15 +1,23 @@
 function QnA( memberCode )
-	{
-		var f = document.paging;
+{
+	var f = document.paging;
+			
+			if( !memberCode)
+				alert("로그인 해주세요");
+				
+			else
+			
+				f.memberCode.value = memberCode;
+				
+				f.action = "./Question"
 		
-		f.memberCode.value = memberCode;
-		
-		f.action = "./Question"
-		
-		f.method= "post"
-		f.submit();
+				f.method= "post"
+					
+				f.submit();		
+				
+	
 	};
-	function Notice(adminCode , noticeCode  )
+	function Notice( adminCode , noticeCode  )
 	{
 		let f = document.paging;
 		
