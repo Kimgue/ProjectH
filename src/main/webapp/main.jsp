@@ -36,7 +36,7 @@
 <br>
 	
 
-<a href='javascript:QnA( ${memberDTO.memberCode})'>Q . A</a>
+<a href='javascript:QnA( "${memberDTO.memberCode}")'>Q . A</a>
 <input type="hidden" name="memberCode" />
 
 <br>

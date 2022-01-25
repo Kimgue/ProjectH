@@ -65,13 +65,17 @@ public class UserController {
 	}
 
 	@RequestMapping("Question")
-	public String QA(Model model, String memberCode, @ModelAttribute("cri") Criteria cri) throws Exception {
+	public String QA(Model model,@Param("memberCode") String memberCode, 
+			@ModelAttribute("cri") Criteria cri) throws Exception {
 		logger.info("Q&A called ==========");
 
 		/* List<Question> list = question.first(memberCode); */
-
-		
 		List<Question> list = question.listPage(cri,memberCode);
+		
+		
+		System.out.println(memberCode);
+		
+		
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(question.listCount());
@@ -134,7 +138,7 @@ public class UserController {
 		model.addAttribute("listpage", list);
 		model.addAttribute("member", member);
 
-		return "Questionlist";
+		return "redirect:/Questionlist";
 	}
 
 	@RequestMapping("updatelist")
@@ -169,7 +173,7 @@ public class UserController {
 		model.addAttribute("listpage", list);
 		model.addAttribute("member", member);
 
-		return "Questionlist";
+		return "redirect:/Questionlist";
 	}
 
 	@RequestMapping("Questiondelete")
@@ -190,7 +194,7 @@ public class UserController {
 		model.addAttribute("listpage", list);
 		model.addAttribute("member", member);
 
-		return "Questionlist";
+		return "redirect:/Questionlist";
 
 	}
 

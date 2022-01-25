@@ -23,8 +23,8 @@ public class UserServiceImpl implements IUserService {
 
 	@Autowired
 	private IUserDaoHist userDaoHist;
-	
-	@Autowired 
+
+	@Autowired
 	private static Hashtable<String, String> loginUsers = new Hashtable<String, String>();
 
 	private static int memberCodeNum = 0;
@@ -95,10 +95,10 @@ public class UserServiceImpl implements IUserService {
 	}
 
 	@Override
-	public UserDto userLogin(String memberId, String memberPw , HttpSession session) throws Exception {
+	public UserDto userLogin(String memberId, String memberPw, HttpSession session) throws Exception {
 		return userDao.userLogin(memberId, memberPw, session);
 	}
-	
+
 	// 로그인이 되어있는지 확인
 	public boolean isLogin(String id) {
 		boolean isLogin = false;
@@ -137,7 +137,7 @@ public class UserServiceImpl implements IUserService {
 	@Override
 	public void userLogout(HttpSession session) throws Exception {
 		loginUsers.remove(session.getId());
-		session.invalidate(); 
+		session.invalidate();
 	}
 
 }
