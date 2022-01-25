@@ -70,17 +70,17 @@ public class UserController {
 
 		/* List<Question> list = question.first(memberCode); */
 
-		List<Question> list = question.listPage(cri);
+		List<Question> list = question.listPage(cri,memberCode);
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(question.listCount());
 		int currentPage = cri.getPage();
-		Question as = question.first1(memberCode);
+		Question member = question.MemberCode(memberCode);
 		model.addAttribute("pageMaker", pageMaker);
 		model.addAttribute("currentPage", currentPage);
 
 		model.addAttribute("f", list);
-		model.addAttribute("b", as);
+		model.addAttribute("b", member);
 
 		return "Questionlist";
 	}
@@ -92,8 +92,8 @@ public class UserController {
 		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date date = new Date();
 		String time1 = format1.format(date);
-		model.addAttribute("v", question.select(memberCode, qstnCode));
-		System.out.println(question.select(memberCode, qstnCode));
+		model.addAttribute("v", question.sltOne(memberCode, qstnCode));
+		System.out.println(question.sltOne(memberCode, qstnCode));
 		model.addAttribute("date", time1);
 
 		return "Questionupdatelist";
@@ -106,10 +106,10 @@ public class UserController {
 		Date date = new Date();
 		String time1 = format1.format(date);
 
-		Question as = question.first1(memberCode);
+		Question member = question.MemberCode(memberCode);
 
-		model.addAttribute("b", as);
-		System.out.println("memberCode " + as);
+		model.addAttribute("member", member);
+		System.out.println("memberCode " + member);
 		model.addAttribute("date", time1);
 
 		return "QuestioninsertQ";
@@ -120,7 +120,7 @@ public class UserController {
 		logger.info("insertCn");
 
 		/* List<Question> list = question.first(memberCode); */
-		List<Question> list = question.listPage(cri);
+		List<Question> list = question.listPage(cri,memberCode);
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(question.listCount());
@@ -129,7 +129,7 @@ public class UserController {
 		model.addAttribute("pageMaker", pageMaker);
 		model.addAttribute("currentPage", currentPage);
 
-		Question as = question.first1(memberCode);
+		Question as = question.MemberCode(memberCode);
 		model.addAttribute("f", list);
 		model.addAttribute("b", as);
 
@@ -143,7 +143,7 @@ public class UserController {
 		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date date = new Date();
 		String time1 = format1.format(date);
-		Question person = question.select(memberCode, qstnCode);
+		Question person = question.sltOne(memberCode, qstnCode);
 		model.addAttribute("v", person);
 		System.out.println(person);
 		model.addAttribute("date", time1);
@@ -156,7 +156,7 @@ public class UserController {
 		logger.info("updatelist");
 
 		/* List<Question> list = question.first(memberCode); */
-		List<Question> list = question.listPage(cri);
+		List<Question> list = question.listPage(cri,memberCode);
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(question.listCount());
@@ -164,7 +164,7 @@ public class UserController {
 		question.update(qes);
 		model.addAttribute("pageMaker", pageMaker);
 		model.addAttribute("currentPage", currentPage);
-		Question as = question.first1(memberCode);
+		Question as = question.MemberCode(memberCode);
 		model.addAttribute("f", list);
 		model.addAttribute("b", as);
 
@@ -175,7 +175,7 @@ public class UserController {
 	public String delete(Model model, String memberCode, String qstnCode, Question qes, Criteria cri) throws Exception {
 
 		/* List<Question> list = question.first(memberCode); */
-		List<Question> list = question.listPage(cri);
+		List<Question> list = question.listPage(cri,memberCode);
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(question.listCount());
@@ -184,7 +184,7 @@ public class UserController {
 		model.addAttribute("pageMaker", pageMaker);
 		model.addAttribute("currentPage", currentPage);
 		System.out.println(list);
-		Question as = question.first1(memberCode);
+		Question as = question.MemberCode(memberCode);
 
 		model.addAttribute("f", list);
 		model.addAttribute("b", as);
