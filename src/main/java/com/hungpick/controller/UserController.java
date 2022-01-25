@@ -70,17 +70,11 @@ public class UserController {
 		logger.info("Q&A called ==========");
 
 		/* List<Question> list = question.first(memberCode); */
-<<<<<<< HEAD
-		List<Question> list = question.listPage(cri,memberCode);
-		
-		
+
 		System.out.println(memberCode);
 		
-		
-=======
-
-		List<Question> list = question.listPage(cri, memberCode);
->>>>>>> branch 'master' of https://github.com/Kimgue/WebProject.git
+		List<Question> list = question.listPage(cri,memberCode);	
+			
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(question.listCount());
@@ -129,13 +123,14 @@ public class UserController {
 	public String updateView(Question qes, Model model, String memberCode, Criteria cri) throws Exception {
 		logger.info("insertCn");
 
+		question.insert(qes);
 		/* List<Question> list = question.first(memberCode); */
 		List<Question> list = question.listPage(cri, memberCode);
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(question.listCount());
 		int currentPage = cri.getPage();
-		question.insert(qes);
+		
 		model.addAttribute("pageMaker", pageMaker);
 		model.addAttribute("currentPage", currentPage);
 
@@ -143,54 +138,41 @@ public class UserController {
 		model.addAttribute("listpage", list);
 		model.addAttribute("member", member);
 
-		return "redirect:/Questionlist";
-	}
-
-	@RequestMapping("updatelist")
-	public String updatelist(Model model, String memberCode, String qstnCode) throws Exception {
-		logger.info("updatelist");
-
-		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		Date date = new Date();
-		String time1 = format1.format(date);
-		Question sltOne = question.sltOne(memberCode, qstnCode);
-		model.addAttribute("sltOne", sltOne);
-		System.out.println(sltOne);
-		model.addAttribute("date", time1);
-
-		return "Questionupdatelist";
+		return "Questionlist";
 	}
 
 	@RequestMapping("QuestionUpdate")
 	public String updateE(Model model, String memberCode, Question qes, Criteria cri) throws Exception {
 		logger.info("updatelist");
 
+		question.update(qes);
 		/* List<Question> list = question.first(memberCode); */
 		List<Question> list = question.listPage(cri, memberCode);
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(question.listCount());
 		int currentPage = cri.getPage();
-		question.update(qes);
+		
 		model.addAttribute("pageMaker", pageMaker);
 		model.addAttribute("currentPage", currentPage);
 		Question member = question.MemberCode(memberCode);
 		model.addAttribute("listpage", list);
 		model.addAttribute("member", member);
 
-		return "redirect:/Questionlist";
+		return "Questionlist";
 	}
 
 	@RequestMapping("Questiondelete")
 	public String delete(Model model, String memberCode, String qstnCode, Question qes, Criteria cri) throws Exception {
 
+		question.delete(memberCode, qstnCode);
 		/* List<Question> list = question.first(memberCode); */
 		List<Question> list = question.listPage(cri, memberCode);
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(question.listCount());
 		int currentPage = cri.getPage();
-		question.delete(memberCode, qstnCode);
+		
 		model.addAttribute("pageMaker", pageMaker);
 		model.addAttribute("currentPage", currentPage);
 		System.out.println(list);
@@ -199,7 +181,7 @@ public class UserController {
 		model.addAttribute("listpage", list);
 		model.addAttribute("member", member);
 
-		return "redirect:/Questionlist";
+		return "Questionlist";
 
 	}
 
