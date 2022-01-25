@@ -104,7 +104,7 @@ public class UserServiceImpl implements IUserService {
 			if (resultDto == null) {
 				result = false;
 			}
-			setSession(session, Dto);
+			setSession(session, resultDto);
 			return result;
 		}
 		return !isLogin;

@@ -4,7 +4,7 @@
 
 <mapper namespace="com.hungpick.dao.IDaoQuestion"> <!-- "<" 는 문법오류나서  "<![CDATA[ < ]]>" 이렇게 해야한다. -->
 
-	<select id="select" parameterType="String" resultType="QesDto">
+	<select id="sltOne" parameterType="String" resultType="QesDto">
 		SELECT * 
 		FROM 
 		QUESTION
@@ -21,25 +21,26 @@
 	]]>
 	</select>
 	
-	<select id="listPage" resultType="QesDto" parameterType="Criteria">
+	<select id="listPage" resultType="QesDto" parameterType="map">
 		SELECT  * FROM (   SELECT   ROW_NUMBER() OVER(ORDER BY QSTN_CODE DESC)
 		 NUM, A.* FROM QUESTION A ORDER BY QSTN_CODE) 
-		WHERE NUM BETWEEN #{rowStart} AND #{rowEnd}
+		WHERE NUM BETWEEN #{ cri.rowStart} AND #{ cri.rowEnd } 
+		AND MEMBER_CODE = #{ memberCode }
 		ORDER BY QSTN_CODE DESC
 	</select>
 	
-	<select id="first" resultType="QesDto" parameterType="String">
+	<select id="OneMemberCode" resultType="QesDto" parameterType="String">
 		SELECT * FROM QUESTION WHERE MEMBER_CODE = #{memberCode}
 	</select>
 	
-	<select id="first1" resultType="QesDto" parameterType="String">
-		SELECT  DISTINCT MEMBER_CODE FROM QUESTION WHERE MEMBER_CODE = #{memberCode }
+	<select id="MemberCode" resultType="QesDto" parameterType="String">
+		SELECT  DISTINCT MEMBER_CODE FROM QUESTION WHERE MEMBER_CODE = #{ memberCode }
 	</select>
 	 <!-- 게시판 글 작성 -->
 	
    <insert id="insert" parameterType="QesDto">
 	   INSERT  INTO QUESTION       
-	                 VALUES(   #{ memberCode} ,QUESTION_SEQ.NEXTVAL , #{qstnTitle}, #{qstnContent}, TO_DATE( #{qstnDate} ,'YYYY-MM-DD HH24:MI:SS') ,  #{qstnConfirm} )
+	                 VALUES(   #{ memberCode} , QUESTION_SEQ.NEXTVAL , #{ qstnTitle } , #{ qstnContent }, TO_DATE( #{ qstnDate } ,'YYYY-MM-DD HH24:MI:SS') ,  #{ qstnConfirm } )
                 
    </insert>
 	

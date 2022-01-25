@@ -58,23 +58,23 @@ input {
 						<tbody>
 							<tr>
 								<td>
-									<label for="memberCode" id="memberCode">작성자 번호 :${ v.memberCode }</label>
-									<input type="hidden" id="memberCode" name="memberCode" value="${ v.memberCode }">
-									<input type="hidden" id="qstnCode" name="qstnCode" value="${ v.qstnCode }">
+									<label for="memberCode" id="memberCode">작성자 번호 :${ b.memberCode }</label>
+									<input type="hidden" id="memberCode" name="memberCode" value="${ b.memberCode }">
+									<input type="hidden" id="qstnCode" name="qstnCode" value="${ b.qstnCode }">
 							</tr>	
 							<tr>
 								<td>
-									<label for="qstnTitle">제목 : </label><input type="text" id="qstnTitle" name="qstnTitle"  value=${v.qstnTitle } >
+									<label for="qstnTitle">제목 : </label><input type="text" id="qstnTitle" name="qstnTitle"  value=${b.qstnTitle } >
 								</td>
 							</tr>	
 							<tr>
 								<td>
-									<label for="qstnContent">내용 : </label><textarea id="qstnContent" name="qstnContent" >${ v.qstnContent } </textarea>
+									<label for="qstnContent">내용 : </label><textarea id="qstnContent" name="qstnContent" >${ b.qstnContent } </textarea>
 								</td>
 							</tr>
 							<tr>
 								<td> 
-									<label for="qstnDate" id="qstnDate">작성날짜 : ${ v.qstnDate }</label>
+									<label for="qstnDate" id="qstnDate">작성날짜 : ${ b.qstnDate }</label>
 									<input type="hidden" id="qstnDate" name="qstnDate" value="${ date }">  
 								</td>
 								</tr>
@@ -84,7 +84,7 @@ input {
 							<tr>
 								<td>						
 									<button type="submit"  onclick="update()" id="submit">수정하기</button>
-									<button type="submit"  onclick="Quesdelete('${ v.memberCode }','${ v.qstnCode }')">삭제하기</button>
+									<button type="submit"  onclick="Quesdelete('${ b.memberCode }','${ b.qstnCode }')">삭제하기</button>
 									
 								</td>
 							</tr>			

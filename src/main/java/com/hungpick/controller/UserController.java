@@ -1,12 +1,12 @@
 package com.hungpick.controller;
 
 import java.text.SimpleDateFormat;
-
 import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.annotations.Param;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,6 +35,7 @@ import com.hungpick.service.IUserService;
 @Controller
 public class UserController {
 
+	/*--------김규성--------*/
 	@Autowired
 	private INoticeService notice;
 
@@ -64,17 +65,22 @@ public class UserController {
 	}
 
 	@RequestMapping("Question")
-	public String QA(Model model, String memberCode, @ModelAttribute("cri") Criteria cri) throws Exception {
+	public String QA(Model model,@Param("memberCode")String memberCode, @Param("cri") Criteria cri) throws Exception {
 		logger.info("Q&A called ==========");
 
 		/* List<Question> list = question.first(memberCode); */
+		System.out.println(memberCode);
 
-		List<Question> list = question.listPage(cri);
+		List<Question> list = question.listPage(cri,memberCode);
+		
+		
+		System.out.println(list);
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(question.listCount());
 		int currentPage = cri.getPage();
-		Question as = question.first1(memberCode);
+		
+		Question as = question.MemberCode(memberCode);
 		model.addAttribute("pageMaker", pageMaker);
 		model.addAttribute("currentPage", currentPage);
 
@@ -91,8 +97,8 @@ public class UserController {
 		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date date = new Date();
 		String time1 = format1.format(date);
-		model.addAttribute("v", question.select(memberCode, qstnCode));
-		System.out.println(question.select(memberCode, qstnCode));
+		model.addAttribute("v", question.sltOne(memberCode, qstnCode));
+		System.out.println(question.sltOne(memberCode, qstnCode));
 		model.addAttribute("date", time1);
 
 		return "Questionupdatelist";
@@ -105,7 +111,7 @@ public class UserController {
 		Date date = new Date();
 		String time1 = format1.format(date);
 
-		Question as = question.first1(memberCode);
+		Question as = question.MemberCode(memberCode);
 
 		model.addAttribute("b", as);
 		System.out.println("memberCode " + as);
@@ -117,18 +123,18 @@ public class UserController {
 	@RequestMapping("Questioninsert")
 	public String updateView(Question qes, Model model, String memberCode, Criteria cri) throws Exception {
 		logger.info("insertCn");
-
+		question.insert(qes);
 		/* List<Question> list = question.first(memberCode); */
-		List<Question> list = question.listPage(cri);
+		List<Question> list =  question.listPage(cri,memberCode);
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(question.listCount());
 		int currentPage = cri.getPage();
-		question.insert(qes);
+		
 		model.addAttribute("pageMaker", pageMaker);
 		model.addAttribute("currentPage", currentPage);
 
-		Question as = question.first1(memberCode);
+		Question as = question.MemberCode(memberCode);
 		model.addAttribute("f", list);
 		model.addAttribute("b", as);
 
@@ -142,7 +148,7 @@ public class UserController {
 		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date date = new Date();
 		String time1 = format1.format(date);
-		Question person = question.select(memberCode, qstnCode);
+		Question person = question.sltOne(memberCode, qstnCode);
 		model.addAttribute("v", person);
 		System.out.println(person);
 		model.addAttribute("date", time1);
@@ -151,19 +157,19 @@ public class UserController {
 	}
 
 	@RequestMapping("QuestionUpdate")
-	public String updateE(Model model, String memberCode, Question qes, Criteria cri) throws Exception {
+	public String updateE(Model model,String memberCode, Question qes, Criteria cri) throws Exception {
 		logger.info("updatelist");
-
+		question.update(qes);
 		/* List<Question> list = question.first(memberCode); */
-		List<Question> list = question.listPage(cri);
+		List<Question> list = question.listPage(cri,memberCode);
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(question.listCount());
 		int currentPage = cri.getPage();
-		question.update(qes);
+		
 		model.addAttribute("pageMaker", pageMaker);
 		model.addAttribute("currentPage", currentPage);
-		Question as = question.first1(memberCode);
+		Question as = question.MemberCode(memberCode);
 		model.addAttribute("f", list);
 		model.addAttribute("b", as);
 
@@ -174,7 +180,7 @@ public class UserController {
 	public String delete(Model model, String memberCode, String qstnCode, Question qes, Criteria cri) throws Exception {
 
 		/* List<Question> list = question.first(memberCode); */
-		List<Question> list = question.listPage(cri);
+		List<Question> list = question.listPage(cri,memberCode);
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(question.listCount());
@@ -183,7 +189,7 @@ public class UserController {
 		model.addAttribute("pageMaker", pageMaker);
 		model.addAttribute("currentPage", currentPage);
 		System.out.println(list);
-		Question as = question.first1(memberCode);
+		Question as = question.MemberCode(memberCode);
 
 		model.addAttribute("f", list);
 		model.addAttribute("b", as);
@@ -205,6 +211,7 @@ public class UserController {
 		model.addAttribute("a", notice.sltone(adminCode));
 		model.addAttribute("pageMaker", pageMaker);
 		model.addAttribute("currentPage", currentPage);
+		
 		return "NoticeSWD";
 
 	}
@@ -243,11 +250,13 @@ public class UserController {
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(notice.listCount());
 		int currentPage = cri.getPage();
+		
 		model.addAttribute("list", notice.listPage(cri));
 		model.addAttribute("a", notice.sltone(adminCode));
 		model.addAttribute("date", time1);
 		model.addAttribute("pageMaker", pageMaker);
 		model.addAttribute("currentPage", currentPage);
+		
 		return "NoticeSWD";
 
 	}
@@ -268,20 +277,22 @@ public class UserController {
 	}
 
 	@RequestMapping("Noticeupdate")
-	public String Noticeupdate(Model model, String adminCode, String noticeCode, Notice noti, Criteria cri)
-			throws Exception {
+	public String Noticeupdate(Model model, String adminCode, String noticeCode, Notice noti, Criteria cri)throws Exception {
+		
+		notice.update(noti);
 		logger.info("update해서 간다");
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(notice.listCount());
 		int currentPage = cri.getPage();
 
-		notice.update(noti);
+		
 		model.addAttribute("list", notice.listPage(cri));
 		model.addAttribute("a", notice.sltone(adminCode));
 		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date date = new Date();
 		String time1 = format1.format(date);
+		
 		model.addAttribute("date", time1);
 		model.addAttribute("pageMaker", pageMaker);
 		model.addAttribute("currentPage", currentPage);
@@ -338,14 +349,16 @@ public class UserController {
 
 	// 로그인
 	@RequestMapping("userLoginConfirm")
-	public ModelAndView userLoginConfirm(@ModelAttribute UserDto Dto, HttpSession session) throws Exception {
+	public ModelAndView userLoginConfirm(@ModelAttribute UserDto resultDto, HttpSession session) throws Exception {
 		logger.info("userLoginConfirm called ==========");
 		ModelAndView mav = new ModelAndView();
-		boolean result = userService.userLogin(Dto, session);
+		boolean result = userService.userLogin(resultDto, session);
 
 		if (result == true) {
 			mav.setViewName("redirect:/main.jsp");
-			session.setAttribute("userId", Dto.getMemberId());
+			session.setAttribute("userId", resultDto.getMemberId());
+			session.setAttribute("memberCode", resultDto.getMemberCode());
+			System.out.println("123123");
 		} else {
 			mav.setViewName("redirect:/userLogin");
 			session.setAttribute("notice", "올바른 아이디 혹은 비밀번호를 입력하세요");

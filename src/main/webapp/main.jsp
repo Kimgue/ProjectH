@@ -32,8 +32,10 @@
 
 <br>
 	
-<a href='javascript:QnA("00002")'>Q . A</a>
+
+<a href='javascript:QnA("${ memberCode }")'>Q . A</a>
 <input type="hidden" name="memberCode" />
+
 <br>
 </form>
 <a href="menu">메뉴</a><br>
