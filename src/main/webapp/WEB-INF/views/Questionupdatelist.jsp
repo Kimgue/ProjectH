@@ -27,7 +27,6 @@
 </script>
 <style>
 input {
-  
   vertical-align: top; 
   width:500px;
   
@@ -39,7 +38,6 @@ input {
     resize:none;
 	vertical-align:-20px;
 }
-
 </style>
 </head>
 <body>
