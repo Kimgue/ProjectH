@@ -25,6 +25,9 @@ public interface IUserDao {
 	// ID 중복검사
 	String checkId(String memberId) throws Exception;
 	
+	// PW 검사
+	UserDto checkPw(@Param("inputPw") String inputPw) throws Exception;
+	
 	// 회원탈퇴
 	void userDelete(@Param("memberId") String memberId, @Param("memberPw") String memberPw) throws Exception;
 }

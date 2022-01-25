@@ -144,4 +144,11 @@ public class UserServiceImpl implements IUserService {
 	public void userDelete(String memberId, String memberPw) throws Exception {
 		userDao.userDelete(memberId, memberPw);
 	}
+
+	// PW 검사
+	@Override
+	public UserDto checkPw(String inputPw) throws Exception {
+		return userDao.checkPw(inputPw);
+	}
+
 }

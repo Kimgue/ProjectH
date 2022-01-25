@@ -19,7 +19,7 @@
 				$("#memberId").focus();
 				return false;
 			}
-			var url = "IdChkCtrl.do";
+			var url = "idChkCtrl.do";
 
 			// get 방식 ajax 연동
 			$.getJSON(url, {

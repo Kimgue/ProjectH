@@ -16,11 +16,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.hungpick.dto.Criteria;
+import com.hungpick.dto.MemberDto;
 import com.hungpick.dto.MenuVo;
 import com.hungpick.dto.Notice;
 import com.hungpick.dto.PageMaker;
@@ -65,16 +67,16 @@ public class UserController {
 	}
 
 	@RequestMapping("Question")
-	public String QA(Model model,@Param("memberCode") String memberCode, 
-			@ModelAttribute("cri") Criteria cri) throws Exception {
+	public String QA(Model model, @Param("memberCode") String memberCode, @ModelAttribute("cri") Criteria cri)
+			throws Exception {
 		logger.info("Q&A called ==========");
 
 		/* List<Question> list = question.first(memberCode); */
 
 		System.out.println(memberCode);
-		
-		List<Question> list = question.listPage(cri,memberCode);	
-			
+
+		List<Question> list = question.listPage(cri, memberCode);
+
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(question.listCount());
@@ -130,7 +132,7 @@ public class UserController {
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(question.listCount());
 		int currentPage = cri.getPage();
-		
+
 		model.addAttribute("pageMaker", pageMaker);
 		model.addAttribute("currentPage", currentPage);
 
@@ -146,14 +148,14 @@ public class UserController {
 		logger.info("updatelist");
 
 		question.update(qes);
-		
+
 		/* List<Question> list = question.first(memberCode); */
 		List<Question> list = question.listPage(cri, memberCode);
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(question.listCount());
 		int currentPage = cri.getPage();
-		
+
 		model.addAttribute("pageMaker", pageMaker);
 		model.addAttribute("currentPage", currentPage);
 		Question member = question.MemberCode(memberCode);
@@ -173,7 +175,7 @@ public class UserController {
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(question.listCount());
 		int currentPage = cri.getPage();
-		
+
 		model.addAttribute("pageMaker", pageMaker);
 		model.addAttribute("currentPage", currentPage);
 		System.out.println(list);
@@ -307,12 +309,12 @@ public class UserController {
 	@RequestMapping("userRegist")
 	public void userRegist() {
 	}
-	
+
 	// 마이 페이지
 	@RequestMapping("userPage")
 	public void userPage() {
 	}
-	
+
 	// 로그아웃
 	@RequestMapping("userLogout")
 	public String userLogout(HttpSession session) throws Exception {
@@ -341,6 +343,8 @@ public class UserController {
 
 		if (Dto != null) {
 			session.setAttribute("memberDTO", Dto);
+			session.setAttribute("memberId", Dto.getMemberId());
+			session.setAttribute("memberPw", Dto.getMemberPw());
 			mav.setViewName("redirect:/main.jsp");
 		} else {
 			session.setAttribute("loginNotice", "올바른 아이디 혹은 비밀번호를 입력해주세요");
@@ -349,8 +353,26 @@ public class UserController {
 		return mav;
 	}
 
+	// PW 검사
+	@RequestMapping(value="pwChkCtrl.do", method=RequestMethod.GET)
+	@ResponseBody
+	public String pwChk(@ModelAttribute("inputPw") @Param("inputPw") String inputPw, HttpSession session) throws Exception {
+		boolean result = false;
+		if(inputPw.equals(session.getAttribute("memberPw"))) {
+			result = true;
+		} else {
+			result = false;
+		}
+		
+		JSONObject jsonObj = new JSONObject();
+		jsonObj.put("result", result);
+		String jsonOut = jsonObj.toString();
+
+		return jsonOut;
+	}
+
 	// ID 중복검사
-	@RequestMapping(value = "IdChkCtrl.do", produces = "application/text;charset=UTF-8")
+	@RequestMapping(value="idChkCtrl.do", method=RequestMethod.GET)
 	@ResponseBody
 	public String idChk(@ModelAttribute("id") String memberId) throws Exception {
 		String idChk = userService.checkId(memberId);
@@ -365,7 +387,7 @@ public class UserController {
 
 		return jsonOut;
 	}
-	
+
 	public void userDelete(@Param("memberId") String memberId, @Param("memberPw") String memberPw) throws Exception {
 		userService.userDelete(memberId, memberPw);
 	}
@@ -414,11 +436,11 @@ public class UserController {
 		logger.info("reviewLookup called =======");
 		model.addAttribute("Lookup", reviewService.sltLookUp(brandCode, menuCode, reviewCode, memberCode));
 	}
-	
+
 	@RequestMapping("findStore")
 	public void findStore(String brandName, Model model) throws Exception {
 		logger.info("findStore called ======");
 		model.addAttribute("brandName", brandName);
-		
+
 	}
 }
