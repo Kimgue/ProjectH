@@ -404,4 +404,11 @@ public class UserController {
 		logger.info("reviewLookup called =======");
 		model.addAttribute("Lookup", reviewService.sltLookUp(brandCode, menuCode, reviewCode, memberCode));
 	}
+	
+	@RequestMapping("findStore")
+	public void findStore(String brandName, Model model) throws Exception {
+		logger.info("findStore called ======");
+		model.addAttribute("brandName", brandName);
+		
+	}
 }
