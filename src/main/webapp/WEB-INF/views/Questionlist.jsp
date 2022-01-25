@@ -56,12 +56,12 @@ table {
 			<td width=250>작성날짜</td>
 			
 		</tr>
-		<c:forEach var="f"  items="${ f }">
+		<c:forEach var="list"  items="${ listpage }">
 			<tr>
-				<td><c:out value="${f.qstnCode}" /></td>
-				<td><a href="javascript:view( '${f.memberCode }' , '${f.qstnCode}' )"><c:out value="${f.qstnTitle}" /></a></td>
-				<td><c:out value="${f.memberCode }"></c:out>
-				<td id="ri"><c:out value="${f.qstnDate}" /></td>	
+				<td><c:out value="${list.qstnCode}" /></td>
+				<td><a href="javascript:view( '${list.memberCode }' , '${list.qstnCode}' )"><c:out value="${list.qstnTitle}" /></a></td>
+				<td><c:out value="${list.memberCode }"></c:out>
+				<td id="ri"><c:out value="${list.qstnDate}" /></td>	
 			</tr>
 		</c:forEach>
 	</table>	
@@ -70,7 +70,7 @@ table {
     	<a href="Question?page=${idx}">${idx}</a>
     </c:forEach>
 <hr>	
-	<input type="button" value="작성" onClick="insert('${b.memberCode}')">	
+	<input type="button" value="작성" onClick="insert('${member.memberCode}')">	
 	
 	<input type="hidden" name="memberCode" />
 	<input type="hidden" name="qstnCode" />

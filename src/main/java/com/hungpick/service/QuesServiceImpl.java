@@ -2,6 +2,7 @@ package com.hungpick.service;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,17 +23,17 @@ public class QuesServiceImpl implements IQuestionSerivce{
 	private static final Logger logger = LoggerFactory.getLogger(QuesServiceImpl.class);
 	
 	@Override
-	public Question select(String memberCode, String qstnCode) {
+	public Question sltOne(String memberCode, String qstnCode) {
 		
-		Question hm = daoQes.select(memberCode, qstnCode);
+		Question hm = daoQes.sltOne(memberCode, qstnCode);
 		
 		return hm;
 	}
 
 	@Override
-	public List<Question> listPage(Criteria cri) throws Exception {
+	public List<Question> listPage(@Param("cri")Criteria cri,@Param("memberCode")String memberCode) throws Exception {
 		
-		List<Question> list = daoQes.listPage(cri);
+		List<Question> list = daoQes.listPage(cri,memberCode);
 		
 		return list;
 	}
@@ -40,7 +41,7 @@ public class QuesServiceImpl implements IQuestionSerivce{
 	@Override
 	public void insert(Question qes) throws Exception {
 		
-		Question check = daoQes.select(qes.getMemberCode(), qes.getQstnCode());
+		Question check = daoQes.sltOne(qes.getMemberCode(), qes.getQstnCode());
 		
 		if(check != null)
 		{
@@ -72,12 +73,7 @@ public class QuesServiceImpl implements IQuestionSerivce{
 	@Override
 	public void update(Question qes)throws Exception {
 		
-		Question check = daoQes.select(qes.getMemberCode(), qes.getQstnCode());
 		
-		if(check != null)
-		{
-			throw new Exception();
-		}
 		
 		String Acode = qes.getMemberCode();
 		String Bcode = qes.getQstnCode();
@@ -107,7 +103,7 @@ public class QuesServiceImpl implements IQuestionSerivce{
 		logger.info("입력한 CODE : {}",  memberCode);
 		logger.info("입력한 CODE : {}",  qstnCode);
 		
-		Question check = daoQes.select(memberCode, qstnCode);
+		Question check = daoQes.sltOne(memberCode, qstnCode);
 		
 		if(check == null)
 		{
@@ -120,17 +116,17 @@ public class QuesServiceImpl implements IQuestionSerivce{
 	}
 
 	@Override
-	public List<Question> first(String memberCode) {
+	public List<Question> OneMemberCode(String memberCode) {
 		
-		List<Question> list = daoQes.first(memberCode);
+		List<Question> list = daoQes.OneMemberCode(memberCode);
 		
 		return list;
 	}
 
 	@Override
-	public Question first1(String memberCode) {
+	public Question MemberCode(String memberCode) {
 		// TODO Auto-generated method stub
-		Question as = daoQes.first1(memberCode);
+		Question as = daoQes.MemberCode(memberCode);
 		
 		return as;
 	}

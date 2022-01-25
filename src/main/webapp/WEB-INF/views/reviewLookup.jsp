@@ -9,12 +9,12 @@
 </head>
 <body>
 <div align="center">
-	<a href="menu"></a>
 	<img src="<c:out value="resources/${Lookup.reviewDto.reviewImg1}"/>"
 		alt="리뷰 이미지" height="270" width="270" />
 	<img src="<c:out value="resources/${Lookup.reviewDto.reviewImg2}"/>"
-		alt="리뷰 이미지" height="270" width="270" />	
+		alt="리뷰 이미지" height="270" width="270" />
 		<div class="caption">
+		<button onclick="history.back()">상품 리뷰로</button>	
 		<p style="font-size: 10pt">
 			<c:out value="${Lookup.memberDto.memberNickname}" />
 		</p>

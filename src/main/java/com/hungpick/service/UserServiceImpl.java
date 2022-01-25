@@ -95,8 +95,24 @@ public class UserServiceImpl implements IUserService {
 	}
 
 	@Override
+<<<<<<< HEAD
 	public UserDto userLogin(String memberId, String memberPw , HttpSession session) throws Exception {
 		return userDao.userLogin(memberId, memberPw, session);
+=======
+	public boolean userLogin(UserDto Dto, HttpSession session) throws Exception {
+		boolean isLogin = isLogin(Dto.getMemberId());
+		boolean result = true;
+		if (!isLogin) {
+			UserDto resultDto = userDao.userLogin(Dto);
+
+			if (resultDto == null) {
+				result = false;
+			}
+			setSession(session, resultDto);
+			return result;
+		}
+		return !isLogin;
+>>>>>>> branch 'master' of https://github.com/Kimgue/WebProject.git
 	}
 	
 //	@Override

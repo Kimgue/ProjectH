@@ -11,9 +11,9 @@ import com.hungpick.dto.Question;
 
 
 public interface IDaoQuestion {
-	Question select(@Param("memberCode")String memberCode,@Param("qstnCode")String qstnCode); // 단건조회
+	Question sltOne(@Param("memberCode")String memberCode,@Param("qstnCode")String qstnCode); // 단건조회
 
-	List<Question> listPage(Criteria cri)throws Exception; // 회원 목록 조회
+	List<Question> listPage(@Param("cri")Criteria cri,@Param("memberCode")String memberCode)throws Exception; // 회원 목록 조회
 
 	void insert(Question qes); // 공지사항 입력
 
@@ -21,9 +21,9 @@ public interface IDaoQuestion {
 
 	void delete(@Param("memberCode")String memberCode,@Param("qstnCode")String qstnCode); // 회원정보 삭제
 	
-	List<Question> first(@Param("memberCode")String memberCode);
+	List<Question> OneMemberCode(@Param("memberCode")String memberCode);
 	
-	Question first1(@Param("memberCode")String memberCode);
+	Question MemberCode(@Param("memberCode")String memberCode);
 	
 	public int listCount()throws Exception;
 	
