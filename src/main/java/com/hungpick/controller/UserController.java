@@ -427,7 +427,7 @@ public class UserController {
 	}
 	
 	@RequestMapping("findStore")
-	public String findStore(String brandName, Model model) throws Exception {
+	public void findStore(String brandName, Model model) throws Exception {
 		logger.info("findStore called ======");
 		model.addAttribute("brandName", brandName);
 		
