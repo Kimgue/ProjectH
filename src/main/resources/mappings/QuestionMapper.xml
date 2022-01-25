@@ -24,7 +24,7 @@
 	<select id="listPage" resultType="QesDto" parameterType="map">
 		SELECT  * FROM (   SELECT   ROW_NUMBER() OVER(ORDER BY QSTN_CODE DESC)
 		 NUM, A.* FROM QUESTION A ORDER BY QSTN_CODE) 
-		WHERE NUM BETWEEN #{ cri.rowStart} AND #{ cri.rowEnd } 
+		WHERE NUM BETWEEN #{ cri.rowStart } AND #{ cri.rowEnd } 
 		AND MEMBER_CODE = #{ memberCode }
 		ORDER BY QSTN_CODE DESC
 	</select>
