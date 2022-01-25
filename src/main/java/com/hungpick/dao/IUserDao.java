@@ -10,13 +10,18 @@ import com.hungpick.dto.UserDto;
 
 public interface IUserDao {
 
-	UserDto sltSearch(String memberCode);
-	
-	UserDto userLogin(@Param("memberId") String memberId, @Param("memberPw")String memberPw , HttpSession session) throws Exception;
+	// 단건조회
+	UserDto sltSearch(String memberCode) throws Exception;
 
-	List<UserDto> sltMulti(UserDto Dto);
+	// 다건조회
+	List<UserDto> sltMulti(UserDto Dto) throws Exception;
 
-	void userRegist(UserDto Dto);
+	// 로그인
+	UserDto userLogin(@Param("memberId") String memberId, @Param("memberPw") String memberPw, HttpSession session) throws Exception;
 
-	String checkId(String memberId);
+	// 회원가입
+	void userRegist(UserDto Dto) throws Exception;
+
+	// ID 중복검사
+	String checkId(String memberId) throws Exception;
 }
