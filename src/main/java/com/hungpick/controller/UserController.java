@@ -80,12 +80,12 @@ public class UserController {
 		pageMaker.setTotalCount(question.listCount());
 		int currentPage = cri.getPage();
 		
-		Question as = question.MemberCode(memberCode);
+		Question member = question.MemberCode(memberCode);
 		model.addAttribute("pageMaker", pageMaker);
 		model.addAttribute("currentPage", currentPage);
 
-		model.addAttribute("f", list);
-		model.addAttribute("b", as);
+		model.addAttribute("listpage", list);
+		model.addAttribute("member", member);
 
 		return "Questionlist";
 	}
@@ -97,7 +97,7 @@ public class UserController {
 		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date date = new Date();
 		String time1 = format1.format(date);
-		model.addAttribute("v", question.sltOne(memberCode, qstnCode));
+		model.addAttribute("MCode", question.sltOne(memberCode, qstnCode));
 		System.out.println(question.sltOne(memberCode, qstnCode));
 		model.addAttribute("date", time1);
 
@@ -111,10 +111,10 @@ public class UserController {
 		Date date = new Date();
 		String time1 = format1.format(date);
 
-		Question as = question.MemberCode(memberCode);
+		Question member = question.MemberCode(memberCode);
 
-		model.addAttribute("b", as);
-		System.out.println("memberCode " + as);
+		model.addAttribute("member", member);
+		System.out.println("memberCode " + member);
 		model.addAttribute("date", time1);
 
 		return "QuestioninsertQ";
@@ -134,9 +134,9 @@ public class UserController {
 		model.addAttribute("pageMaker", pageMaker);
 		model.addAttribute("currentPage", currentPage);
 
-		Question as = question.MemberCode(memberCode);
-		model.addAttribute("f", list);
-		model.addAttribute("b", as);
+		Question member = question.MemberCode(memberCode);
+		model.addAttribute("listpage", list);
+		model.addAttribute("member", member);
 
 		return "Questionlist";
 	}
@@ -148,9 +148,9 @@ public class UserController {
 		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date date = new Date();
 		String time1 = format1.format(date);
-		Question person = question.sltOne(memberCode, qstnCode);
-		model.addAttribute("v", person);
-		System.out.println(person);
+		Question sltOne = question.sltOne(memberCode, qstnCode);
+		model.addAttribute("sltOne", sltOne);
+		System.out.println(sltOne);
 		model.addAttribute("date", time1);
 
 		return "Questionupdatelist";
@@ -169,9 +169,9 @@ public class UserController {
 		
 		model.addAttribute("pageMaker", pageMaker);
 		model.addAttribute("currentPage", currentPage);
-		Question as = question.MemberCode(memberCode);
-		model.addAttribute("f", list);
-		model.addAttribute("b", as);
+		Question member = question.MemberCode(memberCode);
+		model.addAttribute("listpage", list);
+		model.addAttribute("member", member);
 
 		return "Questionlist";
 	}
