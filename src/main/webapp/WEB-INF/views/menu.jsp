@@ -7,11 +7,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>메뉴 소개</title>
 <style>
-
-.container {
-	display:flex;
-}
-
 </style>
 </head>
 <body>
