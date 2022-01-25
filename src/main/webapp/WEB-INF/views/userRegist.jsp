@@ -9,29 +9,29 @@
 <script>
 	$(document).ready(function() {
 		$("#checkId").click(function() {
-			
+
 			// 입력값 얻어오기
 			var id = $("#memberId").val();
-			
+
 			// 입력여부 검사
-			if(id=="") {
-				$("#fail_result").text("아이디를 입력해주세요").css("color","red");
+			if (id == "") {
+				$("#fail_result").text("아이디를 입력해주세요").css("color", "red");
 				$("#memberId").focus();
 				return false;
 			}
 			var url = "IdChkCtrl.do";
-				
+
 			// get 방식 ajax 연동
 			$.getJSON(url, {
 				"id" : id
 			}, function(json) {
 				var result_text = json.result;
 				var result = eval(result_text);
-				
-				if(result) {
-					$("#fail_result").text("사용 가능").css("color","blue");
+
+				if (result) {
+					$("#fail_result").text("사용 가능").css("color", "blue");
 				} else {
-					$("#fail_result").text("사용 불가능").css("color","red");
+					$("#fail_result").text("사용 불가능").css("color", "red");
 				}
 			});
 		});
@@ -74,9 +74,8 @@
 
 		</table>
 
-		<input type="submit" value="등록"> <input type="reset"
-			value="다시작성"> <input type="button" value="회원조회"
-			onClick="location.href='userView'">
+		<input type="submit" value="등록"> <input type="reset" value="다시작성"> 
+		<input type="button" value="회원조회" onClick="location.href='userView'">
 	</form>
 </body>
 </html>

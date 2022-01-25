@@ -9,10 +9,7 @@
 </head>
 <body>
 <div align="center">
-<h1>환영합니다. ${memberId}</h1>
-<h1>멤버코드. ${memberCode}</h1>
-<h1>DTO ${memberDTO}</h1>
-<h1>NAME ${memberDTO.memberName}</h1>
+<h1>환영합니다. ${memberDTO.memberName}</h1>
 <form name="paging">
 
 <!-- 김혜성 수정함 -->

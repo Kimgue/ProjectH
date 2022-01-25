@@ -70,12 +70,17 @@ public class UserController {
 		logger.info("Q&A called ==========");
 
 		/* List<Question> list = question.first(memberCode); */
+<<<<<<< HEAD
 		List<Question> list = question.listPage(cri,memberCode);
 		
 		
 		System.out.println(memberCode);
 		
 		
+=======
+
+		List<Question> list = question.listPage(cri, memberCode);
+>>>>>>> branch 'master' of https://github.com/Kimgue/WebProject.git
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(question.listCount());
@@ -125,7 +130,7 @@ public class UserController {
 		logger.info("insertCn");
 
 		/* List<Question> list = question.first(memberCode); */
-		List<Question> list = question.listPage(cri,memberCode);
+		List<Question> list = question.listPage(cri, memberCode);
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(question.listCount());
@@ -161,7 +166,7 @@ public class UserController {
 		logger.info("updatelist");
 
 		/* List<Question> list = question.first(memberCode); */
-		List<Question> list = question.listPage(cri,memberCode);
+		List<Question> list = question.listPage(cri, memberCode);
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(question.listCount());
@@ -180,7 +185,7 @@ public class UserController {
 	public String delete(Model model, String memberCode, String qstnCode, Question qes, Criteria cri) throws Exception {
 
 		/* List<Question> list = question.first(memberCode); */
-		List<Question> list = question.listPage(cri,memberCode);
+		List<Question> list = question.listPage(cri, memberCode);
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(question.listCount());
@@ -309,81 +314,69 @@ public class UserController {
 	/*------------------------김혜성------------------------*/
 
 	// 회원조회
-		@RequestMapping("userView")
-		public String userView(UserDto Dto, Model model) {
-			logger.info("userView called ==========");
+	@RequestMapping("userView")
+	public void userView(UserDto Dto, Model model) throws Exception {
+		List<UserDto> list = userService.sltMulti(Dto);
+		model.addAttribute("LIST", list);
+	}
 
-			List<UserDto> list = userService.sltMulti(Dto);
+	// 회원가입 페이지
+	@RequestMapping("userRegist")
+	public void userRegist() {
+	}
 
-			model.addAttribute("LIST", list);
-			return "userView";
+	// 회원가입
+	@RequestMapping("userRegistSubmit")
+	public String userRegistSubmit(UserDto Dto) throws Exception {
+		userService.userRegist(Dto);
+		return "redirect:/main.jsp";
+	}
+
+	// 로그인 페이지
+	@RequestMapping("userLogin")
+	public void userLogin() {
+	}
+
+	// 로그인
+	@RequestMapping("userLoginConfirm")
+	public ModelAndView userLoginConfirm(@Param("memberId") String memberId, @Param("memberPw") String memberPw,
+			HttpSession session) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		UserDto Dto = userService.userLogin(memberId, memberPw, session);
+
+		if (Dto != null) {
+			session.setAttribute("memberDTO", Dto);
+			mav.setViewName("redirect:/main.jsp");
+		} else {
+			session.setAttribute("loginNotice", "올바른 아이디 혹은 비밀번호를 입력해주세요");
+			mav.setViewName("redirect:/userLogin");
+		}
+		return mav;
+	}
+
+	// 로그아웃
+	@RequestMapping("userLogout")
+	public String userLogout(HttpSession session) throws Exception {
+		userService.userLogout(session);
+		return "redirect:/main.jsp";
+	}
+
+	// ID 중복검사
+	@RequestMapping(value = "IdChkCtrl.do", produces = "application/text;charset=UTF-8")
+	@ResponseBody
+	public String idChk(@ModelAttribute("id") String memberId) throws Exception {
+		String idChk = userService.checkId(memberId);
+		boolean result = false;
+		if (idChk.equals("0")) {
+			result = true;
 		}
 
-		// 회원가입 페이지
-		@RequestMapping("userRegist")
-		public String userRegist() {
-			logger.info("userRegist called ==========");
-			return "userRegist";
-		}
+		JSONObject jsonObj = new JSONObject();
+		jsonObj.put("result", result);
+		String jsonOut = jsonObj.toString();
 
-		// 회원가입
-		@RequestMapping("userRegistSubmit")
-		public String userRegistSubmit(UserDto Dto) throws Exception {
-			logger.info("userRegistSubmit called ==========");
-			userService.userRegist(Dto);
-			return "redirect:/main.jsp";
-		}
-
-		// 로그인 페이지
-		@RequestMapping("userLogin")
-		public String userLogin() {
-			logger.info("login called ==========");
-			return "userLogin";
-		}
-
-		// 로그인
-		@RequestMapping("userLoginConfirm")
-		public ModelAndView userLoginConfirm(@Param("memberId") String memberId, @Param("memberPw")String memberPw, HttpSession session) throws Exception {
-			logger.info("userLoginConfirm called ==========");
-			ModelAndView mav = new ModelAndView();
-			UserDto Dto = userService.userLogin(memberId, memberPw, session);
-			
-			if(Dto != null) {
-				System.out.println("불러온 DTO : " + Dto);
-				session.setAttribute("memberDTO", Dto);
-				mav.setViewName("redirect:/main.jsp");
-			} else {
-				session.setAttribute("loginNotice", "올바른 아이디 혹은 비밀번호를 입력해주세요");
-				mav.setViewName("redirect:/userLogin");
-			}
-			return mav;
-		}
-
-		// 로그아웃
-		@RequestMapping("userLogout")
-		public String userLogout(HttpSession session) throws Exception {
-			userService.userLogout(session);
-			return "redirect:/main.jsp";
-		}
-
-		// ID 중복검사
-		@RequestMapping(value = "IdChkCtrl.do", produces = "application/text;charset=UTF-8")
-		@ResponseBody
-		public String idChk(@ModelAttribute("id") String memberId) {
-			String idChk = userService.checkId(memberId);
-			boolean result = false;
-			if (idChk.equals("0")) {
-				result = true;
-			}
-
-			JSONObject jsonObj = new JSONObject();
-			jsonObj.put("result", result);
-
-			String jsonOut = jsonObj.toString();
-			System.out.println("=====" + jsonOut);
-
-			return jsonOut;
-		}
+		return jsonOut;
+	}
 
 	/*------------------------정진욱------------------------*/
 	@RequestMapping("brand")
