@@ -3,8 +3,12 @@ function QnA( memberCode )
 	var f = document.paging;
 			
 			if( !memberCode)
+				{
+				
 				alert("로그인 해주세요");
 				
+				return;
+				}
 			else
 			
 				f.memberCode.value = memberCode;
