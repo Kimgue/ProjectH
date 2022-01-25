@@ -95,20 +95,27 @@ public class UserServiceImpl implements IUserService {
 	}
 
 	@Override
-	public boolean userLogin(UserDto Dto, HttpSession session) throws Exception {
-		boolean isLogin = isLogin(Dto.getMemberId());
-		boolean result = true;
-		if (!isLogin) {
-			UserDto resultDto = userDao.userLogin(Dto);
-
-			if (resultDto == null) {
-				result = false;
-			}
-			setSession(session, Dto);
-			return result;
-		}
-		return !isLogin;
+	public UserDto userLogin(String memberId, String memberPw , HttpSession session) throws Exception {
+		return userDao.userLogin(memberId, memberPw, session);
 	}
+	
+//	@Override
+//	public boolean userLogin(UserDto Dto, HttpSession session) throws Exception {
+//		boolean isLogin = isLogin(Dto.getMemberId());
+//		boolean result = true;
+//		if (!isLogin) {
+//			Dto = userDao.userLogin(Dto);
+//
+//			if (Dto == null) {
+//				result = false;
+//			}
+//			setSession(session, Dto);
+//			System.out.println("DTO : " + Dto);
+//			System.out.println("코드 : " + Dto.getMemberCode());
+//			return result;
+//		}
+//		return !isLogin;
+//	}
 
 	// 로그인이 되어있는지 확인
 	public boolean isLogin(String id) {

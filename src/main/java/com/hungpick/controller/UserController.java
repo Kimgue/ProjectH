@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.annotations.Param;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -338,20 +339,57 @@ public class UserController {
 
 	// 로그인
 	@RequestMapping("userLoginConfirm")
-	public ModelAndView userLoginConfirm(@ModelAttribute UserDto Dto, HttpSession session) throws Exception {
+	public ModelAndView userLoginConfirm(@Param("memberId") String memberId, @Param("memberPw")String memberPw, HttpSession session) throws Exception {
 		logger.info("userLoginConfirm called ==========");
 		ModelAndView mav = new ModelAndView();
-		boolean result = userService.userLogin(Dto, session);
-
-		if (result == true) {
+		UserDto Dto = userService.userLogin(memberId, memberPw, session);
+		
+		if(Dto != null) {
+			System.out.println("불러온 DTO : " + Dto);
+			session.setAttribute("memberDTO", Dto);
 			mav.setViewName("redirect:/main.jsp");
-			session.setAttribute("userId", Dto.getMemberId());
 		} else {
+			session.setAttribute("loginNotice", "올바른 아이디 혹은 비밀번호를 입력해주세요");
 			mav.setViewName("redirect:/userLogin");
-			session.setAttribute("notice", "올바른 아이디 혹은 비밀번호를 입력하세요");
 		}
+		
+		
+		
+		
 		return mav;
 	}
+	
+//	// 로그인
+//		@RequestMapping("userLoginConfirm")
+//		public ModelAndView userLoginConfirm(@ModelAttribute UserDto Dto, HttpSession session) throws Exception {
+//			logger.info("userLoginConfirm called ==========");
+//			ModelAndView mav = new ModelAndView();
+//			boolean result = userService.userLogin(Dto, session);
+//			
+//			session.setAttribute("userId", Dto.getMemberId());
+//			session.setAttribute("userCode", Dto.getMemberCode());
+//			session.setAttribute("userName", Dto.getMemberName());
+//			session.setAttribute("userNickname", Dto.getMemberNickname());
+//			
+//			System.out.println("ㅇㅇ : " + Dto.getMemberCode());
+//			System.out.println("ㅇㅇㅇ : " + session.getAttribute("userCode"));
+//			
+//			
+//			if (result == true) {
+//				mav.setViewName("redirect:/main.jsp");
+//				
+//				
+//				System.out.println(session.getAttribute("userId"));
+//				System.out.println(session.getAttribute("userCode"));
+//				System.out.println(session.getAttribute("userName"));
+//				System.out.println(session.getAttribute("userNickName"));
+//			
+//			} else {
+//				mav.setViewName("redirect:/userLogin");
+//				session.setAttribute("notice", "올바른 아이디 혹은 비밀번호를 입력하세요");
+//			}
+//			return mav;
+//		}
 
 	// 로그아웃
 	@RequestMapping("userLogout")
