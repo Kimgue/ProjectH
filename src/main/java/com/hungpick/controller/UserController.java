@@ -65,7 +65,7 @@ public class UserController {
 	}
 
 	@RequestMapping("Question")
-	public String QA(Model model,@Param("memberCode") String memberCode, @ModelAttribute("cri") Criteria cri) throws Exception {
+	public String QA(Model model,String memberCode, @ModelAttribute("cri") Criteria cri) throws Exception {
 		logger.info("Q&A called ==========");
 
 		/* List<Question> list = question.first(memberCode); */
@@ -189,7 +189,7 @@ public class UserController {
 	}
 
 	@RequestMapping("Notice")
-	public String listPage(Model model, String adminCode, String noticeCode, Criteria cri) throws Exception {
+	public String listPage(Model model, String adminCode, String noticeCode, @ModelAttribute("cri") Criteria cri) throws Exception {
 		logger.info("get list page");
 
 		PageMaker pageMaker = new PageMaker();
@@ -198,9 +198,10 @@ public class UserController {
 		int currentPage = cri.getPage();
 
 		model.addAttribute("listpage", notice.listPage(cri));
-		model.addAttribute("sltOne", notice.sltone(adminCode));
+		model.addAttribute("noticecode", notice.noticeCode(adminCode));
 		model.addAttribute("pageMaker", pageMaker);
 		model.addAttribute("currentPage", currentPage);
+		
 		return "NoticeSWD";
 
 	}
@@ -208,7 +209,7 @@ public class UserController {
 	@RequestMapping("view2")
 	public String view2(Model model, String adminCode, String noticeCode) throws Exception {
 
-		model.addAttribute("s", notice.select(adminCode, noticeCode));
+		model.addAttribute("noticecontent", notice.sltOneNoice(adminCode, noticeCode));
 
 		return "Noticeview2";
 	}
@@ -221,7 +222,7 @@ public class UserController {
 		String time1 = format1.format(date);
 
 		model.addAttribute("date", time1);
-		model.addAttribute("s", notice.sltone(adminCode));
+		model.addAttribute("noticecode", notice.noticeCode(adminCode));
 
 		return "NoticeinsertN";
 	}
@@ -239,8 +240,8 @@ public class UserController {
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(notice.listCount());
 		int currentPage = cri.getPage();
-		model.addAttribute("list", notice.listPage(cri));
-		model.addAttribute("a", notice.sltone(adminCode));
+		model.addAttribute("listpage", notice.listPage(cri));
+		model.addAttribute("noticecode", notice.noticeCode(adminCode));
 		model.addAttribute("date", time1);
 		model.addAttribute("pageMaker", pageMaker);
 		model.addAttribute("currentPage", currentPage);
@@ -252,9 +253,9 @@ public class UserController {
 	public String Noticeupdatelist(Model model, String adminCode, String noticeCode) throws Exception {
 		logger.info("updatelist");
 
-		Notice person = notice.select(adminCode, noticeCode);
-		model.addAttribute("person", person);
-		System.out.println(person);
+		
+		model.addAttribute("person", notice.sltOneNoice(adminCode, noticeCode));
+		
 		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date date = new Date();
 		String time1 = format1.format(date);
@@ -273,8 +274,8 @@ public class UserController {
 		int currentPage = cri.getPage();
 
 		notice.update(noti);
-		model.addAttribute("list", notice.listPage(cri));
-		model.addAttribute("a", notice.sltone(adminCode));
+		model.addAttribute("listpage", notice.listPage(cri));
+		model.addAttribute("noticecode", notice.noticeCode(adminCode));
 		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date date = new Date();
 		String time1 = format1.format(date);

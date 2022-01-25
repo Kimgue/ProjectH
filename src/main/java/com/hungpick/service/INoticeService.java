@@ -10,7 +10,7 @@ import com.hungpick.dto.Notice;
 
 public interface INoticeService {
 
-	Notice select(@Param("adminCode") String adminCode,@Param("noticeCode")String noticeCode); //  단건 조회
+	Notice sltOneNoice(@Param("adminCode") String adminCode,@Param("noticeCode")String noticeCode); //  단건 조회
 
 	void insert(Notice noti) throws Exception; // 공지사항입력 후 hist에 값 넣고 트랜잭션 처리
 
@@ -20,7 +20,7 @@ public interface INoticeService {
 	
 	List<Notice> listPage(Criteria cri) throws Exception;
 
-	Notice sltone(@Param("adminCode")String adminCode);
+	Notice noticeCode(@Param("adminCode")String adminCode);
 
 
 	public int listCount()throws Exception;

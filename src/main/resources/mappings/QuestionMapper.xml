@@ -29,6 +29,7 @@
 		AND #{ cri.rowEnd } 
 		AND MEMBER_CODE = #{ memberCode }
 		ORDER BY QSTN_CODE DESC
+
 	</select>
 	
 	<select id="OneMemberCode" resultType="QesDto" parameterType="String">

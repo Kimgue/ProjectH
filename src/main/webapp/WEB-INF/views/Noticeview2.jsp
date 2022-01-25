@@ -16,7 +16,7 @@
 <body>
 
 	<div id="cla">
-	 ${ s.noticeContent } 
+	 ${ noticecontent.noticeContent } 
 	</div>
 
 	

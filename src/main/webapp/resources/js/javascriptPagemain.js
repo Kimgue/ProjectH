@@ -21,15 +21,15 @@ function QnA( memberCode )
 				
 	
 	};
-	function Notice( adminCode , noticeCode  )
+	function Notice( adminCode   )
 	{
 		let f = document.paging;
 		
 		f.adminCode.value = adminCode;
-		f.noticeCode.value = noticeCode;
 		
 		f.action = "./Notice"
 		
 		f.method= "post"
+			
 		f.submit();
 	};

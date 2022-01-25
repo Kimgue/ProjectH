@@ -29,12 +29,12 @@ table {
 			<td width=150>작성날짜</td>
 			
 		</tr>
-		<c:forEach var="lis" items="${ list }">
+		<c:forEach var="list" items="${ listpage }">
 			<tr>
-				<td><c:out value="${ lis.noticeCode}" /></td>
-				<td><a href="view2?adminCode=${ lis.adminCode }&noticeCode=${lis.noticeCode}"><c:out value="${lis.noticeTitle}" /></a></td>
-				<td><c:out value="${lis.adminCode }"></c:out>
-				<td><c:out value="${lis.noticeDate}" /></td>	
+				<td><c:out value="${ list.noticeCode}" /></td>
+				<td><a href="view2?adminCode=${ list.adminCode }&noticeCode=${list.noticeCode}"><c:out value="${list.noticeTitle}" /></a></td>
+				<td><c:out value="${list.adminCode }"></c:out>
+				<td><c:out value="${list.noticeDate}" /></td>	
 			</tr>
 		</c:forEach>
 	</table>	
