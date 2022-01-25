@@ -4,18 +4,22 @@
 
 <mapper namespace="com.hungpick.dao.IUserDao">
 
+	<!-- 단건조회 -->
 	<select id="sltSearch" resultType="userDto" parameterType="String">
 		SELECT MEMBER_CODE FROM MEMBERS WHERE MEMBER_CODE = #{memberCode}
 	</select>
 
+	<!-- 다건조회 -->
 	<select id="sltMulti" resultType="userDto">
 		SELECT * FROM MEMBERS ORDER BY MEMBER_CODE
 	</select>
 	
+	<!-- 로그인 -->
 	<select id="userLogin" resultType="userDto" parameterType="String">
 		SELECT * FROM MEMBERS WHERE MEMBER_ID = #{memberId} AND MEMBER_PW = #{memberPw}
 	</select>
 	
+	<!-- 회원가입 -->
 	<insert id="userRegist" parameterType="userDto">
 		INSERT INTO MEMBERS (MEMBER_CODE, MEMBER_ID, MEMBER_PW, MEMBER_NAME, MEMBER_NICKNAME, MEMBER_EMAIL, MEMBER_NUMBER, MEMBER_DATE, HOLD_POINT)
 		VALUES ( #{memberCode}, #{memberId}, #{memberPw}, #{memberName}, #{memberNickname}, #{memberEmail}, #{memberNumber}, SYSDATE, #{holdPoint} )

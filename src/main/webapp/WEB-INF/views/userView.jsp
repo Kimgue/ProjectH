@@ -21,7 +21,7 @@
 			<td width=50>date</td>
 			<td width=50>point</td>
 		</tr>
-		
+
 		<c:forEach var="list" items="${LIST}">
 			<tr>
 				<td><c:out value="${list.memberCode}" /></td>
@@ -34,8 +34,8 @@
 				<td><c:out value="${list.memberDate}" /></td>
 				<td><c:out value="${list.holdPoint}" /></td>
 			</tr>
-		</c:forEach> 
-		
+		</c:forEach>
+
 	</table>
 	<input type="button" value="회원등록" onClick="location.href='userRegist'">
 	<input type="button" value="로그인" onClick="location.href='userLogin'">
