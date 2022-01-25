@@ -12,9 +12,7 @@ public interface IUserDao {
 
 	UserDto sltSearch(String memberCode);
 	
-//	UserDto userLogin(String memberId, String memberPw) throws Exception;
 	UserDto userLogin(@Param("memberId") String memberId, @Param("memberPw")String memberPw , HttpSession session) throws Exception;
-//	UserDto userLogin(UserDto Dto) throws Exception;
 
 	List<UserDto> sltMulti(UserDto Dto);
 

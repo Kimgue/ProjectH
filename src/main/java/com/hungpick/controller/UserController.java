@@ -305,118 +305,81 @@ public class UserController {
 	/*------------------------김혜성------------------------*/
 
 	// 회원조회
-	@RequestMapping("userView")
-	public String userView(UserDto Dto, Model model) {
-		logger.info("userView called ==========");
+		@RequestMapping("userView")
+		public String userView(UserDto Dto, Model model) {
+			logger.info("userView called ==========");
 
-		List<UserDto> list = userService.sltMulti(Dto);
+			List<UserDto> list = userService.sltMulti(Dto);
 
-		model.addAttribute("LIST", list);
-		return "userView";
-	}
-
-	// 회원가입 페이지
-	@RequestMapping("userRegist")
-	public String userRegist() {
-		logger.info("userRegist called ==========");
-		return "userRegist";
-	}
-
-	// 회원가입
-	@RequestMapping("userRegistSubmit")
-	public String userRegistSubmit(UserDto Dto) throws Exception {
-		logger.info("userRegistSubmit called ==========");
-		userService.userRegist(Dto);
-
-		return "redirect:/main.jsp";
-	}
-
-	// 로그인 페이지
-	@RequestMapping("userLogin")
-	public String userLogin() {
-		logger.info("login called ==========");
-		return "userLogin";
-	}
-
-	// 로그인
-	@RequestMapping("userLoginConfirm")
-	public ModelAndView userLoginConfirm(@Param("memberId") String memberId, @Param("memberPw")String memberPw, HttpSession session) throws Exception {
-		logger.info("userLoginConfirm called ==========");
-		ModelAndView mav = new ModelAndView();
-		UserDto Dto = userService.userLogin(memberId, memberPw, session);
-		
-		if(Dto != null) {
-			System.out.println("불러온 DTO : " + Dto);
-			session.setAttribute("memberDTO", Dto);
-			mav.setViewName("redirect:/main.jsp");
-		} else {
-			session.setAttribute("loginNotice", "올바른 아이디 혹은 비밀번호를 입력해주세요");
-			mav.setViewName("redirect:/userLogin");
-		}
-		
-		
-		
-		
-		return mav;
-	}
-	
-//	// 로그인
-//		@RequestMapping("userLoginConfirm")
-//		public ModelAndView userLoginConfirm(@ModelAttribute UserDto Dto, HttpSession session) throws Exception {
-//			logger.info("userLoginConfirm called ==========");
-//			ModelAndView mav = new ModelAndView();
-//			boolean result = userService.userLogin(Dto, session);
-//			
-//			session.setAttribute("userId", Dto.getMemberId());
-//			session.setAttribute("userCode", Dto.getMemberCode());
-//			session.setAttribute("userName", Dto.getMemberName());
-//			session.setAttribute("userNickname", Dto.getMemberNickname());
-//			
-//			System.out.println("ㅇㅇ : " + Dto.getMemberCode());
-//			System.out.println("ㅇㅇㅇ : " + session.getAttribute("userCode"));
-//			
-//			
-//			if (result == true) {
-//				mav.setViewName("redirect:/main.jsp");
-//				
-//				
-//				System.out.println(session.getAttribute("userId"));
-//				System.out.println(session.getAttribute("userCode"));
-//				System.out.println(session.getAttribute("userName"));
-//				System.out.println(session.getAttribute("userNickName"));
-//			
-//			} else {
-//				mav.setViewName("redirect:/userLogin");
-//				session.setAttribute("notice", "올바른 아이디 혹은 비밀번호를 입력하세요");
-//			}
-//			return mav;
-//		}
-
-	// 로그아웃
-	@RequestMapping("userLogout")
-	public String userLogout(HttpSession session) throws Exception {
-		userService.userLogout(session);
-		return "redirect:/main.jsp";
-	}
-
-	// ID 중복검사
-	@RequestMapping(value = "IdChkCtrl.do", produces = "application/text;charset=UTF-8")
-	@ResponseBody
-	public String idChk(@ModelAttribute("id") String memberId) {
-		String idChk = userService.checkId(memberId);
-		boolean result = false;
-		if (idChk.equals("0")) {
-			result = true;
+			model.addAttribute("LIST", list);
+			return "userView";
 		}
 
-		JSONObject jsonObj = new JSONObject();
-		jsonObj.put("result", result);
+		// 회원가입 페이지
+		@RequestMapping("userRegist")
+		public String userRegist() {
+			logger.info("userRegist called ==========");
+			return "userRegist";
+		}
 
-		String jsonOut = jsonObj.toString();
-		System.out.println("=====" + jsonOut);
+		// 회원가입
+		@RequestMapping("userRegistSubmit")
+		public String userRegistSubmit(UserDto Dto) throws Exception {
+			logger.info("userRegistSubmit called ==========");
+			userService.userRegist(Dto);
+			return "redirect:/main.jsp";
+		}
 
-		return jsonOut;
-	}
+		// 로그인 페이지
+		@RequestMapping("userLogin")
+		public String userLogin() {
+			logger.info("login called ==========");
+			return "userLogin";
+		}
+
+		// 로그인
+		@RequestMapping("userLoginConfirm")
+		public ModelAndView userLoginConfirm(@Param("memberId") String memberId, @Param("memberPw")String memberPw, HttpSession session) throws Exception {
+			logger.info("userLoginConfirm called ==========");
+			ModelAndView mav = new ModelAndView();
+			UserDto Dto = userService.userLogin(memberId, memberPw, session);
+			
+			if(Dto != null) {
+				System.out.println("불러온 DTO : " + Dto);
+				session.setAttribute("memberDTO", Dto);
+				mav.setViewName("redirect:/main.jsp");
+			} else {
+				session.setAttribute("loginNotice", "올바른 아이디 혹은 비밀번호를 입력해주세요");
+				mav.setViewName("redirect:/userLogin");
+			}
+			return mav;
+		}
+
+		// 로그아웃
+		@RequestMapping("userLogout")
+		public String userLogout(HttpSession session) throws Exception {
+			userService.userLogout(session);
+			return "redirect:/main.jsp";
+		}
+
+		// ID 중복검사
+		@RequestMapping(value = "IdChkCtrl.do", produces = "application/text;charset=UTF-8")
+		@ResponseBody
+		public String idChk(@ModelAttribute("id") String memberId) {
+			String idChk = userService.checkId(memberId);
+			boolean result = false;
+			if (idChk.equals("0")) {
+				result = true;
+			}
+
+			JSONObject jsonObj = new JSONObject();
+			jsonObj.put("result", result);
+
+			String jsonOut = jsonObj.toString();
+			System.out.println("=====" + jsonOut);
+
+			return jsonOut;
+		}
 
 	/*------------------------정진욱------------------------*/
 	@RequestMapping("brand")
