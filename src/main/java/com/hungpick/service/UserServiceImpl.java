@@ -95,15 +95,16 @@ public class UserServiceImpl implements IUserService {
 	}
 
 	@Override
-<<<<<<< HEAD
+
 	public UserDto userLogin(String memberId, String memberPw , HttpSession session) throws Exception {
-		return userDao.userLogin(memberId, memberPw, session);
-=======
+		
+	return userDao.userLogin(memberId, memberPw, session);
+	}
 	public boolean userLogin(UserDto Dto, HttpSession session) throws Exception {
 		boolean isLogin = isLogin(Dto.getMemberId());
 		boolean result = true;
 		if (!isLogin) {
-			UserDto resultDto = userDao.userLogin(Dto);
+			UserDto resultDto = userDao.userLogin(memberId, memberPw, session);
 
 			if (resultDto == null) {
 				result = false;
@@ -112,7 +113,7 @@ public class UserServiceImpl implements IUserService {
 			return result;
 		}
 		return !isLogin;
->>>>>>> branch 'master' of https://github.com/Kimgue/WebProject.git
+
 	}
 	
 //	@Override

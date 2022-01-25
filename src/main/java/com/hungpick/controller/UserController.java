@@ -70,6 +70,7 @@ public class UserController {
 
 		/* List<Question> list = question.first(memberCode); */
 
+		
 		List<Question> list = question.listPage(cri,memberCode);
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
