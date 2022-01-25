@@ -138,4 +138,10 @@ public class UserServiceImpl implements IUserService {
 		loginUsers.remove(session.getId());
 		session.invalidate();
 	}
+
+	// 회원탈퇴
+	@Override
+	public void userDelete(String memberId, String memberPw) throws Exception {
+		userDao.userDelete(memberId, memberPw);
+	}
 }

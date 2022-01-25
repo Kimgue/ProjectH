@@ -18,11 +18,16 @@
 	<a href="userLogin">로그인</a><br>    
 </c:if>
 <c:if test="${not empty memberDTO}">
+	<a href="userPage">마이페이지</a><br>
+</c:if>
+<c:if test="${not empty memberDTO}">
 	<a href="userLogout">로그아웃</a><br>
 </c:if>
 <c:if test="${empty memberDTO}">
 	<a href="userRegist">회원가입</a><br> 
 </c:if>
+
+
 
 
 <input type="hidden" name="adminCode" />

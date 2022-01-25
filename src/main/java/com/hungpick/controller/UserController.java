@@ -314,6 +314,18 @@ public class UserController {
 	@RequestMapping("userRegist")
 	public void userRegist() {
 	}
+	
+	// 마이 페이지
+	@RequestMapping("userPage")
+	public void userPage() {
+	}
+	
+	// 로그아웃
+	@RequestMapping("userLogout")
+	public String userLogout(HttpSession session) throws Exception {
+		userService.userLogout(session);
+		return "redirect:/main.jsp";
+	}
 
 	// 회원가입
 	@RequestMapping("userRegistSubmit")
@@ -344,13 +356,6 @@ public class UserController {
 		return mav;
 	}
 
-	// 로그아웃
-	@RequestMapping("userLogout")
-	public String userLogout(HttpSession session) throws Exception {
-		userService.userLogout(session);
-		return "redirect:/main.jsp";
-	}
-
 	// ID 중복검사
 	@RequestMapping(value = "IdChkCtrl.do", produces = "application/text;charset=UTF-8")
 	@ResponseBody
@@ -366,6 +371,10 @@ public class UserController {
 		String jsonOut = jsonObj.toString();
 
 		return jsonOut;
+	}
+	
+	public void userDelete(@Param("memberId") String memberId, @Param("memberPw") String memberPw) throws Exception {
+		userService.userDelete(memberId, memberPw);
 	}
 
 	/*------------------------정진욱------------------------*/

@@ -29,4 +29,9 @@
 	<select id="checkId" resultType="String">
 		SELECT COUNT(*) FROM MEMBERS WHERE MEMBER_ID = #{memberId}
 	</select>
+	
+	<!-- 회원탈퇴 -->
+	<delete id="userDelete">
+		DELETE FROM MEMBERS WHERE MEMBER_ID = #{memberId} AND MEMBER_PW = #{memberPw}
+	</delete>
 </mapper>

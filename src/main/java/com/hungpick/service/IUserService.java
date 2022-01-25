@@ -27,4 +27,7 @@ public interface IUserService {
 
 	// ID 중복검사
 	String checkId(String memberId) throws Exception;
+	
+	// 회원탈퇴
+	void userDelete(@Param("memberId") String memberId, @Param("memberPw") String memberPw) throws Exception;
 }
