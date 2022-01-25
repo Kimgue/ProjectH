@@ -71,7 +71,6 @@ table {
     </c:forEach>
 <hr>	
 	<input type="button" value="작성" onClick="insert('${member.memberCode}')">	
-	
 	<input type="hidden" name="memberCode" />
 	<input type="hidden" name="qstnCode" />
 	
