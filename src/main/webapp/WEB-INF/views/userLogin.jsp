@@ -21,7 +21,7 @@
 				<td><input type="password" id="memberPw" name="memberPw"></td>
 			</tr>
 		</table>
-		<h1>${notice}</h1>
+		<h1>${loginNotice}</h1>
 		<input type="submit" value="로그인">
 		<input type="button" value="회원가입" onClick="location.href='userRegist'">
 	</form>

@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.annotations.Param;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -69,17 +70,18 @@ public class UserController {
 
 		/* List<Question> list = question.first(memberCode); */
 
-		List<Question> list = question.listPage(cri);
+		
+		List<Question> list = question.listPage(cri,memberCode);
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(question.listCount());
 		int currentPage = cri.getPage();
-		Question as = question.first1(memberCode);
+		Question member = question.MemberCode(memberCode);
 		model.addAttribute("pageMaker", pageMaker);
 		model.addAttribute("currentPage", currentPage);
 
-		model.addAttribute("f", list);
-		model.addAttribute("b", as);
+		model.addAttribute("listpage", list);
+		model.addAttribute("member", member);
 
 		return "Questionlist";
 	}
@@ -91,8 +93,8 @@ public class UserController {
 		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date date = new Date();
 		String time1 = format1.format(date);
-		model.addAttribute("v", question.select(memberCode, qstnCode));
-		System.out.println(question.select(memberCode, qstnCode));
+		model.addAttribute("sltOne", question.sltOne(memberCode, qstnCode));
+		System.out.println(question.sltOne(memberCode, qstnCode));
 		model.addAttribute("date", time1);
 
 		return "Questionupdatelist";
@@ -105,10 +107,10 @@ public class UserController {
 		Date date = new Date();
 		String time1 = format1.format(date);
 
-		Question as = question.first1(memberCode);
+		Question member = question.MemberCode(memberCode);
 
-		model.addAttribute("b", as);
-		System.out.println("memberCode " + as);
+		model.addAttribute("member", member);
+		System.out.println("memberCode " + member);
 		model.addAttribute("date", time1);
 
 		return "QuestioninsertQ";
@@ -119,7 +121,7 @@ public class UserController {
 		logger.info("insertCn");
 
 		/* List<Question> list = question.first(memberCode); */
-		List<Question> list = question.listPage(cri);
+		List<Question> list = question.listPage(cri,memberCode);
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(question.listCount());
@@ -128,9 +130,9 @@ public class UserController {
 		model.addAttribute("pageMaker", pageMaker);
 		model.addAttribute("currentPage", currentPage);
 
-		Question as = question.first1(memberCode);
-		model.addAttribute("f", list);
-		model.addAttribute("b", as);
+		Question member = question.MemberCode(memberCode);
+		model.addAttribute("listpage", list);
+		model.addAttribute("member", member);
 
 		return "Questionlist";
 	}
@@ -142,9 +144,9 @@ public class UserController {
 		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date date = new Date();
 		String time1 = format1.format(date);
-		Question person = question.select(memberCode, qstnCode);
-		model.addAttribute("v", person);
-		System.out.println(person);
+		Question sltOne = question.sltOne(memberCode, qstnCode);
+		model.addAttribute("sltOne", sltOne);
+		System.out.println(sltOne);
 		model.addAttribute("date", time1);
 
 		return "Questionupdatelist";
@@ -155,7 +157,7 @@ public class UserController {
 		logger.info("updatelist");
 
 		/* List<Question> list = question.first(memberCode); */
-		List<Question> list = question.listPage(cri);
+		List<Question> list = question.listPage(cri,memberCode);
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(question.listCount());
@@ -163,9 +165,9 @@ public class UserController {
 		question.update(qes);
 		model.addAttribute("pageMaker", pageMaker);
 		model.addAttribute("currentPage", currentPage);
-		Question as = question.first1(memberCode);
-		model.addAttribute("f", list);
-		model.addAttribute("b", as);
+		Question member = question.MemberCode(memberCode);
+		model.addAttribute("listpage", list);
+		model.addAttribute("member", member);
 
 		return "Questionlist";
 	}
@@ -174,7 +176,7 @@ public class UserController {
 	public String delete(Model model, String memberCode, String qstnCode, Question qes, Criteria cri) throws Exception {
 
 		/* List<Question> list = question.first(memberCode); */
-		List<Question> list = question.listPage(cri);
+		List<Question> list = question.listPage(cri,memberCode);
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(question.listCount());
@@ -183,10 +185,10 @@ public class UserController {
 		model.addAttribute("pageMaker", pageMaker);
 		model.addAttribute("currentPage", currentPage);
 		System.out.println(list);
-		Question as = question.first1(memberCode);
+		Question member = question.MemberCode(memberCode);
 
-		model.addAttribute("f", list);
-		model.addAttribute("b", as);
+		model.addAttribute("listpage", list);
+		model.addAttribute("member", member);
 
 		return "Questionlist";
 
@@ -201,8 +203,8 @@ public class UserController {
 		pageMaker.setTotalCount(notice.listCount());
 		int currentPage = cri.getPage();
 
-		model.addAttribute("list", notice.listPage(cri));
-		model.addAttribute("a", notice.sltone(adminCode));
+		model.addAttribute("listpage", notice.listPage(cri));
+		model.addAttribute("sltOne", notice.sltone(adminCode));
 		model.addAttribute("pageMaker", pageMaker);
 		model.addAttribute("currentPage", currentPage);
 		return "NoticeSWD";
@@ -303,81 +305,81 @@ public class UserController {
 	/*------------------------김혜성------------------------*/
 
 	// 회원조회
-	@RequestMapping("userView")
-	public String userView(UserDto Dto, Model model) {
-		logger.info("userView called ==========");
+		@RequestMapping("userView")
+		public String userView(UserDto Dto, Model model) {
+			logger.info("userView called ==========");
 
-		List<UserDto> list = userService.sltMulti(Dto);
+			List<UserDto> list = userService.sltMulti(Dto);
 
-		model.addAttribute("LIST", list);
-		return "userView";
-	}
-
-	// 회원가입 페이지
-	@RequestMapping("userRegist")
-	public String userRegist() {
-		logger.info("userRegist called ==========");
-		return "userRegist";
-	}
-
-	// 회원가입
-	@RequestMapping("userRegistSubmit")
-	public String userRegistSubmit(UserDto Dto) throws Exception {
-		logger.info("userRegistSubmit called ==========");
-		userService.userRegist(Dto);
-
-		return "redirect:/main.jsp";
-	}
-
-	// 로그인 페이지
-	@RequestMapping("userLogin")
-	public String userLogin() {
-		logger.info("login called ==========");
-		return "userLogin";
-	}
-
-	// 로그인
-	@RequestMapping("userLoginConfirm")
-	public ModelAndView userLoginConfirm(@ModelAttribute UserDto Dto, HttpSession session) throws Exception {
-		logger.info("userLoginConfirm called ==========");
-		ModelAndView mav = new ModelAndView();
-		boolean result = userService.userLogin(Dto, session);
-
-		if (result == true) {
-			mav.setViewName("redirect:/main.jsp");
-			session.setAttribute("userId", Dto.getMemberId());
-		} else {
-			mav.setViewName("redirect:/userLogin");
-			session.setAttribute("notice", "올바른 아이디 혹은 비밀번호를 입력하세요");
-		}
-		return mav;
-	}
-
-	// 로그아웃
-	@RequestMapping("userLogout")
-	public String userLogout(HttpSession session) throws Exception {
-		userService.userLogout(session);
-		return "redirect:/main.jsp";
-	}
-
-	// ID 중복검사
-	@RequestMapping(value = "IdChkCtrl.do", produces = "application/text;charset=UTF-8")
-	@ResponseBody
-	public String idChk(@ModelAttribute("id") String memberId) {
-		String idChk = userService.checkId(memberId);
-		boolean result = false;
-		if (idChk.equals("0")) {
-			result = true;
+			model.addAttribute("LIST", list);
+			return "userView";
 		}
 
-		JSONObject jsonObj = new JSONObject();
-		jsonObj.put("result", result);
+		// 회원가입 페이지
+		@RequestMapping("userRegist")
+		public String userRegist() {
+			logger.info("userRegist called ==========");
+			return "userRegist";
+		}
 
-		String jsonOut = jsonObj.toString();
-		System.out.println("=====" + jsonOut);
+		// 회원가입
+		@RequestMapping("userRegistSubmit")
+		public String userRegistSubmit(UserDto Dto) throws Exception {
+			logger.info("userRegistSubmit called ==========");
+			userService.userRegist(Dto);
+			return "redirect:/main.jsp";
+		}
 
-		return jsonOut;
-	}
+		// 로그인 페이지
+		@RequestMapping("userLogin")
+		public String userLogin() {
+			logger.info("login called ==========");
+			return "userLogin";
+		}
+
+		// 로그인
+		@RequestMapping("userLoginConfirm")
+		public ModelAndView userLoginConfirm(@Param("memberId") String memberId, @Param("memberPw")String memberPw, HttpSession session) throws Exception {
+			logger.info("userLoginConfirm called ==========");
+			ModelAndView mav = new ModelAndView();
+			UserDto Dto = userService.userLogin(memberId, memberPw, session);
+			
+			if(Dto != null) {
+				System.out.println("불러온 DTO : " + Dto);
+				session.setAttribute("memberDTO", Dto);
+				mav.setViewName("redirect:/main.jsp");
+			} else {
+				session.setAttribute("loginNotice", "올바른 아이디 혹은 비밀번호를 입력해주세요");
+				mav.setViewName("redirect:/userLogin");
+			}
+			return mav;
+		}
+
+		// 로그아웃
+		@RequestMapping("userLogout")
+		public String userLogout(HttpSession session) throws Exception {
+			userService.userLogout(session);
+			return "redirect:/main.jsp";
+		}
+
+		// ID 중복검사
+		@RequestMapping(value = "IdChkCtrl.do", produces = "application/text;charset=UTF-8")
+		@ResponseBody
+		public String idChk(@ModelAttribute("id") String memberId) {
+			String idChk = userService.checkId(memberId);
+			boolean result = false;
+			if (idChk.equals("0")) {
+				result = true;
+			}
+
+			JSONObject jsonObj = new JSONObject();
+			jsonObj.put("result", result);
+
+			String jsonOut = jsonObj.toString();
+			System.out.println("=====" + jsonOut);
+
+			return jsonOut;
+		}
 
 	/*------------------------정진욱------------------------*/
 	@RequestMapping("brand")

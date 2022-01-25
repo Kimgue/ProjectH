@@ -59,8 +59,8 @@ input {
 						<tbody>
 							<tr>
 								<td>
-									<label for="memberCode" id="memberCode">작성자 번호 :${ b.memberCode }</label>
-									<input type="hidden" id="memberCode" name="memberCode" value="${ b.memberCode }">
+									<label for="memberCode" id="memberCode">작성자 번호 :${ member.memberCode }</label>
+									<input type="hidden" id="memberCode" name="memberCode" value="${ member.memberCode }">
 									<input type="hidden" id="qstnCode" name="qstnCode" value="qstnCode">
 							</tr>	
 							<tr>

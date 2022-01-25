@@ -24,4 +24,6 @@ public interface INoticeService {
 
 
 	public int listCount()throws Exception;
+
+	
 }

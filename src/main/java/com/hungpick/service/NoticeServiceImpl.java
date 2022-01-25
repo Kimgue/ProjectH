@@ -69,15 +69,7 @@ public class NoticeServiceImpl implements INoticeService {
 	@Override
 	public void update(Notice noti) throws Exception {
 		
-		Notice check = daoNotice.select(noti.getAdminCode(),  noti.getNoticeCode());
-		
-		if(check != null)
-		{
-			throw new Exception();
-		}
-		
-
-		
+	
 		String Acode = noti.getAdminCode();
 		String Bcode = noti.getNoticeCode();
 		String titl = noti.getNoticeTitle();
