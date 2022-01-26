@@ -6,13 +6,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="js/javascriptPagemain.js"></script>
-<script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+
 <title>메인화면</title>
 </head>
 <body>
 	<div align="center">
 		<h1>환영합니다. ${memberDTO.memberName}</h1>
-		<form name="paging">
+<form name="paging">
 
 			<!-- 김혜성 수정함 -->
 			<a href="userView">회원조회</a><br>
@@ -34,11 +34,15 @@
 			</c:if>
 
 <input type="hidden" name="adminCode" /> 
-<a href='javascript:Notice("01")'>공지사항</a> <br>	
+<a href='Notice'>공지사항</a> <br>	
 
 
-<a href='javascript:QnA("${memberDTO.memberCode}")'>Q . A</a> 
-<input type="hidden" name="memberCode" /> <br>
+
+<a href='Question'>Q . A</a> 
+
+
+
+<br>
 
 <a href="GifticonList">기프티콘</a>
 </form>
