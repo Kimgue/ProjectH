@@ -4,29 +4,27 @@
 
 <mapper namespace="com.hungpick.dao.IGifticonDao">
 
-	<select id="sltOne" parameterType="String" resultType="QesDto">
+
+	<select id="select" parameterType="gift" resultType="String">
 		SELECT * 
 		FROM 
-		QUESTION
-		WHERE MEMBER_CODE = #{ memberCode } AND
-		QSTN_CODE = #{ qstnCode  } 
-		
+		GIFTICON
+		WHERE GIFTICON_CODE = #{ gifticonCode } 
 	</select>
 	
 	
-	
-   <insert id="insert" parameterType="QesDto">
-	   INSERT  INTO QUESTION       
-	                 VALUES(   #{ memberCode} , QUESTION_SEQ.NEXTVAL , #{ qstnTitle } , #{ qstnContent }, TO_DATE( #{ qstnDate } ,'YYYY-MM-DD HH24:MI:SS') ,  #{ qstnConfirm } )
+   <insert id="insert" parameterType="gift">
+	   INSERT  INTO GIFTICON       
+	                 VALUES(   #{ gifticonCode } , #{brandCode} , #{ menuCode } , #{ gifticonName },  #{ gifticonImg } ,  #{ gifticonPrice} )
                 
    </insert>
 	
-	<update id="update" parameterType="QesDto">
-		UPDATE QUESTION SET QSTN_TITLE = #{ qstnTitle }, QSTN_CONTENT = #{ qstnContent }, QSTN_DATE = TO_DATE( #{qstnDate} ,'YYYY-MM-DD HH24:MI:SS'), QSTN_CONFIRM = #{qstnConfirm} WHERE MEMBER_CODE = #{ memberCode } AND QSTN_CODE = #{ qstnCode }  
+	<update id="update" parameterType="gift">
+		UPDATE GIFTICON SET #{ gifticonName },  #{ gifticonImg } ,  #{ gifticonPrice}  WHERE GIFTICON_CODE = #{ gifticonCode } AND BRAND_CODE = #{ brandCode } AND MENU_CODE =#{ menuCode }  
 	</update>
 
 	<delete id="delete">
-		DELETE FROM QUESTION WHERE MEMBER_CODE = #{memberCode } AND QSTN_CODE = #{ qstnCode }
+		DELETE FROM GIFTICON WHERE GIFTICON_CODE = #{ gifticonCode } AND BRAND_CODE = #{ brandCode } AND MENU_CODE =#{ menuCode }
 	</delete>
 	
 	
