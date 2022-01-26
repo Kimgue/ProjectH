@@ -24,7 +24,8 @@
 				$.getJSON(url, {
 					"mail" : mail
 				}, function(json) {
-					alert("인증번호가 전송되었습니다.")
+					alert("인증번호가 전송되었습니다");
+					alert("인증번호 : " + json.key);
 					$(".mailNum").show();
 					isCertification=true;
 				});
