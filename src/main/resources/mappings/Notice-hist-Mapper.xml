@@ -29,7 +29,7 @@
 	</select>
 		
 	<select id="noticeCode" resultType="mbrDto">
-		SELECT DISTINCT ADMIN_CODE FROM NOTICE   WHERE  ADMIN_CODE =#{adminCode}
+		SELECT DISTINCT ADMIN_CODE FROM NOTICE   WHERE  ADMIN_CODE = #{adminCode}
 	</select>
 		
 	<select id="AdminselectAll" resultType="mbrDto">
