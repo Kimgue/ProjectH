@@ -52,28 +52,22 @@ public class UserController {
 	
 	
 	@RequestMapping("Question")
-	@ResponseBody
 	public String QA(Model model,String memberCode, @ModelAttribute("cri") Criteria cri, HttpSession session) throws Exception {
 		
 		logger.info("Q&A called ========== ");
 
-		/* List<Question> list = question.first(memberCode); */
-			
 		memberCode = (String)session.getAttribute("memberCode");
 		System.out.println("코드 : " + memberCode);
 		
 		if(memberCode == null)
 		{
 			
-			return "<script>"
-			         + "alert(\"로그인이 필요합니다\");"
-			         + "location.href=\"/userLogin\";"
-			         + "</script>";
+			return "userLogin";
 			
 		} 
 
 		List<QuestionVo> list = question.listPage(cri,memberCode);	
-			System.out.println(list);
+		System.out.println(list);
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(question.listCount());
