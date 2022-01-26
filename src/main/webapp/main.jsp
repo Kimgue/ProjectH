@@ -33,13 +33,13 @@
 				<br>
 			</c:if>
 
-			<input type="hidden" name="adminCode" /> <input type="hidden"
-				name="noticeCode" /> <a href='javascript:Notice("1")'>공지사항</a> <br>
+<input type="hidden" name="adminCode" /> 
+<a href='javascript:Notice("01")'>공지사항</a> <br>	
 
 
-			<a href='javascript:QnA("${memberDTO.memberCode}")'>Q . A</a> <input
-				type="hidden" name="memberCode" /> <br>
-		</form>
+<a href='javascript:QnA("${memberDTO.memberCode}")'>Q . A</a> 
+<input type="hidden" name="memberCode" /> <br>
+</form>
 		<a href="menu">메뉴</a><br> <a href="brand">브랜드</a><br>
 	</div>
 </body>

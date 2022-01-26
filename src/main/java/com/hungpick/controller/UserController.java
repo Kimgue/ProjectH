@@ -17,6 +17,7 @@ import com.hungpick.dto.Criteria;
 import com.hungpick.dto.Notice;
 import com.hungpick.dto.PageMaker;
 import com.hungpick.dto.Question;
+import com.hungpick.service.IGifticonService;
 import com.hungpick.service.INoticeService;
 import com.hungpick.service.IQuestionSerivce;
 
@@ -28,6 +29,9 @@ public class UserController {
 
 	@Autowired
 	private IQuestionSerivce question;
+	
+	@Autowired
+	private IGifticonService gifticon;
 
 
 	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
@@ -163,6 +167,7 @@ public class UserController {
 
 	}
 
+	//----------------------------------------공지사항-----------------------------//
 	@RequestMapping("Notice")
 	public String listPage(Model model, String adminCode, String noticeCode, @ModelAttribute("cri") Criteria cri) throws Exception {
 		logger.info("get list page");
@@ -178,6 +183,24 @@ public class UserController {
 		model.addAttribute("currentPage", currentPage);
 		
 		return "NoticeSWD";
+
+	}
+	
+	@RequestMapping("NoticeMember")
+	public String listPag(Model model, String adminCode, String noticeCode, @ModelAttribute("cri") Criteria cri) throws Exception {
+		logger.info("list page");
+
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(notice.listCount());
+		int currentPage = cri.getPage();
+
+		model.addAttribute("listpage", notice.listPage(cri));
+		model.addAttribute("noticecode", notice.noticeCode(adminCode));
+		model.addAttribute("pageMaker", pageMaker);
+		model.addAttribute("currentPage", currentPage);
+		
+		return "NoticePage";
 
 	}
 
@@ -273,4 +296,10 @@ public class UserController {
 
 		return "NoticeSWD";
 	}
+	
+	//----------------------------GIFTICON--------------------------------
+	
+	
+	
+	
 }
