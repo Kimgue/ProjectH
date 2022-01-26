@@ -9,7 +9,7 @@
 </head>
 <body>
 	<h2>로그인</h2>
-	<form action="userLoginConfirm" method="post">
+	<form action="userLoginTry" method="post">
 		<table border="1">
 			<tr>
 				<td width=50>ID</td>

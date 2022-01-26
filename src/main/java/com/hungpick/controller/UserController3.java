@@ -11,7 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -61,26 +61,57 @@ public class UserController3 {
 	}
 
 	// 로그인
-	@RequestMapping("userLoginConfirm")
-	public ModelAndView userLoginConfirm(@Param("memberId") String memberId, @Param("memberPw") String memberPw,
-			HttpSession session) throws Exception {
+	@RequestMapping("userLoginTry")
+	public ModelAndView userLoginTry(@Param("memberId") String memberId, @Param("memberPw") String memberPw, HttpSession session) throws Exception {
 		ModelAndView mav = new ModelAndView();
-		UserDto Dto = userService.userLogin(memberId, memberPw, session);
-
+		UserDto Dto = userService.userLogin(memberId, memberPw);
+		
 		if (Dto != null) {
 			session.setAttribute("memberDTO", Dto);
+			session.setAttribute("memberCode", Dto.getMemberCode());
 			session.setAttribute("memberId", Dto.getMemberId());
 			session.setAttribute("memberPw", Dto.getMemberPw());
+			session.setAttribute("memberName", Dto.getMemberName());
+			session.setAttribute("memberNickname", Dto.getMemberNickname());
+			session.setAttribute("memberNumber", Dto.getMemberNumber());
+			session.setAttribute("memberEmail", Dto.getMemberEmail());
+			session.setAttribute("memberDate", Dto.getMemberDate());
+			session.setAttribute("holdPoint", Dto.getHoldPoint());
 			mav.setViewName("redirect:/main.jsp");
+			return mav;
 		} else {
 			session.setAttribute("loginNotice", "올바른 아이디 혹은 비밀번호를 입력해주세요");
 			mav.setViewName("redirect:/userLogin");
+			session.setMaxInactiveInterval(1);
+			return mav;
 		}
-		return mav;
 	}
+	
+//	// 로그인 성공
+//	public ModelAndView userLoginConfirm(@Param("memberId") String memberId, @Param("memberPw") String memberPw, HttpSession session) throws Exception {
+//		ModelAndView mav = new ModelAndView();
+//		UserDto Dto = userService.userLogin(memberId, memberPw);
+//		System.out.println("ㅇㅇ");
+//		if (Dto != null) {
+//			// 세션에 값 등록
+//			session.setAttribute("memberDTO", Dto);
+//			session.setAttribute("memberId", Dto.getMemberId());
+//			session.setAttribute("memberPw", Dto.getMemberPw());
+//			
+//			mav.setViewName("redirect:/main.jsp");
+//			System.out.println("TRUE " + session);
+//		} else {
+//			session.setAttribute("loginNotice", "올바른 아이디 혹은 비밀번호를 입력해주세요");
+//			mav.setViewName("redirect:/userLogin");
+//			System.out.println("FALSE " + session);
+//		}
+//		return mav;
+//	} 
+	
+	
 
 	// PW 검사
-	@RequestMapping(value = "pwChkCtrl.do", method = RequestMethod.GET)
+	@RequestMapping("pwChkCtrl.do")
 	@ResponseBody
 	public String pwChk(@ModelAttribute("inputPw") @Param("inputPw") String inputPw, HttpSession session)
 			throws Exception {
@@ -99,7 +130,7 @@ public class UserController3 {
 	}
 
 	// ID 중복검사
-	@RequestMapping(value = "idChkCtrl.do", method = RequestMethod.GET)
+	@RequestMapping("idChkCtrl.do")
 	@ResponseBody
 	public String idChk(@ModelAttribute("id") String memberId) throws Exception {
 		String idChk = userService.checkId(memberId);
@@ -117,5 +148,27 @@ public class UserController3 {
 
 	public void userDelete(@Param("memberId") String memberId, @Param("memberPw") String memberPw) throws Exception {
 		userService.userDelete(memberId, memberPw);
+	}
+
+	// 정보수정
+	@RequestMapping("chkNickname.do")
+	@ResponseBody
+	public String chkNickname(@ModelAttribute("nickname") String memberNickname, UserDto Dto, HttpSession session) throws Exception {
+		String chkNickname = userService.checkNickname(memberNickname);
+		
+		boolean result = false;
+		if (chkNickname.equals("0")) {
+			Dto = (UserDto) session.getAttribute("memberDTO");
+			Dto.setMemberNickname(memberNickname);
+			userService.userUpdate(Dto);			
+		
+			result = true;
+		}
+
+		JSONObject jsonObj = new JSONObject();
+		jsonObj.put("result", result);
+		String jsonOut = jsonObj.toString();
+
+		return jsonOut;
 	}
 }

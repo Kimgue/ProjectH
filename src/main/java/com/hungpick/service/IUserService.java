@@ -17,7 +17,7 @@ public interface IUserService {
 	List<UserDto> sltMulti(UserDto Dto) throws Exception;
 
 	// 로그인
-	UserDto userLogin(@Param("memberId") String memberId, @Param("memberPw") String memberPw, HttpSession session) throws Exception;
+	UserDto userLogin(@Param("memberId") String memberId, @Param("memberPw") String memberPw) throws Exception;
 
 	// 로그아웃
 	void userLogout(HttpSession session) throws Exception;
@@ -33,4 +33,10 @@ public interface IUserService {
 	
 	// 회원탈퇴
 	void userDelete(@Param("memberId") String memberId, @Param("memberPw") String memberPw) throws Exception;
+	
+	// 정보수정
+	void userUpdate(UserDto Dto) throws Exception;
+	
+	// 닉네임 중복검사
+	String checkNickname(String memberNickname) throws Exception;
 }
