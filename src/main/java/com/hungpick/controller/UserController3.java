@@ -190,7 +190,8 @@ public class UserController3 {
 		
 		message.setTo(mail); // 스크립트에서 보낸 메일을 받을 사용자 이메일 주소
 		
-		int numIndex = random.nextInt(8999) + 100000;
+		// 입력 키를 위한 코드
+		int numIndex = random.nextInt(899999) + 100000;
 		key += numIndex;
 		
 		message.setSubject("인증번호 입력을 위한 메일 전송");
@@ -199,9 +200,9 @@ public class UserController3 {
 		mailSender.send(message);
 		
 		JSONObject jsonObj = new JSONObject();
-		jsonObj.put("mail", mail);
+		jsonObj.put("key", key);
 		String jsonOut = jsonObj.toString();
-		System.out.println("확인 : " + jsonOut);
+		System.out.println("인증번호 : " + jsonOut);
 		return jsonOut;
 	}
 }
