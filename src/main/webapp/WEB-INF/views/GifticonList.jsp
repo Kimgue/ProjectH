@@ -29,7 +29,7 @@
 			<c:out value="${gift.name}" /> 
 			</p>
 			<p>
-			<img src="<c:out value="resources/${gift.gifticonImg}" />" alt="제품 이미지" height="50" width="50" />
+			<img src="<c:out value="resources/${gift.gifticonImg }" />" alt="제품 이미지" height="50" width="50" />
 			</p>
 			<p>
 				<c:out value="${gift.gifticonPrice}" />
