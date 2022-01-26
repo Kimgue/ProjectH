@@ -57,6 +57,14 @@ input {
 				<form role="form" method="post" action="insertNc">
 					<table>
 						<tbody>
+						<thead>
+						<tr>
+						<th style="background-color: #eeeee; text-align: center;">공지사항 글쓰기 </th>
+							</tr>
+						</thead>
+
+
+						
 							<tr>
 								<td>
 									<label for="adminCode" id="adminCode">작성자 번호 :${ noticecode.adminCode }</label>
@@ -78,6 +86,9 @@ input {
 									<label for="noticeDate" id="noticeDate">작성날짜 : ${ date }</label>
 									<input type="hidden" id="noticeDate" name="noticeDate" value="${ date }">  
 								</td>
+								</tr>
+								<tr>
+										<td><input type="file" name="fileName"></td>
 								</tr>
 							<tr>
 								<td>						

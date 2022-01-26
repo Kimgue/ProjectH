@@ -33,9 +33,6 @@
 				<br>
 			</c:if>
 
-
-
-
 			<input type="hidden" name="adminCode" /> <input type="hidden"
 				name="noticeCode" /> <a href='javascript:Notice("1")'>공지사항</a> <br>
 

@@ -71,7 +71,7 @@ table {
     	<a href="Question?page=${idx}">${idx}</a>
     </c:forEach>
 <hr>	
-	<input type="button" value="작성" onClick="insert('${member.memberCode}')">
+	<input type="button" value="작성" onClick="insert('${member}')">
 	<input type="button" value="메인페이지" onClick="location.href='main'">
 	<input type="hidden" name="memberCode" />
 	<input type="hidden" name="qstnCode" />
