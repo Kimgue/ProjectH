@@ -167,6 +167,7 @@ public class UserController {
 
 	}
 
+	//----------------------------------------공지사항-----------------------------//
 	@RequestMapping("Notice")
 	public String listPage(Model model, String adminCode, String noticeCode, @ModelAttribute("cri") Criteria cri) throws Exception {
 		logger.info("get list page");
@@ -277,4 +278,10 @@ public class UserController {
 
 		return "NoticeSWD";
 	}
+	
+	//----------------------------GIFTICON--------------------------------
+	
+	
+	
+	
 }
