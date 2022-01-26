@@ -36,7 +36,7 @@
 			<c:out value="${gift.gifticonPrice}" />
 			</p>
 			<a href="#">
-				<input type="button" value="교환">
+				<input type="button"  value="교환">
 			</a>	
 		</c:forEach>
 	</div>
