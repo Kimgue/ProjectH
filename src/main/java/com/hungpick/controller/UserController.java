@@ -305,7 +305,7 @@ public class UserController {
 		
 		System.out.println(gifticon.selectgift());
 		model.addAttribute("gifticonlist", gifticon.selectgift());
-		
+		System.out.println("ㅇㅇ");
 
 		return "GifticonList";
 	}

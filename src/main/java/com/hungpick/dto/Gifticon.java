@@ -8,6 +8,7 @@ public class Gifticon {
 	private String gifticonName;
 	private String gifticonImg;
 	private int gifticonPrice;
+	
 	public String getGifticonCode() {
 		return gifticonCode;
 	}
@@ -44,6 +45,7 @@ public class Gifticon {
 	public void setGifticonPrice(int gifticonPrice) {
 		this.gifticonPrice = gifticonPrice;
 	}
+	
 	@Override
 	public String toString() {
 		return "Gifticon [gifticonCode=" + gifticonCode + ", brandCode=" + brandCode + ", menuCode=" + menuCode

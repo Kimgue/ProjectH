@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,16 +25,19 @@
 			</h2>
 		  </div>
 		  <hr>
-	<c:forEach var="gift" items="${gifticonlist}">
+	<c:forEach var="gift" items="${ gifticonlist }">			
 			<p>
-			<c:out value="${gift.name}" /> 
+			<img src="<c:out value="resources/${gift.gifticonImg }" />" alt="제품 이미지" height="150" width="150" />
 			</p>
 			<p>
-			<img src="<c:out value="resources/${gift.gifticonImg }" />" alt="제품 이미지" height="50" width="50" />
+			<c:out value="${gift.gifticonName}" /> 
 			</p>
 			<p>
-				<c:out value="${gift.gifticonPrice}" />
+			<c:out value="${gift.gifticonPrice}" />
 			</p>
+			<a href="#">
+				<input type="button" value="교환">
+			</a>	
 		</c:forEach>
 	</div>
 </body>
