@@ -18,6 +18,7 @@ function view2(  adminCode ,   noticeCode )
 		f.action = "./insertNotice"
 		
 		f.method= "post"
+			
 		f.submit();
 	};
 	function Noticeupdatelist(  adminCode ,   noticeCode )

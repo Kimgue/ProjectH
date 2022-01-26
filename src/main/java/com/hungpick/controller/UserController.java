@@ -223,7 +223,8 @@ public class UserController {
 
 		model.addAttribute("date", time1);
 		model.addAttribute("noticecode", notice.noticeCode(adminCode));
-
+		System.out.println(notice.noticeCode(adminCode));
+		
 		return "noticeinsertN";
 	}
 
