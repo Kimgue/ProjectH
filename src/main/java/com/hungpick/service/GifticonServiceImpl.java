@@ -32,6 +32,7 @@ public class GifticonServiceImpl implements IGifticonService {
 	@Override
 	public void insert(Gifticon gift)throws Exception {
 		
+		
 		String giftcode = gift.getGifticonCode();
 		String brandcode = gift.getBrandCode();
 		String menucode = gift.getMenuCode();
