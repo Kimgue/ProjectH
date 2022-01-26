@@ -47,6 +47,7 @@ public class GifticonServiceImpl implements IGifticonService {
 		logger.info("입력한 name : {}", name);
 		logger.info("입력한 img : {}", img);
 		logger.info("입력한 price : {}", price);
+		 
 		
 		gifticon.insert(gift);
 		
