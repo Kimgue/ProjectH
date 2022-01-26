@@ -76,7 +76,7 @@ public class NoticeServiceImpl implements INoticeService {
 		String cn = noti.getNoticeContent();
 		String date = noti.getNoticeDate();
 
-		logger.info("insertUser Called ============");
+		logger.info("update Called ============");
 		logger.info("입력한 CODE : {}", Acode);
 		logger.info("입력한 NAME : {}", Bcode);
 		logger.info("입력한 EMAIL : {}", titl);
