@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hungpick.dao.IReviewDao;
+import com.hungpick.dto.ReviewRankingVo;
 import com.hungpick.dto.ReviewVo;
 
 @Service("reviewService")
@@ -40,6 +41,13 @@ public class ReviewServiceImpl implements IReviewService {
 			) {
 		
 		return reviewDao.sltLookUp(brandCode, menuCode, reviewCode, memberCode);
+	}
+
+
+	@Override
+	public List<ReviewRankingVo> sltReviewRanking() {
+		
+		return reviewDao.sltReviewRanking();
 	}
 
 }

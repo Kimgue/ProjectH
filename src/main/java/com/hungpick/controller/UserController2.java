@@ -45,6 +45,7 @@ public class UserController2 {
 	public void menu(Model model) throws Exception {
 		logger.info("menu called ========");
 		model.addAttribute("menu", menuService.sltMulti());
+		model.addAttribute("reviewRanking", reviewService.sltReviewRanking());
 	}
 
 	@RequestMapping("menuResult")
@@ -78,11 +79,5 @@ public class UserController2 {
 		logger.info("reviewLookup called =======");
 		model.addAttribute("Lookup", reviewService.sltLookUp(brandCode, menuCode, reviewCode, memberCode));
 	}
-	
-	@RequestMapping("findStore")
-	public void findStore(String brandName, Model model) throws Exception {
-		logger.info("findStore called ======");
-		model.addAttribute("brandName", brandName);
-		
-	}
+
 }

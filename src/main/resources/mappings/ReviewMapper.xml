@@ -4,7 +4,12 @@
 
 <mapper namespace="com.hungpick.dao.IReviewDao"> <!-- "<" 는 문법오류나서  "<![CDATA[ < ]]>" 이렇게 해야한다. -->
 	
-
+	<resultMap type="brandDto" id="BrandDtoRm">
+	<id column="BRAND_CODE" property="brandCode"/>
+    <result column="BRAND_NAME" property="brandName"/>
+    <result column="BRAND_IMG" property="brandImg"/>
+    <result column="BRAND_DESCRIPTION" property="brandDescription"/>
+	</resultMap>
 
 	<resultMap type="memberDto" id="MemberDtoRm">
 	<id column="MEMBER_CODE" property="memberCode"/>
@@ -16,6 +21,16 @@
     <result column="MEMBER_NUMBER" property="memberNumber"/> 
     <result column="MEMBER_DATE" property="memberDate"/>
     <result column="HOLD_POINT" property="holdPoint"/>  
+	</resultMap>
+	
+	<resultMap type="menuDto" id="MenuDtoRm">
+	<id column="BRAND_CODE" property="brandCode"/>
+	<id column="MENU_CODE" property="menuCode"/>
+    <result column="MENU_NAME" property="menuName"/>
+    <result column="MENU_IMG" property="menuImg"/>
+    <result column="MENU_PRICE" property="menuPrice"/>
+    <result column="MENU_DESCRIPTION" property="menuDescription"/>
+    <result column="MENU_INGREDIENTS" property="menuIngredients"/>   
 	</resultMap>
 	
 	<resultMap type="reviewDto" id="ReviewDtoRm">
@@ -32,6 +47,7 @@
     <result column="EARN_POINT" property="earnPoint"/>
     <result column="EARNDATE_POINT" property="earnDatePoint"/>
 	</resultMap>
+	
 	
 	<resultMap type="reviewVo" id="ReviewVoRm">
         <collection property="memberDto" resultMap="MemberDtoRm"></collection >
@@ -73,4 +89,20 @@
 			</if>
 		
 	</select>
+	
+	<resultMap type="ReviewRankingVo" id="ReviewRankingVoRm">
+		<collection property="brandDto" resultMap="BrandDtoRm"></collection >
+        <collection property="menuDto" resultMap="MenuDtoRm"></collection >
+        <collection property="reviewDto" resultMap="ReviewDtoRm"></collection >
+	</resultMap>
+	
+	<select id="sltReviewRanking" resultMap="ReviewRankingVoRm">
+		SELECT A.BRAND_CODE, A.BRAND_NAME, B.MENU_CODE, B.MENU_NAME, C.REVIEW_SCORE
+		FROM BRAND A JOIN MENU B ON A.BRAND_CODE = B.BRAND_CODE 
+		JOIN REVIEW C ON B.BRAND_CODE = C.BRAND_CODE AND B.MENU_CODE = C.MENU_CODE
+		WHERE C.REVIEW_CONFIRM = 'N' ORDER BY C.REVIEW_SCORE DESC  <!-- CONFIRM 나중에 Y로 바꿔주기 -->			
+	</select>
+	
+
+	
 </mapper>
