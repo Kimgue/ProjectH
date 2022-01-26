@@ -1,17 +1,20 @@
 package com.hungpick.controller;
 
 import java.util.List;
+import java.util.Random;
 
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.annotations.Param;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -21,6 +24,9 @@ import com.hungpick.service.IUserService;
 @Controller
 public class UserController3 {
 
+//	@Autowired
+//	private JavaMailSender mailSender;
+	
 	@Autowired
 	private IUserService userService;
 
@@ -83,6 +89,7 @@ public class UserController3 {
 			session.setAttribute("loginNotice", "올바른 아이디 혹은 비밀번호를 입력해주세요");
 			mav.setViewName("redirect:/userLogin");
 			session.setMaxInactiveInterval(1);
+			
 			return mav;
 		}
 	}
@@ -171,4 +178,27 @@ public class UserController3 {
 
 		return jsonOut;
 	}
+	
+	
+	@PostMapping("/CheckMail") // AJAX와 URL을 매핑시켜줌
+	@ResponseBody // AJAX후 값을 리턴하기위해 작성
+	public String SendMail(String mail) {
+		Random random = new Random(); // 난수 생성을 위한 랜덤 클래스
+		String key = ""; // 인증번호
+
+		SimpleMailMessage message = new SimpleMailMessage();
+		message.setTo(mail); // 스크립트에서 보낸 메일을 받을 사용자 이메일 주소
+		// 입력 키를 위한 코드
+		for (int i = 0; i < 3; i++) {
+			int index = random.nextInt(25) + 65; // A~Z까지 랜덤 알파벳 생성
+			key += (char) index;
+		}
+		int numIndex = random.nextInt(9999) + 1000; // 4자리 랜덤 정수를 생성
+		key += numIndex;
+		message.setSubject("인증번호 입력을 위한 메일 전송");
+		message.setText("인증 번호 : " + key);
+//		mailSender.send(message);
+//		JavaMailSender.send(message);
+		return key;
+	}	
 }

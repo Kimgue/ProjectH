@@ -123,7 +123,7 @@
 		</tr>
 		<tr>
 			<td>닉네임</td>
-			<td>${memberDTO.memberNickname}</p>
+			<td>${memberDTO.memberNickname}
 				<div class="editNickname">
 					변경할 닉네임<br> <input type="text" id="editNicknameInput"><br>
 					<button type="button" id="editNicknameCancleBtn">수정취소</button>
