@@ -224,7 +224,7 @@ public class UserController {
 		model.addAttribute("date", time1);
 		model.addAttribute("noticecode", notice.noticeCode(adminCode));
 
-		return "NoticeinsertN";
+		return "noticeinsertN";
 	}
 
 	@RequestMapping("insertNc")
@@ -245,6 +245,7 @@ public class UserController {
 		model.addAttribute("date", time1);
 		model.addAttribute("pageMaker", pageMaker);
 		model.addAttribute("currentPage", currentPage);
+		
 		return "NoticeSWD";
 
 	}
@@ -292,7 +293,18 @@ public class UserController {
 			throws Exception {
 
 		notice.delete(adminCode, noticeCode);
-		model.addAttribute("list", notice.listPage(cri));
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(notice.listCount());
+		int currentPage = cri.getPage();
+		model.addAttribute("listpage", notice.listPage(cri));
+		model.addAttribute("noticecode", notice.noticeCode(adminCode));
+		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Date date = new Date();
+		String time1 = format1.format(date);
+		model.addAttribute("date", time1);
+		model.addAttribute("pageMaker", pageMaker);
+		model.addAttribute("currentPage", currentPage);
 
 		return "NoticeSWD";
 	}
