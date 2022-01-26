@@ -17,6 +17,7 @@ import com.hungpick.dto.Criteria;
 import com.hungpick.dto.Notice;
 import com.hungpick.dto.PageMaker;
 import com.hungpick.dto.Question;
+import com.hungpick.service.IGifticonService;
 import com.hungpick.service.INoticeService;
 import com.hungpick.service.IQuestionSerivce;
 
@@ -28,6 +29,9 @@ public class UserController {
 
 	@Autowired
 	private IQuestionSerivce question;
+	
+	@Autowired
+	private IGifticonService gifticon;
 
 
 	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
