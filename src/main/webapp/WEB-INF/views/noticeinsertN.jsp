@@ -87,9 +87,6 @@ input {
 									<input type="hidden" id="noticeDate" name="noticeDate" value="${ date }">  
 								</td>
 								</tr>
-								<tr>
-										<td><input type="file" name="fileName"></td>
-								</tr>
 							<tr>
 								<td>						
 									<button type="submit" id="submit">작성</button>
