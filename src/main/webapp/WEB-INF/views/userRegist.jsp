@@ -8,35 +8,26 @@
 <script src="js/jquery-3.4.1.min.js"></script>
 <script>
 	$(document).ready(function() {
+		$(".mailNum").hide();
 		
-		$(".sendMail").click(function() {// 메일 입력 유효성 검사
-			var mail = $(".mail").val(); //사용자의 이메일 입력값. 
+		/* --------------- 이메일 인증 보내기 --------------- */
+		$(".sendMail").click(function() {
+			var mail = $(".mail").val(); 
 			
 			if (mail == "") {
 				alert("메일 주소가 입력되지 않았습니다.");
 			} else {
-				mail = mail+"@"+$(".domain").val(); //셀렉트 박스에 @뒤 값들을 더함.
+				mail = mail+"@"+$(".domain").val();
 				
 				var url = "CheckMail.do";
 				
 				$.getJSON(url, {
 					"mail" : mail
 				}, function(json) {
-					alert("인증번호가 전송되었습니다.") 
+					alert("인증번호가 전송되었습니다.")
+					$(".mailNum").show();
 					isCertification=true;
 				});
-				
-				
-				/* $.ajax({
-					type : 'post',
-					url : '/CheckMail',
-					data : {
-						mail:mail
-						},
-					dataType :'json',
-				});
-				alert("인증번호가 전송되었습니다.") 
-				isCertification=true; //추후 인증 여부를 알기위한 값  */
 			}
 		});
 		
@@ -79,11 +70,9 @@
 		<table border="1">
 			<tr>
 				<td width=50>ID</td>
-				<td>
-				<input type="text" name="memberId" id="memberId">
-				<button type="button" id="checkId">중복확인</button>
-				</td>
-				
+				<td><input type="text" name="memberId" id="memberId">
+					<button type="button" id="checkId">중복확인</button></td>
+
 			</tr>
 			<tr>
 				<td><div id="fail_result"></div></td>
@@ -103,10 +92,12 @@
 			<tr>
 				<td width=50>이메일</td>
 				<td>
-				<input type="text" name="memberEmail" class="mail">@<input type="text" class="domain">
-				<button type="button" class="sendMail">인증</button>
+					<input type="text" name="memberEmail" class="mail">
+					@<input type="text" class="domain">
+					<button type="button" class="sendMail">인증</button><br>
+					<p class="mailNum">인증 번호를 입력해주세요 <input type="text"></p>
 				</td>
-				
+
 			</tr>
 			<tr>
 				<td width=50>전화번호</td>
@@ -115,8 +106,9 @@
 
 		</table>
 
-		<input type="submit" value="등록"> <input type="reset" value="다시작성"> 
-		<input type="button" value="회원조회" onClick="location.href='userView'">
+		<input type="submit" value="등록"> <input type="reset"
+			value="다시작성"> <input type="button" value="회원조회"
+			onClick="location.href='userView'">
 	</form>
 </body>
 </html>
