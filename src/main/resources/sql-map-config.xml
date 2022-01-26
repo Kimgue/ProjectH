@@ -20,6 +20,7 @@
 		<typeAlias type="com.hungpick.dto.MemberDto" alias="memberDto"></typeAlias>
 		<typeAlias type="com.hungpick.dto.ReviewDto" alias="reviewDto"></typeAlias>
 		<typeAlias type="com.hungpick.dto.ReviewVo" alias="reviewVo"></typeAlias> 
+		<typeAlias type="com.hungpick.dto.Gifticon" alias="gift"></typeAlias> 
 	</typeAliases>
 	
 	
