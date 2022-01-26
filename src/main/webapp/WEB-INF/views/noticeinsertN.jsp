@@ -26,15 +26,30 @@
 		});
 	});
 </script>
+<style>
+input {
+  
+  vertical-align: top; 
+  width:500px;
+  
+}
+#noticeContent
+{
+	width:500px; 
+	height:50px; 
+    resize:none;
+	vertical-align:-20px;
+}
+</style>
 </head>
 <body>
 		<div id="root">
 			<header>
-				<h1> 게시판</h1>
+				<h1> 공지사항</h1>
 			</header>
 			<hr />	 
 			<nav>
-			  홈 - 글 작성
+			  홈 - 공지사항 작성
 			</nav>
 			<hr />
 			
@@ -44,18 +59,18 @@
 						<tbody>
 							<tr>
 								<td>
-									<label for="adminCode" id="adminCode">작성자 번호 :${ s.adminCode }</label>
-									<input type="hidden" id="adminCode" name="adminCode" value="${ s.adminCode }">
+									<label for="adminCode" id="adminCode">작성자 번호 :${ noticecode.adminCode }</label>
+									<input type="hidden" id="adminCode" name="adminCode" value="${ noticecode.adminCode }">
 									<input type="hidden" id="noticeCode" name="noticeCode" value="noticeCode">
 							</tr>	
 							<tr>
 								<td>
-									<label for="noticeTitle">제목</label><input type="text" id="noticeTitle" name="noticeTitle" />
+									<label for="noticeTitle">제목 : </label><input type="text" id="noticeTitle" name="noticeTitle" />
 								</td>
 							</tr>	
 							<tr>
 								<td>
-									<label for="noticeContent">내용</label><textarea id="noticeContent" name="noticeContent" ></textarea>
+									<label for="noticeContent">내용 : </label><textarea id="noticeContent" name="noticeContent" ></textarea>
 								</td>
 							</tr>
 							<tr>
