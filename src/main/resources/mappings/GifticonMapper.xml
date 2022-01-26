@@ -10,8 +10,13 @@
 		FROM 
 		GIFTICON
 		WHERE GIFTICON_CODE = #{ gifticonCode } 
+		AND BRAND_CODE = #{ brandCode } AND MENU_CODE =#{ menuCode }
 	</select>
 	
+	<select id="selectgift">
+		SELECT * FROM GIFTICON ORDER BY GIFTICON_CODE
+	
+	</select>
 	
    <insert id="insert" parameterType="gift">
 	   INSERT  INTO GIFTICON       
