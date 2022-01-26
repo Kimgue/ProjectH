@@ -7,9 +7,10 @@
 <meta charset="UTF-8">
 <title>상품 리뷰</title>
 </head>
-<h2>${menuName}의 상품리뷰</h2>
+
 <body>
 <div align="center">
+		<h2>${menuName}의 상품리뷰</h2>
 		<br>
 		<a href="menu">메뉴 페이지로</a>
 		<br>

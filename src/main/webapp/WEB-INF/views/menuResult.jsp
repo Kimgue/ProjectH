@@ -23,7 +23,6 @@ hr {
 	<c:forEach var="menuVo" items="${menuVo}">
 		<div class="col-md-3">
 			<div class="thumbnail">
-				
 				<a href="#"> <img src="<c:out value="resources/${menuVo.menuDto.menuImg}"/>"
 					alt="메뉴 이미지" height="270" width="270" /></a>
 				<div class="caption">
@@ -42,12 +41,16 @@ hr {
 					<p style="font-size: 8pt">
 						<c:out value="${menuVo.menuDto.menuIngredients}" />
 					</p>
+					
 					<c:url value="review" var="url">
 						<c:param name="brandCode" value="${menuVo.brandDto.brandCode}"/>
 						<c:param name="menuCode" value="${menuVo.menuDto.menuCode}"/>
 						<c:param name="menuName" value="${menuVo.menuDto.menuName}" />
 					</c:url>
 					<a href="${url}">상품 리뷰</a>
+					<%--
+					<c:out value="리뷰개수: ${menuVo.brandDto.brandName}" />
+					 --%>
 				</div>
 			</div>
 		</div>
