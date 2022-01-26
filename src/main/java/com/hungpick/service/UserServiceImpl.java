@@ -1,8 +1,6 @@
 package com.hungpick.service;
 
 import java.util.Date;
-import java.util.Enumeration;
-import java.util.Hashtable;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -23,9 +21,6 @@ public class UserServiceImpl implements IUserService {
 
 	@Autowired
 	private IUserDaoHist userDaoHist;
-
-	@Autowired
-	private static Hashtable<String, String> loginUsers = new Hashtable<String, String>();
 
 	// 멤버 코드 처음부터 검색하기 위한 초기 설정
 	private static int memberCodeNum = 0;
@@ -92,38 +87,8 @@ public class UserServiceImpl implements IUserService {
 	}
 
 	@Override
-	public UserDto userLogin(String memberId, String memberPw, HttpSession session) throws Exception {
-		return userDao.userLogin(memberId, memberPw, session);
-	}
-
-	// 로그인이 되어있는지 확인
-	public boolean isLogin(String id) {
-		boolean isLogin = false;
-		Enumeration<String> e = loginUsers.keys();
-		String key = "";
-		while (e.hasMoreElements()) {
-			key = (String) e.nextElement();
-			if (id.equals(loginUsers.get(key)))
-				isLogin = true;
-		}
-		return isLogin;
-	}
-
-	public boolean isUsing(String sessionId) {
-		boolean isUsing = false;
-		Enumeration<String> e = loginUsers.keys();
-		String key = "";
-		while (e.hasMoreElements()) {
-			key = (String) e.nextElement();
-			if (sessionId.equals(loginUsers.get(key)))
-				isUsing = true;
-		}
-		return isUsing;
-	}
-
-	public void setSession(HttpSession session, UserDto Dto) {
-		loginUsers.put(session.getId(), Dto.getMemberId());
-		session.setAttribute("id", Dto.getMemberId());
+	public UserDto userLogin(String memberId, String memberPw) throws Exception {
+		return userDao.userLogin(memberId, memberPw);
 	}
 
 	// ID 중복검사
@@ -135,7 +100,6 @@ public class UserServiceImpl implements IUserService {
 	// 로그아웃
 	@Override
 	public void userLogout(HttpSession session) throws Exception {
-		loginUsers.remove(session.getId());
 		session.invalidate();
 	}
 
@@ -149,6 +113,18 @@ public class UserServiceImpl implements IUserService {
 	@Override
 	public UserDto checkPw(String inputPw) throws Exception {
 		return userDao.checkPw(inputPw);
+	}
+
+	// 정보수정
+	@Override
+	public void userUpdate(UserDto Dto) throws Exception {
+		userDao.userUpdate(Dto);
+	}
+
+	// 닉네임 중복검사
+	@Override
+	public String checkNickname(String memberNickname) throws Exception {
+		return userDao.checkNickname(memberNickname);
 	}
 
 }

@@ -5,7 +5,7 @@
 <mapper namespace="com.hungpick.dao.IUserDao">
 
 	<!-- 단건조회 -->
-	<select id="sltSearch" resultType="userDto" parameterType="String">
+	<select id="sltSearch" resultType="userDto">
 		SELECT MEMBER_CODE FROM MEMBERS WHERE MEMBER_CODE = #{memberCode}
 	</select>
 
@@ -15,7 +15,7 @@
 	</select>
 	
 	<!-- 로그인 -->
-	<select id="userLogin" resultType="userDto" parameterType="String">
+	<select id="userLogin" resultType="userDto">
 		SELECT * FROM MEMBERS WHERE MEMBER_ID = #{memberId} AND MEMBER_PW = #{memberPw}
 	</select>
 	
@@ -25,13 +25,18 @@
 		VALUES ( #{memberCode}, #{memberId}, #{memberPw}, #{memberName}, #{memberNickname}, #{memberEmail}, #{memberNumber}, SYSDATE, #{holdPoint} )
 	</insert>
 
-	<!-- ID 중복체크 -->
+	<!-- ID 중복조회 -->
 	<select id="checkId" resultType="String">
 		SELECT COUNT(*) FROM MEMBERS WHERE MEMBER_ID = #{memberId}
 	</select>
 	
+	<!-- 닉네임 중복조회 -->
+	<select id="checkNickname" resultType="String">
+		SELECT COUNT(*) FROM MEMBERS WHERE MEMBER_NICKNAME = #{memberNickname}
+	</select>
+	
 	<!-- PW 검사 -->
-	<select id="checkPw" resultType="userDto" parameterType="String">
+	<select id="checkPw" resultType="userDto">
 		SELECT * FROM MEMBERS WHERE AND MEMBER_PW = #{memberPw}
 	</select>
 	
@@ -39,4 +44,12 @@
 	<delete id="userDelete">
 		DELETE FROM MEMBERS WHERE MEMBER_ID = #{memberId} AND MEMBER_PW = #{memberPw}
 	</delete>
+	
+	<!-- 정보수정 -->
+	<update id="userUpdate">
+		UPDATE MEMBERS SET MEMBER_NICKNAME = #{memberNickname} WHERE MEMBER_CODE = #{memberCode}
+	</update>
+	
+
+	
 </mapper>

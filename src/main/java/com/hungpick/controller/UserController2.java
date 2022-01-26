@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.hungpick.dto.MenuVo;
+import com.hungpick.dto.ReviewRankingVo;
 import com.hungpick.service.IBrandService;
 import com.hungpick.service.IMenuService;
 import com.hungpick.service.IReviewService;
@@ -45,7 +46,9 @@ public class UserController2 {
 	public void menu(Model model) throws Exception {
 		logger.info("menu called ========");
 		model.addAttribute("menu", menuService.sltMulti());
-		model.addAttribute("reviewRanking", reviewService.sltReviewRanking());
+		List<ReviewRankingVo> list = reviewService.sltReviewRanking();
+		
+		model.addAttribute("reviewRanking", list);
 	}
 
 	@RequestMapping("menuResult")

@@ -30,8 +30,11 @@ hr {
 				type="submit" value="검색">
 		</form>
 		<hr>
+		<h4>메뉴 리뷰 점수순위</h4>
 		<c:forEach var="rank" items="${ reviewRanking }">
+			<c:set var="i" value="${i+1}"/>
 			<tr>
+				<td><c:out value="${i}" />등</td>
 				<td><c:out value="${rank.brandDto.brandName}" /></td>
 				<td><c:out value="${rank.menuDto.menuName}" /></td>
 				<td><c:out value="${rank.reviewDto.reviewScore}"></c:out>
