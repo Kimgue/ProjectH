@@ -6,18 +6,14 @@
 <meta charset="UTF-8">
 <title>menu</title>
 <style>
-#cla {
 
-	text-align:center;
-
-}
 </style>
 </head>
 <body>
 
-	<div id="cla">
-	 ${ noticecontent.noticeContent } 
-	</div>
+	
+	<P> ${ noticecontent.noticeContent } 
+
 
 	
 </body>

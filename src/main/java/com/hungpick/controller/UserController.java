@@ -185,7 +185,8 @@ public class UserController {
 	public String view2(Model model, String adminCode, String noticeCode) throws Exception {
 
 		model.addAttribute("noticecontent", notice.sltOneNoice(adminCode, noticeCode));
-
+		
+		
 		return "Noticeview2";
 	}
 
