@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.hungpick.dto.Criteria;
 import com.hungpick.dto.Question;
+import com.hungpick.dto.QuestionVo;
 
 
 
@@ -13,7 +14,7 @@ import com.hungpick.dto.Question;
 public interface IDaoQuestion {
 	Question sltOne(@Param("memberCode")String memberCode,@Param("qstnCode")String qstnCode); // 단건조회
 
-	List<Question> listPage(@Param("cri")Criteria cri,@Param("memberCode")String memberCode)throws Exception; // 회원 목록 조회
+	List<QuestionVo> listPage(@Param("cri")Criteria cri,@Param("memberCode")String memberCode)throws Exception; // 회원 목록 조회
 
 	void insert(Question qes); // 공지사항 입력
 

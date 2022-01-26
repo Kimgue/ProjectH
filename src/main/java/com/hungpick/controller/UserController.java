@@ -15,11 +15,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hungpick.dto.Criteria;
 import com.hungpick.dto.Notice;
 import com.hungpick.dto.PageMaker;
 import com.hungpick.dto.Question;
+import com.hungpick.dto.QuestionVo;
 import com.hungpick.service.IGifticonService;
 import com.hungpick.service.INoticeService;
 import com.hungpick.service.IQuestionSerivce;
@@ -48,16 +50,10 @@ public class UserController {
 		return "redirect:/main.jsp";
 	}
 	
-	@RequestMapping("main")
-	public String main(Model model, String memberCode) {
-		logger.info("home called ==========");
-
-		return "redirect:/main.jsp";
-	}
-	
 	
 	@RequestMapping("Question")
-	public String QA(Model model,String memberCode, @ModelAttribute("cri") Criteria cri, HttpSession session ) throws Exception {
+	@ResponseBody
+	public String QA(Model model,String memberCode, @ModelAttribute("cri") Criteria cri, HttpSession session) throws Exception {
 		
 		logger.info("Q&A called ========== ");
 
@@ -65,21 +61,25 @@ public class UserController {
 			
 		memberCode = (String)session.getAttribute("memberCode");
 		System.out.println("코드 : " + memberCode);
+		
 		if(memberCode == null)
 		{
 			
-			return "userLogin";
+			return "<script>"
+			         + "alert(\"로그인이 필요합니다\");"
+			         + "location.href=\"/userLogin\";"
+			         + "</script>";
 			
 		} 
 
-		List<Question> list = question.listPage(cri,memberCode);	
-			
+		List<QuestionVo> list = question.listPage(cri,memberCode);	
+			System.out.println(list);
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(question.listCount());
 		int currentPage = cri.getPage();
 	
-		Question member = question.MemberCode((String)session.getAttribute("memberCode"));
+		Question member = question.MemberCode(memberCode);
 		model.addAttribute("pageMaker", pageMaker);
 		model.addAttribute("currentPage", currentPage);
 		
@@ -129,7 +129,7 @@ public class UserController {
 		
 		memberCode = (String)session.getAttribute("memberCode");
 		/* List<Question> list = question.first(memberCode); */
-		List<Question> list = question.listPage(cri,memberCode);
+		List<QuestionVo> list = question.listPage(cri,memberCode);
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(question.listCount());
@@ -152,7 +152,7 @@ public class UserController {
 		question.update(qes);
 		memberCode = (String)session.getAttribute("memberCode");
 		/* List<Question> list = question.first(memberCode); */
-		List<Question> list = question.listPage(cri,memberCode);
+		List<QuestionVo> list = question.listPage(cri,memberCode);
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(question.listCount());
@@ -174,7 +174,7 @@ public class UserController {
 		memberCode = (String)session.getAttribute("memberCode");
 		
 		/* List<Question> list = question.first(memberCode); */
-		List<Question> list = question.listPage(cri,memberCode);
+		List<QuestionVo> list = question.listPage(cri,memberCode);
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(question.listCount());

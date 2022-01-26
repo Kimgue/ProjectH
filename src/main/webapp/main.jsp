@@ -5,8 +5,6 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<script src="js/javascriptPagemain.js"></script>
-
 <title>메인화면</title>
 </head>
 <body>
@@ -35,13 +33,7 @@
 
 <input type="hidden" name="adminCode" /> 
 <a href='Notice'>공지사항</a> <br>	
-
-
-
 <a href='Question'>Q . A</a> 
-
-
-
 <br>
 
 <a href="GifticonList">기프티콘</a>

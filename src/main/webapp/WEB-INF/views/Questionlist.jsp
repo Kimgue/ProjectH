@@ -61,10 +61,10 @@ table {
 			</thead>
 		<c:forEach var="list"  items="${ listpage }">
 			<tr>
-				<td><c:out value="${list.qstnCode}" /></td>
-				<td><a href="javascript:view( '${list.memberCode }' , '${list.qstnCode}' )"><c:out value="${list.qstnTitle}" /></a></td>
-				<td><c:out value="${list.memberCode }"></c:out>
-				<td id="ri"><c:out value="${list.qstnDate}" /></td>	
+				<td><c:out value="${list.qesDto.qstnCode}" /></td>
+				<td><a href="javascript:view( '${list.qesDto.memberCode }' , '${list.qesDto.qstnCode}' )"><c:out value="${list.qesDto.qstnTitle}" /></a></td>
+				<td><c:out value="${list.memberDto.memberName }"></c:out>
+				<td id="ri"><c:out value="${list.qesDto.qstnDate}" /></td>	
 			</tr>
 		</c:forEach>
 	</table>	

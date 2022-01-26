@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.hungpick.dao.IDaoQuestion;
 import com.hungpick.dto.Criteria;
 import com.hungpick.dto.Question;
+import com.hungpick.dto.QuestionVo;
 
 
 
@@ -31,7 +32,7 @@ public class QuesServiceImpl implements IQuestionSerivce{
 	}
 
 	@Override
-	public List<Question> listPage(@Param("cri")Criteria cri,@Param("memberCode")String memberCode) throws Exception {
+	public List<QuestionVo> listPage(@Param("cri")Criteria cri,@Param("memberCode")String memberCode) throws Exception {
 		
 
 		return daoQes.listPage(cri,memberCode);

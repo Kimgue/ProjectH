@@ -4,7 +4,7 @@
 
 <mapper namespace="com.hungpick.dao.IDaoQuestion"> <!-- "<" 는 문법오류나서  "<![CDATA[ < ]]>" 이렇게 해야한다. -->
 
-	<select id="sltOne" parameterType="String" resultType="QesDto">
+	<select id="sltOne" parameterType="String" resultType="qesDto">
 		SELECT * 
 		FROM 
 		QUESTION
@@ -21,10 +21,41 @@
 	]]>
 	</select>
 	
-	<select id="listPage" resultType="QesDto" parameterType="map">
+	
+	<resultMap type="memberDto" id="MemberDtoRm">
+	<id column="Member_Code" property="memberCode"/>
+    <result column="MEMBER_ID" property="memberId"/>
+    <result column="MEMBER_PW" property="memberPw"/>
+    <result column="MEMBER_NAME" property="memberName"/>
+    <result column="MEMBER_NICKNAME" property="memberNickname"/>
+    <result column="MEMBER_EMAIL" property="memberEmail"/>
+    <result column="MEMBER_NUMBER" property="memberNumber"/>
+    <result column="MEMBER_DATE" property="memberDate"/>
+    <result column="HOLD_POINT" property="memberPoint"/>
+	</resultMap>
+ 
+	<resultMap type="qesDto" id="QuestionRm">
+	<id column="Member_Code" property="memberCode"/>
+	<id column="QSTN_CODE" property="qstnCode"/>
+    <result column="QSTN_TITLE" property="qstnTitle"/>
+    <result column="QSTN_CONTENT" property="qstnContent"/>
+    <result column="QSTN_DATE" property="qstnDate"/>
+    <result column="QSTN_CONFIRM" property="qstnConfirm"/>
+
+	</resultMap>
+	
+	<resultMap type="questionVo" id="QuestionVoRm">
+		<collection property="memberDto" resultMap="MemberDtoRm"></collection >
+        <collection property="qesDto" resultMap="QuestionRm"></collection >
+	</resultMap>
+	
+	<select id="listPage" resultMap="QuestionVoRm" parameterType="map">
 		SELECT  * FROM (   
 		SELECT   ROW_NUMBER() OVER(ORDER BY QSTN_CODE DESC)
-		 NUM, A.* FROM QUESTION A ORDER BY QSTN_CODE) 
+		 NUM, A.*,M.MEMBER_NAME FROM QUESTION A 
+         JOIN MEMBERS M
+         ON A.MEMBER_CODE = M.MEMBER_CODE
+         ORDER BY QSTN_CODE)  
 		WHERE NUM BETWEEN #{ cri.rowStart }
 		AND #{ cri.rowEnd } 
 		AND MEMBER_CODE = #{ memberCode }
@@ -32,22 +63,22 @@
 
 	</select>
 	
-	<select id="OneMemberCode" resultType="QesDto" parameterType="String">
+	<select id="OneMemberCode" resultType="qesDto" parameterType="String">
 		SELECT * FROM QUESTION WHERE MEMBER_CODE = #{memberCode}
 	</select>
 	
-	<select id="MemberCode" resultType="QesDto" parameterType="String">
+	<select id="MemberCode" resultType="qesDto" parameterType="String">
 		SELECT  DISTINCT MEMBER_CODE FROM QUESTION WHERE MEMBER_CODE = #{ memberCode }
 	</select>
 	 <!-- 게시판 글 작성 -->
 	
-   <insert id="insert" parameterType="QesDto">
+   <insert id="insert" parameterType="qesDto">
 	   INSERT  INTO QUESTION       
 	                 VALUES(   #{ memberCode} , QUESTION_SEQ.NEXTVAL , #{ qstnTitle } , #{ qstnContent }, TO_DATE( #{ qstnDate } ,'YYYY-MM-DD HH24:MI:SS') ,  #{ qstnConfirm } )
                 
    </insert>
 	
-	<update id="update" parameterType="QesDto">
+	<update id="update" parameterType="qesDto">
 		UPDATE QUESTION SET QSTN_TITLE = #{ qstnTitle }, QSTN_CONTENT = #{ qstnContent }, QSTN_DATE = TO_DATE( #{qstnDate} ,'YYYY-MM-DD HH24:MI:SS'), QSTN_CONFIRM = #{qstnConfirm} WHERE MEMBER_CODE = #{ memberCode } AND QSTN_CODE = #{ qstnCode }  
 	</update>
 

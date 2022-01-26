@@ -11,7 +11,7 @@
 
 	<typeAliases>
 		<typeAlias type="com.hungpick.dto.Notice" alias="mbrDto"></typeAlias>
-		<typeAlias type="com.hungpick.dto.Question" alias="QesDto"></typeAlias>
+		<typeAlias type="com.hungpick.dto.Question" alias="qesDto"></typeAlias>
 		<typeAlias type="com.hungpick.dto.Criteria" alias="Criteria"></typeAlias>
 	    <typeAlias type="com.hungpick.dto.UserDto" alias="userDto"></typeAlias>
 	    <typeAlias type="com.hungpick.dto.BrandDto" alias="brandDto"></typeAlias>
@@ -22,6 +22,7 @@
 		<typeAlias type="com.hungpick.dto.ReviewVo" alias="reviewVo"></typeAlias> 
 		<typeAlias type="com.hungpick.dto.Gifticon" alias="gift"></typeAlias> 
 		<typeAlias type="com.hungpick.dto.ReviewRankingVo" alias="reviewRankingVo"></typeAlias> 
+		<typeAlias type="com.hungpick.dto.QuestionVo" alias="questionVo"></typeAlias>
 	</typeAliases>
 	
 	
