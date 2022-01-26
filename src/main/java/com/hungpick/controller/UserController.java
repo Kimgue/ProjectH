@@ -59,7 +59,7 @@ public class UserController {
 	@RequestMapping("Question")
 	public String QA(Model model,String memberCode, @ModelAttribute("cri") Criteria cri, HttpSession session ) throws Exception {
 		
-		logger.info("Q&A called ==========");
+		logger.info("Q&A called ========== ");
 
 		/* List<Question> list = question.first(memberCode); */
 			
