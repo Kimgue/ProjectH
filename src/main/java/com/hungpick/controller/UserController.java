@@ -302,7 +302,8 @@ public class UserController {
 	@RequestMapping("GifticonList")
 	public String GifticonList(Model model)
 			throws Exception {
-
+		
+		System.out.println(gifticon.selectgift());
 		model.addAttribute("gifticonlist", gifticon.selectgift());
 		
 

@@ -5,7 +5,7 @@
 <mapper namespace="com.hungpick.dao.IGifticonDao">
 
 
-	<select id="select" parameterType="gift" resultType="String">
+	<select id="select" parameterType="string" resultType="gift">
 		SELECT * 
 		FROM 
 		GIFTICON
@@ -13,9 +13,8 @@
 		AND BRAND_CODE = #{ brandCode } AND MENU_CODE =#{ menuCode }
 	</select>
 	
-	<select id="selectgift">
-		SELECT * FROM GIFTICON ORDER BY GIFTICON_CODE
-	
+	<select id="selectgift" resultType="gift">
+		SELECT * FROM GIFTICON 
 	</select>
 	
    <insert id="insert" parameterType="gift">

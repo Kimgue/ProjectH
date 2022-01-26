@@ -10,12 +10,7 @@
 		text-align: center;
 		color:tomato;
 	}
-	li{
-		list-style: none;
-	}
-	h2{
-		text-align: center;
-	}
+	
 </style>
 </head>
 <body>
@@ -28,18 +23,17 @@
 			  Our Gifticon
 			</h2>
 		  </div>
+		  <hr>
 	<c:forEach var="gift" items="${gifticonlist}">
 			<p>
 			<c:out value="${gift.name}" /> 
 			</p>
-			<p style="font-size: 15pt">
-				<c:out value="${gift.gifticonImg}" />
+			<p>
+			<img src="<c:out value="resources/${gift.gifticonImg}" />" alt="제품 이미지" height="50" width="50" />
 			</p>
-			<p style="font-size: 15pt">
+			<p>
 				<c:out value="${gift.gifticonPrice}" />
 			</p>
-			
-			<hr>
 		</c:forEach>
 	</div>
 </body>
