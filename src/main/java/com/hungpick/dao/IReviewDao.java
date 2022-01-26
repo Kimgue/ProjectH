@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.hungpick.dto.ReviewRankingVo;
 import com.hungpick.dto.ReviewVo;
 
 public interface IReviewDao {
@@ -19,4 +20,6 @@ public interface IReviewDao {
 			@Param(value = "reviewCode") String reviewCode,
 			@Param(value = "memberCode") String memberCode
 			);
+
+	List<ReviewRankingVo> sltReviewRanking();
 }

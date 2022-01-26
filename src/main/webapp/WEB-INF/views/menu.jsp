@@ -29,26 +29,34 @@ hr {
 			<br> 이름<br> <input type="text" name="menuName"> <input
 				type="submit" value="검색">
 		</form>
-		<div class="container">
-			<c:forEach var="menu" items="${menu}">
-				<a href="#"> 
-					<img src="<c:out value="resources/${menu.menuImg}"/>" alt="메뉴 이미지" height="270" width="270" />
-				</a>
-				<p style="font-size: 15pt">
-					<c:out value="${menu.menuName}" />
-				</p>
-				<p style="font-size: 15pt">
-					<c:out value="${menu.menuPrice}" />
-				</p>
-				<p style="font-size: 12pt">
-					<c:out value="${menu.menuDescription}" />
-				</p>
-				<p style="font-size: 12pt">
-					<c:out value="${menu.menuIngredients}" />
-				</p>
-				<hr>
-			</c:forEach>
-		</div>
+		<hr>
+		<c:forEach var="rank" items="${ reviewRanking }">
+			<tr>
+				<td><c:out value="${rank.brandDto.brandName}" /></td>
+				<td><c:out value="${rank.menuDto.menuName}" /></td>
+				<td><c:out value="${rank.reviewDto.reviewScore}"></c:out>
+			</tr>
+			<br>
+		</c:forEach>
+		<hr>
+		<c:forEach var="menu" items="${menu}">
+			<a href="#"> 
+				<img src="<c:out value="resources/${menu.menuImg}"/>" alt="메뉴 이미지" height="270" width="270" />
+			</a>
+			<p style="font-size: 15pt">
+				<c:out value="${menu.menuName}" />
+			</p>
+			<p style="font-size: 15pt">
+				<c:out value="${menu.menuPrice}" />
+			</p>
+			<p style="font-size: 12pt">
+				<c:out value="${menu.menuDescription}" />
+			</p>
+			<p style="font-size: 12pt">
+				<c:out value="${menu.menuIngredients}" />
+			</p>
+			<hr>
+		</c:forEach>
 	</div>
 </body>
 </html>
