@@ -299,7 +299,15 @@ public class UserController {
 	
 	//----------------------------GIFTICON--------------------------------
 	
-	
+	@RequestMapping("GifticonList")
+	public String GifticonList(Model model)
+			throws Exception {
+
+		model.addAttribute("gifticonlist", gifticon.selectgift());
+		
+
+		return "GifticonList";
+	}
 	
 	
 }
