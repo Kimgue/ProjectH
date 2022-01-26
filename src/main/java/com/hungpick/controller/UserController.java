@@ -292,8 +292,20 @@ public class UserController {
 			throws Exception {
 
 		notice.delete(adminCode, noticeCode);
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(notice.listCount());
+		int currentPage = cri.getPage();
+		Date date = new Date();
+		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String time1 = format1.format(date);
+		model.addAttribute("date", time1);
+		model.addAttribute("noticecode", notice.noticeCode(adminCode));
 		model.addAttribute("list", notice.listPage(cri));
-
+		model.addAttribute("pageMaker", pageMaker);
+		model.addAttribute("currentPage", currentPage);
+		
 		return "NoticeSWD";
 	}
 	

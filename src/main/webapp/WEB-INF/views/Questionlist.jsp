@@ -50,13 +50,15 @@ table {
 <H4>Q.A</H4>	
 	<table border="1">
 	
-		<tr>
-			<td width=40>번호</td>
-			<td width=500 height=40 >제목</td>
-			<td width=250>작성자</td>
-			<td width=250>작성날짜</td>
-			
-		</tr>
+		<thead>
+				<tr>
+					<th>번호</th>
+					<th>제목</th>
+					<th>작성자</th>
+					<th>작성일</th>
+							
+				</tr>
+			</thead>
 		<c:forEach var="list"  items="${ listpage }">
 			<tr>
 				<td><c:out value="${list.qstnCode}" /></td>

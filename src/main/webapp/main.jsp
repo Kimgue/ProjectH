@@ -39,6 +39,7 @@
 
 <a href='javascript:QnA("${memberDTO.memberCode}")'>Q . A</a> 
 <input type="hidden" name="memberCode" /> <br>
+
 <a href="GifticonList">기프티콘</a>
 </form>
 		<a href="menu">메뉴</a><br> <a href="brand">브랜드</a><br>
