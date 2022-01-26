@@ -63,8 +63,10 @@ public class UserController2 {
 		} else {
 			ResultMsg = "죄송합니다. 해당되는 상품이 없습니다.";
 		}
+		
 		model.addAttribute("ResultMsg", ResultMsg);
 		model.addAttribute("menuVo", menuService.sltSearch(brandName, menuPrice, menuIngredients, menuName));
+		
 	}
 
 	@RequestMapping("review")
