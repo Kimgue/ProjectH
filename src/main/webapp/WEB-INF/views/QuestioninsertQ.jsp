@@ -59,7 +59,7 @@ input {
 						<tbody>
 						<thead>
 							<tr>
-								<th style="background-color: #eeeee; text-align: center;">게시판 글쓰기 양식</th>
+								 <th style="background-color: #eeeee; text-align: center;">게시판 글쓰기 양식</th>
 							</tr>
 						</thead>
 
