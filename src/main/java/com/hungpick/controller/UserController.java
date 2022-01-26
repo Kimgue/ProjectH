@@ -225,18 +225,19 @@ public class UserController {
 
 	}
 
-	@RequestMapping("Noticeupdatelist")
+	@RequestMapping("Noticeupdatepage")
 	public String Noticeupdatelist(Model model, String adminCode, String noticeCode) throws Exception {
 		logger.info("updatelist");
 
 		
-		model.addAttribute("person", notice.sltOneNoice(adminCode, noticeCode));
+		
 		
 		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date date = new Date();
 		String time1 = format1.format(date);
 		model.addAttribute("date", time1);
-
+		model.addAttribute("person", notice.sltOneNoice(adminCode, noticeCode));
+		
 		return "Noticeupdatelist";
 	}
 

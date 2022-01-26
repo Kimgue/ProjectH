@@ -69,7 +69,7 @@ input {
 							</tr>	
 							<tr>
 								<td>
-									<label for="noticeContent">내용 : </label><textarea id="noticeContent" name="noticeContent"  >${person.noticeContent }</textarea>
+									<label for="noticeContent">내용 : </label><textarea id="noticeContent" name="noticeContent">${person.noticeContent }</textarea>
 								</td>
 							</tr>
 							<tr>

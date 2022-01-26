@@ -27,7 +27,7 @@ function view2(  adminCode ,   noticeCode )
 		
 		f.adminCode.value = adminCode;
 		f.noticeCode.value = noticeCode;
-		f.action = "./Noticeupdatelist"
+		f.action = "./Noticeupdatepage"
 		
 		f.method= "post"
 		f.submit();
