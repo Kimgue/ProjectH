@@ -1,4 +1,3 @@
-
 package com.hungpick.controller;
 
 import java.util.List;
@@ -7,13 +6,12 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.annotations.Param;
 import org.json.JSONObject;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -26,12 +24,6 @@ public class UserController3 {
 	@Autowired
 	private IUserService userService;
 
-	private static final Logger logger = LoggerFactory.getLogger(UserController3.class);
-
-
-
-	/*------------------------김혜성------------------------*/
-
 	// 회원조회
 	@RequestMapping("userView")
 	public void userView(UserDto Dto, Model model) throws Exception {
@@ -42,6 +34,18 @@ public class UserController3 {
 	// 회원가입 페이지
 	@RequestMapping("userRegist")
 	public void userRegist() {
+	}
+
+	// 마이 페이지
+	@RequestMapping("userPage")
+	public void userPage() {
+	}
+
+	// 로그아웃
+	@RequestMapping("userLogout")
+	public String userLogout(HttpSession session) throws Exception {
+		userService.userLogout(session);
+		return "redirect:/main.jsp";
 	}
 
 	// 회원가입
@@ -65,6 +69,8 @@ public class UserController3 {
 
 		if (Dto != null) {
 			session.setAttribute("memberDTO", Dto);
+			session.setAttribute("memberId", Dto.getMemberId());
+			session.setAttribute("memberPw", Dto.getMemberPw());
 			mav.setViewName("redirect:/main.jsp");
 		} else {
 			session.setAttribute("loginNotice", "올바른 아이디 혹은 비밀번호를 입력해주세요");
@@ -73,15 +79,27 @@ public class UserController3 {
 		return mav;
 	}
 
-	// 로그아웃
-	@RequestMapping("userLogout")
-	public String userLogout(HttpSession session) throws Exception {
-		userService.userLogout(session);
-		return "redirect:/main.jsp";
+	// PW 검사
+	@RequestMapping(value = "pwChkCtrl.do", method = RequestMethod.GET)
+	@ResponseBody
+	public String pwChk(@ModelAttribute("inputPw") @Param("inputPw") String inputPw, HttpSession session)
+			throws Exception {
+		boolean result = false;
+		if (inputPw.equals(session.getAttribute("memberPw"))) {
+			result = true;
+		} else {
+			result = false;
+		}
+
+		JSONObject jsonObj = new JSONObject();
+		jsonObj.put("result", result);
+		String jsonOut = jsonObj.toString();
+
+		return jsonOut;
 	}
 
 	// ID 중복검사
-	@RequestMapping(value = "IdChkCtrl.do", produces = "application/text;charset=UTF-8")
+	@RequestMapping(value = "idChkCtrl.do", method = RequestMethod.GET)
 	@ResponseBody
 	public String idChk(@ModelAttribute("id") String memberId) throws Exception {
 		String idChk = userService.checkId(memberId);
@@ -95,5 +113,9 @@ public class UserController3 {
 		String jsonOut = jsonObj.toString();
 
 		return jsonOut;
+	}
+
+	public void userDelete(@Param("memberId") String memberId, @Param("memberPw") String memberPw) throws Exception {
+		userService.userDelete(memberId, memberPw);
 	}
 }
