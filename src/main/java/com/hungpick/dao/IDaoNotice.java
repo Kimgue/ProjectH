@@ -12,7 +12,7 @@ import com.hungpick.dto.Notice;
 
 public interface IDaoNotice {
 
-	Notice select(@Param("adminCode")String adminCode,@Param("noticeCode")String noticeCode); // 단건조회
+	Notice sltOneNoice(@Param("adminCode")String adminCode,@Param("noticeCode")String noticeCode); // 단건조회
 
 	List<Notice> listPage(Criteria cri)throws Exception;
 	
@@ -22,7 +22,7 @@ public interface IDaoNotice {
 
 	void delete(@Param("adminCode")String adminCode,@Param("noticeCode")String noticeCode); // 공지사항 삭제
 	
-	Notice sltone(@Param("adminCode")String adminCode); //관리자 코드로 작성
+	Notice noticeCode(@Param("adminCode")String adminCode); //관리자 코드로 작성
 
 	public int listCount()throws Exception;
 

@@ -13,7 +13,7 @@ public interface IQuestionSerivce {
 	
 	Question sltOne(@Param("memberCode")String memberCode,@Param("qstnCode")String qstnCode); // 단건조회
 
-	List<Question> listPage( @Param("cri")Criteria cri,@Param("memberCode")String memeberCode) throws Exception;/// 회원 목록 page
+	List<Question> listPage( @Param("cri")Criteria cri,@Param("memberCode")String memberCode) throws Exception;/// 회원 목록 page
 
 	void insert(Question qes) throws Exception; // Q&A 입력
 

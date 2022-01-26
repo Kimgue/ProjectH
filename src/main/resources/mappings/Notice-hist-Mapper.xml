@@ -4,7 +4,7 @@
 
 <mapper namespace="com.hungpick.dao.IDaoNotice"> <!-- "<" 는 문법오류나서  "<![CDATA[ < ]]>" 이렇게 해야한다. -->
 
-	<select id="select" parameterType="String" resultType="mbrDto">
+	<select id="sltOneNoice" parameterType="String" resultType="mbrDto">
 		SELECT * 
 		FROM 
 		NOTICE
@@ -28,11 +28,11 @@
 		ORDER BY NOTICE_CODE DESC
 	</select>
 		
-	<select id="sltone" resultType="mbrDto">
+	<select id="noticeCode" resultType="mbrDto">
 		SELECT DISTINCT ADMIN_CODE FROM NOTICE   WHERE  ADMIN_CODE =#{adminCode}
 	</select>
 		
-	<select id="selectAll" resultType="mbrDto">
+	<select id="AdminselectAll" resultType="mbrDto">
 		SELECT * FROM NOTICE ORDER BY ADMIN_CODE 
 	</select>
 	

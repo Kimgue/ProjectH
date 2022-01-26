@@ -35,14 +35,14 @@ table {
 			<td width=50>삭제</td>
 			
 		</tr>
-		<c:forEach var="lis" items="${list}">
+		<c:forEach var="list" items="${listpage}">
 			<tr>
-				<td><c:out value="${lis.noticeCode}" /></td>
-				<td><a href="javascript:view2('${ lis.adminCode }','${lis.noticeCode}')"><c:out value="${ lis.noticeTitle }" /></a></td>
-				<td><c:out value="${lis.adminCode }"></c:out>
-				<td><c:out value="${lis.noticeDate}" /></td>	
-				<td><a href="javascript:Noticeupdatelist('${ lis.adminCode }','${lis.noticeCode}' )">수정</a></td>
-				<td><a href="javascript:Noticedelete('${ lis.adminCode }','${lis.noticeCode}')">삭제</a></td>
+				<td><c:out value="${list.noticeCode}" /></td>
+				<td><a href="javascript:view2('${ list.adminCode }','${list.noticeCode}')"><c:out value="${ list.noticeTitle }" /></a></td>
+				<td><c:out value="${list.adminCode }"></c:out>
+				<td><c:out value="${list.noticeDate}" /></td>	
+				<td><a href="javascript:Noticeupdatelist('${ list.adminCode }','${list.noticeCode}' )">수정</a></td>
+				<td><a href="javascript:Noticedelete('${ list.adminCode }','${list.noticeCode}')">삭제</a></td>
 			</tr>
 		</c:forEach>
 	</table>	
@@ -52,7 +52,7 @@ table {
     </c:forEach>
     
 	<hr>
-	<input type="button" value="작성" onClick="insert('${ a.adminCode }')">
+	<input type="button" value="작성" onClick="insert('${ noticecode.adminCode }')">
 	
 	<input type="hidden" name="adminCode" />
 	<input type="hidden" name="noticeCode" />
