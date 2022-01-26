@@ -199,7 +199,7 @@ public class UserController {
 		model.addAttribute("date", time1);
 		model.addAttribute("noticecode", notice.noticeCode(adminCode));
 
-		return "NoticeinsertN";
+		return "noticeinsertN";
 	}
 
 	@RequestMapping("insertNc")
