@@ -24,9 +24,9 @@ import com.hungpick.service.IUserService;
 @Controller
 public class UserController3 {
 
-//	@Autowired
-//	private JavaMailSender mailSender;
-	
+	@Autowired
+	private JavaMailSender mailSender;
+
 	@Autowired
 	private IUserService userService;
 
@@ -68,10 +68,11 @@ public class UserController3 {
 
 	// 로그인
 	@RequestMapping("userLoginTry")
-	public ModelAndView userLoginTry(@Param("memberId") String memberId, @Param("memberPw") String memberPw, HttpSession session) throws Exception {
+	public ModelAndView userLoginTry(@Param("memberId") String memberId, @Param("memberPw") String memberPw,
+			HttpSession session) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		UserDto Dto = userService.userLogin(memberId, memberPw);
-		
+
 		if (Dto != null) {
 			session.setAttribute("memberDTO", Dto);
 			session.setAttribute("memberCode", Dto.getMemberCode());
@@ -89,11 +90,11 @@ public class UserController3 {
 			session.setAttribute("loginNotice", "올바른 아이디 혹은 비밀번호를 입력해주세요");
 			mav.setViewName("redirect:/userLogin");
 			session.setMaxInactiveInterval(1);
-			
+
 			return mav;
 		}
 	}
-	
+
 //	// 로그인 성공
 //	public ModelAndView userLoginConfirm(@Param("memberId") String memberId, @Param("memberPw") String memberPw, HttpSession session) throws Exception {
 //		ModelAndView mav = new ModelAndView();
@@ -114,8 +115,6 @@ public class UserController3 {
 //		}
 //		return mav;
 //	} 
-	
-	
 
 	// PW 검사
 	@RequestMapping("pwChkCtrl.do")
@@ -160,15 +159,16 @@ public class UserController3 {
 	// 정보수정
 	@RequestMapping("chkNickname.do")
 	@ResponseBody
-	public String chkNickname(@ModelAttribute("nickname") String memberNickname, UserDto Dto, HttpSession session) throws Exception {
+	public String chkNickname(@ModelAttribute("nickname") String memberNickname, UserDto Dto, HttpSession session)
+			throws Exception {
 		String chkNickname = userService.checkNickname(memberNickname);
-		
+
 		boolean result = false;
 		if (chkNickname.equals("0")) {
 			Dto = (UserDto) session.getAttribute("memberDTO");
 			Dto.setMemberNickname(memberNickname);
-			userService.userUpdate(Dto);			
-		
+			userService.userUpdate(Dto);
+
 			result = true;
 		}
 
@@ -178,27 +178,30 @@ public class UserController3 {
 
 		return jsonOut;
 	}
-	
-	
-	@PostMapping("/CheckMail") // AJAX와 URL을 매핑시켜줌
-	@ResponseBody // AJAX후 값을 리턴하기위해 작성
-	public String SendMail(String mail) {
-		Random random = new Random(); // 난수 생성을 위한 랜덤 클래스
-		String key = ""; // 인증번호
+
+	@RequestMapping("CheckMail.do")
+	@ResponseBody
+	public String SendMail(@ModelAttribute("mail") String mail, HttpSession session) {
+		Random random = new Random();
+		String key = "";
+		
 
 		SimpleMailMessage message = new SimpleMailMessage();
+		
 		message.setTo(mail); // 스크립트에서 보낸 메일을 받을 사용자 이메일 주소
-		// 입력 키를 위한 코드
-		for (int i = 0; i < 3; i++) {
-			int index = random.nextInt(25) + 65; // A~Z까지 랜덤 알파벳 생성
-			key += (char) index;
-		}
-		int numIndex = random.nextInt(9999) + 1000; // 4자리 랜덤 정수를 생성
+		
+		int numIndex = random.nextInt(8999) + 100000;
 		key += numIndex;
+		
 		message.setSubject("인증번호 입력을 위한 메일 전송");
 		message.setText("인증 번호 : " + key);
-//		mailSender.send(message);
-//		JavaMailSender.send(message);
-		return key;
-	}	
+		
+		mailSender.send(message);
+		
+		JSONObject jsonObj = new JSONObject();
+		jsonObj.put("mail", mail);
+		String jsonOut = jsonObj.toString();
+		System.out.println("확인 : " + jsonOut);
+		return jsonOut;
+	}
 }

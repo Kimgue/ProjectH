@@ -17,7 +17,17 @@
 			} else {
 				mail = mail+"@"+$(".domain").val(); //셀렉트 박스에 @뒤 값들을 더함.
 				
-				$.ajax({
+				var url = "CheckMail.do";
+				
+				$.getJSON(url, {
+					"mail" : mail
+				}, function(json) {
+					alert("인증번호가 전송되었습니다.") 
+					isCertification=true;
+				});
+				
+				
+				/* $.ajax({
 					type : 'post',
 					url : '/CheckMail',
 					data : {
@@ -26,7 +36,7 @@
 					dataType :'json',
 				});
 				alert("인증번호가 전송되었습니다.") 
-				isCertification=true; //추후 인증 여부를 알기위한 값 
+				isCertification=true; //추후 인증 여부를 알기위한 값  */
 			}
 		});
 		
