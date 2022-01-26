@@ -185,6 +185,24 @@ public class UserController {
 		return "NoticeSWD";
 
 	}
+	
+	@RequestMapping("NoticeMember")
+	public String listPag(Model model, String adminCode, String noticeCode, @ModelAttribute("cri") Criteria cri) throws Exception {
+		logger.info("list page");
+
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(notice.listCount());
+		int currentPage = cri.getPage();
+
+		model.addAttribute("listpage", notice.listPage(cri));
+		model.addAttribute("noticecode", notice.noticeCode(adminCode));
+		model.addAttribute("pageMaker", pageMaker);
+		model.addAttribute("currentPage", currentPage);
+		
+		return "NoticePage";
+
+	}
 
 	@RequestMapping("view2")
 	public String view2(Model model, String adminCode, String noticeCode) throws Exception {
