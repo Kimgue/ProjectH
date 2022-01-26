@@ -7,6 +7,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>메뉴 검색 결과</title>
+<style>
+hr {  
+  width: 400px;
+}
+</style>
 </head>
 <body>
 <div align="center">
@@ -46,6 +51,7 @@
 				</div>
 			</div>
 		</div>
+		<hr>
 	</c:forEach>
 </div>
 </body>
