@@ -47,16 +47,16 @@ hr {
 				<img src="<c:out value="resources/${menu.menuImg}"/>" alt="메뉴 이미지" height="270" width="270" />
 			</a>
 			<p style="font-size: 15pt">
-				<c:out value="${menu.menuName}" />
+				<c:out value="메뉴명: ${menu.menuName}" />
 			</p>
 			<p style="font-size: 15pt">
-				<c:out value="${menu.menuPrice}" />
+				<c:out value="메뉴가격: ${menu.menuPrice}" />
 			</p>
 			<p style="font-size: 12pt">
-				<c:out value="${menu.menuDescription}" />
+				<c:out value="메뉴설명: ${menu.menuDescription}" />
 			</p>
 			<p style="font-size: 12pt">
-				<c:out value="${menu.menuIngredients}" />
+				<c:out value="메뉴재료: ${menu.menuIngredients}" />
 			</p>
 			<hr>
 		</c:forEach>
