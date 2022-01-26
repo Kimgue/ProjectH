@@ -7,6 +7,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>메뉴 소개</title>
 <style>
+hr {  
+  width: 400px;
+}
 </style>
 </head>
 <body>
@@ -43,6 +46,7 @@
 				<p style="font-size: 12pt">
 					<c:out value="${menu.menuIngredients}" />
 				</p>
+				<hr>
 			</c:forEach>
 		</div>
 	</div>

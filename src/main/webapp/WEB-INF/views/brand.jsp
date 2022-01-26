@@ -17,15 +17,11 @@ hr {
 	<h1>브랜드</h1>
 	<br>
 	<a href="">메인 페이지로</a>
+	<hr>
 	<br>
 	<div class="container">
 	<c:forEach var="brand" items="${brand}">
-		<c:url value="findStore" var="storeUrl">
-				<c:param name="brandName" value="${brand.brandName}"/>
-		</c:url>
-		<a href="${storeUrl}">가까운 매장찾기</a>	
-		<br>
-		<a href="https://map.kakao.com/link/search/${brand.brandName}">가까운 매장찾기2</a>
+		<a href="https://map.kakao.com/link/search/${brand.brandName}">가까운 매장찾기</a>
 		<br>
 		<a href="#"> <img src="<c:out value="resources/${brand.brandImg}"/>" 
 		alt="브랜드 이미지" height="270" width="270" /></a>
@@ -36,6 +32,7 @@ hr {
 			<c:out value="${brand.brandDescription}" />
 		</p>
 		<hr>
+		<br>
 	</c:forEach>
 	
 	</div>
