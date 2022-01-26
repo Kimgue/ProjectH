@@ -21,6 +21,7 @@ public class ReviewServiceImpl implements IReviewService {
 	private static final Logger logger = LoggerFactory.getLogger(ReviewServiceImpl.class);
 	
 	
+	//상품에 대한 리뷰리스트 보기
 	@Override
 	public List<ReviewVo> sltReviewList(
 			@Param(value = "brandCode") String brandCode,
@@ -31,7 +32,7 @@ public class ReviewServiceImpl implements IReviewService {
 		return reviewDao.sltReviewList(brandCode, menuCode);
 	}
 
-
+	//상품에 대한 상세리뷰 보기
 	@Override
 	public 	ReviewVo sltLookUp(
 			@Param(value = "brandCode") String brandCode,
@@ -43,7 +44,8 @@ public class ReviewServiceImpl implements IReviewService {
 		return reviewDao.sltLookUp(brandCode, menuCode, reviewCode, memberCode);
 	}
 
-
+	
+	//전체 상품 리뷰점수 순위 보기
 	@Override
 	public List<ReviewRankingVo> sltReviewRanking() {
 		

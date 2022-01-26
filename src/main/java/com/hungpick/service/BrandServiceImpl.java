@@ -21,6 +21,7 @@ public class BrandServiceImpl implements IBrandService {
 	private static final Logger logger = LoggerFactory.getLogger(BrandServiceImpl.class);
 	
 	
+	//브랜드 전체 리스트 보기
 	@Override
 	public List<BrandDto> sltMulti() {
 		logger.info("Brand sltMulti called =========");

@@ -20,6 +20,7 @@ public class MenuServiceImpl implements IMenuService {
 	
 	private static final Logger logger = LoggerFactory.getLogger(MenuServiceImpl.class);
 
+	//메뉴 전체 리스트 보기
 	@Override
 	public List<MenuDto> sltMulti() {
 		logger.info("Menu sltMulti called =========");
@@ -27,6 +28,7 @@ public class MenuServiceImpl implements IMenuService {
 		return menuDao.sltMulti();
 	}
 
+	//메뉴 조건검색한 결과 보기
 	@Override
 	public List<MenuVo> sltSearch(
 			@Param(value = "brandName") String brandName,
