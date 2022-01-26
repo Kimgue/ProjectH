@@ -1,15 +1,14 @@
 function QnA( memberCode )
 {
-	var f = document.paging;
+	 var g = confirm('로그인이 필요합니다 하시겠습니까?')
 			
-			if( !memberCode)
+			if( g == false)
 				{
-				
-				alert("로그인 해주세요");
 				
 				return;
 				}
 			else
+				var f = document.paging;
 			
 				f.memberCode.value = memberCode;
 				
