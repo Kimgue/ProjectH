@@ -27,19 +27,19 @@ hr {
 					alt="메뉴 이미지" height="270" width="270" /></a>
 				<div class="caption">
 					<p style="font-size: 10pt">
-						<c:out value="${menuVo.brandDto.brandName}" />
+						<c:out value="브랜드명: ${menuVo.brandDto.brandName}" />
 					</p>
 					<p style="font-size: 10pt">
-						<c:out value="${menuVo.menuDto.menuName}" />
+						<c:out value="메뉴명: ${menuVo.menuDto.menuName}" />
 					</p>
 					<p style="font-size: 10pt">
-						<c:out value="${menuVo.menuDto.menuPrice}" />
+						<c:out value="메뉴가격: ${menuVo.menuDto.menuPrice}" />
 					</p>
 					<p style="font-size: 10pt">
-						<c:out value="${menuVo.menuDto.menuDescription}" />
+						<c:out value="메뉴설명: ${menuVo.menuDto.menuDescription}" />
 					</p>
 					<p style="font-size: 8pt">
-						<c:out value="${menuVo.menuDto.menuIngredients}" />
+						<c:out value="메뉴재료: ${menuVo.menuDto.menuIngredients}" />
 					</p>
 					
 					<c:url value="review" var="url">
