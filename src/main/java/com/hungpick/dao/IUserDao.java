@@ -34,4 +34,10 @@ public interface IUserDao {
 	
 	// 닉네임 중복검사
 	String checkNickname(String memberNickname) throws Exception;
+	
+	// 이메일 중복검사
+	String checkEmail(String memberEmail) throws Exception;
+	
+	// 전화번호 중복검사
+	String checkNumber(String memberNumber) throws Exception;
 }

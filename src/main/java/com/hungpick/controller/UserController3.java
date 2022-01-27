@@ -13,7 +13,6 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -34,6 +33,9 @@ public class UserController3 {
 	@RequestMapping("userView")
 	public void userView(UserDto Dto, Model model) throws Exception {
 		List<UserDto> list = userService.sltMulti(Dto);
+		for(int i=0; i<list.size(); i++) {
+			System.out.println(i +"번째 : " + list.get(i).getMemberCode());
+		}
 		model.addAttribute("LIST", list);
 	}
 
@@ -95,27 +97,6 @@ public class UserController3 {
 		}
 	}
 
-//	// 로그인 성공
-//	public ModelAndView userLoginConfirm(@Param("memberId") String memberId, @Param("memberPw") String memberPw, HttpSession session) throws Exception {
-//		ModelAndView mav = new ModelAndView();
-//		UserDto Dto = userService.userLogin(memberId, memberPw);
-//		System.out.println("ㅇㅇ");
-//		if (Dto != null) {
-//			// 세션에 값 등록
-//			session.setAttribute("memberDTO", Dto);
-//			session.setAttribute("memberId", Dto.getMemberId());
-//			session.setAttribute("memberPw", Dto.getMemberPw());
-//			
-//			mav.setViewName("redirect:/main.jsp");
-//			System.out.println("TRUE " + session);
-//		} else {
-//			session.setAttribute("loginNotice", "올바른 아이디 혹은 비밀번호를 입력해주세요");
-//			mav.setViewName("redirect:/userLogin");
-//			System.out.println("FALSE " + session);
-//		}
-//		return mav;
-//	} 
-
 	// PW 검사
 	@RequestMapping("pwChkCtrl.do")
 	@ResponseBody
@@ -152,6 +133,23 @@ public class UserController3 {
 		return jsonOut;
 	}
 
+	// ID 중복검사
+	@RequestMapping("chkNumber.do")
+	@ResponseBody
+	public String chkNumber(@ModelAttribute("number") String memberNumber) throws Exception {
+		String chkNumber = userService.checkNumber(memberNumber);
+		boolean result = false;
+		if (chkNumber.equals("0")) {
+			result = true;
+		}
+
+		JSONObject jsonObj = new JSONObject();
+		jsonObj.put("result", result);
+		String jsonOut = jsonObj.toString();
+
+		return jsonOut;
+	}
+
 	public void userDelete(@Param("memberId") String memberId, @Param("memberPw") String memberPw) throws Exception {
 		userService.userDelete(memberId, memberPw);
 	}
@@ -161,14 +159,23 @@ public class UserController3 {
 	@ResponseBody
 	public String chkNickname(@ModelAttribute("nickname") String memberNickname, UserDto Dto, HttpSession session)
 			throws Exception {
+		System.out.println("닉네임 중복 확인 시작");
 		String chkNickname = userService.checkNickname(memberNickname);
+		System.out.println("닉네임 중복 확인 완료");
+		System.out.println("결과 : " + chkNickname);
 
 		boolean result = false;
-		if (chkNickname.equals("0")) {
-			Dto = (UserDto) session.getAttribute("memberDTO");
-			Dto.setMemberNickname(memberNickname);
-			userService.userUpdate(Dto);
 
+		Dto = (UserDto) session.getAttribute("memberDTO");
+		System.out.println("현재 로그인 상태 : " + Dto);
+
+		if (chkNickname.equals("0")) {
+			if (Dto != null) {
+				Dto.setMemberNickname(memberNickname);
+				userService.userUpdate(Dto);
+			} else {
+
+			}
 			result = true;
 		}
 
@@ -181,28 +188,41 @@ public class UserController3 {
 
 	@RequestMapping("CheckMail.do")
 	@ResponseBody
-	public String SendMail(@ModelAttribute("mail") String mail, HttpSession session) {
-		Random random = new Random();
-		String key = "";
-		
+	public String SendMail(@ModelAttribute("mail") String mail, HttpSession session) throws Exception {
+		System.out.println("확인전");
+		String chkEmail = userService.checkEmail(mail);
+		System.out.println("확인 결과 : " + chkEmail);
 
-		SimpleMailMessage message = new SimpleMailMessage();
-		
-		message.setTo(mail); // 스크립트에서 보낸 메일을 받을 사용자 이메일 주소
-		
-		// 입력 키를 위한 코드
-		int numIndex = random.nextInt(899999) + 100000;
-		key += numIndex;
-		
-		message.setSubject("인증번호 입력을 위한 메일 전송");
-		message.setText("인증 번호 : " + key);
-		
-		mailSender.send(message);
-		
+		boolean chkEmailBool = false;
 		JSONObject jsonObj = new JSONObject();
-		jsonObj.put("key", key);
-		String jsonOut = jsonObj.toString();
-		System.out.println("인증번호 : " + jsonOut);
-		return jsonOut;
+
+		if (chkEmail.equals("0")) {
+			chkEmailBool = true;
+			Random random = new Random();
+			String key = "";
+
+			SimpleMailMessage message = new SimpleMailMessage();
+
+			message.setTo(mail); // 스크립트에서 보낸 메일을 받을 사용자 이메일 주소
+
+			// 입력 키를 위한 코드
+			int numIndex = random.nextInt(899999) + 100000;
+			key += numIndex;
+
+			message.setSubject("인증번호 입력을 위한 메일 전송");
+			message.setText("인증 번호 : " + key);
+
+			mailSender.send(message);
+
+			jsonObj.put("key", key);
+			jsonObj.put("result", chkEmailBool);
+			String jsonOut = jsonObj.toString();
+			return jsonOut;
+		} else {
+			jsonObj.put("result", chkEmailBool);
+			String jsonOut = jsonObj.toString();
+			return jsonOut;
+		}
+
 	}
 }

@@ -22,9 +22,6 @@ public class UserServiceImpl implements IUserService {
 	@Autowired
 	private IUserDaoHist userDaoHist;
 
-	// 멤버 코드 처음부터 검색하기 위한 초기 설정
-	private static int memberCodeNum = 0;
-
 	// 단건조회
 	@Override
 	public UserDto sltSearch(String memberCode) throws Exception {
@@ -41,48 +38,8 @@ public class UserServiceImpl implements IUserService {
 	@Override
 	@Transactional
 	public String userRegist(UserDto Dto) throws Exception {
-
-		@SuppressWarnings("unused")
-		String memberId, memberPw, memberName, memberNickname, memberEmail, memberNumber, memberCode;
-
-		@SuppressWarnings("unused")
-		Date memberDate = new Date();
-		int holdPoint = 0;
-
-		// 멤버 코드 검색 전 멤버 코드 값 초기 설정
-		Dto.setMemberCode(Integer.toString(memberCodeNum));
-		memberCode = Dto.getMemberCode();
-
-		// while문 작성을 위한 초기 다건조회
-		UserDto checkDto = userDao.sltSearch(memberCode);
-
-		// 멤버 코드 처음부터 검색 후 결과 없을 시 while 탈출
-		while (true) {
-			if (checkDto != null) {
-				memberCodeNum++;
-				memberCode = Integer.toString(memberCodeNum);
-				checkDto = userDao.sltSearch(memberCode);
-			} else {
-				memberCode = Integer.toString(memberCodeNum);
-				Dto.setMemberCode(memberCode);
-				Dto.setHoldPoint(holdPoint);
-				break;
-			}
-		}
-
-		memberCode = Dto.getMemberCode();
-		memberId = Dto.getMemberId();
-		memberPw = Dto.getMemberPw();
-		memberName = Dto.getMemberName();
-		memberNickname = Dto.getMemberNickname();
-		memberEmail = Dto.getMemberEmail();
-		memberNumber = Dto.getMemberNumber();
-		memberDate = new Date();
-		holdPoint = Dto.getHoldPoint();
-
 		userDao.userRegist(Dto);
 		userDaoHist.userRegistHist("Insert " + Dto.toString());
-
 		return "redirect:/userView";
 	}
 
@@ -125,6 +82,17 @@ public class UserServiceImpl implements IUserService {
 	@Override
 	public String checkNickname(String memberNickname) throws Exception {
 		return userDao.checkNickname(memberNickname);
+	}
+
+	// 이메일 중복검사
+	@Override
+	public String checkEmail(String memberEmail) throws Exception {
+		return userDao.checkEmail(memberEmail);
+	}
+
+	@Override
+	public String checkNumber(String memberNumber) throws Exception {
+		return userDao.checkNumber(memberNumber);
 	}
 
 }
