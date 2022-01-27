@@ -38,6 +38,7 @@ public class UserServiceImpl implements IUserService {
 	@Override
 	@Transactional
 	public String userRegist(UserDto Dto) throws Exception {
+		System.out.println("이메일 : " + Dto.getMemberEmail());
 		userDao.userRegist(Dto);
 		userDaoHist.userRegistHist("Insert " + Dto.toString());
 		return "redirect:/userView";

@@ -7,6 +7,11 @@
 <title>회원가입</title>
 <script src="js/jquery-3.4.1.min.js"></script>
 <script>
+	var checkId = false;
+	var checkNickname = false;
+	var checkEmail = false;
+	var checkNumber = false;
+
 	function go_join(){
 		var id = $("#memberId").val();
 		var pw = $("#memberPw").val();
@@ -17,35 +22,47 @@
 		var number = $("#memberNumber").val();
 		
 		if(id == "") {
-			alert("ㄴㄴ");
+			$("#memberId").focus();
+			$("#resultId").text("아이디를 입력해주세요").css("color", "red");
 			return;
 		}
 		if(pw == "") {
-			alert("ㄴㄴ");
+			$("#memberPw").focus();
+			$("#resultPw").text("비밀번호를 입력해주세요").css("color", "red");
 			return;
 		}
 		if(name == "") {
-			alert("ㄴㄴ");
+			$("#memberName").focus();
+			$("#resultName").text("이름을 입력해주세요").css("color", "red");
 			return;
 		}
 		if(nickname == "") {
-			alert("ㄴㄴ");
+			$("#memberNickname").focus();
+			$("#resultNickname").text("닉네임을 입력해주세요").css("color", "red");
 			return;
 		}
 		if(mail == "") {
-			alert("ㄴㄴ");
+			$("#memberEmail").focus();
+			$("#resultEmail").text("이메일을 입력해주세요").css("color", "red");
 			return;
 		}
 		if(domain == "") {
-			alert("ㄴㄴ");
+			$("#memberEmail").focus();
+			$("#resultEmail").text("이메일을 입력해주세요").css("color", "red");
 			return;
 		}
 		if(number == "") {
-			alert("ㄴㄴ");
+			$("#memberNumber").focus();
+			$("#resultNumber").text("전화번호를 입력해주세요").css("color", "red");
 			return;
 		}
 		
-		$("#go_join").submit();
+		if(checkId == true && checkNickname == true && checkEmail == true && checkNumber == true) {
+			$("#memberEmail").val(mail+"@"+domain); 
+			$("#go_join").submit();
+		} else {
+			return;
+		}
 	}
 
 	$(document).ready(function() {
@@ -57,7 +74,7 @@
 			var domain = $(".domain").val();
 			
 			if (mail == "" || domain == "") {
-				$("#resultEmail").text("이메일을 입력해주세요").css("color", "blue");
+				$("#resultEmail").text("이메일을 입력해주세요").css("color", "red");
 			} else {
 				mail = mail+"@"+$(".domain").val();
 				
@@ -76,18 +93,20 @@
 						$(".mailOk").click(function() {
 							var mailCertifyiInput = $(".mailCertifyiInput").val();
 							if(mailCertifyiInput == "") {
-								$("#resultEmailOk").text("인증 번호를 입력해주세요").css("color", "blue");
+								$("#resultEmailOk").text("인증 번호를 입력해주세요").css("color", "red");
 							} else if(mailCertifyiInput == json.key) {
 								$("#resultEmailOk").text("인증 완료되었습니다").css("color", "blue");
 								$("#resultEmail").hide();
 								$(".mailNum").hide();
 								$(".sendMail").hide();
+								checkEmail = true;
 							} else {
 								$("#resultEmailOk").text("잘못된 인증번호입니다").css("color", "red");
 							}
 						});
 					} else {
 						$("#resultEmail").text("이미 존재하는 이메일입니다").css("color", "red");
+						checkEmail = false;
 					}
 				});
 			}
@@ -101,7 +120,6 @@
 
 			// 입력여부 검사
 			if (id == "") {
-				$("#resultId").text("아이디를 입력해주세요").css("color", "blue");
 				return false;
 			}
 			var url = "idChkCtrl.do";
@@ -112,11 +130,13 @@
 			}, function(json) {
 				var result_text = json.result;
 				var result = eval(result_text);
-
+				
 				if (result) {
 					$("#resultId").text("사용 가능한 아이디입니다").css("color", "blue");
+					checkId = true;
 				} else {
 					$("#resultId").text("이미 존재하는 아이디입니다").css("color", "red");
+					checkId = false;
 				}
 			});
 		});
@@ -127,7 +147,6 @@
 
 			// 입력여부 검사
 			if (nickname == "") {
-				$("#resultNickname").text("닉네임을 입력해주세요").css("color", "blue");
 				return false;
 			}
 			var url = "chkNickname.do";
@@ -141,8 +160,10 @@
 
 				if (result) {
 					$("#resultNickname").text("사용 가능한 닉네임입니다").css("color", "blue");
+					checkNickname = true;
 				} else {
 					$("#resultNickname").text("이미 존재하는 닉네임입니다").css("color", "red");
+					checkNickname = false;
 				}
 			});
 		});
@@ -153,7 +174,6 @@
 
 			// 입력여부 검사
 			if (number == "") {
-				$("#resultNumber").text("전화번호를 입력해주세요").css("color", "blue");
 				return false;
 			}
 			var url = "chkNumber.do";
@@ -167,8 +187,10 @@
 
 				if (result) {
 					$("#resultNumber").text("사용 가능한 전화번호입니다").css("color", "blue");
+					checkNumber = true;
 				} else {
 					$("#resultNumber").text("이미 존재하는 전화번호입니다").css("color", "red");
+					checkNumber = false;
 				}
 			});
 		});
@@ -183,20 +205,29 @@
 			<tr>
 				<td width=100>ID</td>
 				<td><input type="text" name="memberId" id="memberId">
-					<div id="resultId"></div></td>
+					<div id="resultId"></div>
+				</td>
 			</tr>
 			<tr>
 				<td width=100>비밀번호</td>
-				<td><input type="text" name="memberPw" id="memberPw"></td>
+				<td>
+				<input type="text" name="memberPw" id="memberPw">
+				<div id="resultPw"></div>
+				</td>
 			</tr>
 			<tr>
 				<td width=100>이름</td>
-				<td><input type="text" name="memberName" id="memberName"></td>
+				<td>
+				<input type="text" name="memberName" id="memberName">
+				<div id="resultName"></div>
+				</td>
 			</tr>
 			<tr>
 				<td width=100>닉네임</td>
-				<td><input type="text" name="memberNickname" id="memberNickname">
-					<div id="resultNickname"></div></td>
+				<td>
+				<input type="text" name="memberNickname" id="memberNickname">
+				<div id="resultNickname"></div>
+				</td>
 			</tr>
 			<tr>
 				<td width=100>이메일</td>
@@ -204,11 +235,11 @@
 					@<input type="text" class="domain">
 					<button type="button" class="sendMail">인증</button>
 					<div id="resultEmail"></div>
-					<p class="mailNum">
+					<div class="mailNum">
 						인증 번호를 입력해주세요 <input type="text" class="mailCertifyiInput">
 						<button type="button" class="mailOk">확인</button>
 						<div id="resultEmailOk"></div>
-					</p>
+					</div>
 				</td>
 
 			</tr>
@@ -222,9 +253,7 @@
 
 		</table>
 
-		<input type="submit" value="등록">
 		<input type="button" value="회원가입" onclick="go_join()">
-		<input type="reset" value="다시작성">
 		<input type="button" value="회원조회" onClick="location.href='userView'">	
 	</form>
 </body>

@@ -33,9 +33,6 @@ public class UserController3 {
 	@RequestMapping("userView")
 	public void userView(UserDto Dto, Model model) throws Exception {
 		List<UserDto> list = userService.sltMulti(Dto);
-		for(int i=0; i<list.size(); i++) {
-			System.out.println(i +"번째 : " + list.get(i).getMemberCode());
-		}
 		model.addAttribute("LIST", list);
 	}
 
