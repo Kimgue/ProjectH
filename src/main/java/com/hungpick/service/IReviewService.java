@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.hungpick.dto.ReviewDto;
 import com.hungpick.dto.ReviewRankingVo;
 import com.hungpick.dto.ReviewVo;
 
@@ -25,4 +26,7 @@ public interface IReviewService {
 	
 	//전체 상품 리뷰점수 순위 보기
 	List<ReviewRankingVo> sltReviewRanking();
+	
+	//리뷰 작성하기
+	ReviewDto insertReview(ReviewDto reviewDto);
 }

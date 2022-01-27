@@ -6,6 +6,11 @@
 <head>
 <meta charset="UTF-8">
 <title>상품 리뷰</title>
+<style>
+hr {  
+  width: 400px;
+}
+</style>
 </head>
 
 <body>
@@ -38,17 +43,23 @@
 				</c:url>
 				<td><a href="${lookupUrl}">상세 리뷰 보기</a></td>
 			</tr>
-				
 		</c:forEach>
 		</table>	
-		<%-- 
-			<c:url value="reviewWrite" var="writeUrl">
-				<c:param name="nickName" value="${memberNickname}"/>
-				<c:param name="menuName" value="${menuName}" />
-			</c:url>
-		<a href="${writeUrl}">리뷰 작성하기</a>
-		 세션에서 회원 정보 받아서 회원 닉네임 넘기기 
-		--%>
+		<hr>
+		리뷰 작성하기
+		<table border="1">
+		<tr>
+			<td width=50>닉네임</td>
+			<td width=40>점수</td>
+			<td width=150>내용</td>
+		</tr>
+		<tr>
+			<td><input type="text" id="memberNickname"></td><%-- 세션받아서 닉네임 설정해야함 --%>
+			<td><input type="text" id="reviewScore"></td><%-- 리뷰 점수 css로 별점화 해야함 --%>
+			<td><input type="text" id="reviewContent"></td><%-- 리뷰내용 --%>
+		</tr>
+		</table>
+		<button onclick="">작성</button>
 </div>
 </body>
 </html>

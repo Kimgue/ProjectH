@@ -42,12 +42,20 @@ hr {
 						<c:out value="메뉴재료: ${menuVo.menuDto.menuIngredients}" />
 					</p>
 					
-					<c:url value="review" var="url">
+					<c:url value="review" var="reviewUrl">
 						<c:param name="brandCode" value="${menuVo.brandDto.brandCode}"/>
 						<c:param name="menuCode" value="${menuVo.menuDto.menuCode}"/>
 						<c:param name="menuName" value="${menuVo.menuDto.menuName}" />
 					</c:url>
-					<a href="${url}">상품 리뷰</a>
+					<a href="${reviewUrl}">상품 리뷰</a>
+					<%-- 
+					<c:url value="reviewWrite" var="writeUrl">
+						<c:param name="brandCode" value="${menuVo.brandDto.brandCode}"/>
+						<c:param name="menuCode" value="${menuVo.menuDto.menuCode}"/>
+						<c:param name="menuName" value="${menuVo.menuDto.menuName}" />
+					</c:url>
+					<a href="${writeUrl}">상품 리뷰</a>
+					--%>
 					<%--
 					<c:out value="리뷰개수: ${menuVo.brandDto.brandName}" />
 					 --%>
