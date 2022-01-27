@@ -6,9 +6,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>메인화면</title>
+<script src="js/jquery-3.4.1.min.js"></script>
 </head>
 <body>
-	<div align="center">
+<div align="center">
 		<h1>환영합니다. ${memberDTO.memberName}</h1>
 <form name="paging">
 
@@ -33,9 +34,10 @@
 
 <input type="hidden" name="adminCode" /> 
 <a href='Notice'>공지사항</a> <br>	
-<a href='Question'>Q . A</a> 
-<br>
 
+<a href="Question">Q . A</a> 
+<input type="hidden" id="memberCode" />
+<br>
 <a href="GifticonList">기프티콘</a>
 </form>
 		<a href="menu">메뉴</a><br> <a href="brand">브랜드</a><br>

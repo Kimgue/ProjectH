@@ -6,6 +6,7 @@ public class Question {
 	private String qstnCode;
 	private String qstnTitle;
 	private String qstnContent;
+	private String qstnImg;
 	private String qstnDate;
 	private String qstnConfirm;
 	public String getMemberCode() {
@@ -23,14 +24,22 @@ public class Question {
 	public String getQstnTitle() {
 		return qstnTitle;
 	}
+	
 	public void setQstnTitle(String qstnTitle) {
 		this.qstnTitle = qstnTitle;
 	}
+	
 	public String getQstnContent() {
 		return qstnContent;
 	}
 	public void setQstnContent(String qstnContent) {
 		this.qstnContent = qstnContent;
+	}
+	public String getQstnImg() {
+		return qstnImg;
+	}
+	public void setQstnImg(String qstnImg) {
+		this.qstnImg = qstnImg;
 	}
 	public String getQstnDate() {
 		return qstnDate;

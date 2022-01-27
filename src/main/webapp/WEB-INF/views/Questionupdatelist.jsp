@@ -68,6 +68,7 @@ input {
 							<tr>
 								<td>
 									<label for="qstnContent">내용 : </label><textarea id="qstnContent" name="qstnContent" >${ sltOne.qstnContent } </textarea>
+									<input type="hidden" id="qstnImg" name="qstnImg" value="${sltOne.qstnImg }" />
 								</td>
 							</tr>
 							<tr>

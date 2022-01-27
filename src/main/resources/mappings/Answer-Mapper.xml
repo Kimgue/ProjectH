@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hungpick.dao.IDaoAnswer"> <!-- "<" 는 문법오류나서  "<![CDATA[ < ]]>" 이렇게 해야한다. -->
+
+	<select id="sltOneNoice" parameterType="String" resultType="answerDto">
+		SELECT * 
+		FROM 
+		ANSWER
+		WHERE ADMIN_CODE = #{ adminCode } AND
+		NOTICE_CODE = #{ noticeCode } 
+		
+	</select>
+	<resultMap type="answerDto" id="answerDtoRm">
+	<id column="MEMBER_CODE" property="memberCode"/>
+    <id column="QSTN_CODE" property="qstnCode"/>
+    <id column="ANSWER_CODE" property="answerCode"/>
+    <id column="ADMIN_CODE" property="adminCode"/>
+    <result column="ANSWER_CONTENT" property="answerContent"/>
+    <result column="ANSWER_DATE" property="answerDate"/>
+	</resultMap>
+	
+	<resultMap type="adminDto" id="adminDtoRm">
+	<id column="ADMIN_Code" property="adminCode"/>
+    <result column="ADMIN_ID" property="adminId"/>
+    <result column="ADMIN_PW" property="adminPw"/>
+    <result column="ADMIN_NAME" property="adminName"/>
+	</resultMap>
+ 
+	<resultMap type="qesDto" id="QuestionRm">
+	<id column="Member_Code" property="memberCode"/>
+	<id column="QSTN_CODE" property="qstnCode"/>
+    <result column="QSTN_TITLE" property="qstnTitle"/>
+    <result column="QSTN_CONTENT" property="qstnContent"/>
+    <result column="QSTN_DATE" property="qstnDate"/>
+    <result column="QSTN_CONFIRM" property="qstnConfirm"/>
+
+	</resultMap>
+	
+		
+	<select id="answerCode" resultType="answerDto">
+		SELECT DISTINCT ANSWER_CODE FROM ANSWER   WHERE  ANSWER_CODE = #{answerCode}
+	</select>
+		
+	
+	
+	<insert id="insert" parameterType="answerDto">
+		INSERT INTO ANSWER VALUES ( #{ memberCode }, #{qstnCode}, ANSWER_SEQ.NEXTVAL, #{ adminCode }, #{ answerContetn }, TO_DATE( #{noticeDate} ,'YYYY-MM-DD HH24:MI:SS') )
+	</insert>
+
+	<update id="update" parameterType="answerDto">
+		UPDATE ANSWER SET ANSWER_CONTENT = #{ answerContent },  ANSWER_DATE = TO_DATE( #{noticeDate} ,'YYYY-MM-DD HH24:MI:SS') 
+		WHERE MEMBER_CODE = #{memberCode} AND QSTN_CODE = #{ qstnCode } 
+		AND   ANSWER_CODE = #{answerCode} AND ADMIN_CODE = #{adminCode}
+	</update>
+
+	<delete id="delete">
+		DELETE FROM ANSWER WHERE MEMBER_CODE = #{memberCode} AND QSTN_CODE = #{ qstnCode } 
+		AND   ANSWER_CODE = #{answerCode} AND ADMIN_CODE = #{adminCode}
+	</delete>
+
+</mapper>

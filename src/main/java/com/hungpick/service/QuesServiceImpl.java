@@ -52,6 +52,7 @@ public class QuesServiceImpl implements IQuestionSerivce{
 		String Bcode = qes.getQstnCode();
 		String titl = qes.getQstnTitle();
 		String cn = qes.getQstnContent();
+		String img = qes.getQstnImg();
 		String date = qes.getQstnDate();
 		String confirm = qes.getQstnConfirm();
 		
@@ -62,6 +63,7 @@ public class QuesServiceImpl implements IQuestionSerivce{
 		logger.info("입력한 NAME : {}", Bcode);
 		logger.info("입력한 EMAIL : {}", titl);
 		logger.info("입력한 TEL : {}", cn);
+		logger.info("입력한 TEL : {}", img);
 		logger.info("입력한 WEIGHT : {}", date);
 		logger.info("입력한 confrim : {}", confirm);
 		
@@ -79,6 +81,7 @@ public class QuesServiceImpl implements IQuestionSerivce{
 		String Bcode = qes.getQstnCode();
 		String titl = qes.getQstnTitle();
 		String cn = qes.getQstnContent();
+		String img = qes.getQstnImg();
 		String date = qes.getQstnDate();
 		String confirm = qes.getQstnConfirm();
 		
@@ -87,6 +90,7 @@ public class QuesServiceImpl implements IQuestionSerivce{
 		logger.info("입력한 NAME : {}", Bcode);
 		logger.info("입력한 EMAIL : {}", titl);
 		logger.info("입력한 TEL : {}", cn);
+		logger.info("입력한 TEL : {}", img);
 		logger.info("입력한 WEIGHT : {}", date);
 		logger.info("입력한 confrim : {}", confirm);
 		

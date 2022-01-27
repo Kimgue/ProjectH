@@ -23,6 +23,7 @@
 		<typeAlias type="com.hungpick.dto.Gifticon" alias="gift"></typeAlias> 
 		<typeAlias type="com.hungpick.dto.ReviewRankingVo" alias="reviewRankingVo"></typeAlias> 
 		<typeAlias type="com.hungpick.dto.QuestionVo" alias="questionVo"></typeAlias>
+		<typeAlias type="com.hungpick.dto.AnswerDto" alias="answerDto"></typeAlias>
 	</typeAliases>
 	
 	
