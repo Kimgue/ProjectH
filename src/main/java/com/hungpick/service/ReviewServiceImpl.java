@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hungpick.dao.IReviewDao;
+import com.hungpick.dto.ReviewDto;
 import com.hungpick.dto.ReviewRankingVo;
 import com.hungpick.dto.ReviewVo;
 
@@ -52,4 +53,12 @@ public class ReviewServiceImpl implements IReviewService {
 		return reviewDao.sltReviewRanking();
 	}
 
+	//리뷰 작성하기
+	@Override
+	public ReviewDto insertReview(ReviewDto reviewDto) {
+		
+		return reviewDao.insertReview(reviewDto);
+	}
+	
+	
 }
