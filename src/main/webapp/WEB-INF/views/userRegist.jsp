@@ -170,7 +170,7 @@
 		
 		/* --------------- 전화번호 검사 --------------- */
 		$("#memberNumber").blur(function() {
-			var number = $("#memberNumber").val();
+			var number = $( "#memberNumber").val();
 
 			// 입력여부 검사
 			if (number == "") {
