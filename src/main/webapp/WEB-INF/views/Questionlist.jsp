@@ -49,15 +49,14 @@ table {
 <body>
 	<form name="paging">
 		<H4>Q.A</H4>
-		<table border="1">
+		<table style="text-align: center; border: 1px solid #ddddd">
 
 			<thead>
 				<tr>
-					<th width='50'>번호</th>
-					<th width='200'>제목</th>
-					<th width='130'>작성자</th>
-					<th width='250'>작성일</th>
-
+					<th style="background-color:#fafafa; text-align:center;">번호</th>
+					<th style="background-color:#fafafa; text-align:center;">제목</th>
+					<th style="background-color:#fafafa; text-align:center;">작성자</th>
+					<th style="background-color:#fafafa; text-align:center;">작성일</th>
 				</tr>
 			</thead>
 			<c:forEach var="list" items="${ listpage }">

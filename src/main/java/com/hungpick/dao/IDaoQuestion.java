@@ -28,6 +28,6 @@ public interface IDaoQuestion {
 	
 	public int listCount()throws Exception;
 	
-	
+	void updateanswer(@Param("memberCode")String memberCode,@Param("qstnCode")String qstnCode);
 	
 }

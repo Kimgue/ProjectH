@@ -144,6 +144,8 @@ public class UserController {
 
 		return "Questionlist";
 	}
+	
+	
 
 	@RequestMapping("view1")
 	public String view1(Model model, @RequestParam("memberCode") String memberCode,

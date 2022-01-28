@@ -4,7 +4,7 @@
 
 <mapper namespace="com.hungpick.dao.IDaoAnswer"> <!-- "<" 는 문법오류나서  "<![CDATA[ < ]]>" 이렇게 해야한다. -->
 
-	<select id="sltOneNoice" parameterType="String" resultType="answerDto">
+	<select id="selectOne" parameterType="String" resultType="answerDto">
 		SELECT * 
 		FROM 
 		ANSWER
@@ -21,13 +21,13 @@
     <result column="ANSWER_DATE" property="answerDate"/>
 	</resultMap>
 	
-	<resultMap type="adminDto" id="adminDtoRm">
+	<!--  <resultMap type="adminDto" id="adminDtoRm">
 	<id column="ADMIN_Code" property="adminCode"/>
     <result column="ADMIN_ID" property="adminId"/>
     <result column="ADMIN_PW" property="adminPw"/>
     <result column="ADMIN_NAME" property="adminName"/>
 	</resultMap>
- 
+ -->
 	<resultMap type="qesDto" id="QuestionRm">
 	<id column="Member_Code" property="memberCode"/>
 	<id column="QSTN_CODE" property="qstnCode"/>

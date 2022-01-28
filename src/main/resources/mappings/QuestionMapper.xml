@@ -81,6 +81,10 @@
 	<update id="update" parameterType="qesDto">
 		UPDATE QUESTION SET QSTN_TITLE = #{ qstnTitle }, QSTN_CONTENT = #{ qstnContent } , QSTN_DATE = TO_DATE( #{qstnDate} ,'YYYY-MM-DD HH24:MI:SS'), QSTN_CONFIRM = #{qstnConfirm}, QSTN_IMG = #{qstnImg} WHERE MEMBER_CODE = #{ memberCode } AND QSTN_CODE = #{ qstnCode }  
 	</update>
+	
+	<update id="updateanswer" parameterType="qesDto">
+		UPDATE QUESTION SET   QSTN_CONFIRM = #{qstnConfirm} WHERE MEMBER_CODE = #{ memberCode } AND QSTN_CODE = #{ qstnCode }  
+	</update>
 
 	<delete id="delete">
 		DELETE FROM QUESTION WHERE MEMBER_CODE = #{memberCode } AND QSTN_CODE = #{ qstnCode }
