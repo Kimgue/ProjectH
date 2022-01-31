@@ -26,6 +26,7 @@ hr {
 			<td width=80>리뷰날짜</td>
 			<td width=150>내용</td>
 			<td width=120>상세리뷰</td>
+			<td width=120>리뷰 작성</td>
 	
 		</tr>
 		<c:forEach var="review" items="${review}">
@@ -42,24 +43,16 @@ hr {
 				<c:param name="memberCode" value="${review.reviewDto.memberCode}" />
 				</c:url>
 				<td><a href="${lookupUrl}">상세 리뷰 보기</a></td>
+				<c:url value="reviewWrite" var="wirteUrl">
+				<c:param name="brandCode" value="${review.reviewDto.brandCode}"/>
+				<c:param name="menuCode" value="${review.reviewDto.menuCode}" />
+				<c:param name="menuName" value="${menuName}" />
+				</c:url>
+				<td><a href="${writeUrl}">리뷰 작성하기</a></td>
 			</tr>
 		</c:forEach>
 		</table>	
 		<hr>
-		리뷰 작성하기
-		<table border="1">
-		<tr>
-			<td width=50>닉네임</td>
-			<td width=40>점수</td>
-			<td width=150>내용</td>
-		</tr>
-		<tr>
-			<td><input type="text" id="memberNickname"></td><%-- 세션받아서 닉네임 설정해야함 --%>
-			<td><input type="text" id="reviewScore"></td><%-- 리뷰 점수 css로 별점화 해야함 --%>
-			<td><input type="text" id="reviewContent"></td><%-- 리뷰내용 --%>
-		</tr>
-		</table>
-		<button onclick="">작성</button>
 </div>
 </body>
 </html>

@@ -15,17 +15,17 @@ hr {
 <body>
 	<div align="center">
 		<h1>메뉴</h1>
-		<br> <a href="">메인 페이지로</a><br> 검색하고 싶은 메뉴 이름을 써주세요 <br>
+		<br> <a href="">메인 페이지로</a><br> 검색하고 싶은 메뉴 조건을 입력해주세요.<br>
 		<form action="menuResult" method="post">
 			<%-- 체크박스일 경우 값들을 배열로 받아서 처리해야함 --%>
 			<br> 브랜드<br> <input type='radio' name='brandName'
 				value='맥도날드' />맥도날드 <input type='radio' name='brandName'
 				value='롯데리아' />롯데리아 <br>
-			<br> 최대가격<br> <input type='number' name='menuPrice' min='0'
-				max='100000' /> <br>
 			<br> 좋아하는 패티<br> <input type='radio' name='menuIngredients'
 				value='고기' />고기 <input type='radio' name='menuIngredients'
-				value='새우' />새우 <br>
+				value='새우' />새우 <br>	
+			<br> 최대가격<br> <input type='number' name='menuPrice' min='0'
+				max='100000' /> <br>
 			<br> 이름<br> <input type="text" name="menuName"> <input
 				type="submit" value="검색">
 		</form>

@@ -1,6 +1,8 @@
 package com.hungpick.controller;
 
 import java.util.List;
+
+
 import java.util.Random;
 
 import javax.servlet.http.HttpSession;
@@ -8,8 +10,8 @@ import javax.servlet.http.HttpSession;
 import org.apache.ibatis.annotations.Param;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
+//import org.springframework.mail.SimpleMailMessage;
+//import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -23,8 +25,8 @@ import com.hungpick.service.IUserService;
 @Controller
 public class UserController3 {
 
-	@Autowired
-	private JavaMailSender mailSender;
+//	@Autowired
+//	private JavaMailSender mailSender;
 
 	@Autowired
 	private IUserService userService;
@@ -183,43 +185,43 @@ public class UserController3 {
 		return jsonOut;
 	}
 
-	@RequestMapping("CheckMail.do")
-	@ResponseBody
-	public String SendMail(@ModelAttribute("mail") String mail, HttpSession session) throws Exception {
-		System.out.println("확인전");
-		String chkEmail = userService.checkEmail(mail);
-		System.out.println("확인 결과 : " + chkEmail);
-
-		boolean chkEmailBool = false;
-		JSONObject jsonObj = new JSONObject();
-
-		if (chkEmail.equals("0")) {
-			chkEmailBool = true;
-			Random random = new Random();
-			String key = "";
-
-			SimpleMailMessage message = new SimpleMailMessage();
-
-			message.setTo(mail); // 스크립트에서 보낸 메일을 받을 사용자 이메일 주소
-
-			// 입력 키를 위한 코드
-			int numIndex = random.nextInt(899999) + 100000;
-			key += numIndex;
-
-			message.setSubject("인증번호 입력을 위한 메일 전송");
-			message.setText("인증 번호 : " + key);
-
-			mailSender.send(message);
-
-			jsonObj.put("key", key);
-			jsonObj.put("result", chkEmailBool);
-			String jsonOut = jsonObj.toString();
-			return jsonOut;
-		} else {
-			jsonObj.put("result", chkEmailBool);
-			String jsonOut = jsonObj.toString();
-			return jsonOut;
-		}
-
-	}
+//	@RequestMapping("CheckMail.do")
+//	@ResponseBody
+//	public String SendMail(@ModelAttribute("mail") String mail, HttpSession session) throws Exception {
+//		System.out.println("확인전");
+//		String chkEmail = userService.checkEmail(mail);
+//		System.out.println("확인 결과 : " + chkEmail);
+//
+//		boolean chkEmailBool = false;
+//		JSONObject jsonObj = new JSONObject();
+//
+//		if (chkEmail.equals("0")) {
+//			chkEmailBool = true;
+//			Random random = new Random();
+//			String key = "";
+//
+//			SimpleMailMessage message = new SimpleMailMessage();
+//
+//			message.setTo(mail); // 스크립트에서 보낸 메일을 받을 사용자 이메일 주소
+//
+//			// 입력 키를 위한 코드
+//			int numIndex = random.nextInt(899999) + 100000;
+//			key += numIndex;
+//
+//			message.setSubject("인증번호 입력을 위한 메일 전송");
+//			message.setText("인증 번호 : " + key);
+//
+//			mailSender.send(message);
+//
+//			jsonObj.put("key", key);
+//			jsonObj.put("result", chkEmailBool);
+//			String jsonOut = jsonObj.toString();
+//			return jsonOut;
+//		} else {
+//			jsonObj.put("result", chkEmailBool);
+//			String jsonOut = jsonObj.toString();
+//			return jsonOut;
+//		}
+//
+//	}
 }
