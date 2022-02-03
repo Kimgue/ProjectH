@@ -4,20 +4,29 @@
 
 <mapper namespace="com.hungpick.dao.IDaoQuestion"> <!-- "<" 는 문법오류나서  "<![CDATA[ < ]]>" 이렇게 해야한다. -->
 
-	<select id="sltOne" parameterType="String" resultType="qesDto">
-		SELECT * 
-		FROM 
-		QUESTION
-		WHERE MEMBER_CODE = #{ memberCode } AND
-		QSTN_CODE = #{ qstnCode  } 
-		
-	</select>
+		 <select id="sltOne" parameterType="String" resultType="qesDto">
+			SELECT * 
+			FROM 
+			QUESTION
+			WHERE MEMBER_CODE = #{ memberCode } AND
+			QSTN_CODE = #{ qstnCode  } 
+			</select>
 	
-	<select id="listCount" resultType="int">
+	<select id="answerCount" resultType="int" parameterType="String">
 	<![CDATA[
 		SELECT COUNT(QSTN_CODE)
 		  FROM QUESTION
-		 WHERE QSTN_CODE > 0
+		 WHERE QSTN_CODE > 0 
+	]]>
+	</select>
+	
+	<select id="listCount" resultType="int" parameterType="String">
+	<![CDATA[
+		SELECT COUNT(QSTN_CODE)
+		  FROM QUESTION
+		 WHERE QSTN_CODE > 0 
+		 AND 
+		 MEMBER_CODE = #{ memberCode }
 	]]>
 	</select>
 	
@@ -60,7 +69,6 @@
 		AND #{ cri.rowEnd } 
 		AND MEMBER_CODE = #{ memberCode }
 		ORDER BY QSTN_CODE DESC
-
 	</select>
 	
 	<select id="OneMemberCode" resultType="qesDto" parameterType="String">
@@ -69,6 +77,14 @@
 	
 	<select id="MemberCode" resultType="qesDto" parameterType="String">
 		SELECT  DISTINCT MEMBER_CODE FROM QUESTION WHERE MEMBER_CODE = #{ memberCode }
+	</select>
+	
+	<select id="selectN" resultType="qesDto" parameterType="Criteria">
+		SELECT *  FROM (SELECT ROW_NUMBER() OVER (ORDER BY QSTN_CODE DESC) 
+		NUM, A.* FROM QUESTION A ORDER BY QSTN_CODE DESC)
+		WHERE NUM BETWEEN #{rowStart} AND #{rowEnd}
+		AND QSTN_CONFIRM = 'n'
+		ORDER BY QSTN_CODE DESC
 	</select>
 	
 	 <!-- 게시판 글 작성 -->
@@ -83,7 +99,7 @@
 	</update>
 	
 	<update id="updateanswer" parameterType="qesDto">
-		UPDATE QUESTION SET   QSTN_CONFIRM = #{qstnConfirm} WHERE MEMBER_CODE = #{ memberCode } AND QSTN_CODE = #{ qstnCode }  
+		UPDATE QUESTION SET   QSTN_CONFIRM = 'y' WHERE MEMBER_CODE = #{ memberCode } AND QSTN_CODE = #{ qstnCode }  
 	</update>
 
 	<delete id="delete">

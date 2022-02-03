@@ -14,7 +14,7 @@ public interface IQuestionSerivce {
 	
 	Question sltOne(@Param("memberCode")String memberCode,@Param("qstnCode")String qstnCode); // 단건조회
 
-	List<QuestionVo> listPage( @Param("cri")Criteria cri,@Param("memberCode")String memberCode) throws Exception;/// 회원 목록 page
+	List<QuestionVo> listPage(@Param("cri")Criteria cri,@Param("memberCode")String memberCode) throws Exception;/// 회원 목록 page
 
 	void insert(Question qes) throws Exception; // Q&A 입력
 
@@ -26,10 +26,10 @@ public interface IQuestionSerivce {
 	
 	Question MemberCode(@Param("memberCode")String memberCode); // 회원코드로 회원코드만 조회
 	
-	public int listCount()throws Exception;
+	public int listCount(@Param("memberCode")String memberCode)throws Exception;
 
 
+	List<Question> selectN(@Param("cri")Criteria cri);
 
-
-	
+	public int answerCount();
 }

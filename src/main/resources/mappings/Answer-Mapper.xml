@@ -4,15 +4,8 @@
 
 <mapper namespace="com.hungpick.dao.IDaoAnswer"> <!-- "<" 는 문법오류나서  "<![CDATA[ < ]]>" 이렇게 해야한다. -->
 
-	<select id="selectOne" parameterType="String" resultType="answerDto">
-		SELECT * 
-		FROM 
-		ANSWER
-		WHERE ADMIN_CODE = #{ adminCode } AND
-		NOTICE_CODE = #{ noticeCode } 
-		
-	</select>
-	<resultMap type="answerDto" id="answerDtoRm">
+	
+	<resultMap type="answerDto" id="AnswerDtoRm">
 	<id column="MEMBER_CODE" property="memberCode"/>
     <id column="QSTN_CODE" property="qstnCode"/>
     <id column="ANSWER_CODE" property="answerCode"/>
@@ -38,6 +31,26 @@
 
 	</resultMap>
 	
+	<resultMap type="answerVo" id="AnswerVoRm">
+		<collection property="answerDto" resultMap="AnswerDtoRm"></collection >
+        <collection property="qesDto" resultMap="QuestionRm"></collection >
+	</resultMap>
+	
+	<select id="selectOne" parameterType="String" resultType="answerDto">
+		SELECT * 
+		FROM 
+		ANSWER
+		WHERE MEMBER_CODE = #{ memberCode } 
+	</select>
+	
+	
+	
+	<select id="selectN" resultMap="AnswerVoRm">
+		SELECT q.* FROM QUESTION q
+		FULL OUTER 
+		JOIN ANSWER a
+		ON a.MEMBER_CODE = q.MEMBER_CODE
+	</select>
 		
 	<select id="answerCode" resultType="answerDto">
 		SELECT DISTINCT ANSWER_CODE FROM ANSWER   WHERE  ANSWER_CODE = #{answerCode}
@@ -55,9 +68,6 @@
 		AND   ANSWER_CODE = #{answerCode} AND ADMIN_CODE = #{adminCode}
 	</update>
 
-	<delete id="delete">
-		DELETE FROM ANSWER WHERE MEMBER_CODE = #{memberCode} AND QSTN_CODE = #{ qstnCode } 
-		AND   ANSWER_CODE = #{answerCode} AND ADMIN_CODE = #{adminCode}
-	</delete>
+	
 
 </mapper>

@@ -38,6 +38,8 @@
 <input type="hidden" id="memberCode" />
 <br>
 <a href="GifticonList">기프티콘</a>
+<br>
+<a href="Nconfirm">Q.A 답변확인</a>
 </form>
 		<a href="menu">메뉴</a><br> <a href="brand">브랜드</a><br>
 	</div>

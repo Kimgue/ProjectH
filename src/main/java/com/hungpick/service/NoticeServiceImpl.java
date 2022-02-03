@@ -27,17 +27,20 @@ public class NoticeServiceImpl implements INoticeService {
 		return daoNotice.noticeCode(adminCode);
 	}
 	
-	@Override
+	
+	 @Override
 	public List<Notice> listPage(Criteria cri) throws Exception {
 		
 		List<Notice> list = daoNotice.listPage(cri);
 		
 		return list;
 	}
-
+	
+	
+	
 	
 	@Override
-	public void insert(Notice noti) throws Exception {
+	public void insert(Notice noti)throws Exception {
 
 		Notice check = daoNotice.sltOneNoice(noti.getAdminCode(),  noti.getNoticeCode());
 		

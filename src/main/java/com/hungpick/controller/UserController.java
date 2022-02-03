@@ -1,14 +1,11 @@
 
+
 package com.hungpick.controller;
 
-import java.io.File;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.annotations.Param;
@@ -20,13 +17,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.hungpick.dto.Criteria;
 import com.hungpick.dto.Notice;
 import com.hungpick.dto.PageMaker;
 import com.hungpick.dto.Question;
 import com.hungpick.dto.QuestionVo;
+import com.hungpick.service.IAnswerService;
 import com.hungpick.service.IGifticonService;
 import com.hungpick.service.INoticeService;
 import com.hungpick.service.IQuestionSerivce;
@@ -43,74 +40,14 @@ public class UserController {
 	@Autowired
 	private IGifticonService gifticon;
 	
+	@Autowired
+	private IAnswerService answer;
+ 	
 	
 
 
 	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
-	private String path = "G:\\rbtjd\\WebProject\\src\\main\\webapp\\resources\\images\\Q&AImg";
-
-	@RequestMapping("/form")
-	public String form() {
-		return "form";
-	}
-
-	@RequestMapping("result")
-	public String result(@RequestParam("file1") MultipartFile multi,HttpServletRequest request, HttpServletResponse response, Model model) {
-		String url = null;
-		System.out.println("확인");
-		try {
-
-			// String uploadpath = request.getServletContext().getRealPath(path);
-			String uploadpath = path;
-			String originFilename = multi.getOriginalFilename();
-			String extName = originFilename.substring(originFilename.lastIndexOf("."), originFilename.length());
-			long size = multi.getSize();
-			String saveFileName = genSaveFileName(extName);
-
-			System.out.println("uploadpath : " + uploadpath);
-
-			System.out.println("originFilename : " + originFilename);
-			System.out.println("extensionName : " + extName);
-			System.out.println("size : " + size);
-			System.out.println("saveFileName : " + saveFileName);
-
-			if (!multi.isEmpty()) {
-				System.out.println("gdgd");
-				File file = new File(uploadpath, multi.getOriginalFilename());
-				System.out.println("1 : " + file);
-				multi.transferTo(file);
-				System.out.println("2 : " + file);
-
-				model.addAttribute("filename", multi.getOriginalFilename());
-				System.out.println("3 : " + file);
-				model.addAttribute("uploadPath", file.getAbsolutePath());
-				System.out.println("4 : " + file);
-
-				return "filelist";
-			}
-		} catch (Exception e) {
-			System.out.println(e);
-		}
-		return "redirect:form";
-	}
-
-	// 현재 시간을 기준으로 파일 이름 생성
-	private String genSaveFileName(String extName) {
-		String fileName = "";
-
-		Calendar calendar = Calendar.getInstance();
-		fileName += calendar.get(Calendar.YEAR);
-		fileName += calendar.get(Calendar.MONTH);
-		fileName += calendar.get(Calendar.DATE);
-		fileName += calendar.get(Calendar.HOUR);
-		fileName += calendar.get(Calendar.MINUTE);
-		fileName += calendar.get(Calendar.SECOND);
-		fileName += calendar.get(Calendar.MILLISECOND);
-		fileName += extName;
-
-		return fileName;
-	}
 
 	@RequestMapping(value = "/")
 	public String home(Model model, String memberCode) {
@@ -125,14 +62,22 @@ public class UserController {
 
 		logger.info("Q&A called ========== ");
 
+		/*	
+		json 객체 만드는 
+	 	JSONObject jsonObj = new JSONObject();
+		jsonObj.put("list", list);
+		String jsonOut = jsonObj.toString();
+		System.out.println(jsonOut);
+		*/
+		
 		memberCode = (String) session.getAttribute("memberCode");
-		System.out.println("코드 : " + memberCode);
-
+	
 		List<QuestionVo> list = question.listPage(cri, memberCode);
+	
 		System.out.println(list);
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
-		pageMaker.setTotalCount(question.listCount());
+		pageMaker.setTotalCount(question.listCount(memberCode));
 		int currentPage = cri.getPage();
 
 		Question member = question.MemberCode(memberCode);
@@ -193,7 +138,7 @@ public class UserController {
 		List<QuestionVo> list = question.listPage(cri, memberCode);
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
-		pageMaker.setTotalCount(question.listCount());
+		pageMaker.setTotalCount(question.listCount(memberCode));
 		int currentPage = cri.getPage();
 
 		model.addAttribute("pageMaker", pageMaker);
@@ -217,7 +162,7 @@ public class UserController {
 		List<QuestionVo> list = question.listPage(cri, memberCode);
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
-		pageMaker.setTotalCount(question.listCount());
+		pageMaker.setTotalCount(question.listCount(memberCode));
 		int currentPage = cri.getPage();
 
 		model.addAttribute("pageMaker", pageMaker);
@@ -240,7 +185,7 @@ public class UserController {
 		List<QuestionVo> list = question.listPage(cri, memberCode);
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
-		pageMaker.setTotalCount(question.listCount());
+		pageMaker.setTotalCount(question.listCount(memberCode));
 		int currentPage = cri.getPage();
 
 		model.addAttribute("pageMaker", pageMaker);
@@ -257,12 +202,15 @@ public class UserController {
 
 	// ----------------------------------------공지사항-----------------------------//
 
+	@SuppressWarnings("unused")
 	@RequestMapping("Notice")
 	public String listPage(Model model, @Param("adminCode") String adminCode, String noticeCode,
 			@ModelAttribute("cri") Criteria cri, HttpSession session) throws Exception {
 		logger.info("get list page");
-		System.out.println(session.getAttribute("memberCode"));
-
+		String memberCode = (String) session.getAttribute("memberCode");
+		/*String adminCode = (String) session.getAttribute("adminCode");*/
+		
+		
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(notice.listCount());
@@ -273,9 +221,18 @@ public class UserController {
 		model.addAttribute("noticecode", notice.noticeCode(adminCode));
 		model.addAttribute("pageMaker", pageMaker);
 		model.addAttribute("currentPage", currentPage);
+		
 
-		return "NoticeSWD";
-
+		
+		if( memberCode != null || memberCode == null)
+		{
+			return "NoticePage";
+		}
+		else
+			
+			return "NoticeSWD";
+			
+			
 	}
 
 	@RequestMapping("NoticeMember")
@@ -409,5 +366,42 @@ public class UserController {
 
 		return "GifticonList";
 	}
-
+	
+	//------------------------------answer-------------------------------
+	
+	@RequestMapping("Nconfirm")
+	public String selectconfirm(Model model, @ModelAttribute("cri") Criteria cri)throws Exception
+	{
+		
+		
+		model.addAttribute("list", question.selectN(cri));
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(question.answerCount());
+		int currentPage = cri.getPage();
+		model.addAttribute("pageMaker", pageMaker);
+		model.addAttribute("currentPage", currentPage);
+		
+		return "answerconfirmList";
+		
+	}
+	@RequestMapping("reply")
+	public String reply(Model model,String memberCode,String qstnCode) 
+	{
+		model.addAttribute("sltOne", question.sltOne(memberCode, qstnCode));
+		System.out.println(answer);
+		
+		/*
+		  <select id="sltOne" parameterType="String" resultType="qesDto">
+			SELECT * 
+			FROM 
+			QUESTION
+			WHERE MEMBER_CODE = #{ memberCode } AND
+			QSTN_CODE = #{ qstnCode  } 
+			</select>
+		 
+		 */
+		return "answerview";
+		
+	}
 }

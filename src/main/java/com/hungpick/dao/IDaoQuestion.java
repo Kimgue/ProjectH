@@ -26,8 +26,11 @@ public interface IDaoQuestion {
 	
 	Question MemberCode(@Param("memberCode")String memberCode);
 	
-	public int listCount()throws Exception;
+	public int listCount(@Param("memberCode")String memberCode)throws Exception;
 	
 	void updateanswer(@Param("memberCode")String memberCode,@Param("qstnCode")String qstnCode);
 	
+	List<Question> selectN(Criteria cri);
+	
+	public int answerCount();
 }
