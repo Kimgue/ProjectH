@@ -4,15 +4,13 @@
 
 <mapper namespace="com.hungpick.dao.IDaoQuestion"> <!-- "<" 는 문법오류나서  "<![CDATA[ < ]]>" 이렇게 해야한다. -->
 
-		<select id="sltOne" resultMap="QuestionVoRm" parameterType="Criteria">
-		SELECT  * FROM (   
-		SELECT   ROW_NUMBER() OVER(ORDER BY QSTN_CODE DESC)
-		 NUM, A.* FROM QUESTION A 
-         ORDER BY QSTN_CODE)  
-		WHERE NUM BETWEEN #{ rowStart }
-		AND #{ rowEnd } 
-		ORDER BY QSTN_CODE DESC
-	</select>
+		 <select id="sltOne" parameterType="String" resultType="qesDto">
+			SELECT * 
+			FROM 
+			QUESTION
+			WHERE MEMBER_CODE = #{ memberCode } AND
+			QSTN_CODE = #{ qstnCode  } 
+			</select>
 	
 	<select id="answerCount" resultType="int" parameterType="String">
 	<![CDATA[
