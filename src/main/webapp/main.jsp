@@ -13,7 +13,6 @@
 		<h1>환영합니다. ${memberDTO.memberName}</h1>
 <form name="paging">
 
-			<!-- 김혜성 수정함 -->
 			<a href="userView">회원조회</a><br>
 			<c:if test="${empty memberDTO}">
 				<a href="userLogin">로그인</a>
