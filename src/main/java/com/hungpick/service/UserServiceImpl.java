@@ -1,6 +1,5 @@
 package com.hungpick.service;
 
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -8,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 
 import com.hungpick.dao.IUserDao;
 import com.hungpick.dao.IUserDaoHist;
@@ -21,50 +21,84 @@ public class UserServiceImpl implements IUserService {
 
 	@Autowired
 	private IUserDaoHist userDaoHist;
-
-	// 단건조회
-	@Override
-	public UserDto sltSearch(String memberCode) throws Exception {
-		return userDao.sltSearch(memberCode);
-	}
-
+	
 	// 다건조회
 	@Override
-	public List<UserDto> sltMulti(UserDto Dto) throws Exception {
-		return userDao.sltMulti(Dto);
+	public String sltMulti(UserDto Dto, Model model) throws Exception {
+		List<UserDto> list = userDao.sltMulti(Dto);
+		model.addAttribute("LIST", list);
+		
+		return "userView";
 	}
 
 	// 회원가입
 	@Override
 	@Transactional
 	public String userRegist(UserDto Dto) throws Exception {
-		System.out.println("이메일 : " + Dto.getMemberEmail());
 		userDao.userRegist(Dto);
 		userDaoHist.userRegistHist("Insert " + Dto.toString());
-		return "redirect:/userView";
+		
+		return "userRegistSubmit";
 	}
-
+	
+	// 회원탈퇴
 	@Override
-	public UserDto userLogin(String memberId, String memberPw) throws Exception {
-		return userDao.userLogin(memberId, memberPw);
+	public String userDelete(String memberId, String memberPw) throws Exception {
+		userDao.userDelete(memberId, memberPw);
+		
+		return "userDelete";
 	}
 
+	// 로그인
+	@Override
+	public String userLogin(String memberId, String memberPw, HttpSession session) throws Exception {
+		UserDto Dto = userDao.userLogin(memberId, memberPw);
+		
+		if(Dto != null) {
+			session.setAttribute("memberDTO", Dto);
+//			session.setAttribute("memberCode", Dto.getMemberCode());
+//			session.setAttribute("memberId", Dto.getMemberId());
+//			session.setAttribute("memberPw", Dto.getMemberPw());
+//			session.setAttribute("memberName", Dto.getMemberName());
+//			session.setAttribute("memberNickname", Dto.getMemberNickname());
+//			session.setAttribute("memberNumber", Dto.getMemberNumber());
+//			session.setAttribute("memberEmail", Dto.getMemberEmail());
+//			session.setAttribute("memberDate", Dto.getMemberDate());
+//			session.setAttribute("holdPoint", Dto.getHoldPoint());
+			return "redirect:/main.jsp";
+		} else {
+			return "userLogin";			
+		}
+	}
+	
+	// 로그아웃
+	@Override
+	public String userLogout(HttpSession session) throws Exception {
+		session.invalidate();
+		return "redirect:/main.jsp";
+		
+	}
+	
+	// 아이디 찾기
+	@Override
+	public UserDto findId(String memberName, String memberEmail) throws Exception {
+		return userDao.findId(memberName, memberEmail);
+	}
+
+	// 비밀번호 찾기
+	@Override
+	public UserDto findPw(String memberId) throws Exception {
+		return userDao.findPw(memberId);
+	}
+
+	
+	
+	/* ---------------------------- Ajax 사용 ---------------------------- */
+	
 	// ID 중복검사
 	@Override
 	public String checkId(String memberId) throws Exception {
 		return userDao.checkId(memberId);
-	}
-
-	// 로그아웃
-	@Override
-	public void userLogout(HttpSession session) throws Exception {
-		session.invalidate();
-	}
-
-	// 회원탈퇴
-	@Override
-	public void userDelete(String memberId, String memberPw) throws Exception {
-		userDao.userDelete(memberId, memberPw);
 	}
 
 	// PW 검사
@@ -75,8 +109,9 @@ public class UserServiceImpl implements IUserService {
 
 	// 정보수정
 	@Override
-	public void userUpdate(UserDto Dto) throws Exception {
-		userDao.userUpdate(Dto);
+	public String userUpdate(UserDto Dto) throws Exception {
+
+		return userDao.userUpdate(Dto); 
 	}
 
 	// 닉네임 중복검사
@@ -91,9 +126,12 @@ public class UserServiceImpl implements IUserService {
 		return userDao.checkEmail(memberEmail);
 	}
 
+	// 전화번호 중복검사
 	@Override
 	public String checkNumber(String memberNumber) throws Exception {
 		return userDao.checkNumber(memberNumber);
 	}
+
+
 
 }

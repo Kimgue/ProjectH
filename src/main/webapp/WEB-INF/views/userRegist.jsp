@@ -17,8 +17,7 @@
 		var pw = $("#memberPw").val();
 		var name = $("#memberName").val();
 		var nickname = $("#memberNickname").val();
-		var mail = $(".mail").val(); 
-		var domain = $(".domain").val(); 
+		var mail = $(".mail").val();
 		var number = $("#memberNumber").val();
 		
 		if(id == "") {
@@ -46,11 +45,6 @@
 			$("#resultEmail").text("이메일을 입력해주세요").css("color", "red");
 			return;
 		}
-		if(domain == "") {
-			$("#memberEmail").focus();
-			$("#resultEmail").text("이메일을 입력해주세요").css("color", "red");
-			return;
-		}
 		if(number == "") {
 			$("#memberNumber").focus();
 			$("#resultNumber").text("전화번호를 입력해주세요").css("color", "red");
@@ -58,7 +52,6 @@
 		}
 		
 		if(checkId == true && checkNickname == true && checkEmail == true && checkNumber == true) {
-			$("#memberEmail").val(mail+"@"+domain); 
 			$("#go_join").submit();
 		} else {
 			return;
@@ -71,12 +64,10 @@
 		/* --------------- 이메일 검사 --------------- */
 		$(".sendMail").click(function() {
 			var mail = $(".mail").val(); 
-			var domain = $(".domain").val();
 			
-			if (mail == "" || domain == "") {
+			if (mail == "") {
 				$("#resultEmail").text("이메일을 입력해주세요").css("color", "red");
 			} else {
-				mail = mail+"@"+$(".domain").val();
 				
 				var url = "CheckMail.do";
 				
@@ -86,7 +77,6 @@
 					if(json.result == true) {
 						$("#resultEmail").text("인증번호가 전송되었습니다").css("color", "blue");
 						$(".mailNum").show();
-						$(".domain").prop("readonly",true);
 						$(".mail").prop("readonly",true);
 						isCertification=true;
 						
@@ -232,7 +222,6 @@
 			<tr>
 				<td width=100>이메일</td>
 				<td><input type="text" name="memberEmail" class="mail" id="memberEmail">
-					@<input type="text" class="domain">
 					<button type="button" class="sendMail">인증</button>
 					<div id="resultEmail"></div>
 					<div class="mailNum">

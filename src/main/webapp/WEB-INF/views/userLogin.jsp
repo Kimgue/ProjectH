@@ -22,7 +22,9 @@
 		</table>
 		<h1>${loginNotice}</h1>
 		<input type="submit" value="로그인">
-		<input type="button" value="회원가입" onClick="location.href='userRegist'">
+		<input type="button" value="회원가입" onClick="location.href='userRegist'"><br><br>
+		<input type="button" value="아이디 찾기" onClick="location.href='userFindId'">
+		<input type="button" value="비밀번호 찾기" onClick="location.href='userFindPw'">
 	</form>
 </body>
 </html>
