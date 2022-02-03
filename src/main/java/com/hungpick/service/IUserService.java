@@ -49,7 +49,7 @@ public interface IUserService {
 	/*---------------- Ajax 사용 ----------------*/
 	
 	// 정보수정
-	public String userUpdate(UserDto Dto) throws Exception;
+	public void userUpdate(UserDto Dto) throws Exception;
 	
 	// ID 중복검사
 	public String checkId(String memberId) throws Exception;

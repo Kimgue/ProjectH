@@ -14,7 +14,7 @@ public interface IUserDao {
 	List<UserDto> sltMulti(UserDto Dto) throws Exception;
 	
 	// 정보수정
-	String userUpdate(UserDto Dto) throws Exception;
+	void userUpdate(UserDto Dto) throws Exception;
 	
 	// 회원가입
 	void userRegist(UserDto Dto) throws Exception;

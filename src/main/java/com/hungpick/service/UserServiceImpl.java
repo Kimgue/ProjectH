@@ -38,7 +38,7 @@ public class UserServiceImpl implements IUserService {
 		userDao.userRegist(Dto);
 		userDaoHist.userRegistHist("Insert " + Dto.toString());
 		
-		return "userRegistSubmit";
+		return "redirect:/main.jsp";
 	}
 	
 	// 회원탈퇴
@@ -56,15 +56,15 @@ public class UserServiceImpl implements IUserService {
 		
 		if(Dto != null) {
 			session.setAttribute("memberDTO", Dto);
-//			session.setAttribute("memberCode", Dto.getMemberCode());
-//			session.setAttribute("memberId", Dto.getMemberId());
-//			session.setAttribute("memberPw", Dto.getMemberPw());
-//			session.setAttribute("memberName", Dto.getMemberName());
-//			session.setAttribute("memberNickname", Dto.getMemberNickname());
-//			session.setAttribute("memberNumber", Dto.getMemberNumber());
-//			session.setAttribute("memberEmail", Dto.getMemberEmail());
-//			session.setAttribute("memberDate", Dto.getMemberDate());
-//			session.setAttribute("holdPoint", Dto.getHoldPoint());
+			session.setAttribute("memberCode", Dto.getMemberCode());
+			session.setAttribute("memberId", Dto.getMemberId());
+			session.setAttribute("memberPw", Dto.getMemberPw());
+			session.setAttribute("memberName", Dto.getMemberName());
+			session.setAttribute("memberNickname", Dto.getMemberNickname());
+			session.setAttribute("memberNumber", Dto.getMemberNumber());
+			session.setAttribute("memberEmail", Dto.getMemberEmail());
+			session.setAttribute("memberDate", Dto.getMemberDate());
+			session.setAttribute("holdPoint", Dto.getHoldPoint());
 			return "redirect:/main.jsp";
 		} else {
 			return "userLogin";			
@@ -79,45 +79,30 @@ public class UserServiceImpl implements IUserService {
 		
 	}
 	
-	// 아이디 찾기
-	@Override
-	public UserDto findId(String memberName, String memberEmail) throws Exception {
-		return userDao.findId(memberName, memberEmail);
-	}
-
-	// 비밀번호 찾기
-	@Override
-	public UserDto findPw(String memberId) throws Exception {
-		return userDao.findPw(memberId);
-	}
-
-	
-	
 	/* ---------------------------- Ajax 사용 ---------------------------- */
 	
-	// ID 중복검사
+	// 아이디 중복검사
 	@Override
 	public String checkId(String memberId) throws Exception {
 		return userDao.checkId(memberId);
 	}
 
-	// PW 검사
+	// 비밀번호 검사
 	@Override
 	public UserDto checkPw(String inputPw) throws Exception {
 		return userDao.checkPw(inputPw);
-	}
-
-	// 정보수정
-	@Override
-	public String userUpdate(UserDto Dto) throws Exception {
-
-		return userDao.userUpdate(Dto); 
 	}
 
 	// 닉네임 중복검사
 	@Override
 	public String checkNickname(String memberNickname) throws Exception {
 		return userDao.checkNickname(memberNickname);
+	}
+	
+	// 닉네임 수정
+	@Override
+	public void userUpdate(UserDto Dto) throws Exception {
+		userDao.userUpdate(Dto); 
 	}
 
 	// 이메일 중복검사
@@ -132,6 +117,16 @@ public class UserServiceImpl implements IUserService {
 		return userDao.checkNumber(memberNumber);
 	}
 
+	// 아이디 찾기
+	@Override
+	public UserDto findId(String memberName, String memberEmail) throws Exception {
+		return userDao.findId(memberName, memberEmail);
+	}
 
+	// 비밀번호 찾기
+	@Override
+	public UserDto findPw(String memberId) throws Exception {
+		return userDao.findPw(memberId);
+	}
 
 }
