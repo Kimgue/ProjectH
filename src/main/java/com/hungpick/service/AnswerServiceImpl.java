@@ -1,15 +1,19 @@
 package com.hungpick.service;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.hungpick.dao.IDaoAnswer;
 import com.hungpick.dao.IDaoQuestion;
 import com.hungpick.dto.AnswerDto;
+import com.hungpick.dto.AnswerVo;
 
-
+@Service("answer")
 public class AnswerServiceImpl implements IAnswerService {
 	
 	@Autowired
@@ -25,6 +29,7 @@ public class AnswerServiceImpl implements IAnswerService {
 		
 		return daoanswer.selectOne(memberCode, qstnCode);
 	}
+	
 
 	@Override
 	@Transactional 
@@ -65,6 +70,13 @@ public class AnswerServiceImpl implements IAnswerService {
 	public void delete(String memberCode, String qstnCode, int answerCode, String adminCode) {
 		// TODO Auto-generated method stub
 
+	}
+
+
+	@Override
+	public List<AnswerVo> selectN() {
+		
+		return daoanswer.selectN();
 	}
 
 }

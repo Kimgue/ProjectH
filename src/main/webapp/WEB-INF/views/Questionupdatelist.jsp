@@ -95,7 +95,7 @@ input {
 		<div id="reply">	
 			<h3>관리자 댓글</h3>
   				<ol >
-    				<c:forEach items="" var="replyList">
+    			<c:forEach items="" var="replyList">
      			 <li>
        				 <p>
        				 작성자 :<br /><br />

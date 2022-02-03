@@ -136,9 +136,21 @@ public class QuesServiceImpl implements IQuestionSerivce{
 	}
 
 	@Override
-	public int listCount() throws Exception {
+	public int listCount(@Param("memberCode")String memberCode) throws Exception {
 		
-		return daoQes.listCount();
+		return daoQes.listCount(memberCode);
+	}
+
+	@Override
+	public List<Question> selectN(@Param("cri")Criteria cri) {
+		// TODO Auto-generated method stub
+		return daoQes.selectN(cri);
+	}
+
+	@Override
+	public int answerCount() {
+		// TODO Auto-generated method stub
+		return daoQes.answerCount();
 	}
 
 	
