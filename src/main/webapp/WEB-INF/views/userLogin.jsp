@@ -20,7 +20,7 @@
 				<td><input type="password" id="memberPw" name="memberPw"></td>
 			</tr>
 		</table>
-		<h1>${loginNotice}</h1>
+		<p>${loginNotice}<p>
 		<input type="submit" value="로그인">
 		<input type="button" value="회원가입" onClick="location.href='userRegist'"><br><br>
 		<input type="button" value="아이디 찾기" onClick="location.href='userFindId'">
