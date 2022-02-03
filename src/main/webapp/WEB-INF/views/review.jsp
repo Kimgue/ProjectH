@@ -43,7 +43,8 @@ hr {
 				<c:param name="memberCode" value="${review.reviewDto.memberCode}" />
 				</c:url>
 				<td><a href="${lookupUrl}">상세 리뷰 보기</a></td>
-				<c:url value="reviewWrite" var="wirteUrl">
+				
+				<c:url value="reviewWrite" var="writeUrl">
 				<c:param name="brandCode" value="${review.reviewDto.brandCode}"/>
 				<c:param name="menuCode" value="${review.reviewDto.menuCode}" />
 				<c:param name="menuName" value="${menuName}" />

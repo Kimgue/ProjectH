@@ -15,7 +15,7 @@ public class ReviewDto {
 	private String reviewImg2;
 	private String reviewConfirm;
 	private int earnPoint;
-	private String earnDatePoint;
+	private Date earnDatePoint;
 	
 	public String getBrandCode() {
 		return brandCode;
@@ -83,12 +83,13 @@ public class ReviewDto {
 	public void setEarnPoint(int earnPoint) {
 		this.earnPoint = earnPoint;
 	}
-	public String getEarnDatePoint() {
+	public Date getEarnDatePoint() {
 		return earnDatePoint;
 	}
-	public void setEarnDatePoint(String earnDatePoint) {
+	public void setEarnDatePoint(Date earnDatePoint) {
 		this.earnDatePoint = earnDatePoint;
 	}
+
 
 
 

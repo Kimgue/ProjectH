@@ -29,6 +29,8 @@ public class ReviewServiceImpl implements IReviewService {
 			@Param(value = "menuCode") String menuCode
 			) {
 		
+		logger.info("sltReviewList called =========");
+		
 		return reviewDao.sltReviewList(brandCode, menuCode);
 	}
 
@@ -41,6 +43,8 @@ public class ReviewServiceImpl implements IReviewService {
 			@Param(value = "memberCode") String memberCode
 			) {
 		
+		logger.info("sltLookUp called =========");
+		
 		return reviewDao.sltLookUp(brandCode, menuCode, reviewCode, memberCode);
 	}
 
@@ -48,6 +52,8 @@ public class ReviewServiceImpl implements IReviewService {
 	//전체 상품 리뷰점수 순위 보기
 	@Override
 	public List<ReviewRankingVo> sltReviewRanking() {
+		
+		logger.info("sltReviewRanking called =========");
 		
 		return reviewDao.sltReviewRanking();
 	}
@@ -64,6 +70,8 @@ public class ReviewServiceImpl implements IReviewService {
 			@Param(value = "reviewImg2") String reviewImg2
 			) {
 			
+		logger.info("insertReview called =========");
+		
 			return reviewDao.insertReview(brandCode, menuCode, memberCode, reviewScore, reviewContent, reviewImg1, reviewImg2);
 					
 	}
