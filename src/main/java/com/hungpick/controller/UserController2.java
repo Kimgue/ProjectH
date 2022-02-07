@@ -3,7 +3,7 @@ package com.hungpick.controller;
 
 
 import java.util.List;
-
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hungpick.dto.MenuVo;
 import com.hungpick.dto.ReviewRankingVo;
@@ -60,18 +59,18 @@ public class UserController2 {
 	}
 	
 	//메뉴 조건검색한 페이지
-	@ResponseBody
 	@RequestMapping(value="menuResult", method=RequestMethod.POST, produces = "application/json; charset=utf8")
-	public void menuVo(
-			@RequestParam(required = false) String brandName,
-			@RequestParam(required = false) String menuPrice, 
-			@RequestParam(required = false) String menuIngredients,
-			@RequestParam(required = false) String menuName, 
+	public void menuVo(@RequestBody Map<String,String> map,
 			Model model) throws Exception {
 		
 		logger.info("menuVo called ========");
+		String brandName = map.get("brandName");
+		String menuIngredients = map.get("menuIngredients");
+		String menuPrice = map.get("menuPrice");
+		String menuName = map.get("menuName");
 		
 		List<MenuVo> list = menuService.sltSearch(brandName, menuPrice, menuIngredients, menuName);
+		
 		String ResultMsg;
 		if (list.size() > 0) {
 			ResultMsg = "정상 조회되었습니다.";
