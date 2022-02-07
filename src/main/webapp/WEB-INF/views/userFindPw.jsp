@@ -43,6 +43,7 @@
 <body>
 	<h2>비밀번호 찾기</h2>
 	비밀번호를 찾고자 하는 아이디를 입력해주세요
+	<h1>${wrongNotice}</h1>
 	<form id="find_pw" action="FindPwSubmit" method="post">
 		<input type="text" id="memberId" name="memberId">
 		<input type="button" value="확인" onclick="find_pw()">
