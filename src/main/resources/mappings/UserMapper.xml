@@ -76,11 +76,7 @@
 	<select id="checkPw" resultType="userDto">
 		SELECT * FROM MEMBERS WHERE MEMBER_PW = #{memberPw}
 	</select>
-	
-	<!-- 회원탈퇴 -->
-	<delete id="userDelete">
-		DELETE FROM MEMBERS WHERE MEMBER_ID = #{memberId} AND MEMBER_PW = #{memberPw}
-	</delete>
+
 	
 	<!-- 정보수정 -->
 	<update id="userUpdate">
@@ -101,5 +97,10 @@
 	<update id="ChangePw">
 		UPDATE MEMBERS SET MEMBER_PW = #{memberPw} WHERE MEMBER_ID = #{memberId}
 	</update>
+	
+	<!-- 회원탈퇴 -->
+	<delete id="userDelete">
+		DELETE FROM MEMBERS WHERE MEMBER_CODE = #{memberCode}
+	</delete>
 
 </mapper>

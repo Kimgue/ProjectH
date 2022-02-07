@@ -44,13 +44,6 @@ public class UserServiceImpl implements IUserService {
 		return "redirect:/main.jsp";
 	}
 	
-	// 회원탈퇴
-	@Override
-	public String userDelete(String memberId, String memberPw) throws Exception {
-		userDao.userDelete(memberId, memberPw);
-		
-		return "userDelete";
-	}
 
 	// 로그인
 	@Override
@@ -149,11 +142,16 @@ public class UserServiceImpl implements IUserService {
 	@Override
 	public String userUpdatePw(String memberName, String memberEmail, HttpSession session) throws Exception {
 		UserDto Dto = userDao.findPw(memberName, memberEmail);
-		
-		if(session.getAttribute("memberId").equals(Dto.getMemberId()) == true) {
-			return "userFindPwResult";
-		}
-		else {
+
+		if(Dto != null) {
+			if(session.getAttribute("memberId").equals(Dto.getMemberId()) == true) {
+				return "userFindPwResult";
+			} else {
+				session.setAttribute("wrongNotice", "입력한 아이디와 정보가 일치하지 않습니다");
+				session.setMaxInactiveInterval(1);
+				return "redirect:/userFindPw";
+			}
+		} else {
 			session.setAttribute("wrongNotice", "입력한 아이디와 정보가 일치하지 않습니다");
 			session.setMaxInactiveInterval(1);
 			return "redirect:/userFindPw";
@@ -167,6 +165,14 @@ public class UserServiceImpl implements IUserService {
 		userDao.ChangePw(Dto);
 		session.invalidate();
 		return "userLogin";
+	}
+
+	@Override
+	public String userDelete(UserDto Dto, HttpSession session) throws Exception {
+		String Code = (String) session.getAttribute("memberCode");
+		Dto.setMemberCode(Code);
+		userDao.userDelete(Dto);
+		return "userDeleteFinish";
 	}
 
 

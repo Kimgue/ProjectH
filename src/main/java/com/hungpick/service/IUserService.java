@@ -42,7 +42,7 @@ public interface IUserService {
 	public String userLogin(@Param("memberId") String memberId, @Param("memberPw") String memberPw, HttpSession session) throws Exception;
 	
 	// 회원탈퇴
-	public String userDelete(@Param("memberId") String memberId, @Param("memberPw") String memberPw) throws Exception;
+	public String userDelete(UserDto Dto, HttpSession session) throws Exception;
 	
 	
 	

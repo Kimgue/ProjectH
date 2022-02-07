@@ -45,5 +45,5 @@ public interface IUserDao {
 	String checkNumber(String memberNumber) throws Exception;
 
 	// 회원탈퇴
-	void userDelete(@Param("memberId") String memberId, @Param("memberPw") String memberPw) throws Exception;
+	void userDelete(UserDto Dto) throws Exception;
 }

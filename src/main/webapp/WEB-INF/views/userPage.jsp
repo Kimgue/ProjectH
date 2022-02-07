@@ -7,6 +7,8 @@
 <title>마이페이지</title>
 <script src="js/jquery-3.4.1.min.js"></script>
 <script>
+	var nickNameCheck = RegExp(/^[가-힣a-zA-Z0-9]{2,10}$/);
+	
 	$(document).ready(
 			function() {
 				/* --------------- 초기설정 --------------- */
@@ -34,8 +36,7 @@
 						function() {
 							var checkPw = $("#userDeleteInput").val();
 							if (checkPw == "") {
-								$("#userDeleteText").text("잘못된 비밀번호입니다").css(
-										"color", "red");
+								$("#userDeleteText").text("잘못된 비밀번호입니다").css("color", "red");
 								$("#userDeleteInput").focus();
 								return false;
 							}
@@ -77,24 +78,29 @@
 
 					// 입력여부 검사
 					if (nickname == "") {
+						alert("닉네임을 입력해주세요");
 						return false;
+					} else if(nickNameCheck.test($('#editNicknameInput').val())) {
+						var url = "chkNickname.do";
+
+						// get 방식 ajax 연동
+						$.getJSON(url, {
+							"nickname" : nickname
+						}, function(json) {
+							var result_text = json.result;
+							var result = eval(result_text);
+
+							if (result) {
+								$("#editNicknameInput").val("");
+								location.reload();
+							} else {
+								alert("이미 존재하는 닉네임입니다");
+							}
+						});
+					} else {
+						alert("형식에 맞지 않는 닉네임입니다");
 					}
-					var url = "chkNickname.do";
 
-					// get 방식 ajax 연동
-					$.getJSON(url, {
-						"nickname" : nickname
-					}, function(json) {
-						var result_text = json.result;
-						var result = eval(result_text);
-
-						if (result) {
-							$("#editNicknameInput").val("");
-							location.reload();
-						} else {
-							alert("이미 존재하는 닉네임입니다");
-						}
-					});
 				});
 
 				/* --------------- 이메일 수정 --------------- */
@@ -112,7 +118,7 @@
 </head>
 <body>
 	<h2>마이페이지</h2>
-	<table border="1" bordercolor="blue" width="500" height="300">
+	<table border="1">
 		<tr>
 			<td>ID
 			<td>${memberDTO.memberId}</td>
@@ -155,12 +161,7 @@
 		</tr>
 	</table>
 
-	<button type="button" id="userDelete">회원탈퇴</button>
-	<br>
-	<p class="userDeleteGroup" id="userDeleteText"></p>
-	<input type="password" class="userDeleteGroup" id="userDeleteInput">
-	<button type="button" class="userDeleteGroup" id="userDeleteBtn">확인</button>
-	<br>
+	<input type="button" value="회원탈퇴"  onClick="location.href='userDelete'">
 	<a href="userLogout">로그아웃</a>
 	<br>
 </body>

@@ -53,6 +53,16 @@ public class UserController3 {
 	public void userLogin() {
 	}
 	
+	/*--------------------- 회원탈퇴 페이지로 이동 ---------------------*/
+	@RequestMapping("userDelete")
+	public void userDelete() {
+	}
+	
+	/*--------------------- 회원탈퇴완료 페이지로 이동 ---------------------*/
+	@RequestMapping("userDeleteFinish")
+	public void userDeleteFinish() {
+	}
+	
 	
 	
 	
@@ -85,9 +95,9 @@ public class UserController3 {
 	}
 
 	/*--------------------- 회원탈퇴 시도했을 때 ---------------------*/
-	@RequestMapping("userDelete")
-	public String userDelete(@Param("memberId") String memberId, @Param("memberPw") String memberPw) throws Exception {
-		String view = userService.userDelete(memberId, memberPw);
+	@RequestMapping("userDeleteSubmit")
+	public String userDeleteSubmit(UserDto Dto, HttpSession session) throws Exception {
+		String view = userService.userDelete(Dto, session);
 		return view;
 	}
 	

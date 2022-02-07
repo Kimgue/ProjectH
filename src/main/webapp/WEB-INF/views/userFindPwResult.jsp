@@ -7,6 +7,7 @@
 <title>아이디 찾기</title>
 <script src="js/jquery-3.4.1.min.js"></script>
 <script>
+	var passwdCheck = RegExp(/^[A-Za-z0-9]{8,16}$/);
 
 $(document).ready(function(){
 
@@ -15,7 +16,7 @@ $(document).ready(function(){
 		var pwchk = $("#memberPwChk").val();
 		
 		if(pw == pwchk) {
-			$("#text").text("").css("color", "red");
+			$("#text").text("");
 		} else {
 			$("#text").text("비밀번호가 다릅니다. 올바른 비밀번호를 입력해주세요").css("color", "red");
 		}
@@ -30,7 +31,12 @@ function find_pw() {
 		alert("변경할 비밀번호를 입력해주세요");
 		return;
 	} else if(pw == pwchk){
-		$("#find_pw").submit();
+		if(passwdCheck.test($('#memberPw').val())) {
+			$("#find_pw").submit();
+		} else {
+			alert("형식에 맞지않는 비밀번호입니다");
+		}
+
 	} else {
 		alert("변경할 비밀번호가 다릅니다");
 		return;
