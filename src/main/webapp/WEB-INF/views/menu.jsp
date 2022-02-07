@@ -6,6 +6,41 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>메뉴 소개</title>
+<script src="js/jquery-3.4.1.min.js"></script>
+<script>
+function getMenuResult(){
+	 
+    var formData = JSON.stringify($("form[name='menuResult']").serializeArray());
+	
+    if(formData != null && formData !=''){
+    	alert(formData);
+    } else{
+    	alert("json null");
+    };
+    
+    $.ajax({
+    	  type: "POST",
+    	  url: "menuResult",
+    	  data: formData,
+    	  error: function(){
+              alert("안됨");
+          },
+    	  success: function(){
+    		  alert(json)
+              $("#container").load('menuResult.jsp')
+    		  
+    	  },
+    	  dataType: "json",
+    	  contentType : "application/json"
+    	});
+};
+
+$(document).ready(function(){
+    $("input[type='submit']").click(function() {
+    	getMenuResult();
+    });
+});
+</script>
 <style>
 hr {  
   width: 400px;
@@ -16,20 +51,23 @@ hr {
 	<div align="center">
 		<h1>메뉴</h1>
 		<br> <a href="">메인 페이지로</a><br> 검색하고 싶은 메뉴 조건을 입력해주세요.<br>
-		<form action="menuResult" method="post">
+		<form name="menuResult" method="post">
 			<%-- 체크박스일 경우 값들을 배열로 받아서 처리해야함 --%>
-			<br> 브랜드<br> <input type='radio' name='brandName'
-				value='맥도날드' />맥도날드 <input type='radio' name='brandName'
-				value='롯데리아' />롯데리아 <br>
-			<br> 좋아하는 패티<br> <input type='radio' name='menuIngredients'
-				value='고기' />고기 <input type='radio' name='menuIngredients'
-				value='새우' />새우 <br>	
-			<br> 최대가격<br> <input type='number' name='menuPrice' min='0'
-				max='100000' /> <br>
-			<br> 이름<br> <input type="text" name="menuName"> <input
-				type="submit" value="검색">
+			<br> 브랜드<br> 
+			<input type='radio' name='brandName' value='맥도날드' />맥도날드
+			<input type='radio' name='brandName' value='롯데리아' />롯데리아 <br>
+			<br> 좋아하는 패티<br> 
+			<input type='radio' name='menuIngredients' value='고기' />고기 
+			<input type='radio' name='menuIngredients' value='새우' />새우 <br>	
+			<br> 최대가격<br>
+			<input type='number' name='menuPrice' min='0' max='100000' /> <br>
+			<br> 이름<br>
+			<input type="text" name="menuName">
+			 
+			<input type="submit" value="검색">
 		</form>
 		<hr>
+		<div id=container>
 		<h4>메뉴 리뷰 점수순위</h4>
 		<c:forEach var="rank" items="${ reviewRanking }">
 			<c:set var="i" value="${i+1}"/>
@@ -60,6 +98,7 @@ hr {
 			</p>
 			<hr>
 		</c:forEach>
+		</div>
 	</div>
 </body>
 </html>

@@ -4,6 +4,7 @@ package com.hungpick.controller;
 
 import java.util.List;
 
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -12,8 +13,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hungpick.dto.MenuVo;
 import com.hungpick.dto.ReviewRankingVo;
@@ -56,14 +60,17 @@ public class UserController2 {
 	}
 	
 	//메뉴 조건검색한 페이지
-	@RequestMapping("menuResult")
+	@ResponseBody
+	@RequestMapping(value="menuResult", method=RequestMethod.POST, produces = "application/json; charset=utf8")
 	public void menuVo(
 			@RequestParam(required = false) String brandName,
 			@RequestParam(required = false) String menuPrice, 
 			@RequestParam(required = false) String menuIngredients,
 			@RequestParam(required = false) String menuName, 
 			Model model) throws Exception {
+		
 		logger.info("menuVo called ========");
+		
 		List<MenuVo> list = menuService.sltSearch(brandName, menuPrice, menuIngredients, menuName);
 		String ResultMsg;
 		if (list.size() > 0) {
@@ -144,7 +151,7 @@ public class UserController2 {
 		
 		reviewService.insertReview(brandCode, menuCode, memberCode, reviewScore, reviewContent, reviewImg1, reviewImg2);
 
-		logger.info("reviewWrite called =======");
+		logger.info("reviewWriteSubmit called =======");
 		
 		
 		return "review";

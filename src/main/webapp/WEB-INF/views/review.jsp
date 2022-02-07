@@ -25,9 +25,7 @@ hr {
 			<td width=40>점수</td>
 			<td width=80>리뷰날짜</td>
 			<td width=150>내용</td>
-			<td width=120>상세리뷰</td>
-			<td width=120>리뷰 작성</td>
-	
+			<td width=120>상세리뷰</td>	
 		</tr>
 		<c:forEach var="review" items="${review}">
 			<tr>
@@ -43,14 +41,14 @@ hr {
 				<c:param name="memberCode" value="${review.reviewDto.memberCode}" />
 				</c:url>
 				<td><a href="${lookupUrl}">상세 리뷰 보기</a></td>
-				
-				<c:url value="reviewWrite" var="writeUrl">
+			</tr>
+			<c:url value="reviewWrite" var="writeUrl">
 				<c:param name="brandCode" value="${review.reviewDto.brandCode}"/>
 				<c:param name="menuCode" value="${review.reviewDto.menuCode}" />
 				<c:param name="menuName" value="${menuName}" />
-				</c:url>
-				<td><a href="${writeUrl}">리뷰 작성하기</a></td>
-			</tr>
+			</c:url>
+		<a href="${writeUrl}">리뷰 작성하기</a>
+		<br>
 		</c:forEach>
 		</table>	
 		<hr>
