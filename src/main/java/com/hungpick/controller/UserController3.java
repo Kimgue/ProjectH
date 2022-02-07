@@ -1,5 +1,6 @@
 package com.hungpick.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.annotations.Param;
@@ -93,17 +94,28 @@ public class UserController3 {
 	/*--------------------- 아이디 찾기 눌렀을 때 ---------------------*/
 	@RequestMapping("FindIdSubmit")
 	public String userFindId(@Param("memberName") String memberName, @Param("memberEmail") String memberEmail, Model model) throws Exception {
-		UserDto Dto = userService.findId(memberName, memberEmail);
-		model.addAttribute("findId", Dto.getMemberId());
-
-		return "userFindIdResult";
+		String view = userService.findId(memberName, memberEmail, model);
+		return view;
 	}
 
-	/*--------------------- 비밀번호 찾기 눌렀을 때 ---------------------*/
+	/*--------------------- 비밀번호 찾기 (아이디 확인) ---------------------*/
 	@RequestMapping("FindPwSubmit")
-	public String userFindPwSubmit(String memberId, Model model) throws Exception {
-		UserDto Dto = userService.findPw(memberId);
-		System.out.println("확인 : " + Dto);
-		return "userFindPwResult";
+	public String userFindPwSubmit(String memberId, HttpSession session) throws Exception {
+		String view = userService.findPw(memberId, session);
+		return view;
+	}
+	
+	/*--------------------- 비밀번호 찾기 (이름과 이메일 확인) ---------------------*/
+	@RequestMapping("FindPwUpdate")
+	public String userFindPwUpdate(String memberName, String memberEmail, HttpSession session) throws Exception {
+		String view = userService.userUpdatePw(memberName, memberEmail, session);
+		return view;
+	}
+	
+	/*--------------------- 비밀번호 찾기 (비밀번호 변경) ---------------------*/
+	@RequestMapping("ChangePw")
+	public String ChangePw(UserDto Dto, HttpSession session) throws Exception {
+		String view = userService.ChangePw(Dto, session);
+		return view;
 	}
 }

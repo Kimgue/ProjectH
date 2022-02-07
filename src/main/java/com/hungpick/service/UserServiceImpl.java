@@ -2,12 +2,15 @@ package com.hungpick.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.hungpick.dao.IUserDao;
 import com.hungpick.dao.IUserDaoHist;
@@ -122,14 +125,49 @@ public class UserServiceImpl implements IUserService {
 
 	// 아이디 찾기
 	@Override
-	public UserDto findId(String memberName, String memberEmail) throws Exception {
-		return userDao.findId(memberName, memberEmail);
+	public String findId(String memberName, String memberEmail, Model model) throws Exception {
+		UserDto Dto = userDao.findId(memberName, memberEmail);
+		
+		if(Dto == null) {
+			model.addAttribute("userFindId","입력한 정보에 일치하는 아이디가 존재하지 않습니다");
+			return "userFindIdResult";
+		} else {
+			model.addAttribute("userFindId","입력한 정보에 일치하는 아이디는 " + Dto.getMemberId() + " 입니다");
+			return "userFindIdResult";
+		}
 	}
 
 	// 비밀번호 찾기
 	@Override
-	public UserDto findPw(String memberId) throws Exception {
-		return userDao.findPw(memberId);
+	public String findPw(String memberId, HttpSession session) throws Exception {
+		session.setAttribute("memberId", memberId);
+		return "userFindPwProcess";
+		// 비밀번호 찾기 전 아이디를 먼저 검색함
 	}
+
+	// 비밀번호 변경
+	@Override
+	public String userUpdatePw(String memberName, String memberEmail, HttpSession session) throws Exception {
+		UserDto Dto = userDao.findPw(memberName, memberEmail);
+		
+		if(session.getAttribute("memberId").equals(Dto.getMemberId()) == true) {
+			return "userFindPwResult";
+		}
+		else {
+			session.setAttribute("wrongNotice", "입력한 아이디와 정보가 일치하지 않습니다");
+			session.setMaxInactiveInterval(1);
+			return "redirect:/userFindPw";
+		}
+	}
+
+	@Override
+	public String ChangePw(UserDto Dto, HttpSession session) throws Exception {
+		String Id = (String) session.getAttribute("memberId");
+		Dto.setMemberId(Id);
+		userDao.ChangePw(Dto);
+		session.invalidate();
+		return "userLogin";
+	}
+
 
 }
