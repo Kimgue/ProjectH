@@ -1,5 +1,6 @@
 package com.hungpick.controller;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.annotations.Param;
@@ -123,8 +124,8 @@ public class UserController3 {
 	
 	/*--------------------- 비밀번호 찾기 (비밀번호 변경) ---------------------*/
 	@RequestMapping("userFindPwUpdate")
-	public String userFindPwUpdate(UserDto Dto, HttpSession session) throws Exception {
-		String view = userService.ChangePw(Dto, session);
+	public String userFindPwUpdate(UserDto Dto, HttpSession session, HttpServletResponse response) throws Exception {
+		String view = userService.ChangePw(Dto, session, response);
 		return view;
 	}
 }

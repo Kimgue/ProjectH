@@ -1,5 +1,6 @@
 package com.hungpick.service;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.annotations.Param;
@@ -35,7 +36,7 @@ public interface IUserService {
 	public String userUpdatePw(@Param("memberName") String memberName, @Param("memberEmail") String memberEmail, HttpSession session) throws Exception;
 	
 	// 비밀번호 변경
-	public String ChangePw(UserDto Dto, HttpSession session) throws Exception;
+	public String ChangePw(UserDto Dto, HttpSession session, HttpServletResponse response) throws Exception;
 
 	// 로그인
 	public String userLogin(@Param("memberId") String memberId, @Param("memberPw") String memberPw, HttpSession session) throws Exception;

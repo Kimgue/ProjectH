@@ -1,7 +1,9 @@
 package com.hungpick.service;
 
+import java.io.PrintWriter;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -139,9 +141,9 @@ public class UserServiceImpl implements IUserService {
 	@Override
 	public String userUpdatePw(String memberName, String memberEmail, HttpSession session) throws Exception {
 		UserDto Dto = userDao.findPw(memberName, memberEmail);
-
 		if(Dto != null) {
 			if(session.getAttribute("memberId").equals(Dto.getMemberId()) == true) {
+				session.setAttribute("memberPw", Dto.getMemberPw());
 				return "userFindPwComplete";
 			} else {
 				session.setAttribute("wrongNotice", "입력한 아이디와 정보가 일치하지 않습니다");
@@ -156,12 +158,26 @@ public class UserServiceImpl implements IUserService {
 	}
 
 	@Override
-	public String ChangePw(UserDto Dto, HttpSession session) throws Exception {
+	public String ChangePw(UserDto Dto, HttpSession session, HttpServletResponse response) throws Exception {
 		String Id = (String) session.getAttribute("memberId");
-		Dto.setMemberId(Id);
-		userDao.ChangePw(Dto);
-		session.invalidate();
-		return "userLogin";
+		String Pw = (String) session.getAttribute("memberPw");
+		
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		
+		if(Pw.equals(Dto.getMemberPw()) != true) {
+			Dto.setMemberId(Id);
+			userDao.ChangePw(Dto);
+			session.invalidate();
+			return "userLogin";
+		} else {
+			out.println("<script language='javascript'>");
+			out.println("alert('변경하려는 비밀번호가 현재 비밀번호와 같습니다')");
+			out.println("</script>");
+			out.flush();
+			return "userFindPwComplete";
+		}
+		
 	}
 
 	@Override

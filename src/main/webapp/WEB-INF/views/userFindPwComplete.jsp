@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" session="false" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -22,7 +22,7 @@
 			}
 		});
 	});
-		
+	
 	function FindPw() {
 		var pw = $("#memberPw").val();
 		var pwchk = $("#memberPwChk").val();
@@ -32,7 +32,6 @@
 			return;
 		} else if(pw == pwchk){
 			if(passwdCheck.test($('#memberPw').val())) {
-				alert("비밀번호가 변경되었습니다");
 				$("#FindPw").submit();
 			} else {
 				$("#text").text("형식에 맞지않는 비밀번호입니다").css("color", "red");
@@ -59,8 +58,6 @@
 		<div id="text"></div>
 		<input type="button" value="비밀번호 변경" onclick="FindPw()">
 		<input type="button" value="아이디 찾기" onClick="location.href='userFindId'">
-
-		
 	</form>
 </body>
 </html>
