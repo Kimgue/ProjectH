@@ -10,36 +10,51 @@
 <script>
 function getMenuResult(){
 	 
-    var formData = JSON.stringify($("form[name='menuResult']").serializeArray());
+	 var brandname = $("input[name='brandName']").val();
+	 var menuIngredients = $("input[name='menuIngredients']").val();
+	 var menuPrice = $("input[name='menuPrice']").val();
+	 var menuName = $("input[name='menuName']").val();
+	 
+	    if(brandname.trim() =='' && menuIngredients.trim()==''  
+	    		&& menuPrice.trim()=='' && menuName.trim()==''){
+	        alert('검색 조건을 입력해주세요')
+	        return;}
+	    //서버로 보낼 데이터 준비 : 파라미터로 만들기 . json 으로 만들기
 	
-    if(formData != null && formData !=''){
-    	alert(formData);
-    } else{
-    	alert("json null");
-    };
+	
+    var formData = JSON.stringify($("#menuSearch").serializeArray());
     
     $.ajax({
     	  type: "POST",
     	  url: "menuResult",
     	  data: formData,
-    	  error: function(){
-              alert("안됨");
-          },
-    	  success: function(){
-    		  alert(json)
-              $("#container").load('menuResult.jsp')
-    		  
-    	  },
     	  dataType: "json",
-    	  contentType : "application/json"
+    	  contentType : "application/json; charset=UTF-8",
+   		  error: function(){
+                 alert("code = "+request.status + "message = " 
+                		 + request.responseText +
+               		   "error = " + error);
+             },
+       	  success: function(){
+       		  alert(fomData);
+       		  }
     	});
 };
 
+function output(){
+	// Contents 영역 삭제
+    $('#container').children().remove();
+    // Contents 영역 교체
+    $('#container').load('menuResult.jsp #menuResult');
+};
+
 $(document).ready(function(){
-    $("input[type='submit']").click(function() {
+    $("#search").click(function() {
     	getMenuResult();
+    	output();
     });
 });
+
 </script>
 <style>
 hr {  
@@ -51,7 +66,7 @@ hr {
 	<div align="center">
 		<h1>메뉴</h1>
 		<br> <a href="">메인 페이지로</a><br> 검색하고 싶은 메뉴 조건을 입력해주세요.<br>
-		<form name="menuResult" method="post">
+		<form id="menuSearch">
 			<%-- 체크박스일 경우 값들을 배열로 받아서 처리해야함 --%>
 			<br> 브랜드<br> 
 			<input type='radio' name='brandName' value='맥도날드' />맥도날드
@@ -63,8 +78,8 @@ hr {
 			<input type='number' name='menuPrice' min='0' max='100000' /> <br>
 			<br> 이름<br>
 			<input type="text" name="menuName">
-			 
-			<input type="submit" value="검색">
+			
+			<button id="search">검색</button>
 		</form>
 		<hr>
 		<div id=container>

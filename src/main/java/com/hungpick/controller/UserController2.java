@@ -3,6 +3,7 @@ package com.hungpick.controller;
 
 
 import java.util.List;
+
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hungpick.dto.MenuVo;
 import com.hungpick.dto.ReviewRankingVo;
@@ -59,8 +61,10 @@ public class UserController2 {
 	}
 	
 	//메뉴 조건검색한 페이지
+	@ResponseBody
 	@RequestMapping(value="menuResult", method=RequestMethod.POST, produces = "application/json; charset=utf8")
-	public void menuVo(@RequestBody Map<String,String> map,
+	public List<MenuVo> menuResult(
+			@RequestBody Map<String,String> map,
 			Model model) throws Exception {
 		
 		logger.info("menuVo called ========");
@@ -71,15 +75,19 @@ public class UserController2 {
 		
 		List<MenuVo> list = menuService.sltSearch(brandName, menuPrice, menuIngredients, menuName);
 		
-		String ResultMsg;
-		if (list.size() > 0) {
-			ResultMsg = "정상 조회되었습니다.";
-		} else {
-			ResultMsg = "죄송합니다. 해당되는 상품이 없습니다.";
-		}
+		return list;
+			
+//		String ResultMsg; 프론트에서 하기
+//		if (list.size() > 0) {
+//			ResultMsg = "정상 조회되었습니다.";
+//		} else {
+//			ResultMsg = "죄송합니다. 해당되는 상품이 없습니다.";
+//		}
+//		
 		
-		model.addAttribute("ResultMsg", ResultMsg);
-		model.addAttribute("menuVo", menuService.sltSearch(brandName, menuPrice, menuIngredients, menuName));
+		//ajax에서는 리턴값만 전달되기 때문에 모델이 전달 되지 않는다.
+		//model.addAttribute("ResultMsg", ResultMsg);
+		//model.addAttribute("menuVo", menuService.sltSearch(brandName, menuPrice, menuIngredients, menuName));
 		
 	}
 	
