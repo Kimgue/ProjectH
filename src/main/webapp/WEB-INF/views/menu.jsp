@@ -8,26 +8,48 @@
 <title>메뉴 소개</title>
 <script src="js/jquery-3.4.1.min.js"></script>
 <script>
+jQuery.fn.serializeObject = function() {
+    var obj = null;
+    try {
+        if (this[0].tagName && this[0].tagName.toUpperCase() == "FORM") {
+            var arr = this.serializeArray();
+            if (arr) {
+                obj = {};
+                jQuery.each(arr, function() {
+                    obj[this.name] = this.value;
+                });
+            }//if ( arr ) {
+        }
+    } catch (e) {
+        alert(e.message);
+    } finally {
+    }
+ 
+    return obj;
+};
+
 function getMenuResult(){
 	 
-	 var brandname = $("input[name='brandName']").val();
-	 var menuIngredients = $("input[name='menuIngredients']").val();
-	 var menuPrice = $("input[name='menuPrice']").val();
-	 var menuName = $("input[name='menuName']").val();
-	 
-	    if(brandname.trim() =='' && menuIngredients.trim()==''  
-	    		&& menuPrice.trim()=='' && menuName.trim()==''){
-	        alert('검색 조건을 입력해주세요')
-	        return;}
-	    //서버로 보낼 데이터 준비 : 파라미터로 만들기 . json 으로 만들기
+	if(
+	 $("input[name='brandName']").val().trim() == '' &&
+	 $("input[name='menuIngredients']").val().trim() == '' &&
+	 $("input[name='menuPrice']").val().trim() == '' &&
+	 $("input[name='menuName']").val().trim() == ''
+	 	){
+		 alert("검색 조건을 입력해주세요");
+		 return;
+	 };
 	
-	
-    var formData = JSON.stringify($("#menuSearch").serializeArray());
+	<%-- 
+    var formData = JSON.stringify($("#menuSearch").serialize());
+    --%>
+    
+    var formData = $("#menuSearch").serializeObject();
     
     $.ajax({
     	  type: "POST",
-    	  url: "menuResult",
-    	  data: formData,
+    	  url: "menuResult.do",
+    	  data: JSON.stringify(formData),
     	  dataType: "json",
     	  contentType : "application/json; charset=UTF-8",
    		  error: function(){

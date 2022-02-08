@@ -4,6 +4,7 @@ package com.hungpick.controller;
 
 import java.util.List;
 
+
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,7 +17,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -62,18 +62,19 @@ public class UserController2 {
 	
 	//메뉴 조건검색한 페이지
 	@ResponseBody
-	@RequestMapping(value="menuResult", method=RequestMethod.POST, produces = "application/json; charset=utf8")
+	@RequestMapping("menuResult.do")
 	public List<MenuVo> menuResult(
-			@RequestBody Map<String,String> map,
+			@RequestBody Map<String, Object> map,
 			Model model) throws Exception {
 		
 		logger.info("menuVo called ========");
-		String brandName = map.get("brandName");
-		String menuIngredients = map.get("menuIngredients");
-		String menuPrice = map.get("menuPrice");
-		String menuName = map.get("menuName");
+		String brandName = (String) map.get("brandName");
+		String menuPrice = (String) map.get("menuPrice");
+		String menuIngredients = (String) map.get("menuIngredients");
+		String menuName = (String) map.get("menuName");
 		
 		List<MenuVo> list = menuService.sltSearch(brandName, menuPrice, menuIngredients, menuName);
+		System.out.println(list);
 		
 		return list;
 			
