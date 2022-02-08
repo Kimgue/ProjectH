@@ -55,6 +55,9 @@
 			$("#memberEmail").focus();
 			$("#resultEmail").text("이메일을 입력해주세요").css("color", "red");
 			return;
+		} else if(checkEmail == false){
+			$("#memberEmail").focus();
+			$("#resultEmail").text("이메일 인증을 진행해주세요").css("color", "red");
 		}
 		if(number == "") {
 			$("#memberNumber").focus();
@@ -80,7 +83,6 @@
 			if (mail == "") {
 				$("#resultEmail").text("이메일을 입력해주세요").css("color", "red");
 			} else if(emailCheck.test($('#memberEmail').val())) {
-				checkEmail = true;
 				var url = "CheckMail.do";
 				$.getJSON(url, {
 					"mail" : mail
