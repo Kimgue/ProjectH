@@ -13,13 +13,13 @@
 		<h1>환영합니다. ${memberDTO.memberName}</h1>
 <form name="paging">
 
-			<a href="userView">회원조회</a><br>
+			<a href="userInfo">회원조회</a><br>
 			<c:if test="${empty memberDTO}">
 				<a href="userLogin">로그인</a>
 				<br>
 			</c:if>
 			<c:if test="${not empty memberDTO}">
-				<a href="userPage">마이페이지</a>
+				<a href="userMyInfo">마이페이지</a>
 				<br>
 			</c:if>
 			<c:if test="${not empty memberDTO}">
@@ -27,7 +27,7 @@
 				<br>
 			</c:if>
 			<c:if test="${empty memberDTO}">
-				<a href="userRegist">회원가입</a>
+				<a href="userSignUp">회원가입</a>
 				<br>
 			</c:if>
 
