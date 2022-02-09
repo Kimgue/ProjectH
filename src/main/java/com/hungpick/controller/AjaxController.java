@@ -2,7 +2,6 @@ package com.hungpick.controller;
 
 import java.util.Random;
 
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.annotations.Param;
@@ -230,7 +229,7 @@ public class AjaxController {
 		int numIndex = random.nextInt(899999) + 100000;
 		key += numIndex;
 		userService.certifiedPhoneNumber(userPhoneNumber, key); 
-		return Integer.toString(numIndex); 
+		return key; 
 	}
 }
 
