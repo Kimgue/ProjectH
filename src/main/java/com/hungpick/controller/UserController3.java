@@ -1,5 +1,6 @@
 package com.hungpick.controller;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.annotations.Param;
@@ -23,8 +24,8 @@ public class UserController3 {
 	}
 
 	/*--------------------- 아이디 찾은 결과 페이지로 이동 ---------------------*/
-	@RequestMapping("userFindIdResult")
-	public void userFindIdResult() {
+	@RequestMapping("userFindIdComplete")
+	public void userFindIdComplete() {
 	}
 
 	/*--------------------- 비밀번호 찾기 페이지로 이동 ---------------------*/
@@ -33,18 +34,18 @@ public class UserController3 {
 	}
 
 	/*--------------------- 비밀번호 찾기 결과 페이지로 이동 ---------------------*/
-	@RequestMapping("userFindPwResult")
-	public void userFindPwResult() {
+	@RequestMapping("userFindPwComplete")
+	public void userFindPwComplete() {
 	}
 
 	/*--------------------- 내 정보 페이지로 이동 ---------------------*/
-	@RequestMapping("userPage")
-	public void userPage() {
+	@RequestMapping("userMyInfo")
+	public void userMyInfo() {
 	}
 	
 	/*--------------------- 회원가입 페이지로 이동 ---------------------*/
-	@RequestMapping("userRegist")
-	public void userRegist() {
+	@RequestMapping("userSignUp")
+	public void userSignUp() {
 	}
 	
 	/*--------------------- 로그인 페이지로 이동 ---------------------*/
@@ -52,12 +53,22 @@ public class UserController3 {
 	public void userLogin() {
 	}
 	
+	/*--------------------- 회원탈퇴 페이지로 이동 ---------------------*/
+	@RequestMapping("userDelete")
+	public void userDelete() {
+	}
+	
+	/*--------------------- 회원탈퇴완료 페이지로 이동 ---------------------*/
+	@RequestMapping("userDeleteComplete")
+	public void userDeleteComplete() {
+	}
+	
 	
 	
 	
 	/*--------------------- 회원 조회 페이지로 이동 ---------------------*/
-	@RequestMapping("userView")
-	public String userView(UserDto Dto, Model model) throws Exception {
+	@RequestMapping("userInfo")
+	public String userInfo(UserDto Dto, Model model) throws Exception {
 		String view = userService.sltMulti(Dto, model);
 		return view;
 	}
@@ -70,8 +81,8 @@ public class UserController3 {
 	}
 
 	/*--------------------- 회원가입 완료 눌렀을 때 ---------------------*/
-	@RequestMapping("userRegistSubmit")
-	public String userRegistSubmit(UserDto Dto) throws Exception {
+	@RequestMapping("userSignUpSubmit")
+	public String userSignUp(UserDto Dto) throws Exception {
 		String view = userService.userRegist(Dto);
 		return view;
 	}
@@ -84,26 +95,37 @@ public class UserController3 {
 	}
 
 	/*--------------------- 회원탈퇴 시도했을 때 ---------------------*/
-	@RequestMapping("userDelete")
-	public String userDelete(@Param("memberId") String memberId, @Param("memberPw") String memberPw) throws Exception {
-		String view = userService.userDelete(memberId, memberPw);
+	@RequestMapping("userDeleteSubmit")
+	public String userDeleteSubmit(UserDto Dto, HttpSession session) throws Exception {
+		String view = userService.userDelete(Dto, session);
 		return view;
 	}
 	
 	/*--------------------- 아이디 찾기 눌렀을 때 ---------------------*/
-	@RequestMapping("FindIdSubmit")
-	public String userFindId(@Param("memberName") String memberName, @Param("memberEmail") String memberEmail, Model model) throws Exception {
-		UserDto Dto = userService.findId(memberName, memberEmail);
-		model.addAttribute("findId", Dto.getMemberId());
-
-		return "userFindIdResult";
+	@RequestMapping("userFindIdSubmit")
+	public String userFindIdSubmit(@Param("memberName") String memberName, @Param("memberEmail") String memberEmail, Model model) throws Exception {
+		String view = userService.findId(memberName, memberEmail, model);
+		return view;
 	}
 
-	/*--------------------- 비밀번호 찾기 눌렀을 때 ---------------------*/
-	@RequestMapping("FindPwSubmit")
-	public String userFindPwSubmit(String memberId, Model model) throws Exception {
-		UserDto Dto = userService.findPw(memberId);
-		System.out.println("확인 : " + Dto);
-		return "userFindPwResult";
+	/*--------------------- 비밀번호 찾기 (아이디 확인) ---------------------*/
+	@RequestMapping("userFindPwSubmit")
+	public String userFindPwSubmit(String memberId, HttpSession session) throws Exception {
+		String view = userService.findPw(memberId, session);
+		return view;
+	}
+	
+	/*--------------------- 비밀번호 찾기 (이름과 이메일 확인) ---------------------*/
+	@RequestMapping("userFindPwChk")
+	public String userFindPwChk(String memberName, String memberEmail, HttpSession session) throws Exception {
+		String view = userService.userUpdatePw(memberName, memberEmail, session);
+		return view;
+	}
+	
+	/*--------------------- 비밀번호 찾기 (비밀번호 변경) ---------------------*/
+	@RequestMapping("userFindPwUpdate")
+	public String userFindPwUpdate(UserDto Dto, HttpSession session, HttpServletResponse response) throws Exception {
+		String view = userService.ChangePw(Dto, session, response);
+		return view;
 	}
 }

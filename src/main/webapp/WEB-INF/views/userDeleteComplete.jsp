@@ -4,13 +4,15 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>아이디 찾기</title>
+<title>회원탈퇴완료</title>
 <script src="js/jquery-3.4.1.min.js"></script>
 </head>
 <body>
-	<h2>입력한 정보에 일치하는 아이디는 ${findId}입니다</h2>
+	<h2>회원탈퇴완료</h2><br>
+	회원탈퇴가 완료되었습니다
 	
+	<input type="button" value="메인페이지" onClick="location.href='main.jsp'">
 	<input type="button" value="로그인" onClick="location.href='userLogin'">
-	<input type="button" value="비밀번호 찾기" onClick="location.href='userFindPw'">
+	<input type="button" value="회원가입" onClick="location.href='userSignUp'">
 </body>
 </html>

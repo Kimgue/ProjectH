@@ -20,12 +20,10 @@ hr {
 	<a href="menu">메뉴 페이지로</a>
 	<br>
 	<h4><c:out value="${ResultMsg}"/></h4>
+	<div id="menuResult">
 	<c:forEach var="menuVo" items="${menuVo}">
-		<div class="col-md-3">
-			<div class="thumbnail">
 				<a href="#"> <img src="<c:out value="resources/${menuVo.menuDto.menuImg}"/>"
 					alt="메뉴 이미지" height="270" width="270" /></a>
-				<div class="caption">
 					<p style="font-size: 10pt">
 						<c:out value="브랜드명: ${menuVo.brandDto.brandName}" />
 					</p>
@@ -47,23 +45,10 @@ hr {
 						<c:param name="menuCode" value="${menuVo.menuDto.menuCode}"/>
 						<c:param name="menuName" value="${menuVo.menuDto.menuName}" />
 					</c:url>
-					<a href="${reviewUrl}">상품 리뷰</a>
-					<%-- 
-					<c:url value="reviewWrite" var="writeUrl">
-						<c:param name="brandCode" value="${menuVo.brandDto.brandCode}"/>
-						<c:param name="menuCode" value="${menuVo.menuDto.menuCode}"/>
-						<c:param name="menuName" value="${menuVo.menuDto.menuName}" />
-					</c:url>
-					<a href="${writeUrl}">상품 리뷰</a>
-					--%>
-					<%--
-					<c:out value="리뷰개수: ${menuVo.brandDto.brandName}" />
-					 --%>
-				</div>
-			</div>
-		</div>
-		<hr>
+					<a href="${reviewUrl}">상품 리뷰</a>	
+				<hr>
 	</c:forEach>
+	</div>
 </div>
 </body>
 </html>

@@ -8,68 +8,64 @@
 <script src="js/jquery-3.4.1.min.js"></script>
 <script>
 	var key;
+	var validateEmail = RegExp(/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/);
 
-	function find_id() {
-		
-		var name = $("#memberName").val();
-		var email = $("#memberEmail").val();
-		var emailInput = $("#memberEmailInput").val();
-		if(name == "") {
+	function FindId() {
+		var val_Name = $("#memberName").val();
+		var val_Email = $("#memberEmail").val();
+		var val_EmailNumber = $("#Email_Number").val();
+		if(val_Name == "") {
 			$("#memberName").focus();
 			alert("이름을 입력해주세요");
 			return;
 		}
-		if(email == "") {
+		if(val_Email == "") {
 			$("#memberEmail").focus();
 			alert("이메일을 입력해주세요");
 			return;
 		}
 		
-		if(emailInput == "") {
-			$("#memberEmailInput").focus();
+		if(val_EmailNumber == "") {
+			$("#Email_Number").focus();
 			alert("인증번호를 입력해주세요");
 			return;
-		} else if(emailInput == key) {
-			$("#find_id").submit();
+		} else if(val_EmailNumber == key) {
+			$("#FindId").submit();
 		} else {
 			alert("잘못된 인증번호입니다");
 			return;
 		}
-		
-
 	}
 	
 	$(document).ready(function() {
-		$("#memberEmailInput").attr("value","인증 번호를 입력해주세요");
-		$("#memberEmailInput").prop("readonly",true);
-		
-		
-		$("#sendEmail").click(function() {
-			var mail = $("#memberEmail").val();
-			if (mail == "") {
+		$("#Email_Number").attr("value","인증 번호를 입력해주세요");
+		$("#Email_Number").prop("readonly",true);
+		$("#Email_Transmit").click(function() {
+			var val_Email = $("#memberEmail").val();
+			if (val_Email == "") {
 				alert("이메일 주소를 정확하게 입력해주세요");
-			} else {
-				$("#memberEmailInput").prop("readonly",false);
+			} else if (validateEmail.test($('#memberEmail').val())) {
 				var url = "FindIdSendMail.do";
 				
 				$.getJSON(url, {
-					"mail" : mail
+					"mail" : val_Email
 				}, function(json) {
 					alert("인증번호가 전송되었습니다. 인증번호가 오지 않으면 입력하신 정보가 회원정보와 일치하는지 확인해주세요");
 					$("#memberEmail").prop("readonly",true);
-					$("#memberEmailInput").attr("value","");
+					$("#Email_Number").prop("readonly",false);
+					$("#Email_Number").attr("value","");
 					key = json.key;
-					isCertification=true;
 				});
+			} else {
+				alert("형식에 맞지 않는 이메일입니다");
 			}
-			
 		})
 	})
 </script>
 </head>
 <body>
 	<h2>아이디 찾기</h2>
-	<form id="find_id" action="FindIdSubmit" method="post">
+	<form id="FindId" action="userFindIdSubmit" method="post">
 		<table>
 			<tr>
 				<td width=50>이름 <input type="text" id="memberName" name="memberName"></td>
@@ -78,13 +74,12 @@
 			<tr>
 				<td width=50>이메일 
 				<input type="text" id="memberEmail" name="memberEmail">
-				<button type="button" id="sendEmail">인증번호 받기</button>
-				<input type="text" id="memberEmailInput" name="memberEmailInput">
-				
+				<input type="button" id="Email_Transmit" value="인증번호 전송">
+				<input type="text" id="Email_Number">
 				</td>
 			</tr>
 		</table>
-		<input type="button" value="확인" onclick="find_id()">
+		<input type="button" value="확인" onclick="FindId()">
 		<input type="button" value="비밀번호 찾기" onClick="location.href='userFindPw'">
 		
 	</form>

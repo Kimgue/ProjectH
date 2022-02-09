@@ -1,5 +1,6 @@
 package com.hungpick.service;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.annotations.Param;
@@ -26,16 +27,22 @@ public interface IUserService {
 	public String userLogout(HttpSession session) throws Exception;
 	
 	// 아이디 찾기
-	public UserDto findId(@Param("memberName") String memberName, @Param("memberEmail") String memberEmail) throws Exception;
+	public String findId(@Param("memberName") String memberName, @Param("memberEmail") String memberEmail, Model model) throws Exception;
 	
 	// 비밀번호 찾기
-	public UserDto findPw(String memberId) throws Exception;
+	public String findPw(String memberId, HttpSession session) throws Exception;
+	
+	// 비밀번호 변경
+	public String userUpdatePw(@Param("memberName") String memberName, @Param("memberEmail") String memberEmail, HttpSession session) throws Exception;
+	
+	// 비밀번호 변경
+	public String ChangePw(UserDto Dto, HttpSession session, HttpServletResponse response) throws Exception;
 
 	// 로그인
 	public String userLogin(@Param("memberId") String memberId, @Param("memberPw") String memberPw, HttpSession session) throws Exception;
 	
 	// 회원탈퇴
-	public String userDelete(@Param("memberId") String memberId, @Param("memberPw") String memberPw) throws Exception;
+	public String userDelete(UserDto Dto, HttpSession session) throws Exception;
 	
 	
 	

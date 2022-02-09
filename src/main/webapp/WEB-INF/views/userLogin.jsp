@@ -16,13 +16,13 @@
 				<td width=50>비밀번호</td>
 			</tr>
 			<tr>
-				<td><input type="text" id="memberId" name="memberId"></td>
-				<td><input type="password" id="memberPw" name="memberPw"></td>
+				<td><input type="text" name="memberId"></td>
+				<td><input type="password" name="memberPw"></td>
 			</tr>
 		</table>
 		<p>${loginNotice}<p>
 		<input type="submit" value="로그인">
-		<input type="button" value="회원가입" onClick="location.href='userRegist'"><br><br>
+		<input type="button" value="회원가입" onClick="location.href='userSignUp'"><br><br>
 		<input type="button" value="아이디 찾기" onClick="location.href='userFindId'">
 		<input type="button" value="비밀번호 찾기" onClick="location.href='userFindPw'">
 	</form>

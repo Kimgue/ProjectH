@@ -37,7 +37,7 @@
 		</c:forEach>
 
 	</table>
-	<input type="button" value="회원등록" onClick="location.href='userRegist'">
+	<input type="button" value="회원등록" onClick="location.href='userSignUp'">
 	<input type="button" value="로그인" onClick="location.href='userLogin'">
 </body>
 </html>

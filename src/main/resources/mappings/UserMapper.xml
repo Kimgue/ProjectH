@@ -45,12 +45,12 @@
 			SYSDATE,
 			'0'
 		)
-
-		<!-- 
-		INSERT INTO MEMBERS (MEMBER_CODE, MEMBER_ID, MEMBER_PW, MEMBER_NAME, MEMBER_NICKNAME, MEMBER_EMAIL, MEMBER_NUMBER, MEMBER_DATE, HOLD_POINT)
-		VALUES ( #{memberCode}, #{memberId}, #{memberPw}, #{memberName}, #{memberNickname}, #{memberEmail}, #{memberNumber}, SYSDATE, #{holdPoint} )
-		 -->
 	</insert>
+	
+	<!-- PW 검사 -->
+	<select id="checkPw" resultType="userDto">
+		SELECT * FROM MEMBERS WHERE MEMBER_PW = #{memberPw}
+	</select>
 
 	<!-- ID 중복조회 -->
 	<select id="checkId" resultType="String">
@@ -71,17 +71,7 @@
 	<select id="checkNumber" resultType="String">
 		SELECT COUNT(*) FROM MEMBERS WHERE MEMBER_NUMBER = #{memberNumber}
 	</select>
-	
-	<!-- PW 검사 -->
-	<select id="checkPw" resultType="userDto">
-		SELECT * FROM MEMBERS WHERE MEMBER_PW = #{memberPw}
-	</select>
-	
-	<!-- 회원탈퇴 -->
-	<delete id="userDelete">
-		DELETE FROM MEMBERS WHERE MEMBER_ID = #{memberId} AND MEMBER_PW = #{memberPw}
-	</delete>
-	
+
 	<!-- 정보수정 -->
 	<update id="userUpdate">
 		UPDATE MEMBERS SET MEMBER_NICKNAME = #{memberNickname} WHERE MEMBER_CODE = #{memberCode}
@@ -94,12 +84,16 @@
 	
 	<!-- 비밀번호 찾기 -->
 	<select id="findPw" resultType="userDto">
-		SELECT * FROM MEMBERS WHERE MEMBER_ID = #{memberId}	
+		SELECT MEMBER_ID, MEMBER_PW FROM MEMBERS WHERE MEMBER_NAME = #{memberName} AND MEMBER_EMAIL = #{memberEmail}
 	</select>
 	
-	<!-- 비밀번호 찾는게 본인인지 확인 -->
-	<select id="findPwCertification" resultType="userDto">
-		SELECT COUNT(*) FROM MEMBERS WHERE MEMBER_ID = #{memberId} AND MEMBER_NAME = #{memberName} AND MEMBER_EMAIL = #{memberEmail}
-	</select>
-
+	<!-- 비밀번호 변경 -->
+	<update id="ChangePw">
+		UPDATE MEMBERS SET MEMBER_PW = #{memberPw} WHERE MEMBER_ID = #{memberId}
+	</update>
+	
+	<!-- 회원탈퇴 -->
+	<delete id="userDelete">
+		DELETE FROM MEMBERS WHERE MEMBER_CODE = #{memberCode}
+	</delete>
 </mapper>
