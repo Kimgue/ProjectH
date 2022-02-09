@@ -16,7 +16,7 @@
 			alert(chkFinal);
 			
 			if(chkFinal == true) {
-				$("#deleteUser").submit();
+				$("#userDelete").submit();
 			}
 		}
 	}

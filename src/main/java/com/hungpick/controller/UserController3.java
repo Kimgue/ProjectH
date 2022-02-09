@@ -98,6 +98,7 @@ public class UserController3 {
 	@RequestMapping("userDeleteSubmit")
 	public String userDeleteSubmit(UserDto Dto, HttpSession session) throws Exception {
 		String view = userService.userDelete(Dto, session);
+		session.invalidate();
 		return view;
 	}
 	

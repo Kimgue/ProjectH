@@ -59,6 +59,9 @@ public interface IUserDao {
 	// 이메일 변경
 	void ChangeEmail(UserDto Dto) throws Exception;
 	
+	// 전화번호 변경
+	void ChangeNumber(UserDto Dto) throws Exception;
+	
 		
 	/*------------------ Delete ------------------*/
 	

@@ -55,11 +55,14 @@ public interface IUserService {
 	
 	/*---------------- Ajax 사용 ----------------*/
 	
-	// 정보수정
+	// 닉네임 변경
 	public void userUpdate(UserDto Dto) throws Exception;
 	
-	// 정보수정
+	// 이메일 변경
 	public void ChangeEmail(UserDto Dto) throws Exception;
+	
+	// 전화번호 변경
+	public void ChangeNumber(UserDto Dto) throws Exception;
 	
 	// ID 중복검사
 	public String checkId(String memberId) throws Exception;
@@ -75,4 +78,7 @@ public interface IUserService {
 	
 	// 전화번호 중복검사
 	public String checkNumber(String memberNumber) throws Exception;
+
+	// 전화번호 인증
+	public void certifiedPhoneNumber(String userPhoneNumber, String key);
 }

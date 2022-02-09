@@ -13,6 +13,8 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hungpick.dto.UserDto;
@@ -117,6 +119,7 @@ public class AjaxController {
 		}
 	}
 	
+	/*--------------------- Ajax 사용 : 이메일 수정 ---------------------*/
 	@RequestMapping("updateEmail.do")
 	@ResponseBody
 	public String updateEmail(@ModelAttribute("email") String memberEmail, UserDto Dto, HttpSession session)
@@ -125,6 +128,22 @@ public class AjaxController {
 
 		Dto.setMemberEmail(memberEmail);
 		userService.ChangeEmail(Dto);
+
+		JSONObject jsonObj = new JSONObject();
+		String jsonOut = jsonObj.toString();
+
+		return jsonOut;
+	}
+	
+	/*--------------------- Ajax 사용 : 전화번호 수정 ---------------------*/
+	@RequestMapping("updateNumber.do")
+	@ResponseBody
+	public String updateNumber(@ModelAttribute("number") String memberNumber, UserDto Dto, HttpSession session)
+			throws Exception {
+		Dto = (UserDto) session.getAttribute("memberDTO");
+
+		Dto.setMemberNumber(memberNumber);
+		userService.ChangeNumber(Dto);
 
 		JSONObject jsonObj = new JSONObject();
 		String jsonOut = jsonObj.toString();
@@ -186,4 +205,16 @@ public class AjaxController {
 		return jsonOut;
 	}
 
+	
+	@RequestMapping(value = "/phoneCheck", method = RequestMethod.GET) 
+	@ResponseBody 
+	public String sendSMS(@RequestParam("phone") String userPhoneNumber) {
+		Random random = new Random();
+		String key = "";
+		int numIndex = random.nextInt(899999) + 100000;
+		key += numIndex;
+		userService.certifiedPhoneNumber(userPhoneNumber, key); 
+		return Integer.toString(numIndex); 
+	}
 }
+

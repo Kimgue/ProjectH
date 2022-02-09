@@ -16,6 +16,7 @@
 		/* 닉네임, 이메일, 전화번호 변경하는 곳 안보이게 */
 		$("#Nickname,#Email,#Number").hide();
 		var checkEmail = false;
+		var checkNumber = false;
 
 		/* --------------- 닉네임 수정 --------------- */
 
@@ -130,7 +131,7 @@
 				
 				$.getJSON(url,{"email":val_Email}, function(json) {
 					$("#Email_Txt").val("");
-					$("#resultEmail").text("이메일 변경이 완료되었습니다").css("color","blue");
+					alert("이메일이 변경되었습니다");
 					location.reload();
 				});
 			} else {
@@ -139,13 +140,77 @@
 		});
 
 		/* --------------- 전화번호 수정 --------------- */
-		$("#").click(function() {
-			$("#").hide();
-			$("#").show();
+		/* 전화번호 수정 버튼 눌렀을 때 */
+		$("#Number_Btn").click(function() {
+			$("#Number").show();
+			$("#Number_Btn").hide();		
+			$("#Number_Number").attr("value", "인증 번호를 전송해주세요");
+			$("#Number_Number").prop("readonly", true);
+
 		});
-		$("#").click(function() {
-			$("#").hide();
-			$("#").show();
+
+		/* 전화번호  수정 취소 버튼 눌렀을 때 */
+		$("#Number_Cancle").click(function() {
+			$("#Number").hide();
+			$("#Number_Btn").show();
+			location.reload();
+		});
+		
+		/* 전화번호 인증번호 전송 버튼 눌렀을 때 */
+		$("#Number_Transmit").click(function() {
+			var val_Number = $("#Number_Txt").val();
+
+			// 입력여부 검사
+			if (val_Number == "") {
+				$("#resultNumber").text("전화번호를 입력해주세요").css("color","red");
+				return false;
+			} else if (validateNumber.test($('#Number_Txt').val())) {
+				var url = "chkNumber.do";
+				$.getJSON(url, {"number" : val_Number}, function(json) {
+					var result_text = json.result;
+					var result = eval(result_text);
+					if (result) {
+						checkNumber = true;
+						$("#resultNumber").text("사용 가능한 전화번호입니다").css("color", "blue");
+						alert("인증번호 발송이 완료되었습니다.\n휴대폰에서 인증번호 확인을 해주십시오");
+						var code2 = ""; 
+						var phone = $("#Number_Txt").val(); 
+						$.ajax({ 
+						type:"GET", 
+						url:"phoneCheck?phone=" + phone, 
+						cache : false, 
+						success:function(data) { 
+							$("#Number_Txt").prop("readonly", true);
+							$("#Number_Number").prop("readonly", false);
+							$("#Number_Number").attr("value", "");
+							code2 = data;
+							emailData = data;
+						}});
+					} else {
+						$("#resultNumber").text("사용할 수 없는 전화번호입니다").css("color", "red");
+						checkNumber = false;
+					}
+				});	
+			} else {
+				$("#resultNumber").text("사용할 수 없는 전화번호입니다").css("color","red");
+			}
+		});
+		
+		/* 전화번호 수정완료 버튼 눌렀을 때 */
+		$("#Number_Submit").click(function() {
+			if(checkNumber == true) {
+				var val_Number = $("#Number_Txt").val();
+				
+				var url = "updateNumber.do";
+				
+				$.getJSON(url,{"number":val_Number}, function(json) {
+					$("#Number_Txt").val("");
+					alert("전화번호가 변경되었습니다");
+					location.reload();
+				});
+			} else {
+				$("#resultNumber").text("인증이 완료되지 않았습니다").css("color","red");
+			}
 		});
 	});
 </script>
@@ -195,10 +260,16 @@
 			<td>전화번호</td>
 			<td>${memberDTO.memberNumber}
 				<div id="Number">
-					변경할 전화번호<br> 
-					<input type="text"		id="Number_Txt">
-					<input type="button"	id="Number_Cancle" value="수정취소">
-					<input type="button"	id="Number_Submit" value="수정완료">
+					변경할 전화번호<br>
+					<input type="text" 		id="Number_Txt" name="memberNumber">
+					<input type="button" 	id="Number_Transmit" value="인증번호 전송">
+					<br>
+					<input type="text" 		id="Number_Number">
+					<input type="button" 	id="Number_Check" value="인증번호 확인">
+					<br>
+					<input type="button" 	id="Number_Cancle" value="수정취소">
+					<input type="button" 	id="Number_Submit" value="수정완료">
+					<div id="resultNumber"></div>
 				</div> 
 					<input type="button" 	id="Number_Btn" value="수정">
 			</td>

@@ -13,6 +13,8 @@
 	var checkNick 	= false;
 	var checkEmail 	= false;
 	var checkNumber = false;
+	
+	var emailData;
 
 	var validateId 		= RegExp(/^[A-Za-z0-9]{5,20}$/);
 	var validatePw 		= RegExp(/^[A-Za-z0-9]{8,16}$/);
@@ -57,7 +59,7 @@
 			$("#memberEmail").focus();
 			$("#resultEmail").text("이메일 인증을 진행해주세요").css("color", "red");
 			return;
-		}
+		} 
 		if (val_Number == "") {
 			$("#memberNumber").focus();
 			$("#resultNumber").text("전화번호를 입력해주세요").css("color", "red");
@@ -69,8 +71,8 @@
 		checkPw == true &&
 		checkName == true &&
 		checkNick == true && 
-		checkEmail == true && 
-		checkNumber == true
+		checkEmail == true &&
+		checkNumber == true 
 		) {
 			$("#UserSignUp").submit();
 		} else {
@@ -80,19 +82,21 @@
 
 $(document).ready(function() {
 	$("#EmailChk").hide();
+	$("#NumberChk").hide();
 	/* --------------- 이메일 검사 --------------- */
 	$("#Email_Transmit").click(function() {
-		var val_Email = $("memberEmail").val();
+		var val_Email = $("#memberEmail").val();
+		
 		if (val_Email == "") {
 			$("#resultEmail").text("이메일을 입력해주세요").css("color", "red");
 			checkEmail = false;
 			return false;
 		} else if (validateEmail.test($('#memberEmail').val())) {
 			var url = "CheckMail.do";
-			
 			$.getJSON(url,{"mail" : val_Email},function(json) {
 				if (json.result == true) {
 					$("#resultEmail").text("인증번호가 전송되었습니다").css("color","blue");
+					$("#memberEmail").prop("readonly", true);
 					$("#EmailChk").show();
 					
 					$("#Email_Check").click(function() {
@@ -101,9 +105,9 @@ $(document).ready(function() {
 							$("#resultEmailChk").text("인증 번호를 입력해주세요").css("color","red");
 						} else if (Email_Number == json.key) {
 							$("#resultEmailChk").text("인증 완료되었습니다").css("color","blue");
-							$("#resultEmail").hide();
-							$("EmailChk").hide();
-							$("Email_Transmit").hide();
+							$("#resultEmail").text("인증 완료되었습니다").css("color","blue");
+							$("#EmailChk").hide();
+							$("#Email_Transmit").hide();
 							checkEmail = true;
 						} else {
 							$("#resultEmailChk").text("잘못된 인증번호입니다").css("color","red");
@@ -182,7 +186,7 @@ $(document).ready(function() {
 			return false;
 		}
 		if (validateName.test($('#memberName').val())) {
-			$("#resultName").text("");
+			$("#resultName").text("사용 가능한 이름입니다").css("color", "blue");
 			checkName = true;
 		} else {
 			$("#resultName").text("올바른 이름을 입력해주세요").css("color", "red");
@@ -221,7 +225,7 @@ $(document).ready(function() {
 	});
 
 	/* --------------- 전화번호 검사 --------------- */
-	$("#memberNumber").blur(function() {
+/* 	$("#memberNumber").blur(function() {
 		var val_Number = $("#memberNumber").val();
 		if (val_Number == "") {
 			checkNumber = false;
@@ -235,7 +239,7 @@ $(document).ready(function() {
 					$("#resultNumber").text("사용 가능한 전화번호입니다").css("color", "blue");
 					checkNumber = true;
 				} else {
-					$("#resultNumber").text("이미 존재하는 전화번호입니다").css("color", "red");
+					$("#resultNumber").text("사용할 수 없는 전화번호입니다").css("color", "red");
 					checkNumber = false;
 					return false;
 				}
@@ -244,6 +248,63 @@ $(document).ready(function() {
 			$("#resultNumber").text("사용할 수 없는 전화번호입니다").css("color", "red");
 			checkNumber = false;
 			return false;
+		}
+	}); */
+	
+	/* --------------- 전화번호 인증번호 버튼 눌렀을 때 --------------- */
+	$("#Number_Transmit").click(function() {
+		var val_Number = $("#memberNumber").val();
+		if (val_Number == "") {
+			$("#resultNumber").text("전화번호를 입력해주세요").css("color", "red");
+			checkNumber = false;
+		} else if (validateNumber.test($('#memberNumber').val())) {
+			var url = "chkNumber.do";
+			$.getJSON(url, {"number" : val_Number}, function(json) {
+				var result_text = json.result;
+				var result = eval(result_text);
+				if (result) {
+					$("#resultNumber").text("사용 가능한 전화번호입니다").css("color", "blue");
+					var code2 = ""; 
+					$("#NumberChk").show();
+					alert("인증번호 발송이 완료되었습니다.\n휴대폰에서 인증번호 확인을 해주십시오"); 
+					var phone = $("#memberNumber").val(); 
+					$.ajax({ 
+					type:"GET", 
+					url:"phoneCheck?phone=" + phone, 
+					cache : false, 
+					success:function(data) { 
+						$("#memberNumber").prop("readonly", true);
+						$("#Number_Number").prop("readonly", false);
+						code2 = data;
+						emailData = data;
+					}});
+				} else {
+					$("#resultNumber").text("사용할 수 없는 전화번호입니다").css("color", "red");
+					checkNumber = false;
+				}
+			});	
+		} else {
+			$("#resultNumber").text("사용할 수 없는 전화번호입니다").css("color", "red");
+			checkNumber = false;
+		}
+		
+		
+		
+	});
+	
+	$("#Number_Check").click(function() {
+
+		var val_Number_Number = $("#Number_Number").val();
+		
+		if(emailData == val_Number_Number) {
+			$("#resultNumber").text("인증 완료되었습니다").css("color","blue");
+			$("#NumberChk").hide();
+			$("#Number_Transmit").hide();
+			
+			checkNumber = true;
+		} else {
+			$("#resultNumber").text("잘못된 인증번호입니다").css("color","red");
+			$("#Number_Number").attr("value", "");
 		}
 	});
 });
@@ -279,7 +340,7 @@ $(document).ready(function() {
 				<td width=100>닉네임</td>
 				<td>
 				<input type="text" name="memberNickname" id="memberNickname">
-				<div id="resultNick"></div>
+				<div id="resultNickname"></div>
 				</td>
 			</tr>
 			<tr>
@@ -300,8 +361,15 @@ $(document).ready(function() {
 				<td width=100>전화번호</td>
 				<td>
 				<input type="text" name="memberNumber" id="memberNumber">
+				<input type="button" id="Number_Transmit" value="인증번호 전송">
 				<div id="resultNumber"></div>
-				</td>
+				
+				<div id="NumberChk">
+				인증 번호를 입력해주세요 
+				<input type="text" id="Number_Number">
+				<input type="button" id="Number_Check" value="인증번호 확인">
+				<div id="resultNumberChk"></div>
+				</div></td>
 			</tr>
 		</table>
 		<input type="button" value="회원가입" onclick="UserSignUp()"> 

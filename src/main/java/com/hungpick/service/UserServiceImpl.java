@@ -1,11 +1,13 @@
 package com.hungpick.service;
 
 import java.io.PrintWriter;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,6 +17,9 @@ import com.hungpick.dao.IUserDao;
 import com.hungpick.dao.IUserDaoHist;
 import com.hungpick.dto.UserDto;
 
+import net.nurigo.java_sdk.api.Message;
+import net.nurigo.java_sdk.exceptions.CoolsmsException;
+
 @Service("userService")
 public class UserServiceImpl implements IUserService {
 
@@ -23,13 +28,13 @@ public class UserServiceImpl implements IUserService {
 
 	@Autowired
 	private IUserDaoHist userDaoHist;
-	
+
 	// 다건조회
 	@Override
 	public String sltMulti(UserDto Dto, Model model) throws Exception {
 		List<UserDto> list = userDao.sltMulti(Dto);
 		model.addAttribute("LIST", list);
-		
+
 		return "userInfo";
 	}
 
@@ -39,17 +44,16 @@ public class UserServiceImpl implements IUserService {
 	public String userRegist(UserDto Dto) throws Exception {
 		userDao.userRegist(Dto);
 		userDaoHist.userRegistHist("Insert " + Dto.toString());
-		
+
 		return "redirect:/main.jsp";
 	}
-	
 
 	// 로그인
 	@Override
 	public String userLogin(String memberId, String memberPw, HttpSession session) throws Exception {
 		UserDto Dto = userDao.userLogin(memberId, memberPw);
-		
-		if(Dto != null) {
+
+		if (Dto != null) {
 			session.setAttribute("memberDTO", Dto);
 			session.setAttribute("memberCode", Dto.getMemberCode());
 			session.setAttribute("memberId", Dto.getMemberId());
@@ -62,23 +66,22 @@ public class UserServiceImpl implements IUserService {
 			session.setAttribute("holdPoint", Dto.getHoldPoint());
 			return "redirect:/main.jsp";
 		} else {
-			session.setAttribute("loginNotice", "아이디 또는 비밀번호가 잘못 입력 되었습니다.\r\n" + 
-					"아이디와 비밀번호를 정확히 입력해 주세요.");
+			session.setAttribute("loginNotice", "아이디 또는 비밀번호가 잘못 입력 되었습니다.\r\n" + "아이디와 비밀번호를 정확히 입력해 주세요.");
 			session.setMaxInactiveInterval(1);
-			return "redirect:/userLogin";		
+			return "redirect:/userLogin";
 		}
 	}
-	
+
 	// 로그아웃
 	@Override
 	public String userLogout(HttpSession session) throws Exception {
 		session.invalidate();
 		return "redirect:/main.jsp";
-		
+
 	}
-	
+
 	/* ---------------------------- Ajax 사용 ---------------------------- */
-	
+
 	// 아이디 중복검사
 	@Override
 	public String checkId(String memberId) throws Exception {
@@ -96,17 +99,23 @@ public class UserServiceImpl implements IUserService {
 	public String checkNickname(String memberNickname) throws Exception {
 		return userDao.checkNickname(memberNickname);
 	}
-	
+
 	// 닉네임 수정
 	@Override
 	public void userUpdate(UserDto Dto) throws Exception {
-		userDao.userUpdate(Dto); 
+		userDao.userUpdate(Dto);
 	}
-	
+
 	// 이메일 수정
 	@Override
 	public void ChangeEmail(UserDto Dto) throws Exception {
 		userDao.ChangeEmail(Dto);
+	}
+	
+	// 전화번호 수정
+	@Override
+	public void ChangeNumber(UserDto Dto) throws Exception {
+		userDao.ChangeNumber(Dto);
 	}
 
 	// 이메일 중복검사
@@ -125,12 +134,12 @@ public class UserServiceImpl implements IUserService {
 	@Override
 	public String findId(String memberName, String memberEmail, Model model) throws Exception {
 		UserDto Dto = userDao.findId(memberName, memberEmail);
-		
-		if(Dto == null) {
-			model.addAttribute("userFindId","입력한 정보에 일치하는 아이디가 존재하지 않습니다");
+
+		if (Dto == null) {
+			model.addAttribute("userFindId", "입력한 정보에 일치하는 아이디가 존재하지 않습니다");
 			return "userFindIdComplete";
 		} else {
-			model.addAttribute("userFindId","입력한 정보에 일치하는 아이디는 " + Dto.getMemberId() + " 입니다");
+			model.addAttribute("userFindId", "입력한 정보에 일치하는 아이디는 " + Dto.getMemberId() + " 입니다");
 			return "userFindIdComplete";
 		}
 	}
@@ -147,8 +156,8 @@ public class UserServiceImpl implements IUserService {
 	@Override
 	public String userUpdatePw(String memberName, String memberEmail, HttpSession session) throws Exception {
 		UserDto Dto = userDao.findPw(memberName, memberEmail);
-		if(Dto != null) {
-			if(session.getAttribute("memberId").equals(Dto.getMemberId()) == true) {
+		if (Dto != null) {
+			if (session.getAttribute("memberId").equals(Dto.getMemberId()) == true) {
 				session.setAttribute("memberPw", Dto.getMemberPw());
 				return "userFindPwComplete";
 			} else {
@@ -167,11 +176,11 @@ public class UserServiceImpl implements IUserService {
 	public String ChangePw(UserDto Dto, HttpSession session, HttpServletResponse response) throws Exception {
 		String Id = (String) session.getAttribute("memberId");
 		String Pw = (String) session.getAttribute("memberPw");
-		
+
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
-		
-		if(Pw.equals(Dto.getMemberPw()) != true) {
+
+		if (Pw.equals(Dto.getMemberPw()) != true) {
 			Dto.setMemberId(Id);
 			userDao.ChangePw(Dto);
 			session.invalidate();
@@ -183,7 +192,7 @@ public class UserServiceImpl implements IUserService {
 			out.flush();
 			return "userFindPwComplete";
 		}
-		
+
 	}
 
 	@Override
@@ -194,7 +203,24 @@ public class UserServiceImpl implements IUserService {
 		return "userDeleteComplete";
 	}
 
-
-
-
+	public void certifiedPhoneNumber(String userPhoneNumber, String key) { 
+		String api_key = "NCSC5D9IHLHKFF82"; 
+		String api_secret = "DM9RVLWFT99OJDTDIJFOWNSKWEFEMKKT"; 
+		Message coolsms = new Message(api_key, api_secret); 
+		HashMap<String, String> params = new HashMap<String, String>(); 
+		params.put("to", userPhoneNumber); // 수신전화번호 
+		params.put("from", "01094626942"); // 발신전화번호. 테스트시에는 발신,수신 둘다 본인 번호로 하면 됨 
+		params.put("type", "SMS"); 
+		params.put("text", "인증번호는" + "["+key+"]" + "입니다."); 
+		//문자 내용 입력 
+		params.put("app_version", "test app 1.2"); 
+		// application name and version 
+		try { 
+			JSONObject obj = (JSONObject) coolsms.send(params);
+			System.out.println(obj.toString()); 
+		} catch (CoolsmsException e) { 
+			System.out.println(e.getMessage()); 
+			System.out.println(e.getCode()); 
+		} 
+	}
 }
