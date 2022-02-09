@@ -73,7 +73,7 @@ table {
 		<br>
 		<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}"
 			var="idx">
-			<a href="Question?page=${idx}">${idx}</a>
+			<a href="Questionlist?page=${idx}">${idx}</a>
 		</c:forEach>
 		<hr>
 		<input type="button" value="작성" onClick="insert()"> 

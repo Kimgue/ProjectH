@@ -7,8 +7,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.hungpick.dao.IDaoAnswer;
 import com.hungpick.dao.IDaoQuestion;
+import com.hungpick.dto.AnswerDto;
 import com.hungpick.dto.Criteria;
 import com.hungpick.dto.Question;
 import com.hungpick.dto.QuestionVo;
@@ -21,8 +24,12 @@ public class QuesServiceImpl implements IQuestionSerivce{
 	@Autowired
 	private IDaoQuestion daoQes;
 	
+	@Autowired
+	private IDaoAnswer ans;
+	
 	private static final Logger logger = LoggerFactory.getLogger(QuesServiceImpl.class);
 	
+	/*---------단건조회---------------*/
 	@Override
 	public Question sltOne(String memberCode, String qstnCode) {
 		
@@ -30,15 +37,19 @@ public class QuesServiceImpl implements IQuestionSerivce{
 		
 		return hm;
 	}
-
+	/*--------한명의 회원이 올린 Q&A 리스트 ------------*/
 	@Override
-	public List<QuestionVo> listPage(@Param("cri")Criteria cri,@Param("memberCode")String memberCode) throws Exception {
+	public List<QuestionVo>  listPage(
+			@Param("cri")Criteria cri,
+			@Param("memberCode")String memberCode) throws Exception {
 		
-
-		return daoQes.listPage(cri,memberCode);
+			
+		return daoQes.listPage(cri, memberCode);
 	}
 
+	/*-------------Q&A 입력  -----------------*/
 	@Override
+	@Transactional
 	public void insert(Question qes) throws Exception {
 		
 		Question check = daoQes.sltOne(qes.getMemberCode(), qes.getQstnCode());
@@ -47,6 +58,8 @@ public class QuesServiceImpl implements IQuestionSerivce{
 		{
 			throw new Exception();
 		}
+			
+		AnswerDto answer = new AnswerDto();
 		
 		String Acode = qes.getMemberCode();
 		String Bcode = qes.getQstnCode();
@@ -56,8 +69,6 @@ public class QuesServiceImpl implements IQuestionSerivce{
 		String date = qes.getQstnDate();
 		String confirm = qes.getQstnConfirm();
 		
-		
-
 		logger.info("insertUser Called ============");
 		logger.info("입력한 CODE : {}", Acode);
 		logger.info("입력한 NAME : {}", Bcode);
@@ -68,10 +79,13 @@ public class QuesServiceImpl implements IQuestionSerivce{
 		logger.info("입력한 confrim : {}", confirm);
 		
 		daoQes.insert(qes);
-	
+		ans.updateQCODE(answer);
+		
 		return;
 	}
 
+	
+	/*-----------------수정------------*/
 	@Override
 	public void update(Question qes)throws Exception {
 		
@@ -100,6 +114,8 @@ public class QuesServiceImpl implements IQuestionSerivce{
 		
 	}
 
+	
+	/*------------------게시물 삭제---------*/
 	@Override
 	public void delete(String memberCode, String qstnCode) throws Exception {
 		
@@ -152,6 +168,8 @@ public class QuesServiceImpl implements IQuestionSerivce{
 		// TODO Auto-generated method stub
 		return daoQes.answerCount();
 	}
+
+	
 
 	
 

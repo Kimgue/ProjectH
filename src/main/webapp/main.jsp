@@ -7,6 +7,21 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>메인화면</title>
 <script src="js/jquery-3.4.1.min.js"></script>
+<script>
+	
+function notice1( adminCode )
+{
+	var a = document.paging;
+	a.adminCode.value = adminCode;
+	
+	a.action ="./Notice"
+	
+	a.method="post"
+	a.submit();
+
+}; 
+
+</script>
 </head>
 <body>
 <div align="center">
@@ -32,9 +47,9 @@
 			</c:if>
 
 <input type="hidden" name="adminCode" /> 
-<a href='Notice'>공지사항</a> <br>	
+<a href='javascript:notice1("1")'>공지사항</a> <br>	
 
-<a href="Question">Q . A</a> 
+<a href="Questionlist">Q . A</a> 
 <input type="hidden" id="memberCode" />
 <br>
 <a href="GifticonList">기프티콘</a>

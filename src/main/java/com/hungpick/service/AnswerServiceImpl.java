@@ -2,6 +2,7 @@ package com.hungpick.service;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import com.hungpick.dao.IDaoAnswer;
 import com.hungpick.dao.IDaoQuestion;
 import com.hungpick.dto.AnswerDto;
 import com.hungpick.dto.AnswerVo;
+import com.hungpick.dto.Criteria;
 
 @Service("answer")
 public class AnswerServiceImpl implements IAnswerService {
@@ -24,7 +26,7 @@ public class AnswerServiceImpl implements IAnswerService {
 	
 	private static final Logger logger = LoggerFactory.getLogger(QuesServiceImpl.class);
 	@Override
-	public AnswerDto selectOne(String memberCode, String qstnCode) {
+	public AnswerVo selectOne(@Param("memberCode")String memberCode, @Param("qstnCode")String qstnCode) {
 		
 		
 		return daoanswer.selectOne(memberCode, qstnCode);
@@ -34,17 +36,17 @@ public class AnswerServiceImpl implements IAnswerService {
 	@Override
 	@Transactional 
 	public void insert(AnswerDto answer) throws Exception {
-		
-		AnswerDto check = daoanswer.selectOne(answer.getMemberCode(), answer.getQstnCode());
-		if(check != null)
+		logger.info("insert성공333");
+		AnswerVo check = daoanswer.selectOne(answer.getMemberCode(), answer.getQstnCode());
+		if(check == null)
 		{
 			throw new Exception();
 		}
-		
+		logger.info("insert성공222");
 		String membercode = answer.getMemberCode();
 		String qstncode = answer.getQstnCode();
 		int answercode = answer.getAnswerCode();
-		String admincode =answer.getAdminCode();
+		String admincode = answer.getAdminCode();
 		String answercontent = answer.getAnswerContent();
 		String answerdate = answer.getAnswerDate();
 		
@@ -55,8 +57,10 @@ public class AnswerServiceImpl implements IAnswerService {
 		logger.info("입력한 TEL : {}", admincode);
 		logger.info("입력한 TEL : {}", answercontent);
 		logger.info("입력한 WEIGHT : {}", answerdate);
-	
+		logger.info("insert성공11");
+		
 		daoanswer.insert(answer);
+		logger.info("insert성공");
 		daoQes.updateanswer(answer.getMemberCode(), answer.getQstnCode());
 	}
 
@@ -74,9 +78,9 @@ public class AnswerServiceImpl implements IAnswerService {
 
 
 	@Override
-	public List<AnswerVo> selectN() {
+	public List<AnswerVo> selectN(Criteria cri) {
 		
-		return daoanswer.selectN();
+		return daoanswer.selectN(cri);
 	}
 
 }

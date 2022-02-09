@@ -4,13 +4,13 @@
 
 <mapper namespace="com.hungpick.dao.IDaoQuestion"> <!-- "<" 는 문법오류나서  "<![CDATA[ < ]]>" 이렇게 해야한다. -->
 
-		 <select id="sltOne" parameterType="String" resultType="qesDto">
+	<select id="sltOne" parameterType="String" resultType="qesDto">
 			SELECT * 
 			FROM 
 			QUESTION
 			WHERE MEMBER_CODE = #{ memberCode } AND
 			QSTN_CODE = #{ qstnCode  } 
-			</select>
+	</select>
 	
 	<select id="answerCount" resultType="int" parameterType="String">
 	<![CDATA[
@@ -62,9 +62,9 @@
 		SELECT  * FROM (   
 		SELECT   ROW_NUMBER() OVER(ORDER BY QSTN_CODE DESC)
 		 NUM, A.*,M.MEMBER_NAME FROM QUESTION A 
-         JOIN MEMBERS M
-         ON A.MEMBER_CODE = M.MEMBER_CODE
-         ORDER BY QSTN_CODE)  
+        JOIN MEMBERS M
+        ON A.MEMBER_CODE = M.MEMBER_CODE
+        ORDER BY QSTN_CODE DESC)  
 		WHERE NUM BETWEEN #{ cri.rowStart }
 		AND #{ cri.rowEnd } 
 		AND MEMBER_CODE = #{ memberCode }
@@ -90,13 +90,14 @@
 	 <!-- 게시판 글 작성 -->
    <insert id="insert" parameterType="qesDto">
 	   INSERT  INTO QUESTION       
-	                 VALUES(   #{ memberCode} , QUESTION_SEQ.NEXTVAL , #{ qstnTitle } , #{ qstnContent }, TO_DATE( #{ qstnDate } ,'YYYY-MM-DD HH24:MI:SS') ,  #{ qstnConfirm } , #{qstnImg} )
-                
+	                 VALUES(   #{ memberCode} ,  QUESTION_SEQ.NEXTVAL 
+	                  , #{ qstnTitle } , #{ qstnContent }, TO_DATE( #{ qstnDate } ,'YYYY-MM-DD HH24:MI:SS') ,  #{ qstnConfirm } , #{qstnImg} )
    </insert>
 	
 	<update id="update" parameterType="qesDto">
 		UPDATE QUESTION SET QSTN_TITLE = #{ qstnTitle }, QSTN_CONTENT = #{ qstnContent } , QSTN_DATE = TO_DATE( #{qstnDate} ,'YYYY-MM-DD HH24:MI:SS'), QSTN_CONFIRM = #{qstnConfirm}, QSTN_IMG = #{qstnImg} WHERE MEMBER_CODE = #{ memberCode } AND QSTN_CODE = #{ qstnCode }  
 	</update>
+	
 	
 	<update id="updateanswer" parameterType="qesDto">
 		UPDATE QUESTION SET   QSTN_CONFIRM = 'y' WHERE MEMBER_CODE = #{ memberCode } AND QSTN_CODE = #{ qstnCode }  

@@ -6,12 +6,13 @@ import org.apache.ibatis.annotations.Param;
 
 import com.hungpick.dto.AnswerDto;
 import com.hungpick.dto.AnswerVo;
+import com.hungpick.dto.Criteria;
 
 
 
 public interface IDaoAnswer {
 
-	AnswerDto selectOne(String memberCode,String qstnCode);
+	AnswerVo selectOne(@Param("memberCode")String memberCode,@Param("qstnCode")String qstnCode);
 	
 	void insert(AnswerDto answer);
 	
@@ -20,6 +21,7 @@ public interface IDaoAnswer {
 	void delete(@Param("memberCode")String memberCode,@Param("qstnCode")String qstnCode,
 			@Param("answerCode")int answerCode, @Param("adminCode")String adminCode);
 	
-	List<AnswerVo> selectN();
+	List<AnswerVo> selectN(Criteria cri);
 	
+	void updateQCODE(AnswerDto answer);
 }

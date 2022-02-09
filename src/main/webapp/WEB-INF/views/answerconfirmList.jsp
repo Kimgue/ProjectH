@@ -33,13 +33,13 @@
 					<td width=100>답변여부</td>
 				</tr>
 			</thead>
-			<c:forEach var="list" items="${ list }">
+			<c:forEach var="list" items="${ selectNlist }">
 				<tr>
-					<td><c:out value="${ list.memberCode }" /></td>
-					<td><c:out value="${ list.qstnCode }" /></td> 
-					<td><a href="javascript:reply1('${list.memberCode }','${list.qstnCode }')"><c:out value="${ list.qstnTitle }" /></a></td> 
-					<td><c:out value="${ list.qstnDate }" /></td>
-					<td><c:out value="${ list.qstnConfirm }" /></td>
+					<td><c:out value="${ list.qesDto.memberCode }" /></td>
+					<td><c:out value="${ list.qesDto.qstnCode }" /></td> 
+					<td><a href="javascript:reply1('${ list.qesDto.memberCode }','${ list.qesDto.qstnCode }')"><c:out value="${ list.qesDto.qstnTitle }" /></a></td> 
+					<td><c:out value="${ list.qesDto.qstnDate }" /></td>
+					<td><c:out value="${ list.qesDto.qstnConfirm }" /></td>
 				</tr>
 			</c:forEach>
 		</table>

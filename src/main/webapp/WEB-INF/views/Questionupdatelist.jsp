@@ -98,11 +98,10 @@ input {
     			<c:forEach items="" var="replyList">
      			 <li>
        				 <p>
-       				 작성자 :<br /><br />
-       				 작성 내용: <br/><br />
-       				 작성 날짜 :  <fmt:formatDate value="}" pattern="yyyy-MM-dd" />
+       				 작성자 :${ selectOne.qesDto.memberCode }<br /><br />
+       				 작성 내용: ${ selectOne.answerDto.answerContent }<br/><br />
+       				 작성 날짜 : ${ selectOne.answerDto.answerDate }
         			</p>
-        			<p></p>
       			</li>
     		</c:forEach>   
   			</ol>

@@ -14,54 +14,48 @@
 						<tbody>
 							<tr>
 								<td>
-									<label for="memberCode" id="memberCode">작성자 번호 :${ sltOne.memberCode }</label>
+									<label for="memberCode" id="memberCode">작성자 번호 :${ selectOne.qesDto.memberCode }</label>
 							</tr>	
 							<tr>
 								<td>
-									<label for="qstnTitle">제목 : ${ sltOne.qstnTitle }</label>
+									<label for="qstnTitle">제목 : ${ selectOne.qesDto.qstnTitle }</label>
 								</td>
 							</tr>	
 							<tr>
 								<td>
-									<label for="qstnContent">내용 : </label>${ sltOne.qstnContent } 
+									<label for="qstnContent">내용 : </label>${ selectOne.qesDto.qstnContent } 
 								</td>
 							</tr>
 							<tr>
 								<td> 
-									<label for="qstnDate" id="qstnDate">작성날짜 : ${ sltOne.qstnDate }</label>
+									<label for="qstnDate" id="qstnDate">작성날짜 : ${ selectOne.qesDto.qstnDate }</label>
 								</td>
 								</tr>			
 						</tbody>			
 					</table>
 				</section>
 				<br>
-				<hr>
-			
-														
-									
-								
-				<div id="result">
-					<form action="post">
+				<hr>		
+					<form method="post" action="insertreply">
 						<table>
 							<tr>
 								<td>
-									<label for="answerContent">내용 : </label><textarea id="answerContent" name="answerContent" > </textarea>
+									<label for="answerContent">내용 : </label><textarea id="answerContent" name="answerContent"></textarea>
 								</td>
 							</tr>
 							<tr>
 							<td>
-								<button type="submit" onclick="">답변 작성</button>
+								<button type="submit">답변 작성</button>
 							</td>
 							</tr>
-							<tr>
-							<td><input type="hidden" id="memberCode" value="${sltOne.memberCode }"/> <td>
-							<td><input type="hidden" id="qstnCode" value="${sltOne.qstnCode }" /></td>
-							<td><input type="hidden" id="answerCode" value="" /></td>
-							<td><input type="hidden" id="adminCode" value="" /></td>
-							<td><input type="hidden" id="answerDate" value="${ date }" /></td>
+							<tr>	
+							<td><input type="hidden" id="memberCode" name="memberCode" value="${ selectOne.qesDto.memberCode }"/> <td>
+							<td><input type="hidden" id="qstnCode" name="qstnCode" value="${ selectOne.qesDto.qstnCode }" /></td>
+							<td><input type="hidden" id="answerCode" name="answerCode" value="${ selectOne.answerDto.answerCode }"/></td>
+							<td><input type="hidden" id="adminCode" name="adminCode" value="1" /></td>
+							<td><input type="hidden" id="answerDate" name="answerDate" value="${ date }" /></td>
 							</tr>
 						</table>
 					</form>
-				</div>
 </body>
 </html>
