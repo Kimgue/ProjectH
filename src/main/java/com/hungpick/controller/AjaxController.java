@@ -2,7 +2,7 @@ package com.hungpick.controller;
 
 import java.util.Random;
 
-
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.annotations.Param;
@@ -128,6 +128,22 @@ public class AjaxController {
 
 		Dto.setMemberEmail(memberEmail);
 		userService.ChangeEmail(Dto);
+
+		JSONObject jsonObj = new JSONObject();
+		String jsonOut = jsonObj.toString();
+
+		return jsonOut;
+	}
+	
+	/*--------------------- Ajax 사용 : 비밀번호 수정 ---------------------*/
+	@RequestMapping("updatePw.do")
+	@ResponseBody
+	public String updatePw(@ModelAttribute("pw") String memberPw, UserDto Dto, HttpSession session)
+			throws Exception {
+		Dto = (UserDto) session.getAttribute("memberDTO");
+
+		Dto.setMemberPw(memberPw);
+		userService.ChangePw(Dto);
 
 		JSONObject jsonObj = new JSONObject();
 		String jsonOut = jsonObj.toString();

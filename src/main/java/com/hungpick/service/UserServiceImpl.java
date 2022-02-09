@@ -117,6 +117,11 @@ public class UserServiceImpl implements IUserService {
 	public void ChangeNumber(UserDto Dto) throws Exception {
 		userDao.ChangeNumber(Dto);
 	}
+	
+	@Override
+	public void ChangePw(UserDto Dto) throws Exception {
+		userDao.ChangePw(Dto);
+	}
 
 	// 이메일 중복검사
 	@Override
@@ -223,4 +228,6 @@ public class UserServiceImpl implements IUserService {
 			System.out.println(e.getCode()); 
 		} 
 	}
+
+
 }

@@ -35,7 +35,7 @@ public interface IUserService {
 	// 비밀번호 변경
 	public String userUpdatePw(@Param("memberName") String memberName, @Param("memberEmail") String memberEmail, HttpSession session) throws Exception;
 	
-	// 비밀번호 변경
+	// 비밀번호 찾기 -> 비밀번호 변경
 	public String ChangePw(UserDto Dto, HttpSession session, HttpServletResponse response) throws Exception;
 	
 	// 로그인
@@ -63,6 +63,9 @@ public interface IUserService {
 	
 	// 전화번호 변경
 	public void ChangeNumber(UserDto Dto) throws Exception;
+	
+	// 비밀번호 변경
+	public void ChangePw(UserDto Dto) throws Exception;
 	
 	// ID 중복검사
 	public String checkId(String memberId) throws Exception;
