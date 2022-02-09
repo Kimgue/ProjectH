@@ -116,6 +116,21 @@ public class AjaxController {
 			return jsonOut;
 		}
 	}
+	
+	@RequestMapping("updateEmail.do")
+	@ResponseBody
+	public String updateEmail(@ModelAttribute("email") String memberEmail, UserDto Dto, HttpSession session)
+			throws Exception {
+		Dto = (UserDto) session.getAttribute("memberDTO");
+
+		Dto.setMemberEmail(memberEmail);
+		userService.ChangeEmail(Dto);
+
+		JSONObject jsonObj = new JSONObject();
+		String jsonOut = jsonObj.toString();
+
+		return jsonOut;
+	}
 
 	/*--------------------- Ajax 사용 : 닉네임 중복 확인 및 닉네임 수정 ---------------------*/
 	@RequestMapping("chkNickname.do")

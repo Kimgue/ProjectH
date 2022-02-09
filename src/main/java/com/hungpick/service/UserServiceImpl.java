@@ -102,6 +102,12 @@ public class UserServiceImpl implements IUserService {
 	public void userUpdate(UserDto Dto) throws Exception {
 		userDao.userUpdate(Dto); 
 	}
+	
+	// 이메일 수정
+	@Override
+	public void ChangeEmail(UserDto Dto) throws Exception {
+		userDao.ChangeEmail(Dto);
+	}
 
 	// 이메일 중복검사
 	@Override
@@ -187,6 +193,8 @@ public class UserServiceImpl implements IUserService {
 		userDao.userDelete(Dto);
 		return "userDeleteComplete";
 	}
+
+
 
 
 }

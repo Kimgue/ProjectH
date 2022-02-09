@@ -56,6 +56,9 @@ public interface IUserDao {
 	// 비밀번호 변경
 	void ChangePw(UserDto Dto) throws Exception;
 	
+	// 이메일 변경
+	void ChangeEmail(UserDto Dto) throws Exception;
+	
 		
 	/*------------------ Delete ------------------*/
 	

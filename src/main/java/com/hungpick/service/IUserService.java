@@ -37,7 +37,7 @@ public interface IUserService {
 	
 	// 비밀번호 변경
 	public String ChangePw(UserDto Dto, HttpSession session, HttpServletResponse response) throws Exception;
-
+	
 	// 로그인
 	public String userLogin(@Param("memberId") String memberId, @Param("memberPw") String memberPw, HttpSession session) throws Exception;
 	
@@ -57,6 +57,9 @@ public interface IUserService {
 	
 	// 정보수정
 	public void userUpdate(UserDto Dto) throws Exception;
+	
+	// 정보수정
+	public void ChangeEmail(UserDto Dto) throws Exception;
 	
 	// ID 중복검사
 	public String checkId(String memberId) throws Exception;
