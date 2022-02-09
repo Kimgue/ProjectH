@@ -83,6 +83,7 @@
 $(document).ready(function() {
 	$("#EmailChk").hide();
 	$("#NumberChk").hide();
+	
 	/* --------------- 이메일 검사 --------------- */
 	$("#Email_Transmit").click(function() {
 		var val_Email = $("#memberEmail").val();
@@ -92,34 +93,39 @@ $(document).ready(function() {
 			checkEmail = false;
 			return false;
 		} else if (validateEmail.test($('#memberEmail').val())) {
-			var url = "CheckMail.do";
+			var url = "chkEmail.do";
 			$.getJSON(url,{"mail" : val_Email},function(json) {
 				if (json.result == true) {
-					$("#resultEmail").text("인증번호가 전송되었습니다").css("color","blue");
-					$("#memberEmail").prop("readonly", true);
-					$("#EmailChk").show();
 					
-					$("#Email_Check").click(function() {
-						var Email_Number = $("#Email_Number").val();
-						if (Email_Number == "") {
-							$("#resultEmailChk").text("인증 번호를 입력해주세요").css("color","red");
-						} else if (Email_Number == json.key) {
-							$("#resultEmailChk").text("인증 완료되었습니다").css("color","blue");
-							$("#resultEmail").text("인증 완료되었습니다").css("color","blue");
-							$("#EmailChk").hide();
-							$("#Email_Transmit").hide();
-							checkEmail = true;
-						} else {
-							$("#resultEmailChk").text("잘못된 인증번호입니다").css("color","red");
-							checkEmail = false;
-							return false;
-						}
+					var url = "sendEmail.do";
+					$.getJSON(url,{"mail" : val_Email}, function(json) {
+						
+						$("#resultEmail").text("인증번호가 전송되었습니다").css("color","blue");
+						$("#memberEmail").prop("readonly", true);
+						$("#EmailChk").show();
+						
+						$("#Email_Check").click(function() {
+							var Email_Number = $("#Email_Number").val();
+							if (Email_Number == "") {
+								$("#resultEmailChk").text("인증 번호를 입력해주세요").css("color","red");
+							} else if (Email_Number == json.key) {
+								$("#resultEmailChk").text("인증 완료되었습니다").css("color","blue");
+								$("#resultEmail").text("인증 완료되었습니다").css("color","blue");
+								$("#EmailChk").hide();
+								$("#Email_Transmit").hide();
+								checkEmail = true;
+							} else {
+								$("#resultEmailChk").text("잘못된 인증번호입니다").css("color","red");
+								checkEmail = false;
+								return false;
+							}
+						});
 					});
-					} else {
-						$("#resultEmail").text("이미 존재하는 이메일입니다").css("color","red");
-						checkEmail = false;
-						return false;
-					}
+				} else {
+					$("#resultEmail").text("이미 존재하는 이메일입니다").css("color","red");
+					checkEmail = false;
+					return false;
+				}
 			});
 		} else {
 			$("#resultEmail").text("형식에 맞지 않는 이메일입니다").css("color", "red");
@@ -128,7 +134,7 @@ $(document).ready(function() {
 		}
 	});
 
-	/* --------------- ID 검사 --------------- */
+	/* --------------- 아이디 검사 --------------- */
 	$("#memberId").blur(function() {
 		var val_Id = $("#memberId").val();
 		
@@ -139,7 +145,7 @@ $(document).ready(function() {
 		}
 
 		if (validateId.test($('#memberId').val())) {
-			var url = "idChkCtrl.do";
+			var url = "chkId.do";
 			$.getJSON(url,{"id" : val_Id},function(json) {
 				var result_text = json.result;
 				var result = eval(result_text);
@@ -224,34 +230,7 @@ $(document).ready(function() {
 		}
 	});
 
-	/* --------------- 전화번호 검사 --------------- */
-/* 	$("#memberNumber").blur(function() {
-		var val_Number = $("#memberNumber").val();
-		if (val_Number == "") {
-			checkNumber = false;
-			return false;
-		} else if (validateNumber.test($('#memberNumber').val())) {
-			var url = "chkNumber.do";
-			$.getJSON(url, {"number" : val_Number}, function(json) {
-				var result_text = json.result;
-				var result = eval(result_text);
-				if (result) {
-					$("#resultNumber").text("사용 가능한 전화번호입니다").css("color", "blue");
-					checkNumber = true;
-				} else {
-					$("#resultNumber").text("사용할 수 없는 전화번호입니다").css("color", "red");
-					checkNumber = false;
-					return false;
-				}
-			});	
-		} else {
-			$("#resultNumber").text("사용할 수 없는 전화번호입니다").css("color", "red");
-			checkNumber = false;
-			return false;
-		}
-	}); */
-	
-	/* --------------- 전화번호 인증번호 버튼 눌렀을 때 --------------- */
+	/* --------------- 전화번호 인증번호 전송 --------------- */
 	$("#Number_Transmit").click(function() {
 		var val_Number = $("#memberNumber").val();
 		if (val_Number == "") {
@@ -287,20 +266,15 @@ $(document).ready(function() {
 			$("#resultNumber").text("사용할 수 없는 전화번호입니다").css("color", "red");
 			checkNumber = false;
 		}
-		
-		
-		
 	});
 	
+	/* --------------- 전화번호 인증번호 확인 --------------- */	
 	$("#Number_Check").click(function() {
-
 		var val_Number_Number = $("#Number_Number").val();
-		
 		if(emailData == val_Number_Number) {
 			$("#resultNumber").text("인증 완료되었습니다").css("color","blue");
 			$("#NumberChk").hide();
 			$("#Number_Transmit").hide();
-			
 			checkNumber = true;
 		} else {
 			$("#resultNumber").text("잘못된 인증번호입니다").css("color","red");

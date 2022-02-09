@@ -26,7 +26,7 @@
 	</select>
 	
 	<!-- 회원가입 -->
-	<insert id="userRegist" parameterType="userDto">
+	<insert id="registMember" parameterType="userDto">
 		INSERT INTO MEMBERS 
 		(
 		MEMBER_CODE, MEMBER_ID, MEMBER_PW,
@@ -48,9 +48,9 @@
 	</insert>
 	
 	<!-- PW 검사 -->
-	<select id="checkPw" resultType="userDto">
+<!-- 	<select id="checkPw" resultType="userDto">
 		SELECT * FROM MEMBERS WHERE MEMBER_PW = #{memberPw}
-	</select>
+	</select> -->
 
 	<!-- ID 중복조회 -->
 	<select id="checkId" resultType="String">
@@ -71,11 +71,6 @@
 	<select id="checkNumber" resultType="String">
 		SELECT COUNT(*) FROM MEMBERS WHERE MEMBER_NUMBER = #{memberNumber}
 	</select>
-
-	<!-- 정보수정 -->
-	<update id="userUpdate">
-		UPDATE MEMBERS SET MEMBER_NICKNAME = #{memberNickname} WHERE MEMBER_CODE = #{memberCode}
-	</update>
 	
 	<!-- 아이디 찾기 -->
 	<select id="findId" resultType="userDto">
@@ -87,23 +82,28 @@
 		SELECT MEMBER_ID, MEMBER_PW FROM MEMBERS WHERE MEMBER_NAME = #{memberName} AND MEMBER_EMAIL = #{memberEmail}
 	</select>
 	
+	<!-- 닉네임 변경 -->
+	<update id="updateNickname">
+		UPDATE MEMBERS SET MEMBER_NICKNAME = #{memberNickname} WHERE MEMBER_CODE = #{memberCode}
+	</update>
+	
 	<!-- 비밀번호 변경 -->
-	<update id="ChangePw">
+	<update id="updatePw">
 		UPDATE MEMBERS SET MEMBER_PW = #{memberPw} WHERE MEMBER_ID = #{memberId}
 	</update>
 	
 	<!-- 이메일 변경 -->
-	<update id="ChangeEmail">
+	<update id="updateEmail">
 		UPDATE MEMBERS SET MEMBER_EMAIL = #{memberEmail} WHERE MEMBER_ID = #{memberId}
 	</update>
 	
 	<!-- 이메일 변경 -->
-	<update id="ChangeNumber">
+	<update id="updateNumber">
 		UPDATE MEMBERS SET MEMBER_NUMBER = #{memberNumber} WHERE MEMBER_ID = #{memberId}
 	</update>
 	
 	<!-- 회원탈퇴 -->
-	<delete id="userDelete">
+	<delete id="deleteMember">
 		DELETE FROM MEMBERS WHERE MEMBER_CODE = #{memberCode}
 	</delete>
 </mapper>

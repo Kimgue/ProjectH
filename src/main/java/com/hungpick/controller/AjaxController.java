@@ -4,7 +4,6 @@ import java.util.Random;
 
 import javax.servlet.http.HttpSession;
 
-import org.apache.ibatis.annotations.Param;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
@@ -29,7 +28,7 @@ public class AjaxController {
 	private IUserService userService;
 
 	/*--------------------- Ajax 사용 : 비밀번호 검사 ---------------------*/
-	@RequestMapping("pwChkCtrl.do")
+/*	@RequestMapping("pwChkCtrl.do")
 	@ResponseBody
 	public String pwChk(@ModelAttribute("inputPw") @Param("inputPw") String inputPw, HttpSession session)
 			throws Exception {
@@ -45,10 +44,11 @@ public class AjaxController {
 		String jsonOut = jsonObj.toString();
 
 		return jsonOut;
-	}
-
-	/*--------------------- Ajax 사용 : 아이디 중복 검사 ---------------------*/
-	@RequestMapping("idChkCtrl.do")
+	}*/
+	
+	/*--- 중복검사 ---*/
+	/*--------------------- 아이디 중복 검사 ---------------------*/
+	@RequestMapping("chkId.do")
 	@ResponseBody
 	public String idChk(@ModelAttribute("id") String memberId) throws Exception {
 		String idChk = userService.checkId(memberId);
@@ -64,7 +64,7 @@ public class AjaxController {
 		return jsonOut;
 	}
 
-	/*--------------------- Ajax 사용 : 전화번호 중복 검사 ---------------------*/
+	/*--------------------- 전화번호 중복 검사 ---------------------*/
 	@RequestMapping("chkNumber.do")
 	@ResponseBody
 	public String chkNumber(@ModelAttribute("number") String memberNumber) throws Exception {
@@ -80,110 +80,31 @@ public class AjaxController {
 
 		return jsonOut;
 	}
-
-	/*--------------------- Ajax 사용 : 이메일 중복 검사 및 이메일 전송과 인증 ---------------------*/
-	@RequestMapping("CheckMail.do")
+	
+	/*--------------------- 이메일 중복 검사  ---------------------*/
+	@RequestMapping("chkEmail.do")
 	@ResponseBody
-	public String SendMail(@ModelAttribute("mail") String mail) throws Exception {
+	public String chkEmail(@ModelAttribute("mail") String mail) throws Exception {
 		String chkEmail = userService.checkEmail(mail);
-
-		boolean chkEmailBool = false;
-		JSONObject jsonObj = new JSONObject();
-
+		boolean result = false;
 		if (chkEmail.equals("0")) {
-			chkEmailBool = true;
-			Random random = new Random();
-			String key = "";
-
-			SimpleMailMessage message = new SimpleMailMessage();
-
-			message.setTo(mail);
-
-			int numIndex = random.nextInt(899999) + 100000;
-			key += numIndex;
-
-			message.setSubject("인증번호 입력을 위한 메일 전송");
-			message.setText("인증 번호 : " + key);
-
-			mailSender.send(message);
-
-			jsonObj.put("key", key);
-			jsonObj.put("result", chkEmailBool);
-			String jsonOut = jsonObj.toString();
-			return jsonOut;
-		} else {
-			jsonObj.put("result", chkEmailBool);
-			String jsonOut = jsonObj.toString();
-			return jsonOut;
-		}
-	}
-	
-	/*--------------------- Ajax 사용 : 이메일 수정 ---------------------*/
-	@RequestMapping("updateEmail.do")
-	@ResponseBody
-	public String updateEmail(@ModelAttribute("email") String memberEmail, UserDto Dto, HttpSession session)
-			throws Exception {
-		Dto = (UserDto) session.getAttribute("memberDTO");
-
-		Dto.setMemberEmail(memberEmail);
-		userService.ChangeEmail(Dto);
-
+			result = true;
+		} 
+		
 		JSONObject jsonObj = new JSONObject();
+		jsonObj.put("result", result);
 		String jsonOut = jsonObj.toString();
 
 		return jsonOut;
 	}
 	
-	/*--------------------- Ajax 사용 : 비밀번호 수정 ---------------------*/
-	@RequestMapping("updatePw.do")
-	@ResponseBody
-	public String updatePw(@ModelAttribute("pw") String memberPw, UserDto Dto, HttpSession session)
-			throws Exception {
-		Dto = (UserDto) session.getAttribute("memberDTO");
-
-		Dto.setMemberPw(memberPw);
-		userService.ChangePw(Dto);
-
-		JSONObject jsonObj = new JSONObject();
-		String jsonOut = jsonObj.toString();
-
-		return jsonOut;
-	}
-	
-	/*--------------------- Ajax 사용 : 전화번호 수정 ---------------------*/
-	@RequestMapping("updateNumber.do")
-	@ResponseBody
-	public String updateNumber(@ModelAttribute("number") String memberNumber, UserDto Dto, HttpSession session)
-			throws Exception {
-		Dto = (UserDto) session.getAttribute("memberDTO");
-
-		Dto.setMemberNumber(memberNumber);
-		userService.ChangeNumber(Dto);
-
-		JSONObject jsonObj = new JSONObject();
-		String jsonOut = jsonObj.toString();
-
-		return jsonOut;
-	}
-
-	/*--------------------- Ajax 사용 : 닉네임 중복 확인 및 닉네임 수정 ---------------------*/
+	/*--------------------- 닉네임 중복 검사 ---------------------*/
 	@RequestMapping("chkNickname.do")
 	@ResponseBody
-	public String chkNickname(@ModelAttribute("nickname") String memberNickname, UserDto Dto, HttpSession session)
-			throws Exception {
+	public String chkNickname(@ModelAttribute("nickname") String memberNickname) throws Exception {
 		String chkNickname = userService.checkNickname(memberNickname);
-
 		boolean result = false;
-
-		Dto = (UserDto) session.getAttribute("memberDTO");
-
 		if (chkNickname.equals("0")) {
-			if (Dto != null) {
-				Dto.setMemberNickname(memberNickname);
-				userService.userUpdate(Dto);
-			} else {
-
-			}
 			result = true;
 		}
 
@@ -193,20 +114,83 @@ public class AjaxController {
 
 		return jsonOut;
 	}
+	
 
-	@RequestMapping("FindIdSendMail.do")
+	/*--- 정보수정 ---*/
+	/*--------------------- 닉네임 수정 ---------------------*/
+	@RequestMapping("updateNickname.do")
 	@ResponseBody
-	public String FindIdSendMail(@ModelAttribute("mail") String mail) throws Exception {
+	public String updateNickname(@ModelAttribute("nickname") String memberNickname, UserDto Dto, HttpSession session) throws Exception {
+		Dto = (UserDto) session.getAttribute("memberDTO");
+		Dto.setMemberNickname(memberNickname);
+		userService.updateNickname(Dto);
+		
+		JSONObject jsonObj = new JSONObject();
+		String jsonOut = jsonObj.toString();
 
+		return jsonOut;
+	}
+	
+	/*--------------------- 이메일 수정 ---------------------*/
+	@RequestMapping("updateEmail.do")
+	@ResponseBody
+	public String updateEmail(@ModelAttribute("email") String memberEmail, UserDto Dto, HttpSession session) throws Exception {
+		Dto = (UserDto) session.getAttribute("memberDTO");
+
+		Dto.setMemberEmail(memberEmail);
+		userService.updateEmail(Dto);
+
+		JSONObject jsonObj = new JSONObject();
+		String jsonOut = jsonObj.toString();
+
+		return jsonOut;
+	}
+	
+	/*--------------------- 비밀번호 수정 ---------------------*/
+	@RequestMapping("updatePw.do")
+	@ResponseBody
+	public String updatePw(@ModelAttribute("pw") String memberPw, UserDto Dto, HttpSession session) throws Exception {
+		Dto = (UserDto) session.getAttribute("memberDTO");
+
+		Dto.setMemberPw(memberPw);
+		userService.updatePw(Dto);
+
+		JSONObject jsonObj = new JSONObject();
+		String jsonOut = jsonObj.toString();
+
+		return jsonOut;
+	}
+	
+	/*--------------------- 전화번호 수정 ---------------------*/
+	@RequestMapping("updateNumber.do")
+	@ResponseBody
+	public String updateNumber(@ModelAttribute("number") String memberNumber, UserDto Dto, HttpSession session) throws Exception {
+		Dto = (UserDto) session.getAttribute("memberDTO");
+
+		Dto.setMemberNumber(memberNumber);
+		userService.updateNumber(Dto);
+
+		JSONObject jsonObj = new JSONObject();
+		String jsonOut = jsonObj.toString();
+
+		return jsonOut;
+	}
+	
+	
+
+	/*--- 인증번호 ---*/
+	/*--------------------- 이메일 전송 및 인증  ---------------------*/
+	@RequestMapping("sendEmail.do")
+	@ResponseBody
+	public String sendEmail(@ModelAttribute("mail") String mail) throws Exception {
 		JSONObject jsonObj = new JSONObject();
 		Random random = new Random();
 		String key = "";
 
 		SimpleMailMessage message = new SimpleMailMessage();
 
-		message.setTo(mail); // 스크립트에서 보낸 메일을 받을 사용자 이메일 주소
-
-		// 입력 키를 위한 코드
+		message.setTo(mail);
+		
 		int numIndex = random.nextInt(899999) + 100000;
 		key += numIndex;
 
@@ -219,8 +203,8 @@ public class AjaxController {
 		String jsonOut = jsonObj.toString();
 		return jsonOut;
 	}
-
 	
+	/*--------------------- 문자 전송 및 인증  ---------------------*/
 	@RequestMapping(value = "/phoneCheck", method = RequestMethod.GET) 
 	@ResponseBody 
 	public String sendSMS(@RequestParam("phone") String userPhoneNumber) {

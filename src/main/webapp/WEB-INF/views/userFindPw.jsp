@@ -14,7 +14,7 @@
 			alert("아이디를 입력해주세요");
 			return;
 		} else {
-			var url = "idChkCtrl.do";
+			var url = "chkId.do";
 
 			$.getJSON(url, {
 				"id" : val_Id

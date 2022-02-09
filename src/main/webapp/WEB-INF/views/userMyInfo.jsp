@@ -15,7 +15,7 @@
 	$(document).ready(function() {
 		
 		/* 닉네임, 이메일, 전화번호 변경하는 곳 안보이게 */
-		$("#Nickname,#Email,#Number,#Pw").hide();
+		$("#Nickname,#Email,#Number,#Pw,#memberPw").hide();
 		var checkEmail = false;
 		var checkNumber = false;
 		var checkPw = false;
@@ -45,15 +45,16 @@
 			} else if (validateNickname.test($('#Nick_Txt').val())) {
 				var url = "chkNickname.do";
 
-				$.getJSON(url, {
-					"nickname" : val_Nickname
-				}, function(json) {
+				$.getJSON(url, {"nickname" : val_Nickname}, function(json) {
 					var result_text = json.result;
 					var result = eval(result_text);
 
 					if (result) {
-						$("#Nick_Txt").val("");
-						location.reload();
+						var url = "updateNickname.do";
+						$.getJSON(url, {"nickname" : val_Nickname}, function(json) {
+							$("#Nick_Txt").val("");
+							location.reload();
+						});
 					} else {
 						alert("이미 존재하는 닉네임입니다");
 					}
@@ -90,7 +91,7 @@
 				$("#resultEmail").text("이메일을 입력해주세요").css("color","red");
 				return false;
 			} else if (validateEmail.test($('#Email_Txt').val())) {
-				var url = "CheckMail.do";
+				var url = "chkEmail.do";
 				
 				$.getJSON(url,{"mail" : val_Email},function(json) {
 					if (json.result == true) {

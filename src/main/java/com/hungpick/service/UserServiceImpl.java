@@ -41,8 +41,8 @@ public class UserServiceImpl implements IUserService {
 	// 회원가입
 	@Override
 	@Transactional
-	public String userRegist(UserDto Dto) throws Exception {
-		userDao.userRegist(Dto);
+	public String registMember(UserDto Dto) throws Exception {
+		userDao.registMember(Dto);
 		userDaoHist.userRegistHist("Insert " + Dto.toString());
 
 		return "redirect:/main.jsp";
@@ -89,10 +89,10 @@ public class UserServiceImpl implements IUserService {
 	}
 
 	// 비밀번호 검사
-	@Override
-	public UserDto checkPw(String inputPw) throws Exception {
-		return userDao.checkPw(inputPw);
-	}
+//	@Override
+//	public UserDto checkPw(String inputPw) throws Exception {
+//		return userDao.checkPw(inputPw);
+//	}
 
 	// 닉네임 중복검사
 	@Override
@@ -102,25 +102,25 @@ public class UserServiceImpl implements IUserService {
 
 	// 닉네임 수정
 	@Override
-	public void userUpdate(UserDto Dto) throws Exception {
-		userDao.userUpdate(Dto);
+	public void updateNickname(UserDto Dto) throws Exception {
+		userDao.updateNickname(Dto);
 	}
 
 	// 이메일 수정
 	@Override
-	public void ChangeEmail(UserDto Dto) throws Exception {
-		userDao.ChangeEmail(Dto);
+	public void updateEmail(UserDto Dto) throws Exception {
+		userDao.updateEmail(Dto);
 	}
 	
 	// 전화번호 수정
 	@Override
-	public void ChangeNumber(UserDto Dto) throws Exception {
-		userDao.ChangeNumber(Dto);
+	public void updateNumber(UserDto Dto) throws Exception {
+		userDao.updateNumber(Dto);
 	}
 	
 	@Override
-	public void ChangePw(UserDto Dto) throws Exception {
-		userDao.ChangePw(Dto);
+	public void updatePw(UserDto Dto) throws Exception {
+		userDao.updatePw(Dto);
 	}
 
 	// 이메일 중복검사
@@ -178,7 +178,7 @@ public class UserServiceImpl implements IUserService {
 	}
 
 	@Override
-	public String ChangePw(UserDto Dto, HttpSession session, HttpServletResponse response) throws Exception {
+	public String updatePw(UserDto Dto, HttpSession session, HttpServletResponse response) throws Exception {
 		String Id = (String) session.getAttribute("memberId");
 		String Pw = (String) session.getAttribute("memberPw");
 
@@ -187,7 +187,7 @@ public class UserServiceImpl implements IUserService {
 
 		if (Pw.equals(Dto.getMemberPw()) != true) {
 			Dto.setMemberId(Id);
-			userDao.ChangePw(Dto);
+			userDao.updatePw(Dto);
 			session.invalidate();
 			return "userLogin";
 		} else {
@@ -201,16 +201,16 @@ public class UserServiceImpl implements IUserService {
 	}
 
 	@Override
-	public String userDelete(UserDto Dto, HttpSession session) throws Exception {
+	public String deleteMember(UserDto Dto, HttpSession session) throws Exception {
 		String Code = (String) session.getAttribute("memberCode");
 		Dto.setMemberCode(Code);
-		userDao.userDelete(Dto);
+		userDao.deleteMember(Dto);
 		return "userDeleteComplete";
 	}
 
 	public void certifiedPhoneNumber(String userPhoneNumber, String key) { 
 		String api_key = "NCSC5D9IHLHKFF82"; 
-		String api_secret = "DM9RVLWFT99OJDTDIJFOWNSKWEFEMKKT"; 
+		String api_secret = "DM9RVLWFT99OJDTDIJFOWNSKWEFEMKKT";
 		Message coolsms = new Message(api_key, api_secret); 
 		HashMap<String, String> params = new HashMap<String, String>(); 
 		params.put("to", userPhoneNumber); // 수신전화번호 

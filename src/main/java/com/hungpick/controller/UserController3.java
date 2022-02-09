@@ -83,7 +83,7 @@ public class UserController3 {
 	/*--------------------- 회원가입 완료 눌렀을 때 ---------------------*/
 	@RequestMapping("userSignUpSubmit")
 	public String userSignUp(UserDto Dto) throws Exception {
-		String view = userService.userRegist(Dto);
+		String view = userService.registMember(Dto);
 		return view;
 	}
 
@@ -97,7 +97,7 @@ public class UserController3 {
 	/*--------------------- 회원탈퇴 시도했을 때 ---------------------*/
 	@RequestMapping("userDeleteSubmit")
 	public String userDeleteSubmit(UserDto Dto, HttpSession session) throws Exception {
-		String view = userService.userDelete(Dto, session);
+		String view = userService.deleteMember(Dto, session);
 		session.invalidate();
 		return view;
 	}
@@ -126,7 +126,7 @@ public class UserController3 {
 	/*--------------------- 비밀번호 찾기 (비밀번호 변경) ---------------------*/
 	@RequestMapping("userFindPwUpdate")
 	public String userFindPwUpdate(UserDto Dto, HttpSession session, HttpServletResponse response) throws Exception {
-		String view = userService.ChangePw(Dto, session, response);
+		String view = userService.updatePw(Dto, session, response);
 		return view;
 	}
 }

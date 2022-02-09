@@ -45,7 +45,7 @@
 			if (val_Email == "") {
 				alert("이메일 주소를 정확하게 입력해주세요");
 			} else if (validateEmail.test($('#memberEmail').val())) {
-				var url = "FindIdSendMail.do";
+				var url = "sendEmail.do";
 				
 				$.getJSON(url, {
 					"mail" : val_Email
