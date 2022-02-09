@@ -64,7 +64,7 @@
 	</select>
 	
 	<update id="updateQCODE" parameterType="qesDto">
-		UPDATE ANSWER SET QSTN_CODE =  (SELECT NVL(MAX(TO_NUMBER(QSTN_CODE)),0)+1 FROM ANSWER) WHERE MEMBER_CODE = #{ memberCode } AND QSTN_CODE = #{ qstnCode }  
+		UPDATE ANSWER SET QSTN_CODE =  (SELECT NVL(MAX(TO_NUMBER(QSTN_CODE)),0)+1 FROM ANSWER) WHERE MEMBER_CODE = #{ memberCode } AND QSTN_CODE = #{ qstnCode }   
 	</update>
 	
 	
