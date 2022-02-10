@@ -50,10 +50,10 @@ public class AjaxController {
 	/*--------------------- 아이디 중복 검사 ---------------------*/
 	@RequestMapping("chkId.do")
 	@ResponseBody
-	public String idChk(@ModelAttribute("id") String memberId) throws Exception {
-		String idChk = userService.checkId(memberId);
+	public String chkId(@ModelAttribute("id") String memberId) throws Exception {
+		String chkId = userService.checkId(memberId);
 		boolean result = false;
-		if (idChk.equals("0")) {
+		if (chkId.equals("0")) {
 			result = true;
 		}
 

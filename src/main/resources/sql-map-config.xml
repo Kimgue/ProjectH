@@ -25,8 +25,7 @@
 		<typeAlias type="com.hungpick.dto.QuestionVo" alias="questionVo"></typeAlias>
 		<typeAlias type="com.hungpick.dto.AnswerDto" alias="answerDto"></typeAlias>
 		<typeAlias type="com.hungpick.dto.AnswerVo" alias="answerVo"></typeAlias>
+		<typeAlias type="com.hungpick.dto.AdminDto" alias="adminDto"></typeAlias>
 	</typeAliases>
 	
-	
-
 </configuration>

@@ -90,6 +90,7 @@ public class UserController3 {
 	/*--------------------- 로그인 시도했을 때 ---------------------*/
 	@RequestMapping("userLoginTry")
 	public String userLoginTry(@Param("memberId") String memberId, @Param("memberPw") String memberPw, HttpSession session) throws Exception {
+		System.out.println("회원");
 		String view = userService.userLogin(memberId, memberPw, session);
 		return view;
 	}

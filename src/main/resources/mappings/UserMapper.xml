@@ -106,4 +106,5 @@
 	<delete id="deleteMember">
 		DELETE FROM MEMBERS WHERE MEMBER_CODE = #{memberCode}
 	</delete>
+	
 </mapper>

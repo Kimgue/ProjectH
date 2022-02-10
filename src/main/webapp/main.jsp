@@ -25,26 +25,42 @@ function notice1( adminCode )
 </head>
 <body>
 <div align="center">
-		<h1>환영합니다. ${memberDTO.memberName}</h1>
+
 <form name="paging">
 
-			<a href="userInfo">회원조회</a><br>
-			<c:if test="${empty memberDTO}">
-				<a href="userLogin">로그인</a>
-				<br>
-			</c:if>
-			<c:if test="${not empty memberDTO}">
-				<a href="userMyInfo">마이페이지</a>
-				<br>
-			</c:if>
-			<c:if test="${not empty memberDTO}">
-				<a href="userLogout">로그아웃</a>
-				<br>
-			</c:if>
-			<c:if test="${empty memberDTO}">
-				<a href="userSignUp">회원가입</a>
-				<br>
-			</c:if>
+
+<!-- 로그인 상태 체크 -->
+<!-- c:choose 구문 사이에 주석을 넣으면 에러뜸(이유는 모르겠네) --> 
+<c:choose> 
+	<c:when test="${loginBool eq true}"> 
+		<c:choose>
+			<c:when test="${not empty adminDTO}">
+				<h1>관리자 계정입니다. ${adminDTO.adminName}</h1>
+				
+				<a href="userInfo">회원조회</a><br>
+				
+				
+				
+			</c:when>
+			
+			<c:otherwise>
+				<h1>환영합니다. ${memberDTO.memberName}</h1>
+			</c:otherwise>
+		</c:choose>
+		<a href="userMyInfo">마이페이지</a>
+		<br>
+		<a href="userLogout">로그아웃</a>
+		<br>
+	
+	</c:when>
+	
+	<c:otherwise>
+		<a href="userLogin">로그인</a>
+		<br>
+		<a href="userSignUp">회원가입</a>
+		<br>
+	</c:otherwise>
+</c:choose>
 
 <input type="hidden" name="adminCode" /> 
 <a href='javascript:notice1("1")'>공지사항</a> <br>	

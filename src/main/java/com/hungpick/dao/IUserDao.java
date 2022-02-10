@@ -63,5 +63,7 @@ public interface IUserDao {
 	
 	// 회원탈퇴
 	public void deleteMember(UserDto Dto) throws Exception;
+		
+	
 
 }

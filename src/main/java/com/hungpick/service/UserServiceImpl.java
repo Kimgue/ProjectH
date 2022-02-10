@@ -52,8 +52,11 @@ public class UserServiceImpl implements IUserService {
 	@Override
 	public String userLogin(String memberId, String memberPw, HttpSession session) throws Exception {
 		UserDto Dto = userDao.userLogin(memberId, memberPw);
-
+		Boolean loginBool = false;
+		
 		if (Dto != null) {
+			loginBool = true;
+			session.setAttribute("loginBool", loginBool);
 			session.setAttribute("memberDTO", Dto);
 			session.setAttribute("memberCode", Dto.getMemberCode());
 			session.setAttribute("memberId", Dto.getMemberId());
