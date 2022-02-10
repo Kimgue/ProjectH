@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.hungpick.dto.UserDto;
+import com.hungpick.service.IGifticonService;
 import com.hungpick.service.IUserService;
 
 @Controller
@@ -17,6 +18,9 @@ public class UserController3 {
 
 	@Autowired
 	private IUserService userService;
+	
+	@Autowired
+	private IGifticonService gifticon;
 
 	/*--------------------- 아이디 찾기 페이지로 이동 ---------------------*/
 	@RequestMapping("userFindId")
@@ -129,5 +133,19 @@ public class UserController3 {
 	public String userFindPwUpdate(UserDto Dto, HttpSession session, HttpServletResponse response) throws Exception {
 		String view = userService.updatePw(Dto, session, response);
 		return view;
+	}
+	
+	
+	
+	
+	/*--------------------- 비밀번호 찾기 (비밀번호 변경) ---------------------*/
+	@RequestMapping("GifticonList")
+	public String GifticonList(Model model) throws Exception {
+
+		System.out.println(gifticon.selectgift());
+		model.addAttribute("gifticonlist", gifticon.selectgift());
+		System.out.println("ㅇㅇ");
+
+		return "GifticonList";
 	}
 }
