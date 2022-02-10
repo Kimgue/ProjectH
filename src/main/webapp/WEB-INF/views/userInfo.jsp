@@ -11,15 +11,15 @@
 <body>
 	<table border="1">
 		<tr>
-			<td width=50>code</td>
-			<td width=50>id</td>
-			<td width=50>pw</td>
-			<td width=50>name</td>
-			<td width=50>nickname</td>
-			<td width=50>email</td>
-			<td width=50>number</td>
-			<td width=50>date</td>
-			<td width=50>point</td>
+			<td width=50>회원 코드</td>
+			<td width=50>아이디</td>
+			<td width=50>비밀번호</td>
+			<td width=50>이름</td>
+			<td width=50>닉네임</td>
+			<td width=50>이메일</td>
+			<td width=50>전화번호</td>
+			<td width=50>가입일자</td>
+			<td width=50>보유 포인트</td>
 		</tr>
 
 		<c:forEach var="list" items="${LIST}">
@@ -35,9 +35,6 @@
 				<td><c:out value="${list.holdPoint}" /></td>
 			</tr>
 		</c:forEach>
-
 	</table>
-	<input type="button" value="회원등록" onClick="location.href='userSignUp'">
-	<input type="button" value="로그인" onClick="location.href='userLogin'">
 </body>
 </html>

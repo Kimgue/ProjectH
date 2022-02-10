@@ -24,5 +24,8 @@ public class AdminController {
 		return view;
 	}
 	
-	
+	/*--------------------- 관리 페이지 ---------------------*/
+	@RequestMapping("adminPage")
+	public void adminPage() {
+	}
 }

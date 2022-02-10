@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -296,8 +297,27 @@
 </script>
 </head>
 <body>
-	<h2>마이페이지</h2>
-	<table border="1">
+<h2>마이페이지</h2>
+<c:choose>
+	<c:when test="${not empty adminDTO}">
+		<table border="1">
+		<tr>
+			<td>아이디
+			<td>${adminDTO.adminId}</td>
+		</tr>
+		<tr>
+			<td>비밀번호
+			<td>${adminDTO.adminPw}</td>
+		</tr>
+		<tr>
+			<td>이름</td>
+			<td>${adminDTO.adminName}</td>
+		</tr>
+		</table>
+	</c:when>
+			
+	<c:otherwise>
+		<table border="1">
 		<tr>
 			<td>ID
 			<td>${memberDTO.memberId}</td>
@@ -362,26 +382,28 @@
 			<td>보유포인트</td>
 			<td>${memberDTO.holdPoint}</td>
 		</tr>
-	</table>
-	<input type="button" id="Pw_Btn" value="비밀번호 변경">
-	<div id="Pw">
-		<p id="memberPw">${memberDTO.memberPw}</p>
-		<p>현재 비밀번호</p>
-		<input type="password" id="Pw_Current">
-		<div id="resultPwCurrent"></div>
-		<p>변경 비밀번호</p>
-		<input type="password" id="Pw_Change">
-		<div id="resultPwChange"></div>
-		<p>변경 비밀번호 확인</p>
-		<input type="password" id="Pw_Chk">
-		<div id="resultPwChk"></div>
+		</table>
+		<input type="button" id="Pw_Btn" value="비밀번호 변경">
+		<div id="Pw">
+			<p id="memberPw">${memberDTO.memberPw}</p>
+			<p>현재 비밀번호</p>
+			<input type="password" id="Pw_Current">
+			<div id="resultPwCurrent"></div>
+			<p>변경 비밀번호</p>
+			<input type="password" id="Pw_Change">
+			<div id="resultPwChange"></div>
+			<p>변경 비밀번호 확인</p>
+			<input type="password" id="Pw_Chk">
+			<div id="resultPwChk"></div>
+			<br>
+			<input type="button" id="Pw_Submit" value="변경 완료">
+			<input type="button" id="Pw_Cancle" value="변경 취소">
+		</div>
 		<br>
-		<input type="button" id="Pw_Submit" value="변경 완료">
-		<input type="button" id="Pw_Cancle" value="변경 취소">
-	</div>
-	<br>
-	<input type="button" value="회원탈퇴" onClick="location.href='userDelete'">
-	<input type="button" value="로그아웃" onClick="location.href='userLogout'">
-	<br>
+		<input type="button" value="회원탈퇴" onClick="location.href='userDelete'">
+	</c:otherwise>
+</c:choose>
+
+<input type="button" value="로그아웃" onClick="location.href='userLogout'">
 </body>
 </html>

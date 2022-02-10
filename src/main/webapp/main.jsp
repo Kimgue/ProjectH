@@ -36,11 +36,7 @@ function notice1( adminCode )
 		<c:choose>
 			<c:when test="${not empty adminDTO}">
 				<h1>관리자 계정입니다. ${adminDTO.adminName}</h1>
-				
-				<a href="userInfo">회원조회</a><br>
-				
-				
-				
+				<a href="adminPage">관리 페이지</a><br>
 			</c:when>
 			
 			<c:otherwise>
