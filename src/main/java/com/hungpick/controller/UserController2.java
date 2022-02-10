@@ -1,8 +1,8 @@
-
 package com.hungpick.controller;
 
 
 import java.util.List;
+
 
 
 import java.util.Map;
@@ -72,13 +72,13 @@ public class UserController2 {
 		String menuPrice = (String) map.get("menuPrice");
 		String menuIngredients = (String) map.get("menuIngredients");
 		String menuName = (String) map.get("menuName");
+		System.out.println(brandName + " " + menuPrice + " " + menuIngredients + " " + menuName );
+		List<MenuVo> menuVo = menuService.sltSearch(brandName, menuPrice, menuIngredients, menuName);
+		System.out.println(menuVo);
 		
-		List<MenuVo> list = menuService.sltSearch(brandName, menuPrice, menuIngredients, menuName);
-		System.out.println(list);
-		
-		return list;
+		return menuVo;
 			
-//		String ResultMsg; 프론트에서 하기
+//		String ResultMsg; 프론트에서 하기`-
 //		if (list.size() > 0) {
 //			ResultMsg = "정상 조회되었습니다.";
 //		} else {
@@ -115,6 +115,7 @@ public class UserController2 {
 			Model model) throws Exception {
 
 		logger.info("reviewLookup called =======");
+		
 		model.addAttribute("Lookup", reviewService.sltLookUp(brandCode, menuCode, reviewCode, memberCode));
 	}
 	

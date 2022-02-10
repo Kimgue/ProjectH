@@ -36,7 +36,6 @@ public class MenuServiceImpl implements IMenuService {
 			@Param(value = "menuIngredients") String menuIngredients,
 			@Param(value = "menuName") String menuName) {
 		
-		
 		return menuDao.sltSearch(brandName, menuPrice, menuIngredients, menuName);
 	}
 

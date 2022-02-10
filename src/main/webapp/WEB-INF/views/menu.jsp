@@ -24,25 +24,25 @@ jQuery.fn.serializeObject = function() {
         alert(e.message);
     } finally {
     }
- 
     return obj;
 };
 
-function getMenuResult(){
-	 
-	if(
-	 $("input[name='brandName']").val().trim() == '' &&
-	 $("input[name='menuIngredients']").val().trim() == '' &&
-	 $("input[name='menuPrice']").val().trim() == '' &&
-	 $("input[name='menuName']").val().trim() == ''
-	 	){
-		 alert("검색 조건을 입력해주세요");
-		 return;
-	 };
+function inputCheck(){
 	
-	<%-- 
-    var formData = JSON.stringify($("#menuSearch").serialize());
-    --%>
+	if(
+			 $("input:checkbox[name='brandName']").is(":checked") == false &&
+			 $("input:checkbox[name='menuIngredients']").is(":checked") == false &&
+			 $("input[name='menuPrice']").val().trim() == '' &&
+			 $("input[name='menuName']").val().trim() == ''
+			 )
+			{
+				 alert("검색 조건을 입력해주세요");
+				 return false;
+			};
+	
+}
+
+function getMenuResult(){
     
     var formData = $("#menuSearch").serializeObject();
     
@@ -61,21 +61,27 @@ function getMenuResult(){
        		  alert(fomData);
        		  }
     	});
-};
+}
 
 function output(){
 	// Contents 영역 삭제
     $('#container').children().remove();
     // Contents 영역 교체
     $('#container').load('menuResult.jsp #menuResult');
-};
+}
+
 
 $(document).ready(function(){
-    $("#search").click(function() {
-    	getMenuResult();
-    	output();
-    });
+	alert("ready");
+	$("form").submit(function() {
+		alert("submit");
+		inputCheck();
+		getMenuResult();
+		output();
+	});
+	
 });
+	
 
 </script>
 <style>
@@ -91,17 +97,17 @@ hr {
 		<form id="menuSearch">
 			<%-- 체크박스일 경우 값들을 배열로 받아서 처리해야함 --%>
 			<br> 브랜드<br> 
-			<input type='radio' name='brandName' value='맥도날드' />맥도날드
-			<input type='radio' name='brandName' value='롯데리아' />롯데리아 <br>
+			<input type='checkbox' name='brandName' value='맥도날드' />맥도날드
+			<input type='checkbox' name='brandName' value='롯데리아' />롯데리아 <br>
 			<br> 좋아하는 패티<br> 
-			<input type='radio' name='menuIngredients' value='고기' />고기 
-			<input type='radio' name='menuIngredients' value='새우' />새우 <br>	
+			<input type='checkbox' name='menuIngredients' value='고기' />고기 
+			<input type='checkbox' name='menuIngredients' value='새우' />새우 <br>	
 			<br> 최대가격<br>
 			<input type='number' name='menuPrice' min='0' max='100000' /> <br>
 			<br> 이름<br>
 			<input type="text" name="menuName">
 			
-			<button id="search">검색</button>
+			<input type="submit" value="검색" />
 		</form>
 		<hr>
 		<div id=container>

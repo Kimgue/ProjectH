@@ -7,6 +7,27 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>메뉴 검색 결과</title>
+<script src="js/jquery-3.4.1.min.js"></script>
+<script>
+$(document).ready(function(){
+    
+    $.ajax({
+    	  type: "GET",
+    	  url: "menuResult.do",
+    	  data: list
+    	  dataType: "json",
+    	  contentType : "application/json; charset=UTF-8",
+   		  error: function(){
+                 alert("code = "+request.status + "message = " 
+                		 + request.responseText +
+               		   "error = " + error);
+             },
+       	  success: function(){
+       		  alert(fomData);
+       		  }
+    	});
+});
+</script>
 <style>
 hr {  
   width: 400px;
@@ -21,7 +42,7 @@ hr {
 	<br>
 	<h4><c:out value="${ResultMsg}"/></h4>
 	<div id="menuResult">
-	<c:forEach var="menuVo" items="${menuVo}">
+	<c:forEach var="menuVo" items="${list}">
 				<a href="#"> <img src="<c:out value="resources/${menuVo.menuDto.menuImg}"/>"
 					alt="메뉴 이미지" height="270" width="270" /></a>
 					<p style="font-size: 10pt">
