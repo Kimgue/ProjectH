@@ -42,16 +42,16 @@ hr {
 				</c:url>
 				<td><a href="${lookupUrl}">상세 리뷰 보기</a></td>
 			</tr>
-			<c:url value="reviewWrite" var="writeUrl">
-				<c:param name="brandCode" value="${review.reviewDto.brandCode}"/>
-				<c:param name="menuCode" value="${review.reviewDto.menuCode}" />
-				<c:param name="menuName" value="${menuName}" />
-			</c:url>
-		<a href="${writeUrl}">리뷰 작성하기</a>
 		<br>
 		</c:forEach>
 		</table>	
 		<hr>
+		<c:url value="reviewWrite" var="writeUrl">
+				<c:param name="brandCode" value="${brandCode}"/>
+				<c:param name="menuCode" value="${menuCode}" />
+				<c:param name="menuName" value="${menuName}" />
+			</c:url>
+		<a href="${writeUrl}">리뷰 작성하기</a>
 </div>
 </body>
 </html>

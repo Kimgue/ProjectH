@@ -2,6 +2,7 @@ package com.hungpick.service;
 
 import java.util.List;
 
+
 import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hungpick.dao.IReviewDao;
-import com.hungpick.dto.ReviewDto;
 import com.hungpick.dto.ReviewRankingVo;
 import com.hungpick.dto.ReviewVo;
 
@@ -60,7 +60,7 @@ public class ReviewServiceImpl implements IReviewService {
 
 
 	//리뷰 작성하기
-	public ReviewDto insertReview(
+	public void insertReview(
 			@Param(value = "brandCode") String brandCode,
 			@Param(value = "menuCode") String menuCode,
 			@Param(value = "memberCode") String memberCode,
@@ -72,9 +72,9 @@ public class ReviewServiceImpl implements IReviewService {
 			
 		logger.info("insertReview called =========");
 		
-			return reviewDao.insertReview(brandCode, menuCode, memberCode, reviewScore, reviewContent, reviewImg1, reviewImg2);
-					
-	}
+		reviewDao.insertReview(brandCode, menuCode, memberCode, reviewScore, reviewContent, reviewImg1, reviewImg2);
+				
+	};
 	
 	
 	

@@ -6,8 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>수정페이지</title>
-<script src="js/jquery-3.4.1.min.js"></script>
-<script src="js/javascriptUpdate.js"></script>
+<script src="resources/js/jquery-3.4.1.min.js"></script>
+<script src="resources/js/javascriptUpdate.js"></script>
 <script>	
 	$(document).ready(function(){
 		$("#submit").click(function(){

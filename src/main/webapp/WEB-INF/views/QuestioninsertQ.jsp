@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>작성</title>
-<script src="js/jquery-3.4.1.min.js"></script>
+<script src="resources/js/jquery-3.4.1.min.js"></script>
 <script>
 	$(document).ready(function() {
 		$("#submit").click(function() {

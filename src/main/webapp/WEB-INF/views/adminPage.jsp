@@ -5,8 +5,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>로그인</title>
-<script src="js/jquery-3.4.1.min.js"></script>
-<link href="css/adminPage.css" rel="stylesheet"/> 	
+<script src="resources/js/jquery-3.4.1.min.js"></script>
+<link href="resources/css/adminPage.css" rel="stylesheet"/> 	
 <script>
 	$(document).ready(function() {
 	    $("#userInfo").click(function() {

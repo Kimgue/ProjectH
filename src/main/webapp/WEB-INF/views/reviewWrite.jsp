@@ -11,7 +11,7 @@ input[type=text]::-ms-clear{
 	display: none;
 }
 </style>
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="resources/js/jquery-3.4.1.min.js"></script>
 <script>
 	var msg = "<c:out value='${msg}'/>";
 	var url = "<c:out value='${url}'/>";

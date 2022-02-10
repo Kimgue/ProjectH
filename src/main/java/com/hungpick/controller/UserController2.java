@@ -5,7 +5,7 @@ import java.util.List;
 
 
 
-import java.util.Map;
+
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -15,10 +15,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hungpick.dto.MenuVo;
 import com.hungpick.dto.ReviewRankingVo;
@@ -61,34 +59,28 @@ public class UserController2 {
 	}
 	
 	//메뉴 조건검색한 페이지
-	@ResponseBody
-	@RequestMapping("menuResult.do")
-	public List<MenuVo> menuResult(
-			@RequestBody Map<String, Object> map,
+	@RequestMapping("menuResult")
+	public void menuVo(
+			@RequestParam(required = false) String[] brandName,
+			@RequestParam(required = false) String menuPrice, 
+			@RequestParam(required = false) String[] menuIngredients,
+			@RequestParam(required = false) String menuName, 
 			Model model) throws Exception {
+		System.out.println(brandName);
+		System.out.println(menuIngredients);
 		
 		logger.info("menuVo called ========");
-		String brandName = (String) map.get("brandName");
-		String menuPrice = (String) map.get("menuPrice");
-		String menuIngredients = (String) map.get("menuIngredients");
-		String menuName = (String) map.get("menuName");
-		System.out.println(brandName + " " + menuPrice + " " + menuIngredients + " " + menuName );
-		List<MenuVo> menuVo = menuService.sltSearch(brandName, menuPrice, menuIngredients, menuName);
-		System.out.println(menuVo);
+		List<MenuVo> list = menuService.sltSearch(brandName, menuPrice, menuIngredients, menuName);
 		
-		return menuVo;
-			
-//		String ResultMsg; 프론트에서 하기`-
-//		if (list.size() > 0) {
-//			ResultMsg = "정상 조회되었습니다.";
-//		} else {
-//			ResultMsg = "죄송합니다. 해당되는 상품이 없습니다.";
-//		}
-//		
+		String ResultMsg;
+		if (list.size() > 0) {
+			ResultMsg = "정상 조회되었습니다.";
+		} else {
+			ResultMsg = "죄송합니다. 해당되는 상품이 없습니다.";
+		}
 		
-		//ajax에서는 리턴값만 전달되기 때문에 모델이 전달 되지 않는다.
-		//model.addAttribute("ResultMsg", ResultMsg);
-		//model.addAttribute("menuVo", menuService.sltSearch(brandName, menuPrice, menuIngredients, menuName));
+		model.addAttribute("ResultMsg", ResultMsg);
+		model.addAttribute("menuVo", menuService.sltSearch(brandName, menuPrice, menuIngredients, menuName));
 		
 	}
 	
@@ -101,6 +93,8 @@ public class UserController2 {
 			Model model)
 			throws Exception {
 		logger.info("review called ========");
+		model.addAttribute("brandCode", brandCode);
+		model.addAttribute("menuCode", menuCode);
 		model.addAttribute("menuName", menuName);
 		model.addAttribute("review", reviewService.sltReviewList(brandCode, menuCode));
 	}
@@ -163,7 +157,7 @@ public class UserController2 {
 		logger.info("reviewWriteSubmit called =======");
 		
 		
-		return "review";
+		return "review" + "?" + brandCode + "&" + menuCode ;
 	
 	}
 }
