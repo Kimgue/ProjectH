@@ -25,7 +25,6 @@ import com.hungpick.dto.PageMaker;
 import com.hungpick.dto.Question;
 import com.hungpick.dto.QuestionVo;
 import com.hungpick.service.IAnswerService;
-import com.hungpick.service.IGifticonService;
 import com.hungpick.service.INoticeService;
 import com.hungpick.service.IQuestionSerivce;
 
