@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.hungpick.dto.GifticonDto;
 import com.hungpick.dto.UserDto;
 import com.hungpick.service.IGifticonService;
 import com.hungpick.service.IUserService;
@@ -20,7 +21,7 @@ public class UserController3 {
 	private IUserService userService;
 	
 	@Autowired
-	private IGifticonService gifticon;
+	private IGifticonService gifticonService;
 
 	/*--------------------- 아이디 찾기 페이지로 이동 ---------------------*/
 	@RequestMapping("userFindId")
@@ -138,14 +139,11 @@ public class UserController3 {
 	
 	
 	
-	/*--------------------- 비밀번호 찾기 (비밀번호 변경) ---------------------*/
+	/*--------------------- 기프티콘 ---------------------*/
 	@RequestMapping("GifticonList")
-	public String GifticonList(Model model) throws Exception {
-
-		System.out.println(gifticon.selectgift());
-		model.addAttribute("gifticonlist", gifticon.selectgift());
-		System.out.println("ㅇㅇ");
-
-		return "GifticonList";
+	public String giftiConList(GifticonDto Dto, Model model) throws Exception {
+		System.out.println("기프티콘 Ctrl");
+		String view = gifticonService.showGifticon(Dto, model);
+		return view;
 	}
 }

@@ -1,6 +1,6 @@
 package com.hungpick.dto;
 
-public class Gifticon {
+public class GifticonDto {
 
 	private String gifticonCode;
 	private String brandCode;
