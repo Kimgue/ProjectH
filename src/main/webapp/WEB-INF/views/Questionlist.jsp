@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>질문 Q.A</title>
-<script src="js/jquery-3.4.1.min.js"></script>
+<script src="resources/js/jquery-3.4.1.min.js"></script>
 <script>
  function view(  memberCode ,   qstnCode )
 	{

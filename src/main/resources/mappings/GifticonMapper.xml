@@ -4,26 +4,21 @@
 
 <mapper namespace="com.hungpick.dao.IGifticonDao">
 
+	<select id="showGifticon" resultType="gifticonDto">
+		SELECT * FROM GIFTICON ORDER BY GIFTICON_CODE
+	</select>
 
-	<select id="select" parameterType="string" resultType="gift">
-		SELECT * 
-		FROM 
-		GIFTICON
-		WHERE GIFTICON_CODE = #{ gifticonCode } 
-		AND BRAND_CODE = #{ brandCode } AND MENU_CODE =#{ menuCode }
+	<select id="select" parameterType="string" resultType="gifticonDto">
+		SELECT * FROM GIFTICON WHERE GIFTICON_CODE = #{ gifticonCode } AND BRAND_CODE = #{ brandCode } AND MENU_CODE = #{ menuCode }
 	</select>
-	
-	<select id="selectgift" resultType="gift">
-		SELECT * FROM GIFTICON 
-	</select>
-	
-   <insert id="insert" parameterType="gift">
+
+   <insert id="insert" parameterType="gifticonDto">
 	   INSERT  INTO GIFTICON       
 	                 VALUES(   #{ gifticonCode } , #{brandCode} , #{ menuCode } , #{ gifticonName },  #{ gifticonImg } ,  #{ gifticonPrice} )
                 
    </insert>
 	
-	<update id="update" parameterType="gift">
+	<update id="update" parameterType="gifticonDto">
 		UPDATE GIFTICON SET #{ gifticonName },  #{ gifticonImg } ,  #{ gifticonPrice}  WHERE GIFTICON_CODE = #{ gifticonCode } AND BRAND_CODE = #{ brandCode } AND MENU_CODE =#{ menuCode }  
 	</update>
 

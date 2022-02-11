@@ -35,16 +35,22 @@
 		 B.MENU_PRICE, B.MENU_IMG, B.MENU_DESCRIPTION, B.MENU_INGREDIENTS 
 		FROM BRAND A JOIN MENU B ON A.BRAND_CODE = B.BRAND_CODE 
 			<if test="brandName != null and brandName != ''">
-				AND A.BRAND_NAME = #{menuVo.brandDto.brandName}
+				AND A.BRAND_NAME IN
+				<foreach item="brandName" collection="brandName" open="(" close=")" separator="," >
+				 #{brandName}
+				</foreach>	
 			</if>	
 			<if test="menuPrice != null and menuPrice != ''">
-				AND B.MENU_PRICE <![CDATA[ <= ]]>  #{menuVo.menuDto.menuPrice}
+				AND B.MENU_PRICE <![CDATA[ <= ]]>  #{menuPrice}
 			</if>
 			<if test="menuName != null and menuName != ''">
-				AND B.MENU_NAME LIKE '%' || #{menuVo.menuDto.menuName} || '%'
+				AND B.MENU_NAME LIKE '%' || #{menuName} || '%'
 			</if>			
 			<if test="menuIngredients != null and menuIngredients != ''">
-				AND B.MENU_INGREDIENTS = #{menuVo.menuDto.menuIngredients}
+				AND B.MENU_INGREDIENTS IN
+				<foreach item="menuIngredients" collection="menuIngredients" open="(" close=")" separator="," >
+				 #{menuIngredients}
+				 </foreach>
 			</if>
 	</select>
 	

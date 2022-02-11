@@ -106,7 +106,7 @@
 	
 	<insert id="insertReview" parameterType="reviewDto">
 		<selectKey resultType="String" keyProperty="reviewCode" order="BEFORE">
-		SELECT LPAD(TO_CHAR(MAX(TO_NUMBER(NVL(REVIEW_CODE, 0))) +1), 5, '0') FROM REVIEW
+		SELECT LPAD(TO_CHAR(MAX(TO_NUMBER(NVL(REVIEW_CODE, '0'))) +1), 4, '0') FROM REVIEW
 		WHERE BRAND_CODE = #{brandCode} AND MENU_CODE = #{menuCode} 
 		</selectKey>
 		INSERT INTO REVIEW VALUES (#{brandCode}, #{menuCode}, 

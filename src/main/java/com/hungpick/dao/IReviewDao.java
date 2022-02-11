@@ -2,9 +2,8 @@ package com.hungpick.dao;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Param;
 
-import com.hungpick.dto.ReviewDto;
+import org.apache.ibatis.annotations.Param;
 import com.hungpick.dto.ReviewRankingVo;
 import com.hungpick.dto.ReviewVo;
 
@@ -28,7 +27,7 @@ public interface IReviewDao {
 	List<ReviewRankingVo> sltReviewRanking();
 	
 	//리뷰 작성하기
-	ReviewDto insertReview(
+	void insertReview(
 			@Param(value = "brandCode") String brandCode,
 			@Param(value = "menuCode") String menuCode,
 			@Param(value = "memberCode") String memberCode,

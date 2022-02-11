@@ -16,8 +16,8 @@ public interface IMenuDao {
 	
 	//메뉴 조건검색한 결과 보기
 	List<MenuVo> sltSearch(
-			@Param(value = "brandName") String brandName,
+			@Param(value = "brandName") String[] brandName,
 			@Param(value = "menuPrice") String menuPrice,
-			@Param(value = "menuIngredients") String menuIngredients,
+			@Param(value = "menuIngredients") String[] menuIngredients,
 			@Param(value = "menuName") String menuName);
 }

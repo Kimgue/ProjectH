@@ -25,7 +25,6 @@ import com.hungpick.dto.PageMaker;
 import com.hungpick.dto.Question;
 import com.hungpick.dto.QuestionVo;
 import com.hungpick.service.IAnswerService;
-import com.hungpick.service.IGifticonService;
 import com.hungpick.service.INoticeService;
 import com.hungpick.service.IQuestionSerivce;
 
@@ -37,9 +36,6 @@ public class UserController {
 
 	@Autowired
 	private IQuestionSerivce question;
-
-	@Autowired
-	private IGifticonService gifticon;
 	
 	@Autowired
 	private IAnswerService answer;
@@ -343,18 +339,6 @@ public class UserController {
 		model.addAttribute("currentPage", currentPage);
 
 		return "NoticeSWD";
-	}
-
-	// ----------------------------GIFTICON--------------------------------
-
-	@RequestMapping("GifticonList")
-	public String GifticonList(Model model) throws Exception {
-
-		System.out.println(gifticon.selectgift());
-		model.addAttribute("gifticonlist", gifticon.selectgift());
-		System.out.println("ㅇㅇ");
-
-		return "GifticonList";
 	}
 	
 	//------------------------------answer-------------------------------

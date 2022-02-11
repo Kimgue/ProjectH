@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>회원가입</title>
-<script src="js/jquery-3.4.1.min.js"></script>
+<script src="resources/js/jquery-3.4.1.min.js"></script>
 <script>
 	var checkId 	= false;
 	var checkPw 	= false;

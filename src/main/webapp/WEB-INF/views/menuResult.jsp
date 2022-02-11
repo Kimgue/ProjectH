@@ -7,6 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>메뉴 검색 결과</title>
+<script src="resources/js/jquery-3.4.1.min.js"></script>
 <style>
 hr {  
   width: 400px;

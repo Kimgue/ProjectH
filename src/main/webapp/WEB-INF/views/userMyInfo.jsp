@@ -6,7 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>마이페이지</title>
-<script src="js/jquery-3.4.1.min.js"></script>
+<script src="resources/js/jquery-3.4.1.min.js"></script>
 <script>
 	var validateNickname 	= RegExp(/^[가-힣a-zA-Z0-9]{2,10}$/);
 	var validateEmail		= RegExp(/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/);
