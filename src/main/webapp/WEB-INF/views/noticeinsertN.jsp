@@ -27,7 +27,7 @@
 	});
 </script>
 <style>
-input {
+/* input {
   
   vertical-align: top; 
   width:500px;
@@ -39,7 +39,7 @@ input {
 	height:50px; 
     resize:none;
 	vertical-align:-20px;
-}
+} */
 </style>
 </head>
 <body>
@@ -54,21 +54,18 @@ input {
 			<hr />
 			
 			<section id="container">
-				<form role="form" method="post" action="insertNc">
+				<form role="form" method="post" action="Noticeinsert">
 					<table>
 						<tbody>
 						<thead>
 						<tr>
 						<th style="background-color: #eeeee; text-align: center;">공지사항 글쓰기 </th>
 							</tr>
-						</thead>
-
-
-						
+						</thead>		
 							<tr>
 								<td>
-									<label for="adminCode" id="adminCode">작성자 번호 :${ noticecode.adminCode }</label>
-									<input type="hidden" id="adminCode" name="adminCode" value="${ noticecode.adminCode }">
+									<label for="adminCode" id="adminCode">작성자 번호 :${ adminCode }</label>
+									<input type="hidden" id="adminCode" name="adminCode" value="${ adminCode }">
 									<input type="hidden" id="noticeCode" name="noticeCode" value="noticeCode">
 							</tr>	
 							<tr>
@@ -85,11 +82,13 @@ input {
 								<td> 
 									<label for="noticeDate" id="noticeDate">작성날짜 : ${ date }</label>
 									<input type="hidden" id="noticeDate" name="noticeDate" value="${ date }">  
+									<input type="hidden" id="noticeImg" name="noticeImg" value="noticeImg">
 								</td>
 								</tr>
 							<tr>
 								<td>						
 									<button type="submit" id="submit">작성</button>
+									
 								</td>
 							</tr>			
 						</tbody>			

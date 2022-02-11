@@ -40,9 +40,6 @@ public class UserController {
 	@Autowired
 	private IAnswerService answer;
  	
-	
-
-
 	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
 
@@ -51,6 +48,15 @@ public class UserController {
 		logger.info("home called ==========");
 
 		return "redirect:/main.jsp";
+	}
+	
+	/*--------------------- 공지사항 등록 페이지로 이동 ---------------------*/
+	@RequestMapping("noticeinsertN")
+	public void noticeinsertN(Model model) {
+		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Date date = new Date();
+		String time1 = format1.format(date);
+		model.addAttribute("date", time1);
 	}
 
 	/*----------Q&A 리스트 조회 -----------------*/
@@ -192,23 +198,33 @@ public class UserController {
 			@ModelAttribute("cri") Criteria cri, HttpSession session) throws Exception {
 		logger.info("get list page");
 		String memberCode = (String) session.getAttribute("memberCode");
-		/*String adminCode = (String) session.getAttribute("adminCode");*/
-		
-		
-			return "NoticePage";	
-			
-	}
-	@RequestMapping("NoticeAdmin")
-	public String admin(Model model, String adminCode, String noticeCode, @ModelAttribute("cri") Criteria cri)
-			throws Exception {
-		logger.info("list page");
-
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(notice.listCount());
 		int currentPage = cri.getPage();
-		System.out.println(notice.noticeCode(adminCode));
-
+		
+		model.addAttribute("adminCode", adminCode);
+		model.addAttribute("listpage", notice.listPage(cri));
+		model.addAttribute("pageMaker", pageMaker);
+		model.addAttribute("currentPage", currentPage);
+		
+		return "NoticePage";	
+			
+	}
+	@RequestMapping("AdminNoticelist")
+	public String admin(Model model,  String noticeCode, @ModelAttribute("cri") Criteria cri,HttpSession session)
+			throws Exception {
+		logger.info("list page");
+		
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(notice.listCount());
+		int currentPage = cri.getPage();
+		
+		String adminCode = (String)session.getAttribute("adminCode");
+		System.out.println(adminCode);
+		model.addAttribute("adminCode", adminCode);
 		model.addAttribute("listpage", notice.listPage(cri));
 		model.addAttribute("noticecode", notice.noticeCode(adminCode));
 		model.addAttribute("pageMaker", pageMaker);
@@ -220,7 +236,7 @@ public class UserController {
 	}
 
 	@RequestMapping("NoticeMember")
-	public String listPage(Model model, String adminCode, String noticeCode, @ModelAttribute("cri") Criteria cri)
+	public String listPage1(Model model, String noticeCode, @ModelAttribute("cri") Criteria cri,HttpSession session)
 			throws Exception {
 		logger.info("list page");
 
@@ -228,9 +244,10 @@ public class UserController {
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(notice.listCount());
 		int currentPage = cri.getPage();
-
+		String adminCode = (String)session.getAttribute("adminCode"); 
+		System.out.println(adminCode);
+		model.addAttribute("adminCode", adminCode);
 		model.addAttribute("listpage", notice.listPage(cri));
-		model.addAttribute("noticecode", notice.noticeCode(adminCode));
 		model.addAttribute("pageMaker", pageMaker);
 		model.addAttribute("currentPage", currentPage);
 
@@ -239,52 +256,30 @@ public class UserController {
 	}
 
 	@RequestMapping("view2")
-	public String view2(Model model, String adminCode, String noticeCode) throws Exception {
+	public String view2(Model model, String adminCode, String noticeCode,HttpSession session) throws Exception {
 
 		model.addAttribute("noticecontent", notice.sltOneNoice(adminCode, noticeCode));
 
 		return "Noticeview2";
 	}
 
-	@RequestMapping("insertNotice")
-	public String insertNotice(Model model, String adminCode) throws Exception {
+	
 
-		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		Date date = new Date();
-		String time1 = format1.format(date);
-
-		model.addAttribute("date", time1);
-		model.addAttribute("noticecode", notice.noticeCode(adminCode));
-
-		return "noticeinsertN";
-	}
-
-	@RequestMapping("insertNc")
-	public String insertNoticeC(Model model, String adminCode, String noticeCode, Notice noti, Criteria cri)
-			throws Exception {
-
+	@RequestMapping("Noticeinsert")
+	public String insertNoticeC(Notice noti) throws Exception {
+		
 		notice.insert(noti);
-
-		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		Date date = new Date();
-		String time1 = format1.format(date);
-		PageMaker pageMaker = new PageMaker();
-		pageMaker.setCri(cri);
-		pageMaker.setTotalCount(notice.listCount());
-		int currentPage = cri.getPage();
-		model.addAttribute("listpage", notice.listPage(cri));
-		model.addAttribute("noticecode", notice.noticeCode(adminCode));
-		model.addAttribute("date", time1);
-		model.addAttribute("pageMaker", pageMaker);
-		model.addAttribute("currentPage", currentPage);
-		return "NoticeSWD";
+		
+	
+		return "noticeinsertN";
 
 	}
 
 	@RequestMapping("Noticeupdatepage")
-	public String Noticeupdatelist(Model model, String adminCode, String noticeCode) throws Exception {
+	public String Noticeupdatelist(Model model, String adminCode ,String noticeCode,HttpSession session) throws Exception {
 		logger.info("updatelist");
-
+		
+		adminCode = (String)session.getAttribute("adminCode");
 		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date date = new Date();
 		String time1 = format1.format(date);
@@ -295,17 +290,19 @@ public class UserController {
 	}
 
 	@RequestMapping("Noticeupdate")
-	public String Noticeupdate(Model model, String adminCode, String noticeCode, Notice noti, Criteria cri)
+	public String Noticeupdate(Model model, String adminCode, String noticeCode, Notice noti, Criteria cri,HttpSession session)
 			throws Exception {
 		logger.info("update해서 간다");
+		
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(notice.listCount());
 		int currentPage = cri.getPage();
-
+		
+		
 		notice.update(noti);
+		
 		model.addAttribute("listpage", notice.listPage(cri));
-		model.addAttribute("noticecode", notice.noticeCode(adminCode));
 		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date date = new Date();
 		String time1 = format1.format(date);
@@ -318,11 +315,15 @@ public class UserController {
 	}
 
 	@RequestMapping("Noticedelete")
-	public String Noticedelete(Model model, String adminCode, String noticeCode, Notice noti, Criteria cri)
+	public String Noticedelete(Model model,  String noticeCode, Notice noti, Criteria cri,HttpSession session)
 			throws Exception {
 		System.out.println("delete");
+		String adminCode = (String)session.getAttribute("adminCode");
+		
+		
 		notice.delete(adminCode, noticeCode);
 
+		model.addAttribute("adminCode", adminCode);
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(notice.listCount());
@@ -331,7 +332,6 @@ public class UserController {
 		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String time1 = format1.format(date);
 		model.addAttribute("date", time1);
-		model.addAttribute("noticecode", notice.noticeCode(adminCode));
 		model.addAttribute("listpage", notice.listPage(cri));
 		model.addAttribute("pageMaker", pageMaker);
 		model.addAttribute("currentPage", currentPage);
@@ -356,10 +356,13 @@ public class UserController {
 		
 	}
 	@RequestMapping("reply")
-	public String reply(Model model,String memberCode,String qstnCode,@ModelAttribute("cri") Criteria cri) 
+	public String reply(Model model,String memberCode,String qstnCode,@ModelAttribute("cri") Criteria cri,HttpSession session) 
 	{
 
 		model.addAttribute("sltOne", question.sltOne(memberCode, qstnCode));
+		String adminCode = (String)session.getAttribute("adminCode");
+		
+		model.addAttribute("adminCode", adminCode);
 		Date date = new Date();
 		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String time1 = format1.format(date);

@@ -52,7 +52,7 @@
 							<td><input type="hidden" id="memberCode" name="memberCode" value="${ sltOne.memberCode }"/> <td>
 							<td><input type="hidden" id="qstnCode" name="qstnCode" value="${ sltOne.qstnCode }" /></td>
 							<td><input type="hidden" id="answerCode" name="answerCode" value="answerCode" /></td>
-							<td><input type="hidden" id="adminCode" name="adminCode" value="1" /></td>
+							<td><input type="hidden" id="adminCode" name="adminCode" value="${ adminCode }" /></td>
 							<td><input type="hidden" id="answerDate" name="answerDate" value="${ date }" /></td>
 							</tr>
 						</table>

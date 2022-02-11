@@ -9,18 +9,6 @@ function view2(  adminCode ,   noticeCode )
 		f.method= "post"
 		f.submit();
 	};
-	 function insert(  adminCode )
-	{
-		var f = document.paging;
-		
-		f.adminCode.value = adminCode;
-		
-		f.action = "./insertNotice"
-		
-		f.method= "post"
-			
-		f.submit();
-	};
 	function Noticeupdatelist(  adminCode ,   noticeCode )
 	{
 		var f = document.paging;

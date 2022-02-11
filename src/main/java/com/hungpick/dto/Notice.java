@@ -6,7 +6,7 @@ public class Notice {
 	private String noticeCode;
 	private String noticeTitle;
 	private String noticeContent;
-	private String boticeImg;
+	private String noticeImg;
 	private String noticeDate;
 	public String getAdminCode() {
 		return adminCode;
@@ -33,11 +33,11 @@ public class Notice {
 		this.noticeContent = noticeContent;
 	}
 	
-	public String getBoticeImg() {
-		return boticeImg;
+	public String getNoticeImg() {
+		return noticeImg;
 	}
-	public void setBoticeImg(String boticeImg) {
-		this.boticeImg = boticeImg;
+	public void setNoticeImg(String noticeImg) {
+		this.noticeImg = noticeImg;
 	}
 	public String getNoticeDate() {
 		return noticeDate;
@@ -48,7 +48,7 @@ public class Notice {
 	@Override
 	public String toString() {
 		return "Notice [adminCode=" + adminCode + ", noticeCode=" + noticeCode + ", noticeTitle=" + noticeTitle
-				+ ", noticeContent=" + noticeContent + ", boticeImg=" + boticeImg + ", noticeDate=" + noticeDate + "]";
+				+ ", noticeContent=" + noticeContent + ", boticeImg=" + noticeImg + ", noticeDate=" + noticeDate + "]";
 	}
 	
 	

@@ -55,6 +55,7 @@ public class NoticeServiceImpl implements INoticeService {
 		String titl = noti.getNoticeTitle();
 		String cn = noti.getNoticeContent();
 		String date = noti.getNoticeDate();
+		String img = noti.getNoticeImg();
 
 		logger.info("insertUser Called ============");
 		logger.info("입력한 CODE : {}", Acode);
@@ -62,8 +63,9 @@ public class NoticeServiceImpl implements INoticeService {
 		logger.info("입력한 EMAIL : {}", titl);
 		logger.info("입력한 TEL : {}", cn);
 		logger.info("입력한 WEIGHT : {}", date);
-		
+		System.out.println("SVC 전");
 		daoNotice.insert(noti);
+		System.out.println("SVC 후");
 		
 
 		return;
