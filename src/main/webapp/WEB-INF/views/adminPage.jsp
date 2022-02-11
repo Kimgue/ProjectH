@@ -46,9 +46,12 @@
 		</div>
 		<div>
 		- 공지사항<br>
-		공지사항 등록<br>
+		공지사항 등록<br><a href="NoticeAdmin">공지사항 등록</a>
 		공지사항 수정<br>
 		공지사항 삭제
+		</div>
+		<div>
+		Q&A 답변 <a href="Nconfirm">Q.A 답변확인</a>
 		</div>
 		<div>
 		- 기프티콘<br>

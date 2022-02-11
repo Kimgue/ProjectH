@@ -43,7 +43,6 @@
 	</c:otherwise>
 </c:choose>
 
-<input type="hidden" name="adminCode" /> 
 <a href='Notice'>공지사항</a> <br>	
 
 <a href="Questionlist">Q . A</a> 
@@ -51,7 +50,6 @@
 <br>
 <a href="gifticonList">기프티콘</a>
 <br>
-<a href="Nconfirm">Q.A 답변확인</a>
 </form>
 		<a href="menu">메뉴</a><br> <a href="brand">브랜드</a><br>
 	</div>
