@@ -63,6 +63,7 @@ public class NoticeServiceImpl implements INoticeService {
 		logger.info("입력한 EMAIL : {}", titl);
 		logger.info("입력한 TEL : {}", cn);
 		logger.info("입력한 WEIGHT : {}", date);
+		logger.info("입력한 WEIGHT : {}", img);
 		System.out.println("SVC 전");
 		daoNotice.insert(noti);
 		System.out.println("SVC 후");

@@ -264,17 +264,18 @@ public class UserController {
 	}
 
 	
-
+	/*-------------------------Notice insert 공지사항 -----------------*/
 	@RequestMapping("Noticeinsert")
 	public String insertNoticeC(Notice noti) throws Exception {
 		
 		notice.insert(noti);
 		
 	
-		return "noticeinsertN";
+		return "adminPage";
 
 	}
-
+	
+	/*---------------------------공지사항 수정전 확인 --------------------------*/
 	@RequestMapping("Noticeupdatepage")
 	public String Noticeupdatelist(Model model, String adminCode ,String noticeCode,HttpSession session) throws Exception {
 		logger.info("updatelist");
@@ -288,7 +289,9 @@ public class UserController {
 
 		return "Noticeupdatelist";
 	}
+	
 
+	/*---------------------------공지사항 수정 --------------------------*/
 	@RequestMapping("Noticeupdate")
 	public String Noticeupdate(Model model, String adminCode, String noticeCode, Notice noti, Criteria cri,HttpSession session)
 			throws Exception {
@@ -313,7 +316,8 @@ public class UserController {
 		return "NoticeSWD";
 
 	}
-
+	
+	/*----------------------------공지사항 삭제-----------------------------*/
 	@RequestMapping("Noticedelete")
 	public String Noticedelete(Model model,  String noticeCode, Notice noti, Criteria cri,HttpSession session)
 			throws Exception {
@@ -339,7 +343,7 @@ public class UserController {
 		return "NoticeSWD";
 	}
 	
-	//------------------------------answer-------------------------------
+	//------------------------------answer 질문-------------------------------
 	
 	@RequestMapping("Nconfirm")
 	public String selectconfirm(Model model, @ModelAttribute("cri")Criteria cri)throws Exception
