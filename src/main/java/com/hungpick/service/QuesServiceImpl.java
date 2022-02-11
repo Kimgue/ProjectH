@@ -59,7 +59,7 @@ public class QuesServiceImpl implements IQuestionSerivce{
 			throw new Exception();
 		}
 			
-		AnswerDto answer = new AnswerDto();
+		/*AnswerDto answer = new AnswerDto();*/
 		
 		String Acode = qes.getMemberCode();
 		String Bcode = qes.getQstnCode();
@@ -79,7 +79,7 @@ public class QuesServiceImpl implements IQuestionSerivce{
 		logger.info("입력한 confrim : {}", confirm);
 		
 		daoQes.insert(qes);
-		ans.updateQCODE(answer);
+		/*ans.updateQCODE(answer);*/
 		
 		return;
 	}

@@ -43,14 +43,13 @@
 		ON a.MEMBER_CODE = q.MEMBER_CODE
 		WHERE q.MEMBER_CODE = #{ memberCode } 
 		AND q.QSTN_CODE = #{ qstnCode }
-		AND a.QSTN_CODE = #{ qstnCode}
 	</select>	
 	
 	<select id="selectN" resultMap="AnswerVoRm"  parameterType="Criteria">
-	 SELECT DISTINCT MEMBER_CODE,QSTN_CODE,QSTN_TITLE,QSTN_CONTENT,QSTN_DATE,QSTN_CONFIRM FROM (   
+	 SELECT * FROM (   
 		SELECT   ROW_NUMBER() OVER(ORDER BY q.QSTN_CODE DESC)
 		NUM, q.* FROM QUESTION q 
-        FULL OUTER JOIN ANSWER a
+        left JOIN ANSWER a
         ON a.MEMBER_CODE = q.MEMBER_CODE
         WHERE q.QSTN_CONFIRM = 'n'
         ORDER BY q.QSTN_CODE DESC)  
@@ -64,13 +63,13 @@
 	</select>
 	
 	<update id="updateQCODE" parameterType="qesDto">
-		UPDATE ANSWER SET QSTN_CODE =  (SELECT NVL(MAX(TO_NUMBER(QSTN_CODE)),0)+1 FROM ANSWER) WHERE MEMBER_CODE = #{ memberCode } AND QSTN_CODE = #{ qstnCode }   
+		UPDATE ANSWER SET QSTN_CODE =  #{ qstnCode } WHERE MEMBER_CODE = #{ memberCode } AND QSTN_CODE = #{ qstnCode }   
 	</update>
 	
 	
 	<insert id="insert" parameterType="answerDto">
-		INSERT INTO ANSWER VALUES ( #{memberCode},  (SELECT NVL(MAX(TO_NUMBER(QSTN_CODE)),0)+1 FROM ANSWER) , ANSWER_SEQ.NEXTVAL , #{ adminCode }, #{ answerContent }, TO_DATE( #{answerDate} ,'YYYY-MM-DD HH24:MI:SS') )
-	</insert>
+		INSERT INTO ANSWER VALUES ( #{memberCode},  #{qstnCode} , ANSWER_SEQ.NEXTVAL , #{ adminCode }, #{ answerContent }, TO_DATE( #{answerDate} ,'YYYY-MM-DD HH24:MI:SS') )
+	</insert> 
 
 	<update id="update" parameterType="answerDto">
 		UPDATE ANSWER SET ANSWER_CONTENT = #{ answerContent },  ANSWER_DATE = TO_DATE( #{noticeDate} ,'YYYY-MM-DD HH24:MI:SS') 

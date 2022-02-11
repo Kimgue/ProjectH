@@ -38,10 +38,12 @@ public class AnswerServiceImpl implements IAnswerService {
 	public void insert(AnswerDto answer) throws Exception {
 		logger.info("insert성공333");
 		AnswerVo check = daoanswer.selectOne(answer.getMemberCode(), answer.getQstnCode());
+		
 		if(check == null)
 		{
 			throw new Exception();
 		}
+	
 		logger.info("insert성공222");
 		String membercode = answer.getMemberCode();
 		String qstncode = answer.getQstnCode();
@@ -60,6 +62,7 @@ public class AnswerServiceImpl implements IAnswerService {
 		logger.info("insert성공11");
 		
 		daoanswer.insert(answer);
+		daoanswer.updateQCODE(answer);
 		logger.info("insert성공");
 		daoQes.updateanswer(answer.getMemberCode(), answer.getQstnCode());
 	}
