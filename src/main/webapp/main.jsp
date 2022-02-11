@@ -7,21 +7,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>메인화면</title>
 <script src="js/jquery-3.4.1.min.js"></script>
-<script>
-	
-function notice1( adminCode )
-{
-	var a = document.paging;
-	a.adminCode.value = adminCode;
-	
-	a.action ="./Notice"
-	
-	a.method="post"
-	a.submit();
-
-}; 
-
-</script>
 </head>
 <body>
 <div align="center">
