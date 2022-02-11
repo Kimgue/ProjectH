@@ -13,7 +13,6 @@
 	<header class="head">
 		<h1>이달의 기프티콘</h1>
 	</header>
-	
 	<div class="container">
 	<c:forEach var="gift" items="${gifticonList}">
 			<img src="${gift.gifticonImg}" alt="${gift.gifticonImg}" height="270" width="270" />
