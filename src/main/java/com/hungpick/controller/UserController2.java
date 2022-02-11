@@ -17,6 +17,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.hungpick.dto.MenuVo;
 import com.hungpick.dto.ReviewRankingVo;
@@ -131,6 +132,13 @@ public class UserController2 {
 			return;
 		}
 		logger.info("reviewWrite called ========");
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("reviewWriteSubmit");
+		mv.addObject("brandCode", brandCode);
+		mv.addObject("menuCode", menuCode);
+		mv.addObject("menuName", menuName);
+		
 		model.addAttribute("brandCode", brandCode);
 		model.addAttribute("menuCode", menuCode);
 		model.addAttribute("menuName", menuName);
@@ -157,7 +165,7 @@ public class UserController2 {
 		logger.info("reviewWriteSubmit called =======");
 		
 		
-		return "review" + "?" + brandCode + "&" + menuCode ;
+		return "redirect:/review";
 	
 	}
 }
