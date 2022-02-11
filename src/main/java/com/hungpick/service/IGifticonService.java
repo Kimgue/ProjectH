@@ -14,4 +14,6 @@ public interface IGifticonService {
 	// 기프티콘 등록
 	public String insertGifticon(GifticonDto Dto, MultipartFile uploadfile, ModelMap modelMap) throws Exception;
 	
+	// 기프티콘 삭제
+	public String deleteGifticon(GifticonDto Dto) throws Exception;
 }

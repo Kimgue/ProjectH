@@ -13,4 +13,7 @@ public interface IGifticonDao {
 	// 기프티콘 등록
 	public void insertGifticon(GifticonDto Dto) throws Exception;
 	
+	// 기프티콘 삭제
+	public void deleteGifticon(GifticonDto Dto) throws Exception;
+	
 }

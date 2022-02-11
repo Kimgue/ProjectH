@@ -25,20 +25,20 @@
 			#{gifticonPrice}
 		)
    	</insert>
+   	
+   	<update id="updateGifticon" parameterType="gifticonDto">
+		UPDATE GIFTICON SET #{gifticonName}, #{gifticonImg}, #{gifticonPrice} WHERE GIFTICON_CODE = #{ gifticonCode } AND BRAND_CODE = #{brandCode} AND MENU_CODE = #{menuCode}  
+	</update>
+	
+	<delete id="deleteGifticon">
+		DELETE FROM GIFTICON WHERE GIFTICON_CODE = #{gifticonCode} AND BRAND_CODE = #{brandCode} AND MENU_CODE =#{menuCode}
+	</delete>
 
 	<select id="select" parameterType="string" resultType="gifticonDto">
 		SELECT * FROM GIFTICON WHERE GIFTICON_CODE = #{ gifticonCode } AND BRAND_CODE = #{ brandCode } AND MENU_CODE = #{ menuCode }
 	</select>
-
-
 	
-	<update id="update" parameterType="gifticonDto">
-		UPDATE GIFTICON SET #{ gifticonName },  #{ gifticonImg } ,  #{ gifticonPrice}  WHERE GIFTICON_CODE = #{ gifticonCode } AND BRAND_CODE = #{ brandCode } AND MENU_CODE =#{ menuCode }  
-	</update>
 
-	<delete id="delete">
-		DELETE FROM GIFTICON WHERE GIFTICON_CODE = #{ gifticonCode } AND BRAND_CODE = #{ brandCode } AND MENU_CODE =#{ menuCode }
-	</delete>
 	
 	
 </mapper>

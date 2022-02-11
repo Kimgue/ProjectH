@@ -32,15 +32,16 @@ public class GifticonServiceImpl implements IGifticonService {
 	// 기프티콘 등록
 	@Override
 	public String insertGifticon(GifticonDto Dto, MultipartFile uploadfile, ModelMap modelMap) throws Exception {
-		
-		System.out.println("파일 생성 전");
 		fileUpload.fileUpload(uploadfile, modelMap);
 		Dto.setGifticonImg((String) "images/gifticon/" + modelMap.get("gifticonImg"));
-		System.out.println("확인 : " + modelMap.get("gifticonImg"));
-		System.out.println("파일 생성 후");
 		gifticonDao.insertGifticon(Dto);
-		System.out.println("DTO : " + Dto);
-		
+		return "adminPage";
+	}
+
+	// 기프티콘 삭제
+	@Override
+	public String deleteGifticon(GifticonDto Dto) throws Exception {
+		gifticonDao.deleteGifticon(Dto);
 		return "adminPage";
 	}
 	
