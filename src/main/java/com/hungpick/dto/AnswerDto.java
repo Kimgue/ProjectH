@@ -4,7 +4,7 @@ public class AnswerDto {
 	
 	private String  memberCode;
 	private String  qstnCode;
-	private int     answerCode;
+	private String     answerCode;
 	private String  adminCode;
 	private String  answerContent;
 	private String  answerDate;
@@ -20,10 +20,10 @@ public class AnswerDto {
 	public void setQstnCode(String qstnCode) {
 		this.qstnCode = qstnCode;
 	}
-	public int getAnswerCode() {
+	public String getAnswerCode() {
 		return answerCode;
 	}
-	public void setAnswerCode(int answerCode) {
+	public void setAnswerCode(String answerCode) {
 		this.answerCode = answerCode;
 	}
 	public String getAdminCode() {

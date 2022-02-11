@@ -11,7 +11,7 @@ import com.hungpick.dto.Criteria;
 
 public interface IAnswerService {
 
-	AnswerVo selectOne(@Param("memberCode")String memberCode,@Param("qstnCode")String qstnCode);
+	AnswerDto selectOne(@Param("memberCode")String memberCode,@Param("qstnCode")String qstnCode);
 	
 	void insert(AnswerDto answer) throws Exception;
 	
@@ -23,5 +23,5 @@ public interface IAnswerService {
 	List<AnswerVo> selectN(Criteria cri);
 	
 	
-	
+	AnswerVo selectQuestionview(@Param("memberCode")String memberCode,@Param("qstnCode")String qstnCode);
 }

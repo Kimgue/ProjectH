@@ -92,7 +92,7 @@ public class UserController {
 		Date date = new Date();
 		String time1 = format1.format(date);
 		model.addAttribute("sltOne", question.sltOne(memberCode, qstnCode));
-		model.addAttribute("selectOne", answer.selectOne(memberCode, qstnCode));
+		model.addAttribute("selectOne", answer.selectQuestionview(memberCode, qstnCode));
 		model.addAttribute("date", time1);
 		
 		
@@ -194,14 +194,15 @@ public class UserController {
 		String memberCode = (String) session.getAttribute("memberCode");
 		/*String adminCode = (String) session.getAttribute("adminCode");*/
 		
-		if( memberCode != null || memberCode == null)
-		{
-			return "NoticePage";
-		}
-		else
-		{
 		
-		
+			return "NoticePage";	
+			
+	}
+	@RequestMapping("NoticeAdmin")
+	public String admin(Model model, String adminCode, String noticeCode, @ModelAttribute("cri") Criteria cri)
+			throws Exception {
+		logger.info("list page");
+
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(notice.listCount());
@@ -215,14 +216,11 @@ public class UserController {
 		
 
 		return "NoticeSWD";
-		
-		}
-			
-			
+
 	}
 
 	@RequestMapping("NoticeMember")
-	public String listPag(Model model, String adminCode, String noticeCode, @ModelAttribute("cri") Criteria cri)
+	public String listPage(Model model, String adminCode, String noticeCode, @ModelAttribute("cri") Criteria cri)
 			throws Exception {
 		logger.info("list page");
 
@@ -361,7 +359,7 @@ public class UserController {
 	public String reply(Model model,String memberCode,String qstnCode,@ModelAttribute("cri") Criteria cri) 
 	{
 
-		model.addAttribute("selectOne", answer.selectOne(memberCode, qstnCode));
+		model.addAttribute("sltOne", question.sltOne(memberCode, qstnCode));
 		Date date = new Date();
 		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String time1 = format1.format(date);

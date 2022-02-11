@@ -59,7 +59,7 @@ function notice1( adminCode )
 </c:choose>
 
 <input type="hidden" name="adminCode" /> 
-<a href='javascript:notice1("1")'>공지사항</a> <br>	
+<a href='javascript("1")'>공지사항</a> <br>	
 
 <a href="Questionlist">Q . A</a> 
 <input type="hidden" id="memberCode" />
