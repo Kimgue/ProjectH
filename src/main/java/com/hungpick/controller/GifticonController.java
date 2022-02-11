@@ -1,13 +1,10 @@
 package com.hungpick.controller;
 
-import java.util.Locale;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.hungpick.dto.GifticonDto;
@@ -20,26 +17,40 @@ public class GifticonController {
 	private IGifticonService gifticonService;
 	
 	/*--------------------- 기프티콘 조회 ---------------------*/
-	@RequestMapping("gifticonList")
-	public String giftiConList(GifticonDto Dto, Model model) throws Exception {
-		String view = gifticonService.showGifticon(Dto, model);
-		return view;
+	public void giftconsltMulti(GifticonDto Dto, Model model) throws Exception {
+		gifticonService.showGifticon(Dto, model);
 	}
 	
-	/*--------------------- 기프티콘 등록 페이지 ---------------------*/
-//	@RequestMapping("gifticonInsert")
-//	public void gifticonInsert() {
-//	}
-	
+	/*--------------------- 기프티콘 조회 페이지 ---------------------*/
+	@RequestMapping("gifticonList")
+	public void giftiConList(GifticonDto Dto, Model model) throws Exception {
+		giftconsltMulti(Dto, model);
+	}
 	
 	/*--------------------- 기프티콘 등록 페이지 ---------------------*/
 	@RequestMapping("gifticonInsert")
-	public String gifticonInsert() {
-		return "gifticonInsert.tiles";
+	public void gifticonInsert() {
 	}
-		
+	
+	/*--------------------- 기프티콘 수정 페이지 ---------------------*/
+	@RequestMapping("gifticonUpdate")
+	public void gifticonUpdate() {
+	}
+	
+	/*--------------------- 기프티콘 삭제 페이지 ---------------------*/
+	@RequestMapping("gifticonDelete")
+	public void gifticonDelete(GifticonDto Dto, Model model) throws Exception{
+		giftconsltMulti(Dto, model);
+	}
 	
 	
+	
+	/*--------------------- 기프티콘 삭제 완료 눌렀을 때 ---------------------*/
+	@RequestMapping("gifticonDeleteSubmit")
+	public String gifticonDeleteSubmit(GifticonDto Dto) throws Exception {
+		String view = gifticonService.deleteGifticon(Dto);
+		return view;
+	}
 	
 	/*--------------------- 기프티콘 등록 완료 눌렀을 때 ---------------------*/
 	@RequestMapping("gifticonInsertSubmit")
@@ -49,19 +60,5 @@ public class GifticonController {
 		return view;
 	}
 	
-	/* 타일즈 적용 */
-	@RequestMapping(value = "index.do", method = RequestMethod.GET)
-	public String test(Locale locale, Model model) {
-		
-		return "home.tiles";
-	}
-	
-	
-	/* 타일즈 미적용 */	
-//	@RequestMapping(value = "index.do", method = RequestMethod.GET)
-//	public String test1(Locale locale, Model model) {
-//		
-//		return "home.jsp";
-//	}
 
 }

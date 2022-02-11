@@ -1,21 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>관리자 페이지</title>
+<meta charset="UTF-8">
+<title>기프티콘 수정</title>
 <script src="resources/js/jquery-3.4.1.min.js"></script>
-<link href="<c:url value="/resources/css/adminMenu.css"/>" rel="stylesheet"/> 
+<link href="<c:url value="/resources/css/adminMenu.css"/>" rel="stylesheet" />
+<link href="<c:url value="/resources/css/gifticonInsert.css"/>" rel="stylesheet" />
 <script>
 	$(document).ready(function() {
-		
+
 	});
 </script>
 </head>
 <body>
-	
+
+
 	<!---------------------------------- HEADER ---------------------------------->
 	<div id="header">
 		<h1>관리 페이지</h1>
@@ -57,15 +60,14 @@
 			<li><a href="gifticonDelete">기프티콘 삭제</a></li>
 		</ul>
 	</div>
-	
+
 	<!---------------------------------- CONTENT ---------------------------------->
 	<div id="content">
 	
 	</div>
-	
+
 	<!---------------------------------- FOOTER ---------------------------------->
-	<div id="footer">
-	
-	</div>
+	<div id="footer"></div>
+
 </body>
 </html>
