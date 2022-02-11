@@ -53,7 +53,7 @@ table {
 <HR>
 	<form name="paging">
 		<H4>Q.A</H4>
-		<table style="text-align: center; border: 1px solid #ddddd">
+		<table style="text-align: center; border: 1px solid #ddddd"> 
 
 			<thead>
 				<tr>
