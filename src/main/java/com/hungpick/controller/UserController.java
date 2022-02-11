@@ -47,7 +47,7 @@ public class UserController {
 	public String home() {
 		logger.info("home called ==========");
 
-		return "redirect:/main.jsp";
+		return "main";
 	}
 	
 	/*--------------------- 공지사항 등록 페이지로 이동 ---------------------*/
