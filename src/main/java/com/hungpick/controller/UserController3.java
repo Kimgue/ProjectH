@@ -9,9 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.hungpick.dto.GifticonDto;
 import com.hungpick.dto.UserDto;
-import com.hungpick.service.IGifticonService;
 import com.hungpick.service.IUserService;
 
 @Controller
@@ -19,9 +17,6 @@ public class UserController3 {
 
 	@Autowired
 	private IUserService userService;
-	
-	@Autowired
-	private IGifticonService gifticonService;
 
 	/*--------------------- 아이디 찾기 페이지로 이동 ---------------------*/
 	@RequestMapping("userFindId")
@@ -95,7 +90,6 @@ public class UserController3 {
 	/*--------------------- 로그인 시도했을 때 ---------------------*/
 	@RequestMapping("userLoginTry")
 	public String userLoginTry(@Param("memberId") String memberId, @Param("memberPw") String memberPw, HttpSession session) throws Exception {
-		System.out.println("회원");
 		String view = userService.userLogin(memberId, memberPw, session);
 		return view;
 	}
@@ -133,17 +127,6 @@ public class UserController3 {
 	@RequestMapping("userFindPwUpdate")
 	public String userFindPwUpdate(UserDto Dto, HttpSession session, HttpServletResponse response) throws Exception {
 		String view = userService.updatePw(Dto, session, response);
-		return view;
-	}
-	
-	
-	
-	
-	/*--------------------- 기프티콘 ---------------------*/
-	@RequestMapping("GifticonList")
-	public String giftiConList(GifticonDto Dto, Model model) throws Exception {
-		System.out.println("기프티콘 Ctrl");
-		String view = gifticonService.showGifticon(Dto, model);
 		return view;
 	}
 }

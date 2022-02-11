@@ -4,19 +4,33 @@
 
 <mapper namespace="com.hungpick.dao.IGifticonDao">
 
+	<!-- 기프티콘 보기 -->
 	<select id="showGifticon" resultType="gifticonDto">
 		SELECT * FROM GIFTICON ORDER BY GIFTICON_CODE
 	</select>
+
+	<!-- 기프티콘 등록 -->
+	<insert id="insertGifticon" parameterType="gifticonDto">
+		INSERT INTO GIFTICON 
+		(
+			GIFTICON_CODE, BRAND_CODE, MENU_CODE, GIFTICON_NAME, GIFTICON_IMG, GIFTICON_PRICE
+		)
+		VALUES 
+		(
+			(SELECT NVL(MAX(TO_NUMBER(GIFTICON_CODE)),0)+1 FROM GIFTICON),
+			#{brandCode},
+			#{menuCode},
+			#{gifticonName},
+			#{gifticonImg},
+			#{gifticonPrice}
+		)
+   	</insert>
 
 	<select id="select" parameterType="string" resultType="gifticonDto">
 		SELECT * FROM GIFTICON WHERE GIFTICON_CODE = #{ gifticonCode } AND BRAND_CODE = #{ brandCode } AND MENU_CODE = #{ menuCode }
 	</select>
 
-   <insert id="insert" parameterType="gifticonDto">
-	   INSERT  INTO GIFTICON       
-	                 VALUES(   #{ gifticonCode } , #{brandCode} , #{ menuCode } , #{ gifticonName },  #{ gifticonImg } ,  #{ gifticonPrice} )
-                
-   </insert>
+
 	
 	<update id="update" parameterType="gifticonDto">
 		UPDATE GIFTICON SET #{ gifticonName },  #{ gifticonImg } ,  #{ gifticonPrice}  WHERE GIFTICON_CODE = #{ gifticonCode } AND BRAND_CODE = #{ brandCode } AND MENU_CODE =#{ menuCode }  

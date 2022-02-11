@@ -9,4 +9,8 @@ public interface IGifticonDao {
 
 	// 기프티콘 조회
 	public List<GifticonDto> showGifticon(GifticonDto Dto) throws Exception;
+	
+	// 기프티콘 등록
+	public void insertGifticon(GifticonDto Dto) throws Exception;
+	
 }

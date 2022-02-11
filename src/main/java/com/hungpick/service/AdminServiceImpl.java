@@ -16,18 +16,10 @@ public class AdminServiceImpl implements IAdminService{
 
 	@Override
 	public String adminLogin(String adminId, String adminPw, String memberId, String memberPw, HttpSession session) throws Exception {
-		
-		System.out.println("확인");
-		
-		System.out.println("아이디 : " + memberId);
-		System.out.println("아이디 : " + memberPw);
-		
 		adminId = memberId;
 		adminPw = memberPw;
 		Boolean loginBool = false;
 		AdminDto Dto = adminDao.adminLogin(adminId, adminPw);
-		
-		System.out.println("DTO : " + Dto);
 		
 		if(Dto != null) {
 			loginBool = true;

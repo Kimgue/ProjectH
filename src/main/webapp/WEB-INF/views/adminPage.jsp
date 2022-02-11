@@ -9,9 +9,10 @@
 <link href="resources/css/adminPage.css" rel="stylesheet"/> 	
 <script>
 	$(document).ready(function() {
-	    $("#userInfo").click(function() {
+	    $(".btn").click(function() {
+	    	var menuId = $(this).attr("id");
 	    	 $.ajax({
-               url : "userInfo",
+               url : menuId,
                success : function(result) {
                    $("#Info").html(result);
                }
@@ -28,8 +29,7 @@
 <div id="sidebar">
 	<div>
 		- 회원<br>
-		<!-- <a href="userInfo">회원조회</a> -->
-		<input type="button" id="userInfo" value="회원조회">
+		<input type="button" class="btn" id="userInfo" value="회원조회">
 
 		</div>
 		<div>
@@ -52,7 +52,7 @@
 		</div>
 		<div>
 		- 기프티콘<br>
-		기프티콘 등록<br>
+		<input type="button" class="btn" id="gifticonInsert" value="기프티콘 등록"><br>
 		기프티콘 수정<br>
 		기프티콘 삭제
 		</div>
