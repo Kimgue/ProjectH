@@ -23,17 +23,6 @@
 		</plugins>
 	</build>
 
-	<!-- properties -->
-	<properties>
-		<java-version>1.8</java-version>
-		<org.springframework-version>4.3.4.RELEASE</org.springframework-version>
-		<javax.servlet-version>4.0.1</javax.servlet-version>
-		<javax.servlet.jsp-version>2.3.3</javax.servlet.jsp-version>
-		<javax.servlet.jsp.jstl-version>1.2</javax.servlet.jsp.jstl-version>
-		<org.aspectj-version>1.6.10</org.aspectj-version>
-		<org.slf4j-version>1.6.6</org.slf4j-version>
-	</properties>
-
 	<!-- 리포지토리 추가 -->
 	<repositories>
 		<repository>
@@ -104,28 +93,6 @@
 			<version>20180813</version>
 		</dependency>
 		
-		<!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>javax.servlet-api</artifactId>
-			<version>${javax.servlet-version}</version>
-			<scope>provided</scope>
-		</dependency>
-		
-		<!-- https://mvnrepository.com/artifact/javax.servlet.jsp/javax.servlet.jsp-api -->
-		<dependency>
-			<groupId>javax.servlet.jsp</groupId>
-			<artifactId>javax.servlet.jsp-api</artifactId>
-			<version>${javax.servlet.jsp-version}</version>
-			<scope>provided</scope>
-		</dependency>
-		
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>jstl</artifactId>
-			<version>${javax.servlet.jsp.jstl-version}</version>
-		</dependency>
-
 		<!-- https://mvnrepository.com/artifact/org.lazyluke/log4jdbc-remix -->
 		<dependency>
 			<groupId>org.lazyluke</groupId>
@@ -272,13 +239,27 @@
 			<artifactId>spring-context-support</artifactId>
 			<version>4.3.8.RELEASE</version>
 		</dependency>
-
-
+		
 		<!-- https://mvnrepository.com/artifact/org.springframework/spring-webmvc -->
 		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-webmvc</artifactId>
-			<version>${org.springframework-version}</version>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-webmvc</artifactId>
+		    <version>4.3.30.RELEASE</version>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/javax.servlet/jstl -->
+		<dependency>
+		    <groupId>javax.servlet</groupId>
+		    <artifactId>jstl</artifactId>
+		    <version>1.2</version>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
+		<dependency>
+		    <groupId>javax.servlet</groupId>
+		    <artifactId>javax.servlet-api</artifactId>
+		    <version>3.1.0</version>
+		    <scope>provided</scope>
 		</dependency>
 	</dependencies>
 </project>
