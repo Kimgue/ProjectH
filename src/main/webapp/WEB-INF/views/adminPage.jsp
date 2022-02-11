@@ -19,6 +19,8 @@
             });
 	    });
 	});
+	
+	
 </script>
 </head>
 <body>
@@ -56,7 +58,7 @@
 		<div>
 		- 기프티콘<br>
 		<!-- <input type="button" class="btn" id="gifticonInsert" value="기프티콘 등록"><br> -->
-		<a href="?list=fggf" class="btn" id="gifticonInsert">기프티콘 등록</a>
+		<a href="#none" class="btn" id="gifticonInsert">기프티콘 등록</a>
 		기프티콘 수정<br>
 		기프티콘 삭제
 		</div>

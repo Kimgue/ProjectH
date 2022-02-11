@@ -16,6 +16,9 @@ public class GifticonController {
 	@Autowired
 	private IGifticonService gifticonService;
 	
+	@Autowired
+	private ProjectTestController testctrl;
+	
 	/*--------------------- 기프티콘 조회 ---------------------*/
 	@RequestMapping("gifticonList")
 	public String giftiConList(GifticonDto Dto, Model model) throws Exception {

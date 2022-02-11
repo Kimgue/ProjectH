@@ -36,10 +36,29 @@
         <beans:property name="defaultEncoding" value="utf-8"></beans:property>
 	</beans:bean>
 	
-	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
-	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<beans:property name="prefix" value="/WEB-INF/views/" />
-		<beans:property name="suffix" value=".jsp" />
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory --> 
+	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"> 
+		<beans:property name="prefix" value="/WEB-INF/views/" /> 
+		<beans:property name="suffix" value=".jsp" /> 
+		<!-- 기존 view resolver의 우선순위를 2로 해준다. --> 
+		<beans:property name="order" value="1" /> 
 	</beans:bean>
 	
+	<!-- Tiles 관련 추가 내용--> 
+	<!-- Tiles관련 설정파일 --> 
+	<beans:bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer"> 
+		<beans:property name="definitions"> 
+			<beans:list> 
+				<beans:value>/WEB-INF/tiles/tiles.xml</beans:value> 
+			</beans:list> 
+		</beans:property> 
+	</beans:bean> 
+	<!-- Tiles의 우선순위를 1로 해준다. --> 
+	<beans:bean id="tilesViewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver"> <beans:property name="viewClass" value="org.springframework.web.servlet.view.tiles3.TilesView" /> 
+		<beans:property name="order" value="2" /> 
+	</beans:bean>
+
+
+	
+
 </beans:beans>
