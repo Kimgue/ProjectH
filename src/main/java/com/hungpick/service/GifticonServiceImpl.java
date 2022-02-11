@@ -35,7 +35,7 @@ public class GifticonServiceImpl implements IGifticonService {
 		
 		System.out.println("파일 생성 전");
 		fileUpload.fileUpload(uploadfile, modelMap);
-		Dto.setGifticonImg((String) modelMap.get("gifticonImg"));
+		Dto.setGifticonImg((String) "images/gifticon/" + modelMap.get("gifticonImg"));
 		System.out.println("확인 : " + modelMap.get("gifticonImg"));
 		System.out.println("파일 생성 후");
 		gifticonDao.insertGifticon(Dto);
