@@ -25,8 +25,15 @@ public class AnswerServiceImpl implements IAnswerService {
 	private IDaoQuestion daoQes;
 	
 	private static final Logger logger = LoggerFactory.getLogger(QuesServiceImpl.class);
+	
 	@Override
-	public AnswerVo selectOne(@Param("memberCode")String memberCode, @Param("qstnCode")String qstnCode) {
+	public AnswerVo selectQuestionview(String memberCode, String qstnCode) {
+		// TODO Auto-generated method stub
+		return daoanswer.selectQuestionview(memberCode, qstnCode);
+	}
+	
+	@Override
+	public AnswerDto selectOne(@Param("memberCode")String memberCode, @Param("qstnCode")String qstnCode) {
 		
 		
 		return daoanswer.selectOne(memberCode, qstnCode);
@@ -37,17 +44,12 @@ public class AnswerServiceImpl implements IAnswerService {
 	@Transactional 
 	public void insert(AnswerDto answer) throws Exception {
 		logger.info("insert성공333");
-		AnswerVo check = daoanswer.selectOne(answer.getMemberCode(), answer.getQstnCode());
 		
-		if(check == null)
-		{
-			throw new Exception();
-		}
 	
 		logger.info("insert성공222");
 		String membercode = answer.getMemberCode();
 		String qstncode = answer.getQstnCode();
-		int answercode = answer.getAnswerCode();
+		String answercode = answer.getAnswerCode();
 		String admincode = answer.getAdminCode();
 		String answercontent = answer.getAnswerContent();
 		String answerdate = answer.getAnswerDate();
@@ -62,8 +64,6 @@ public class AnswerServiceImpl implements IAnswerService {
 		logger.info("insert성공11");
 		
 		daoanswer.insert(answer);
-		daoanswer.updateQCODE(answer);
-		logger.info("insert성공");
 		daoQes.updateanswer(answer.getMemberCode(), answer.getQstnCode());
 	}
 
@@ -85,5 +85,8 @@ public class AnswerServiceImpl implements IAnswerService {
 		
 		return daoanswer.selectN(cri);
 	}
+
+
+	
 
 }

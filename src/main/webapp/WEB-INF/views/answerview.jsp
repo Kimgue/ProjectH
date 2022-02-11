@@ -14,21 +14,21 @@
 						<tbody>
 							<tr>
 								<td>
-									<label for="memberCode" id="memberCode">작성자 번호 :${ selectOne.qesDto.memberCode }</label>
+									<label for="memberCode" id="memberCode">작성자 번호 :${ sltOne.memberCode }</label>
 							</tr>	
 							<tr>
 								<td>
-									<label for="qstnTitle">제목 : ${ selectOne.qesDto.qstnTitle }</label>
+									<label for="qstnTitle">제목 : ${ sltOne.qstnTitle }</label>
 								</td>
 							</tr>	
 							<tr>
 								<td>
-									<label for="qstnContent">내용 : </label>${ selectOne.qesDto.qstnContent } 
+									<label for="qstnContent">내용 : </label>${ sltOne.qstnContent } 
 								</td>
 							</tr>
 							<tr>
 								<td> 
-									<label for="qstnDate" id="qstnDate">작성날짜 : ${ selectOne.qesDto.qstnDate }</label>
+									<label for="qstnDate" id="qstnDate">작성날짜 : ${ sltOne.qstnDate }</label>
 								</td>
 								</tr>			
 						</tbody>			
@@ -49,9 +49,9 @@
 							</td>
 							</tr>
 							<tr>	
-							<td><input type="hidden" id="memberCode" name="memberCode" value="${ selectOne.qesDto.memberCode }"/> <td>
-							<td><input type="hidden" id="qstnCode" name="qstnCode" value="${ selectOne.qesDto.qstnCode }" /></td>
-							<td><input type="hidden" id="answerCode" name="answerCode" value="${ selectOne.answerDto.answerCode }"/></td>
+							<td><input type="hidden" id="memberCode" name="memberCode" value="${ sltOne.memberCode }"/> <td>
+							<td><input type="hidden" id="qstnCode" name="qstnCode" value="${ sltOne.qstnCode }" /></td>
+							<td><input type="hidden" id="answerCode" name="answerCode" value="answerCode" /></td>
 							<td><input type="hidden" id="adminCode" name="adminCode" value="1" /></td>
 							<td><input type="hidden" id="answerDate" name="answerDate" value="${ date }" /></td>
 							</tr>

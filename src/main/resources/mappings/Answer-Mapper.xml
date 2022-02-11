@@ -36,21 +36,24 @@
         <collection property="qesDto" resultMap="QuestionRm"></collection >
 	</resultMap>
 	
-	<select id="selectOne" parameterType="String" resultMap="AnswerVoRm">
+	<select id="selectQuestionview" parameterType="String" resultMap="AnswerVoRm">
 		SELECT * 
 		FROM QUESTION q
 		FULL OUTER JOIN ANSWER A
-		ON a.MEMBER_CODE = q.MEMBER_CODE
+		ON A.MEMBER_CODE = q.MEMBER_CODE
 		WHERE q.MEMBER_CODE = #{ memberCode } 
 		AND q.QSTN_CODE = #{ qstnCode }
+		AND A.QSTN_CODE = #{ qstnCode }
 	</select>	
+	
+	
+	
+	
 	
 	<select id="selectN" resultMap="AnswerVoRm"  parameterType="Criteria">
 	 SELECT * FROM (   
 		SELECT   ROW_NUMBER() OVER(ORDER BY q.QSTN_CODE DESC)
 		NUM, q.* FROM QUESTION q 
-        left JOIN ANSWER a
-        ON a.MEMBER_CODE = q.MEMBER_CODE
         WHERE q.QSTN_CONFIRM = 'n'
         ORDER BY q.QSTN_CODE DESC)  
 		WHERE NUM BETWEEN #{ rowStart }
@@ -77,6 +80,5 @@
 		AND   ANSWER_CODE = #{answerCode} AND ADMIN_CODE = #{adminCode}
 	</update>
 
-	
 
 </mapper>

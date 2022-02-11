@@ -96,15 +96,13 @@ input {
 		<div id="reply">	
 			<h3>관리자 댓글</h3>
   				<ol >
-    			<c:forEach items="" var="replyList">
      			 <li>
        				 <p>
-       				 작성자 :${ selectOne.qesDto.memberCode }<br /><br />
+       				 작성자 :  ${ selectOne.qesDto.memberCode }<br /><br />
        				 작성 내용: ${ selectOne.answerDto.answerContent }<br/><br />
        				 작성 날짜 : ${ selectOne.answerDto.answerDate }
         			</p>
       			</li>
-    		</c:forEach>   
   			</ol>
 		</div>
 	<hr />

@@ -12,7 +12,7 @@ import com.hungpick.dto.Criteria;
 
 public interface IDaoAnswer {
 
-	AnswerVo selectOne(@Param("memberCode")String memberCode,@Param("qstnCode")String qstnCode);
+	AnswerDto selectOne(@Param("memberCode")String memberCode,@Param("qstnCode")String qstnCode);
 	
 	void insert(AnswerDto answer);
 	
@@ -24,4 +24,6 @@ public interface IDaoAnswer {
 	List<AnswerVo> selectN(Criteria cri);
 	
 	void updateQCODE(AnswerDto answer);
+	
+	AnswerVo selectQuestionview(@Param("memberCode")String memberCode,@Param("qstnCode")String qstnCode);
 }

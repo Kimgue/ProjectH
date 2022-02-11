@@ -7,21 +7,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>메인화면</title>
 <script src="js/jquery-3.4.1.min.js"></script>
-<script>
-	
-function notice1( adminCode )
-{
-	var a = document.paging;
-	a.adminCode.value = adminCode;
-	
-	a.action ="./Notice"
-	
-	a.method="post"
-	a.submit();
-
-}; 
-
-</script>
 </head>
 <body>
 <div align="center">
@@ -58,15 +43,13 @@ function notice1( adminCode )
 	</c:otherwise>
 </c:choose>
 
-<input type="hidden" name="adminCode" /> 
-<a href='javascript:notice1("1")'>공지사항</a> <br>	
+<a href='Notice'>공지사항</a> <br>	
 
 <a href="Questionlist">Q . A</a> 
 <input type="hidden" id="memberCode" />
 <br>
 <a href="gifticonList">기프티콘</a>
 <br>
-<a href="Nconfirm">Q.A 답변확인</a>
 </form>
 		<a href="menu">메뉴</a><br> <a href="brand">브랜드</a><br>
 	</div>
