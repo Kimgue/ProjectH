@@ -9,14 +9,14 @@
 <title>공지사항</title>
 <style>
 
-table, td, th {
+/* table, td, th {
   border : 1px solid black;
   border-collapse : collapse;
 };
 table {
   width : 300px;
   height : 200px;
-};
+}; */
 </style>
 </head>
 <body>
@@ -27,6 +27,7 @@ table {
 			<td width=200 height=40>제목</td>
 			<td width=200>관리자</td>
 			<td width=150>작성날짜</td>
+		
 			
 		</tr>
 		<c:forEach var="list" items="${ listpage }">
@@ -35,6 +36,7 @@ table {
 				<td><a href="view2?adminCode=${ list.adminCode }&noticeCode=${list.noticeCode}"><c:out value="${list.noticeTitle}" /></a></td>
 				<td><c:out value="${list.adminCode }"></c:out>
 				<td><c:out value="${list.noticeDate}" /></td>	
+				
 			</tr>
 		</c:forEach>
 	</table>	

@@ -31,6 +31,8 @@ table {
 			<td width=350 height=40>제목</td>
 			<td width=100>관리자</td>
 			<td width=250>작성날짜</td>
+			<td width=150>수정</td>
+			<td width=100>삭제</td>
 			
 		</tr>
 		<c:forEach var="list" items="${listpage}">
@@ -39,6 +41,8 @@ table {
 				<td><a href="javascript:view2('${ list.adminCode }','${list.noticeCode}')"><c:out value="${ list.noticeTitle }" /></a></td>
 				<td><c:out value="${list.adminCode }"></c:out>
 				<td><c:out value="${list.noticeDate}" /></td>	
+				<td><a href="javascript:Noticeupdatelist('${ list.adminCode }','${list.noticeCode}' )">수정</a></td>
+				<td><a href="javascript:Noticedelete('${ list.adminCode }','${list.noticeCode}')">삭제</a></td>
 			</tr>
 		</c:forEach>
 	</table>	

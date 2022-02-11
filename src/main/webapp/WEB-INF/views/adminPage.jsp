@@ -48,8 +48,6 @@
 		- 공지사항<br>
 		<input type="button" class="btn" id="AdminNoticelist" value="공지사항 리스트"><br>
 		<input type="button" class="btn" id="noticeinsertN" value="공지사항 등록"><br>
-		<input type="button" class="btn" id="Noticecorrect" value="공지사항 수정"><br>
-		<input type="button" class="btn" id="Noticedelete" value="공지사항 삭제"><br>
 		</div>
 		<div>
 		Q&A 답변 <a href="Nconfirm">Q.A 답변확인</a>

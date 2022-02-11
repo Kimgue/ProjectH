@@ -27,7 +27,7 @@
 	});
 </script>
 <style>
-input {
+/* input {
   
   vertical-align: top; 
   width:500px;
@@ -39,7 +39,7 @@ input {
 	height:300px; 
     resize:none;
 	vertical-align:-160px;
-}
+} */
 
 </style>
 </head>
