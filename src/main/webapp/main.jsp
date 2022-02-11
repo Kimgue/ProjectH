@@ -64,7 +64,7 @@ function notice1( adminCode )
 <a href="Questionlist">Q . A</a> 
 <input type="hidden" id="memberCode" />
 <br>
-<a href="GifticonList">기프티콘</a>
+<a href="gifticonList">기프티콘</a>
 <br>
 <a href="Nconfirm">Q.A 답변확인</a>
 </form>

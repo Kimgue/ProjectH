@@ -28,12 +28,12 @@
 	<mvc:resources location="/resources/css/" mapping="/css/**" />
 	<mvc:resources location="/resources/images/" mapping="/images/**" /> 
 	-->
-
+	
 	<mvc:resources mapping="/resources/**" location="/resources/" />
 		
  	<beans:bean name="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-        <beans:property name="maxUploadSize" value="10000000"></beans:property> 
-        <beans:property name="maxInMemorySize" value="100000"></beans:property> 
+        <beans:property name="maxUploadSize" value="100000000"></beans:property> 
+        <beans:property name="maxInMemorySize" value="100000000"></beans:property> 
         <beans:property name="uploadTempDir" value="temp"></beans:property>
         <beans:property name="defaultEncoding" value="utf-8"></beans:property>
 	</beans:bean>

@@ -18,8 +18,6 @@ public class AdminController {
 	/*--------------------- 로그인 시도했을 때 ---------------------*/
 	@RequestMapping("adminLoginTry")
 	public String adminLoginTry(@Param("adminId") String adminId, @Param("adminPw") String adminPw, String memberId, String memberPw, HttpSession session) throws Exception {
-		System.out.println("관리자");
-		
 		String view = adminService.adminLogin(adminId, adminPw, memberId, memberPw, session);
 		return view;
 	}
