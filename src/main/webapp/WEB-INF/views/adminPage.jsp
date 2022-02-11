@@ -50,7 +50,8 @@
 		<input type="button" class="btn" id="noticeinsertN" value="공지사항 등록"><br>
 		</div>
 		<div>
-		Q&A 답변 <a href="Nconfirm">Q.A 답변확인</a>
+		-Q&A 답변확인<br>
+		<input type="button" class="btn" id="Nconfirm" value="Q.A 답변확인"><br>
 		</div>
 		<div>
 		- 기프티콘<br>
