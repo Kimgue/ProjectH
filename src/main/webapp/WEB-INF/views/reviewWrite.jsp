@@ -24,7 +24,7 @@ input[type=text]::-ms-clear{
 <body>
 
 <div align="center">
-		<form action="reviewWriteSubmit" method="post">
+		<form action="reviewWriteInfo" method="post">
 			<br> 
 			<input type='hidden' name='brandCode' value='${brandCode}' readonly/>
 			<br> 

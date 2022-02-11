@@ -130,14 +130,9 @@ public class UserController2 {
 			model.addAttribute("msg", msg);
 			model.addAttribute("url", url);
 			return;
-		}
-		logger.info("reviewWrite called ========");
+		};
 		
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("reviewWriteSubmit");
-		mv.addObject("brandCode", brandCode);
-		mv.addObject("menuCode", menuCode);
-		mv.addObject("menuName", menuName);
+		logger.info("reviewWrite called ========");
 		
 		model.addAttribute("brandCode", brandCode);
 		model.addAttribute("menuCode", menuCode);
@@ -145,6 +140,21 @@ public class UserController2 {
 
 	}
 	
+	@RequestMapping("reviewWriteInfo")
+	public ModelAndView reviewWriteInfo(
+			@RequestParam String brandCode, 
+			@RequestParam String menuCode, 
+			@RequestParam String menuName
+			)  throws Exception {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("reviewWriteSubmit");
+		mv.addObject("brandCode", brandCode);
+		mv.addObject("menuCode", menuCode);
+		mv.addObject("menuName", menuName);
+		
+		return mv;
+	};
+
 	//리뷰 작성 페이지
 	@RequestMapping("reviewWriteSubmit")
 	public String reviewWriteSubmit(
