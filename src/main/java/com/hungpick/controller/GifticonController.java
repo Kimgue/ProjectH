@@ -34,7 +34,8 @@ public class GifticonController {
 	
 	/*--------------------- 기프티콘 수정 페이지 ---------------------*/
 	@RequestMapping("gifticonUpdate")
-	public void gifticonUpdate() {
+	public void gifticonUpdate(GifticonDto Dto, Model model) throws Exception {
+		giftconsltMulti(Dto, model);
 	}
 	
 	/*--------------------- 기프티콘 삭제 페이지 ---------------------*/
@@ -43,18 +44,24 @@ public class GifticonController {
 		giftconsltMulti(Dto, model);
 	}
 	
-	
-	
 	/*--------------------- 기프티콘 삭제 완료 눌렀을 때 ---------------------*/
 	@RequestMapping("gifticonDeleteSubmit")
-	public String gifticonDeleteSubmit(GifticonDto Dto) throws Exception {
-		String view = gifticonService.deleteGifticon(Dto);
+	public String gifticonDeleteSubmit(GifticonDto Dto, ModelMap modelMap) throws Exception {
+		String view = gifticonService.deleteGifticon(Dto, modelMap);
 		return view;
 	}
 	
 	/*--------------------- 기프티콘 등록 완료 눌렀을 때 ---------------------*/
 	@RequestMapping("gifticonInsertSubmit")
 	public String gifticonInsertSubmit(GifticonDto Dto, MultipartFile uploadfile, ModelMap modelMap) throws Exception {
+		
+		String view = gifticonService.insertGifticon(Dto,uploadfile,modelMap);
+		return view;
+	}
+	
+	/*--------------------- 기프티콘 수정 완료 눌렀을 때 ---------------------*/
+	@RequestMapping("gifticonUpdateSubmit")
+	public String gifticonUpdateSubmit(GifticonDto Dto, MultipartFile uploadfile, ModelMap modelMap) throws Exception {
 		
 		String view = gifticonService.insertGifticon(Dto,uploadfile,modelMap);
 		return view;

@@ -31,7 +31,7 @@
 	</update>
 	
 	<delete id="deleteGifticon">
-		DELETE FROM GIFTICON WHERE GIFTICON_CODE = #{gifticonCode} AND BRAND_CODE = #{brandCode} AND MENU_CODE =#{menuCode}
+		DELETE FROM GIFTICON WHERE GIFTICON_CODE = #{gifticonCode} AND BRAND_CODE = #{brandCode} AND MENU_CODE = #{menuCode}
 	</delete>
 
 	<select id="select" parameterType="string" resultType="gifticonDto">

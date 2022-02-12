@@ -35,14 +35,19 @@ public class GifticonServiceImpl implements IGifticonService {
 		fileUpload.fileUpload(uploadfile, modelMap);
 		Dto.setGifticonImg((String) "images/gifticon/" + modelMap.get("gifticonImg"));
 		gifticonDao.insertGifticon(Dto);
-		return "gifticonInsert";
+		return "redirect:/gifticonInsert";
 	}
 
 	// 기프티콘 삭제
 	@Override
-	public String deleteGifticon(GifticonDto Dto) throws Exception {
+	public String deleteGifticon(GifticonDto Dto, ModelMap modelMap) throws Exception {
+
+		modelMap.addAttribute("delImg",Dto.getGifticonImg());
+		
 		gifticonDao.deleteGifticon(Dto);
-		return "gifticonDelete";
+		fileUpload.fileDelete(modelMap);
+		
+		return "redirect:/gifticonDelete";
 	}
 	
 }

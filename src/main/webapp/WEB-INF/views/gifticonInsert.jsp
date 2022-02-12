@@ -9,31 +9,43 @@
 <title>기프티콘 등록</title>
 <script src="resources/js/jquery-3.4.1.min.js"></script>
 <link href="<c:url value="/resources/css/adminMenu.css"/>" rel="stylesheet" />
-<link href="<c:url value="/resources/css/gifticonInsert.css"/>" rel="stylesheet" />
 <script>
 	$(document).ready(function() {
 
+		// input file에 change 이벤트 부여
+		const inputImage = document.getElementById("input-image")
+		inputImage.addEventListener("change", e => {
+		    readImage(e.target)
+		})
 	});
 	
-	document.getElementById('bizFile').addEventListener('change', function(){
-		var filename = document.getElementById('fileName');
-		if(this.files[0] == undefined){
-			filename.innerText = '선택된 파일없음';
-			return;
-		}
-		filename.innerText = this.files[0].name;
-	});
-	
-	function test() {
-		var testslt = $("#testslt").val();
-		
-		if(testslt == "") {
-			return false;
+	function insert() {
+		var result = confirm("등록하시겠습니까?");
+		if(result) {
+			alert("등록되었습니다");
+			$("#insert").submit();
 		} else {
-			$("#test").submit();
+			return false;
 		}
-		
 	}
+	
+	function readImage(input) {
+	    // 인풋 태그에 파일이 있는 경우
+	    if(input.files && input.files[0]) {
+	        // 이미지 파일인지 검사 (생략)
+	        // FileReader 인스턴스 생성
+	        const reader = new FileReader()
+	        // 이미지가 로드가 된 경우
+	        reader.onload = e => {
+	            const previewImage = document.getElementById("preview-image")
+	            previewImage.src = e.target.result
+	        }
+	        // reader가 이미지 읽도록 하기
+	        reader.readAsDataURL(input.files[0])
+	    }
+	}
+	
+
 </script>
 </head>
 <body>
@@ -83,7 +95,7 @@
 
 	<!---------------------------------- CONTENT ---------------------------------->
 	<div id="content">
-		<form id="test" action="gifticonInsertSubmit" method="post" enctype="multipart/form-data">
+		<form id="insert" action="gifticonInsertSubmit" method="post" enctype="multipart/form-data">
 			<ul>
 				<li>기프티콘 이름 <input type="text" name="gifticonName"></li>
 				<li>기프티콘 가격 <input type="text" name="gifticonPrice"></li>
@@ -95,9 +107,13 @@
 	    				<option value="H2">롯데리아</option>
 					</select>
 				</li>
-				<li>이미지 첨부 <input type="file" name="uploadfile" required="required"></li>
+				<li>
+			    	<img style="width:100px;" id="preview-image" src="">
+			    	<input style="display: block;" type="file" name="uploadfile" id="input-image" required="required">
+				</li>
 			</ul>
-			<input type="button" value="작성" onclick="test()"> 
+		
+			<input type="button" value="작성" onclick="insert()"> 
 			<input type="reset" value="취소">
 		</form>
 	</div>

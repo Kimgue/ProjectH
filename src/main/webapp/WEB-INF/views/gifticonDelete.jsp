@@ -6,23 +6,27 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>기프티콘 등록</title>
+<title>기프티콘 삭제</title>
 <script src="resources/js/jquery-3.4.1.min.js"></script>
 <link href="<c:url value="/resources/css/adminMenu.css"/>" rel="stylesheet" />
 <link href="<c:url value="/resources/css/gifticonInsert.css"/>" rel="stylesheet" />
 <script>
 	$(document).ready(function() {
-	
+		
 		$(".btn").click(function() {
-			var giftCode = $(this).val();
-			alert(giftCode);
+			
+			var result = confirm("삭제하시겠습니까?");
+			if(result) {
+				alert("삭제되었습니다");
+				var a = $(this).attr("id");
+				$("#form"+a).submit();
+			} else {
+				return false;
+			}
+			
+			
 		});
 	});
-
-	
-	function deleteGifticon() {
-		/* $("#deleteGifticon").submit(); */
-	}
 </script>
 </head>
 <body>
@@ -72,23 +76,29 @@
 
 	<!---------------------------------- CONTENT ---------------------------------->
 	<div id="content">
-	<form id="deleteGifticon" action="gifticonDeleteSubmit" method="post">
 		<c:forEach var="gift" items="${gifticonList}">
-		
-				<div>
-					<c:out value="${gift.gifticonCode}" /> <br>
-					<img src="<c:url value='${gift.gifticonImg}' />" alt="${gift.gifticonImg}" height="270" width="270"/><br>
-					<c:out value="${gift.gifticonName}" /> <br>
-					<c:out value="${gift.gifticonPrice}" /> <br>
-					<!-- <input type="button" class="btn" value="삭제" onclick="deleteGifticon()"> --> 
+			<form id="formbtn${gift.gifticonCode}" action="gifticonDeleteSubmit" method="post">
+				<input type="hidden" value="${gift.gifticonCode}" name="gifticonCode">
+				<c:out value="${gift.gifticonCode}" /><br>
+				
+				<input type="hidden" value="${gift.gifticonImg}" name="gifticonImg">
+				<img src="<c:url value='${gift.gifticonImg}' />" alt="${gift.gifticonImg}" height="270" width="270"/><br>
+				
+				<input type="hidden" value="${gift.gifticonName}" name="gifticonName">
+				<c:out value="${gift.gifticonName}" /> <br>
+				
+				<input type="hidden" value="${gift.gifticonPrice}" name="gifticonPrice">
+				<c:out value="${gift.gifticonPrice}" /> <br>
 					
-					<label for="gifticonCode">삭제</label>
-					<input type="button" class="btn" value="<c:out value="${gift.gifticonCode}"/>">
-				</div>
+				<input type="hidden" value="${gift.brandCode}" name="brandCode">
+				<c:out value="${gift.brandCode}" /><br>
+				
+				<input type="hidden" value="${gift.menuCode}" name="menuCode">
+				<c:out value="${gift.menuCode}" /><br> 
+			</form>
+			<input type="button" class="btn" id="btn${gift.gifticonCode}" value="삭제">
 		</c:forEach>
-	</form>
 	</div>
-
 	<!---------------------------------- FOOTER ---------------------------------->
 	<div id="footer"></div>
 

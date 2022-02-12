@@ -9,7 +9,6 @@
 <title>기프티콘 수정</title>
 <script src="resources/js/jquery-3.4.1.min.js"></script>
 <link href="<c:url value="/resources/css/adminMenu.css"/>" rel="stylesheet" />
-<link href="<c:url value="/resources/css/gifticonInsert.css"/>" rel="stylesheet" />
 <script>
 	$(document).ready(function() {
 
@@ -63,7 +62,28 @@
 
 	<!---------------------------------- CONTENT ---------------------------------->
 	<div id="content">
-	
+		<c:forEach var="gift" items="${gifticonList}">
+			<form id="formbtn${gift.gifticonCode}" action="gifticonDeleteSubmit" method="post">
+				<input type="hidden" value="${gift.gifticonCode}" name="gifticonCode">
+				<c:out value="${gift.gifticonCode}" /><br>
+				
+				<input type="hidden" value="${gift.gifticonImg}" name="gifticonImg">
+				<img src="<c:url value='${gift.gifticonImg}' />" alt="${gift.gifticonImg}" height="270" width="270"/><br>
+				
+				<input type="hidden" value="${gift.gifticonName}" name="gifticonName">
+				<c:out value="${gift.gifticonName}" /> <br>
+				
+				<input type="hidden" value="${gift.gifticonPrice}" name="gifticonPrice">
+				<c:out value="${gift.gifticonPrice}" /> <br>
+					
+				<input type="hidden" value="${gift.brandCode}" name="brandCode">
+				<c:out value="${gift.brandCode}" /><br>
+				
+				<input type="hidden" value="${gift.menuCode}" name="menuCode">
+				<c:out value="${gift.menuCode}" /><br> 
+			</form>
+			<input type="button" class="btn" id="btn${gift.gifticonCode}" value="수정">
+		</c:forEach>
 	</div>
 
 	<!---------------------------------- FOOTER ---------------------------------->
