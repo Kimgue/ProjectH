@@ -46,11 +46,12 @@ hr {
 			<%-- 체크박스일 경우 값들을 배열로 받아서 처리해야함 --%>
 			<br> 브랜드<br> 
 			<c:forEach var="brand" items="${brand}">
-			<input type='checkbox' name='brandName' value='${brand.brandCode}' />${brand.brandName}
+			<input type='checkbox' name='brandCode' value='${brand.brandCode}' />${brand.brandName}
 			</c:forEach>
 			<br> 좋아하는 패티<br> 
-			<input type='checkbox' name='menuIngredients' value='고기' />고기 
-			<input type='checkbox' name='menuIngredients' value='새우' />새우 <br>	
+			<c:forEach var="menuIng" items="${menuIng}">
+			<input type='checkbox' name='menuIngredients' value='${menuIng.menuIngredients}' />${menuIng.menuIngredients}
+			</c:forEach>
 			<br> 최대가격<br>
 			<input type='number' name='menuPrice' min='0' max='100000' /> <br>
 			<br> 이름<br>
@@ -73,26 +74,22 @@ hr {
 		</c:forEach>
 		<hr>
 		<c:forEach var="menu" items="${menu}">
-			<a href="#"> 
-				<img src="<c:out value="resources/${menu.menuImg}"/>" alt="메뉴 이미지" height="270" width="270" />
-			</a>
-			<p style="font-size: 15pt">
-				<c:out value="메뉴명: ${menu.menuName}" />
-			</p>
-			<p style="font-size: 15pt">
-				<c:out value="메뉴가격: ${menu.menuPrice}" />
-			</p>
-			<p style="font-size: 12pt">
-				<c:out value="메뉴설명: ${menu.menuDescription}" />
-			</p>
-			<p style="font-size: 12pt">
-				<c:out value="메뉴재료: ${menu.menuIngredients}" />
-			</p>
-			<c:url value="review" var="reviewUrl">
-					<c:param name="brandName" value="${menu.brandName}"/>
+			<c:url value="menuDetail" var="menuDetail">
+					<c:param name="brandCode" value="${menu.brandCode}"/>
+					<c:param name="menuCode" value="${menu.menuCode}"/>
 					<c:param name="menuName" value="${menu.menuName}" />
 			</c:url>
-			<a href="${reviewUrl}">상품 리뷰</a>	
+			<a href="${menuDetail}">
+			<img src="<c:out value="resources/${menu.menuImg}"/>" alt="메뉴 이미지" height="270" width="270" />
+			</a>
+			<p style="font-size: 15pt">
+			<a href="${menuDetail}">
+				<c:out value="메뉴명: ${menu.menuName}" />
+			</a>
+			</p>		
+			<p style="font-size: 15pt">
+				<c:out value="메뉴가격: ${menu.menuPrice}" />
+			</p>		
 			<hr>
 		</c:forEach>
 		</div>

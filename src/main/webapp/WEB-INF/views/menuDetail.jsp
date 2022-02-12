@@ -15,10 +15,26 @@ hr {
 
 <body>
 <div align="center">
-		<h2>${menuName}의 상품리뷰</h2>
+		<h2>${menuName}</h2>
 		<br>
 		<a href="menu">메뉴 페이지로</a>
 		<br>
+		<a href="#"> 
+		<img src="<c:out value="resources/${menu.menuImg}"/>" alt="메뉴 이미지" height="270" width="270" />
+		</a>
+		<p style="font-size: 15pt">
+			<c:out value="메뉴명: ${menu.menuName}" />
+		</p>
+		<p style="font-size: 15pt">
+			<c:out value="메뉴가격: ${menu.menuPrice}" />
+		</p>
+		<p style="font-size: 12pt">
+			<c:out value="메뉴설명: ${menu.menuDescription}" />
+		</p>
+		<p style="font-size: 12pt">
+			<c:out value="메뉴재료: ${menu.menuIngredients}" />
+		</p>
+		<hr>
 		<table border="1">
 		<tr>
 			<td width=50>닉네임</td>
@@ -34,24 +50,24 @@ hr {
 				<td><c:out value="${review.reviewDto.reviewDate}" /></td>
 				<td><c:out value="${review.reviewDto.reviewContent}" /></td>
 				
-				<c:url value="reviewLookup" var="lookupUrl">
+				<c:url value="reviewLookup" var="reviewLookup">
 				<c:param name="brandCode" value="${review.reviewDto.brandCode}"/>
 				<c:param name="menuCode" value="${review.reviewDto.menuCode}" />
 				<c:param name="reviewCode" value="${review.reviewDto.reviewCode}" />
 				<c:param name="memberCode" value="${review.reviewDto.memberCode}" />
 				</c:url>
-				<td><a href="${lookupUrl}">상세 리뷰 보기</a></td>
+				<td><a href="${reviewLookup}">상세 리뷰 보기</a></td>
 			</tr>
 		<br>
 		</c:forEach>
 		</table>	
 		<hr>
-		<c:url value="reviewWrite" var="writeUrl">
-				<c:param name="brandCode" value="${brandCode}"/>
-				<c:param name="menuCode" value="${menuCode}" />
-				<c:param name="menuName" value="${menuName}" />
+		<c:url value="reviewWrite" var="reviewWrite">
+				<c:param name="brandCode" value="${menu.brandCode}"/>
+				<c:param name="menuCode" value="${menu.menuCode}" />
+				<c:param name="menuName" value="${menu.menuName}" />
 			</c:url>
-		<a href="${writeUrl}">리뷰 작성하기</a>
+		<a href="${reviewWrite}">리뷰 작성하기</a>
 </div>
 </body>
 </html>

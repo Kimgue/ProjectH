@@ -3,10 +3,22 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.hungpick.dao.IMenuDao"> <!-- "<" 는 문법오류나서  "<![CDATA[ < ]]>" 이렇게 해야한다. -->
-
-	<select id="sltMulti" resultType="menuDto">
+	
+	<!-- 브랜드코드순 메뉴코드순으로 메뉴 전체 불러오기 -->
+	<select id="sltMulti" resultType="menuDto"> 
 		SELECT * FROM MENU ORDER BY BRAND_CODE ASC, MENU_CODE ASC 
 	</select>
+	
+	<!-- 메뉴 재료 불러오기 -->
+	<select id="sltIngredients" resultType="menuDto">
+		SELECT DISTINCT MENU_INGREDIENTS FROM MENU
+	</select>
+	
+	<!-- 브랜드코드와 메뉴코드로 메뉴 찾기 -->
+	<select id="sltOneMenu" parameterType="String" resultType="menuDto">
+		SELECT * FROM MENU WHERE BRAND_CODE = #{ brandCode } AND MENU_CODE = #{ menuCode }
+	</select>
+	
 	
 	<resultMap type="brandDto" id="BrandDtoRm">
 	<id column="BRAND_CODE" property="brandCode"/>
@@ -30,14 +42,15 @@
         <collection property="menuDto" resultMap="MenuDtoRm"></collection >
 	</resultMap>
 	
+	<!-- 메뉴 조건검색 -->
 	<select id="sltSearch" parameterType="String" resultMap="MenuVoRm">
 		SELECT A.BRAND_NAME, B.BRAND_CODE, B.MENU_CODE, B.MENU_NAME,
 		 B.MENU_PRICE, B.MENU_IMG, B.MENU_DESCRIPTION, B.MENU_INGREDIENTS 
 		FROM BRAND A JOIN MENU B ON A.BRAND_CODE = B.BRAND_CODE 
-			<if test="brandName != null and brandName != ''">
-				AND A.BRAND_NAME IN
-				<foreach item="brandName" collection="brandName" open="(" close=")" separator="," >
-				 #{brandName}
+			<if test="brandCode != null and brandCode != ''">
+				AND B.BRAND_CODE IN
+				<foreach item="brandCode" collection="brandCode" open="(" close=")" separator="," >
+				 #{brandCode}
 				</foreach>	
 			</if>	
 			<if test="menuPrice != null and menuPrice != ''">

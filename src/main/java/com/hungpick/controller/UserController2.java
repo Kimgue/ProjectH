@@ -2,6 +2,7 @@ package com.hungpick.controller;
 
 
 import java.net.URLEncoder;
+
 import java.util.List;
 
 
@@ -21,7 +22,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.hungpick.dto.MenuVo;
-import com.hungpick.dto.ReviewRankingVo;
 import com.hungpick.service.IBrandService;
 import com.hungpick.service.IMenuService;
 import com.hungpick.service.IReviewService;
@@ -53,27 +53,27 @@ public class UserController2 {
 	//메뉴 페이지
 	@RequestMapping("menu")
 	public void menu(Model model) throws Exception {
-		logger.info("menu called ========");
-		model.addAttribute("menu", menuService.sltMulti());
-		List<ReviewRankingVo> list = reviewService.sltReviewRanking();
+		logger.info("menu called ========");	
 		
+		model.addAttribute("menu", menuService.sltMulti());
 		model.addAttribute("brand", brandService.sltMulti());
-		model.addAttribute("reviewRanking", list);
+		model.addAttribute("menuIng", menuService.sltIngredients());
+		model.addAttribute("reviewRanking", reviewService.sltReviewRanking());
 	}
 	
 	//메뉴 조건검색한 페이지
 	@RequestMapping("menuResult")
 	public void menuVo(
-			@RequestParam(required = false) String[] brandName,
+			@RequestParam(required = false) String[] brandCode,
 			@RequestParam(required = false) String menuPrice, 
 			@RequestParam(required = false) String[] menuIngredients,
 			@RequestParam(required = false) String menuName, 
 			Model model) throws Exception {
-		System.out.println(brandName);
+		System.out.println(brandCode);
 		System.out.println(menuIngredients);
 		
 		logger.info("menuVo called ========");
-		List<MenuVo> list = menuService.sltSearch(brandName, menuPrice, menuIngredients, menuName);
+		List<MenuVo> list = menuService.sltSearch(brandCode, menuPrice, menuIngredients, menuName);
 		
 		String ResultMsg;
 		if (list.size() > 0) {
@@ -83,22 +83,20 @@ public class UserController2 {
 		}
 		
 		model.addAttribute("ResultMsg", ResultMsg);
-		model.addAttribute("menuVo", menuService.sltSearch(brandName, menuPrice, menuIngredients, menuName));
+		model.addAttribute("menuVo", menuService.sltSearch(brandCode, menuPrice, menuIngredients, menuName));
 		
 	}
 	
 	//상품의 리뷰 페이지
-	@RequestMapping("review")
-	public void review(
+	@RequestMapping("menuDetail")
+	public void menuDetail(
 			@RequestParam String brandCode, 
 			@RequestParam String menuCode, 
 			@RequestParam String menuName, 
 			Model model)
 			throws Exception {
-		logger.info("review called ========");
-		model.addAttribute("brandCode", brandCode);
-		model.addAttribute("menuCode", menuCode);
-		model.addAttribute("menuName", menuName);
+		logger.info("menuDetail called ========");
+		model.addAttribute("menu", menuService.sltOneMenu(brandCode, menuCode));
 		model.addAttribute("review", reviewService.sltReviewList(brandCode, menuCode));
 	}
 	
@@ -136,10 +134,6 @@ public class UserController2 {
 		
 		logger.info("reviewWrite called ========");
 		
-		System.out.println("rv"+brandCode);
-		System.out.println("rv"+menuCode);
-		System.out.println("rv"+menuName);
-		
 		model.addAttribute("brandCode", brandCode);
 		model.addAttribute("menuCode", menuCode);
 		model.addAttribute("menuName", menuName);
@@ -167,14 +161,10 @@ public class UserController2 {
 
 		logger.info("reviewWriteSubmit called =======");
 		
-		System.out.println("rvs"+brandCode);
-		System.out.println("rvs"+menuCode);
-		System.out.println("rvs"+menuName);
-		
 		String url = URLEncoder.encode(menuName, "UTF-8");
 		
 		
-		return "redirect:/review" + "?brandCode=" + brandCode + "&menuCode=" + menuCode + "&menuName=" + url;
+		return "redirect:/menuDetail" + "?brandCode=" + brandCode + "&menuCode=" + menuCode + "&menuName=" + url;
 	
 	}
 }

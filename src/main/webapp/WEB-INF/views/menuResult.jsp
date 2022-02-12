@@ -41,12 +41,12 @@ hr {
 						<c:out value="메뉴재료: ${menuVo.menuDto.menuIngredients}" />
 					</p>
 					
-					<c:url value="review" var="reviewUrl">
+					<c:url value="menuDetail" var="menuDetail">
 						<c:param name="brandCode" value="${menuVo.brandDto.brandCode}"/>
 						<c:param name="menuCode" value="${menuVo.menuDto.menuCode}"/>
 						<c:param name="menuName" value="${menuVo.menuDto.menuName}" />
 					</c:url>
-					<a href="${reviewUrl}">상품 리뷰</a>	
+					<a href="${menuDetail}">상품 리뷰</a>	
 				<hr>
 	</c:forEach>
 	</div>

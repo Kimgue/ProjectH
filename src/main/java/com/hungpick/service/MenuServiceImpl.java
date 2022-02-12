@@ -28,17 +28,32 @@ public class MenuServiceImpl implements IMenuService {
 		return menuDao.sltMulti();
 	}
 	
-	//메뉴 조건검색한 결과 보기
+	//상품 재료 종류 보기
 	@Override
-	public List<MenuVo> sltSearch(
-			@Param(value = "brandName") String[] brandName,
-			@Param(value = "menuPrice") String menuPrice,
-			@Param(value = "menuIngredients") String[] menuIngredients,
-			@Param(value = "menuName") String menuName) {
+	public List<MenuDto> sltIngredients() {
 		
-		return menuDao.sltSearch(brandName, menuPrice, menuIngredients, menuName);
+		return menuDao.sltIngredients();
+	}
+	
+	//한 상품 보기
+	@Override
+	public MenuDto sltOneMenu(
+			@Param(value = "brandCode") String brandCode,
+			@Param(value = "menuCode") String menuCode
+			) {
+		
+		return menuDao.sltOneMenu(brandCode, menuCode);
 	}
 
-
+	//메뉴 조건검색한 결과 보기
+		@Override
+		public List<MenuVo> sltSearch(
+				@Param(value = "brandCode") String[] brandCode,
+				@Param(value = "menuPrice") String menuPrice,
+				@Param(value = "menuIngredients") String[] menuIngredients,
+				@Param(value = "menuName") String menuName) {
+			
+			return menuDao.sltSearch(brandCode, menuPrice, menuIngredients, menuName);
+		}
 	
 }
