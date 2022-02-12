@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.util.UUID;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -23,20 +24,24 @@ public class FileUploadController {
 	public void fileUpload(@RequestParam("uploadfile") MultipartFile uploadfile, ModelMap modelMap) throws Exception {
 		OutputStream out = null;
 		PrintWriter printWriter = null;
-
+		
 		try {
 			// 파일명 얻기
 			String fileName = uploadfile.getOriginalFilename();
-			System.out.println("파일명 : " + fileName);
 			modelMap.addAttribute("gifticonImg", fileName);
 			// 파일의 바이트 정보 얻기
 			byte[] bytes = uploadfile.getBytes();
-			System.out.println("바이트 : " + bytes);
 			// 파일의 저장 경로 얻기
-			String uploadPath = getDestinationLocation() + fileName;
-			System.out.println("패스 : " + uploadPath);
+			String uploadPath = getDestinationLocation();
+			System.out.println("확인 : " + fileName);
+			
+			// UUID 생성 후 지정
+			UUID uuid = UUID.randomUUID();
+			fileName = uuid.toString() + "_" + fileName;
+			
 			// 파일 객체 생성
-			File file = new File(uploadPath);
+			File file = new File(uploadPath,fileName);
+			
 			// 상위 폴더 존재 여부 확인
 			if (!file.getParentFile().exists()) {
 				// 상위 폴더가 존재 하지 않는 경우 상위 폴더 생성
