@@ -24,8 +24,6 @@ public class QuesServiceImpl implements IQuestionSerivce{
 	@Autowired
 	private IDaoQuestion daoQes;
 	
-	@Autowired
-	private IDaoAnswer ans;
 	
 	private static final Logger logger = LoggerFactory.getLogger(QuesServiceImpl.class);
 	
@@ -43,6 +41,12 @@ public class QuesServiceImpl implements IQuestionSerivce{
 			@Param("cri")Criteria cri,
 			@Param("memberCode")String memberCode) throws Exception {
 		
+			
+		/*if( memberCode == null)
+		{
+			return a;
+		}
+		else*/
 			
 		return daoQes.listPage(cri, memberCode);
 	}
