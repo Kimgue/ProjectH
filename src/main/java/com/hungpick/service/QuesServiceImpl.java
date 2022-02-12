@@ -31,7 +31,7 @@ public class QuesServiceImpl implements IQuestionSerivce{
 	@Override
 	public Question sltOne(String memberCode, String qstnCode) {
 		
-		Question hm = daoQes.sltOne(memberCode, qstnCode);
+		Question hm = daoQes.sltOne(memberCode, qstnCode); 
 		
 		return hm;
 	}
