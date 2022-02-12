@@ -1,7 +1,9 @@
 package com.hungpick.controller;
 
 
+import java.net.URLEncoder;
 import java.util.List;
+
 
 
 
@@ -17,7 +19,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.hungpick.dto.MenuVo;
 import com.hungpick.dto.ReviewRankingVo;
@@ -56,6 +57,7 @@ public class UserController2 {
 		model.addAttribute("menu", menuService.sltMulti());
 		List<ReviewRankingVo> list = reviewService.sltReviewRanking();
 		
+		model.addAttribute("brand", brandService.sltMulti());
 		model.addAttribute("reviewRanking", list);
 	}
 	
@@ -90,7 +92,7 @@ public class UserController2 {
 	public void review(
 			@RequestParam String brandCode, 
 			@RequestParam String menuCode, 
-			String menuName, 
+			@RequestParam String menuName, 
 			Model model)
 			throws Exception {
 		logger.info("review called ========");
@@ -134,32 +136,23 @@ public class UserController2 {
 		
 		logger.info("reviewWrite called ========");
 		
+		System.out.println("rv"+brandCode);
+		System.out.println("rv"+menuCode);
+		System.out.println("rv"+menuName);
+		
 		model.addAttribute("brandCode", brandCode);
 		model.addAttribute("menuCode", menuCode);
 		model.addAttribute("menuName", menuName);
 
-	}
-	
-	@RequestMapping("reviewWriteInfo")
-	public ModelAndView reviewWriteInfo(
-			@RequestParam String brandCode, 
-			@RequestParam String menuCode, 
-			@RequestParam String menuName
-			)  throws Exception {
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("reviewWriteSubmit");
-		mv.addObject("brandCode", brandCode);
-		mv.addObject("menuCode", menuCode);
-		mv.addObject("menuName", menuName);
-		
-		return mv;
 	};
+	
 
 	//리뷰 작성 페이지
 	@RequestMapping("reviewWriteSubmit")
 	public String reviewWriteSubmit(
 			@RequestParam String brandCode, 
 			@RequestParam String menuCode, 
+			@RequestParam String menuName,
 			@RequestParam double reviewScore,
 			@RequestParam String reviewContent, 
 			@RequestParam String reviewImg1,
@@ -174,8 +167,14 @@ public class UserController2 {
 
 		logger.info("reviewWriteSubmit called =======");
 		
+		System.out.println("rvs"+brandCode);
+		System.out.println("rvs"+menuCode);
+		System.out.println("rvs"+menuName);
 		
-		return "redirect:/review";
+		String url = URLEncoder.encode(menuName, "UTF-8");
+		
+		
+		return "redirect:/review" + "?brandCode=" + brandCode + "&menuCode=" + menuCode + "&menuName=" + url;
 	
 	}
 }

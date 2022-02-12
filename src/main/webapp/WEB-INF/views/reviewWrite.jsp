@@ -19,12 +19,23 @@ input[type=text]::-ms-clear{
 	alert(msg);
 	location.href = url;
 	}
+	
+	$(function() {
+	    $("#bizFile").change(function() {
+	    	var filename = $('fileName');
+			if(this.files[0] == undefined){
+				filename.innerText = '선택된 파일없음';
+				return;
+			}
+			filename.innerText = this.files[0].name;
+	    });
+	
 </script>
 </head>
 <body>
 
 <div align="center">
-		<form action="reviewWriteInfo" method="post">
+		<form action="reviewWriteSubmit" method="post" enctype="multipart/form-data">
 			<br> 
 			<input type='hidden' name='brandCode' value='${brandCode}' readonly/>
 			<br> 
@@ -34,18 +45,19 @@ input[type=text]::-ms-clear{
 			<input type='text' name='menuName' value='${menuName}' readonly/>
 			<br> 
 			리뷰점수: 
-			<input type='text' name='reviewScore' />
+			<input type='number' name='reviewScore' min='1' max='5' required/>
 			<br> 
 			리뷰내용:
-			<input type='text' name='reviewContent' style="width:300px;height:200px;" />
+			<input type='text' name='reviewContent' style="width:300px;height:200px;" required/>
 			<br> 
 			리뷰이미지1:
-			<input type='text' name='reviewImg1' />
+			<input type="file" name="uploadfile" required/>
 			<br> 
 			리뷰이미지2:
-			<input type='text' name='reviewImg2'/>
+			<input type="file" name="uploadfile" required/>
 			<br> 
 			<input type="submit" value="전송">
+			<input type="reset" value="취소">
 		</form>
 </div>
 </body>

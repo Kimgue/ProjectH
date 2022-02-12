@@ -45,8 +45,9 @@ hr {
 		<form action="menuResult" id="menuSearch">
 			<%-- 체크박스일 경우 값들을 배열로 받아서 처리해야함 --%>
 			<br> 브랜드<br> 
-			<input type='checkbox' name='brandName' value='맥도날드' />맥도날드
-			<input type='checkbox' name='brandName' value='롯데리아' />롯데리아 <br>
+			<c:forEach var="brand" items="${brand}">
+			<input type='checkbox' name='brandName' value='${brand.brandCode}' />${brand.brandName}
+			</c:forEach>
 			<br> 좋아하는 패티<br> 
 			<input type='checkbox' name='menuIngredients' value='고기' />고기 
 			<input type='checkbox' name='menuIngredients' value='새우' />새우 <br>	
@@ -87,6 +88,11 @@ hr {
 			<p style="font-size: 12pt">
 				<c:out value="메뉴재료: ${menu.menuIngredients}" />
 			</p>
+			<c:url value="review" var="reviewUrl">
+					<c:param name="brandName" value="${menu.brandName}"/>
+					<c:param name="menuName" value="${menu.menuName}" />
+			</c:url>
+			<a href="${reviewUrl}">상품 리뷰</a>	
 			<hr>
 		</c:forEach>
 		</div>
