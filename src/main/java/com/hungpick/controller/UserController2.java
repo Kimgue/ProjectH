@@ -17,6 +17,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.hungpick.dto.MenuVo;
 import com.hungpick.dto.ReviewRankingVo;
@@ -129,14 +130,31 @@ public class UserController2 {
 			model.addAttribute("msg", msg);
 			model.addAttribute("url", url);
 			return;
-		}
+		};
+		
 		logger.info("reviewWrite called ========");
+		
 		model.addAttribute("brandCode", brandCode);
 		model.addAttribute("menuCode", menuCode);
 		model.addAttribute("menuName", menuName);
 
 	}
 	
+	@RequestMapping("reviewWriteInfo")
+	public ModelAndView reviewWriteInfo(
+			@RequestParam String brandCode, 
+			@RequestParam String menuCode, 
+			@RequestParam String menuName
+			)  throws Exception {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("reviewWriteSubmit");
+		mv.addObject("brandCode", brandCode);
+		mv.addObject("menuCode", menuCode);
+		mv.addObject("menuName", menuName);
+		
+		return mv;
+	};
+
 	//리뷰 작성 페이지
 	@RequestMapping("reviewWriteSubmit")
 	public String reviewWriteSubmit(
@@ -157,7 +175,7 @@ public class UserController2 {
 		logger.info("reviewWriteSubmit called =======");
 		
 		
-		return "review" + "?" + brandCode + "&" + menuCode ;
+		return "redirect:/review";
 	
 	}
 }

@@ -16,7 +16,7 @@ public class FileUploadController {
 	
 	// 파일 업로드를 위한 경로 설정
 	private String getDestinationLocation() {
-		return "C:/2108KHS/Git/WebProject/src/main/webapp/resources/images/gifticon/";
+		return "C:/KHS/Git/WebProject/src/main/webapp/resources/images/gifticon/";
 	}
 
 	// 파일 업로드

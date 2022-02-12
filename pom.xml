@@ -23,16 +23,6 @@
 		</plugins>
 	</build>
 
-	<!-- properties -->
-	<properties>
-		<java-version>1.8</java-version>
-		<org.springframework-version>5.0.7.RELEASE</org.springframework-version>
-		<org.aspectj-version>1.6.10</org.aspectj-version>
-		<org.slf4j-version>1.6.6</org.slf4j-version>
-		<!-- tiles관련 추가 -->
-		<org.apache.tiles-version>3.0.5</org.apache.tiles-version>
-	</properties>
-
 	<!-- 리포지토리 추가 -->
 	<repositories>
 		<repository>
@@ -42,42 +32,7 @@
 	</repositories>
 
 	<dependencies>
-
-		<!-- Tiles Framework 관련 -->
-		<dependency>
-			<groupId>org.apache.tiles</groupId>
-			<artifactId>tiles-servlet</artifactId>
-			<version>${org.apache.tiles-version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.tiles</groupId>
-			<artifactId>tiles-api</artifactId>
-			<version>${org.apache.tiles-version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.tiles</groupId>
-			<artifactId>tiles-jsp</artifactId>
-			<version>${org.apache.tiles-version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.tiles</groupId>
-			<artifactId>tiles-core</artifactId>
-			<version>${org.apache.tiles-version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.tiles</groupId>
-			<artifactId>tiles-template</artifactId>
-			<version>${org.apache.tiles-version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.tiles</groupId>
-			<artifactId>tiles-extras</artifactId>
-			<version>${org.apache.tiles-version}</version>
-		</dependency>
-		<!-- Tiles Framework 관련 -->
-
-
-
+	
 		<!-- 문자 인증관련 라이브러리 -->
 		<dependency>
 			<groupId>net.nurigo</groupId>
@@ -137,13 +92,7 @@
 			<artifactId>json</artifactId>
 			<version>20180813</version>
 		</dependency>
-
-		<dependency>
-			<groupId>jstl</groupId>
-			<artifactId>jstl</artifactId>
-			<version>1.2</version>
-		</dependency>
-
+		
 		<!-- https://mvnrepository.com/artifact/org.lazyluke/log4jdbc-remix -->
 		<dependency>
 			<groupId>org.lazyluke</groupId>
@@ -290,13 +239,27 @@
 			<artifactId>spring-context-support</artifactId>
 			<version>4.3.8.RELEASE</version>
 		</dependency>
-
-
+		
 		<!-- https://mvnrepository.com/artifact/org.springframework/spring-webmvc -->
 		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-webmvc</artifactId>
-			<version>4.3.8.RELEASE</version>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-webmvc</artifactId>
+		    <version>4.3.30.RELEASE</version>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/javax.servlet/jstl -->
+		<dependency>
+		    <groupId>javax.servlet</groupId>
+		    <artifactId>jstl</artifactId>
+		    <version>1.2</version>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
+		<dependency>
+		    <groupId>javax.servlet</groupId>
+		    <artifactId>javax.servlet-api</artifactId>
+		    <version>3.1.0</version>
+		    <scope>provided</scope>
 		</dependency>
 	</dependencies>
 </project>

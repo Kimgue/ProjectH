@@ -1,0 +1,28 @@
+@import "reset.css";
+
+body {
+	width: 960px;
+}
+
+#header {
+	background: #ffff99;
+	height: 70px;
+}
+
+#nav {
+	background: #99ff99;
+	float: left;
+	width: 200px;
+	height: 600px;
+}
+
+#content {
+	background: #9999ff;
+	height: 600px;
+}
+
+#footer {
+	background: #ffcc99;
+	height: 80px;
+	clear: left;
+}

@@ -12,27 +12,16 @@
 <link href="<c:url value="/resources/css/gifticonInsert.css"/>" rel="stylesheet" />
 <script>
 	$(document).ready(function() {
+	
+		$(".btn").click(function() {
+			var giftCode = $(this).val();
+			alert(giftCode);
+		});
+	});
 
-	});
 	
-	document.getElementById('bizFile').addEventListener('change', function(){
-		var filename = document.getElementById('fileName');
-		if(this.files[0] == undefined){
-			filename.innerText = '선택된 파일없음';
-			return;
-		}
-		filename.innerText = this.files[0].name;
-	});
-	
-	function test() {
-		var testslt = $("#testslt").val();
-		
-		if(testslt == "") {
-			return false;
-		} else {
-			$("#test").submit();
-		}
-		
+	function deleteGifticon() {
+		/* $("#deleteGifticon").submit(); */
 	}
 </script>
 </head>
@@ -83,23 +72,21 @@
 
 	<!---------------------------------- CONTENT ---------------------------------->
 	<div id="content">
-		<form id="test" action="gifticonInsertSubmit" method="post" enctype="multipart/form-data">
-			<ul>
-				<li>기프티콘 이름 <input type="text" name="gifticonName"></li>
-				<li>기프티콘 가격 <input type="text" name="gifticonPrice"></li>
-				<li>메뉴 <input type="text" name="menuCode"></li>
-				<li>브랜드
-					<select name="brandCode" id="testslt">
-	    				<option value="">브랜드 선택</option>
-	    				<option value="H1">맥도날드</option>
-	    				<option value="H2">롯데리아</option>
-					</select>
-				</li>
-				<li>이미지 첨부 <input type="file" name="uploadfile" required="required"></li>
-			</ul>
-			<input type="button" value="작성" onclick="test()"> 
-			<input type="reset" value="취소">
-		</form>
+	<form id="deleteGifticon" action="gifticonDeleteSubmit" method="post">
+		<c:forEach var="gift" items="${gifticonList}">
+		
+				<div>
+					<c:out value="${gift.gifticonCode}" /> <br>
+					<img src="<c:url value='${gift.gifticonImg}' />" alt="${gift.gifticonImg}" height="270" width="270"/><br>
+					<c:out value="${gift.gifticonName}" /> <br>
+					<c:out value="${gift.gifticonPrice}" /> <br>
+					<!-- <input type="button" class="btn" value="삭제" onclick="deleteGifticon()"> --> 
+					
+					<label for="gifticonCode">삭제</label>
+					<input type="button" class="btn" value="<c:out value="${gift.gifticonCode}"/>">
+				</div>
+		</c:forEach>
+	</form>
 	</div>
 
 	<!---------------------------------- FOOTER ---------------------------------->

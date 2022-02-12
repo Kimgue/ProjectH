@@ -16,19 +16,40 @@ public class GifticonController {
 	@Autowired
 	private IGifticonService gifticonService;
 	
-	@Autowired
-	private ProjectTestController testctrl;
-	
 	/*--------------------- 기프티콘 조회 ---------------------*/
+	public void giftconsltMulti(GifticonDto Dto, Model model) throws Exception {
+		gifticonService.showGifticon(Dto, model);
+	}
+	
+	/*--------------------- 기프티콘 조회 페이지 ---------------------*/
 	@RequestMapping("gifticonList")
-	public String giftiConList(GifticonDto Dto, Model model) throws Exception {
-		String view = gifticonService.showGifticon(Dto, model);
-		return view;
+	public void giftiConList(GifticonDto Dto, Model model) throws Exception {
+		giftconsltMulti(Dto, model);
 	}
 	
 	/*--------------------- 기프티콘 등록 페이지 ---------------------*/
 	@RequestMapping("gifticonInsert")
 	public void gifticonInsert() {
+	}
+	
+	/*--------------------- 기프티콘 수정 페이지 ---------------------*/
+	@RequestMapping("gifticonUpdate")
+	public void gifticonUpdate() {
+	}
+	
+	/*--------------------- 기프티콘 삭제 페이지 ---------------------*/
+	@RequestMapping("gifticonDelete")
+	public void gifticonDelete(GifticonDto Dto, Model model) throws Exception{
+		giftconsltMulti(Dto, model);
+	}
+	
+	
+	
+	/*--------------------- 기프티콘 삭제 완료 눌렀을 때 ---------------------*/
+	@RequestMapping("gifticonDeleteSubmit")
+	public String gifticonDeleteSubmit(GifticonDto Dto) throws Exception {
+		String view = gifticonService.deleteGifticon(Dto);
+		return view;
 	}
 	
 	/*--------------------- 기프티콘 등록 완료 눌렀을 때 ---------------------*/
@@ -38,5 +59,6 @@ public class GifticonController {
 		String view = gifticonService.insertGifticon(Dto,uploadfile,modelMap);
 		return view;
 	}
+	
 
 }
