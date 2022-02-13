@@ -35,6 +35,20 @@ public class MenuServiceImpl implements IMenuService {
 		return menuDao.sltIngredients();
 	}
 	
+	//상품 높은 가격순
+	@Override
+	public List<MenuDto> sltMenuHighPrice() {
+	
+		return menuDao.sltMenuHighPrice();
+	}
+	
+	//상품 낮은 가격순
+	@Override
+	public List<MenuDto> sltMenuLowPrice() {
+		
+		return menuDao.sltMenuLowPrice();
+	}
+	
 	//한 상품 보기
 	@Override
 	public MenuDto sltOneMenu(

@@ -19,6 +19,15 @@
 		SELECT * FROM MENU WHERE BRAND_CODE = #{ brandCode } AND MENU_CODE = #{ menuCode }
 	</select>
 	
+	<!-- 메뉴  높은 가격 순-->
+	<select id="sltMenuHighPrice" resultType="menuDto">
+		SELECT * FROM MENU ORDER BY MENU_PRICE ASC
+	</select>
+	
+	<!-- 메뉴  낮은 가격 순-->
+	<select id="sltMenuLowPrice" resultType="menuDto">
+		SELECT * FROM MENU ORDER BY MENU_PRICE DESC
+	</select>
 	
 	<resultMap type="brandDto" id="BrandDtoRm">
 	<id column="BRAND_CODE" property="brandCode"/>

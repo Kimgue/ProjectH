@@ -12,7 +12,7 @@
 function inputCheck(){
 	
 	if(
-		 $("input:checkbox[name='brandName']").is(":checked") == false &&
+		 $("input:checkbox[name='brandCode']").is(":checked") == false &&
 		 $("input:checkbox[name='menuIngredients']").is(":checked") == false &&
 		 $("input[name='menuPrice']").val().trim() == '' &&
 		 $("input[name='menuName']").val().trim() == ''
@@ -57,7 +57,7 @@ hr {
 			<br> 이름<br>
 			<input type="text" name="menuName">
 			
-			<input type="submit" name="getMenuSearch" value="검색" />
+			<input type="submit" value="검색" />
 		</form>
 		<hr>
 		<div id="container">
