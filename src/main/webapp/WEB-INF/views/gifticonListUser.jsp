@@ -12,7 +12,7 @@
 	function exchange() {
 		<c:choose>
 			<c:when test="${loginBool eq true}">
-				alert(memberDTO);
+				$("#gifticonExchange").submit();
 			</c:when>
 			
 			<c:otherwise>
@@ -26,7 +26,7 @@
 <body>
 	<!---------------------------------- HEADER ---------------------------------->
 	<div id="header">
-		<h1>유저 페이지</h1>
+		<h1>이달의 기프티콘</h1>
 	</div>
 
 	<!---------------------------------- NAV ---------------------------------->
@@ -37,13 +37,16 @@
 	<!---------------------------------- CONTENT ---------------------------------->
 	<div id="content">
 		<c:choose>
-			<c:when test="${not empty gifticonList}">	
+			<c:when test="${not empty gifticonList}">
+			<form id="gifticonExchange" action="gifticonExchange" method="post">	
 				<c:forEach var="gift" items="${gifticonList}">
+						<input type="hidden" name="gifticonCode" value="${gift.gifticonCode}" />
 						<img src="<c:url value='${gift.gifticonImg}' />" alt="${gift.gifticonImg}" height="270" width="270"/>
 						<c:out value="${gift.gifticonName}" /> 
 						<c:out value="${gift.gifticonPrice}" />
 						<input type="button" value="교환" onclick="exchange()">
 				</c:forEach>
+			</form>
 			</c:when>
 			
 			<c:otherwise>

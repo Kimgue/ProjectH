@@ -4,7 +4,12 @@
 
 <mapper namespace="com.hungpick.dao.IGifticonDao">
 
-	<!-- 기프티콘 보기 -->
+	<!-- 기프티콘 단건 조회 -->
+	<select id="sltGifticon" parameterType="string" resultType="gifticonDto">
+		SELECT * FROM GIFTICON WHERE GIFTICON_CODE = #{gifticonCode}
+	</select>
+	
+	<!-- 기프티콘 다건 조회 -->
 	<select id="showGifticon" resultType="gifticonDto">
 		SELECT * FROM GIFTICON ORDER BY GIFTICON_CODE
 	</select>
@@ -26,19 +31,14 @@
 		)
    	</insert>
    	
+   	<!-- 기프티콘 수정 -->
    	<update id="updateGifticon">
 		UPDATE GIFTICON SET GIFTICON_NAME = #{gifticonName}, GIFTICON_PRICE = #{gifticonPrice}, GIFTICON_IMG = #{gifticonImg} WHERE GIFTICON_CODE = #{gifticonCode} AND BRAND_CODE = #{brandCode} AND MENU_CODE = #{menuCode}  
 	</update>
 	
+	<!-- 기프티콘 삭제 -->
 	<delete id="deleteGifticon">
 		DELETE FROM GIFTICON WHERE GIFTICON_CODE = #{gifticonCode} AND BRAND_CODE = #{brandCode} AND MENU_CODE = #{menuCode}
-	</delete>
-
-	<select id="sltGifticon" parameterType="string" resultType="gifticonDto">
-		SELECT * FROM GIFTICON WHERE GIFTICON_CODE = #{gifticonCode}
-	</select>
-	
-
-	
+	</delete>	
 	
 </mapper>

@@ -79,7 +79,7 @@ public class UserServiceImpl implements IUserService {
 	@Override
 	public String userLogout(HttpSession session) throws Exception {
 		session.invalidate();
-		return "main";
+		return "redirect:/main";
 
 	}
 
