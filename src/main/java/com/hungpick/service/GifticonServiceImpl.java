@@ -38,5 +38,15 @@ public class GifticonServiceImpl implements IGifticonService {
 		gifticonDao.deleteGifticon(Dto);
 		return "redirect:/gifticonDelete";
 	}
+
+	// 기프티콘 단건 조회
+	@Override
+	public String sltGifticon(String gifticonCode, Model model) throws Exception {
+		GifticonDto Dto = gifticonDao.sltGifticon(gifticonCode);
+		model.addAttribute("gifticonList",Dto);
+		System.out.println("확인 : " + Dto);
+		
+		return "gifticonUpdatePage";
+	}
 	
 }

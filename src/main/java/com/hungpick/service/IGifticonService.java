@@ -14,4 +14,7 @@ public interface IGifticonService {
 	
 	// 기프티콘 삭제
 	public String deleteGifticon(GifticonDto Dto) throws Exception;
+	
+	// 기프티콘 단건 조회
+	public String sltGifticon(String gifticonCode, Model model) throws Exception;
 }

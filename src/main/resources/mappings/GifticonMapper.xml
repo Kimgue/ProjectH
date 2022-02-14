@@ -34,8 +34,8 @@
 		DELETE FROM GIFTICON WHERE GIFTICON_CODE = #{gifticonCode} AND BRAND_CODE = #{brandCode} AND MENU_CODE = #{menuCode}
 	</delete>
 
-	<select id="select" parameterType="string" resultType="gifticonDto">
-		SELECT * FROM GIFTICON WHERE GIFTICON_CODE = #{ gifticonCode } AND BRAND_CODE = #{ brandCode } AND MENU_CODE = #{ menuCode }
+	<select id="sltGifticon" parameterType="string" resultType="gifticonDto">
+		SELECT * FROM GIFTICON WHERE GIFTICON_CODE = #{gifticonCode}
 	</select>
 	
 

@@ -11,6 +11,13 @@
 <link href="<c:url value="/resources/css/adminMenu.css"/>" rel="stylesheet" />
 <script>
 	$(document).ready(function() {
+		
+		$(".btn").click(function() {
+			
+			var code = $(this).attr("id").substring(3);
+			
+			$("#form"+code).submit();
+		});
 
 	});
 </script>
@@ -63,7 +70,7 @@
 	<!---------------------------------- CONTENT ---------------------------------->
 	<div id="content">
 		<c:forEach var="gift" items="${gifticonList}">
-			<form id="formbtn${gift.gifticonCode}" action="gifticonDeleteSubmit" method="post">
+			<form id="form${gift.gifticonCode}" action="gifticonUpdatePage" method="post">
 				<input type="hidden" value="${gift.gifticonCode}" name="gifticonCode">
 				<c:out value="${gift.gifticonCode}" /><br>
 				
