@@ -1,78 +1,50 @@
 package com.hungpick.controller;
 
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.io.PrintWriter;
 import java.util.UUID;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 public class FileUploadController {
-
-	// 파일 업로드를 위한 경로 설정
-	private String getDestinationLocation(String fileLoc) {
-		return fileLoc;
-	}
 	
-	// 파일 업로드
-	public void fileUpload(@RequestParam("uploadfile") MultipartFile uploadfile, String fileLoc, ModelMap modelMap) throws Exception {
-		OutputStream out = null;
-		PrintWriter printWriter = null;
-
-		try {
-			// 원본 파일명 얻기
-			String fileName = uploadfile.getOriginalFilename();
-
-			// 파일의 바이트 정보 얻기
-			byte[] bytes = uploadfile.getBytes();
-
-			// 파일의 저장 경로 얻기
-			String uploadPath = getDestinationLocation(fileLoc);
-
-			// UUID 생성 후 지정
-			final String uuid = UUID.randomUUID().toString().replace("-", "");
-			fileName = uuid + "_" + fileName;
-			modelMap.addAttribute("fileName",fileName);
-
-			// 파일 객체 생성
-			File file = new File(uploadPath, fileName);
-
-			// 파일 아웃풋 스트림 생성
-			out = new FileOutputStream(file);
-			// 파일 아웃풋 스트림에 파일의 바이트 쓰기
-			out.write(bytes);
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (out != null) {
-					out.close();
-				}
-				if (printWriter != null) {
-					printWriter.close();
-				}
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
+	// Ajax를 통한 파일 업로드
+	@RequestMapping("fileUpload.do")
+	public void fileUpload(@RequestParam("uploadFile") MultipartFile uploadFile, @RequestParam("uploadPath") String uploadPath, HttpServletResponse response) throws Exception {
+		
+		// 원본 파일명 설정
+		String fileName = uploadFile.getOriginalFilename();
+		
+		// UUID 생성 후 원본 파일명에 덮어씌우기
+		final String uuid = UUID.randomUUID().toString().replace("-", "");
+		fileName = uuid + "_" + fileName;
+		
+		// 파일 생성
+		File savefile = new File(uploadPath, fileName);
+		uploadFile.transferTo(savefile);
+		
+		// ajax 데이터 수신용
+		response.getWriter().print(fileName);
+		
 	}
 
-	// 파일 삭제
-	public void fileDelete(ModelMap modelMap, String fileLoc) throws Exception {
-
-		String filepath = getDestinationLocation(fileLoc);
-		String[] fileName = ((String) modelMap.get("fileName")).split("/");
-
-		File file = new File(filepath, fileName[2]);
+	// Ajax를 통한 파일 삭제
+	@RequestMapping("fileDelete.do")
+	public void fileDelete(@RequestParam("fileName") String fileName, @RequestParam("filePath") String filePath, HttpServletResponse response) throws Exception {
+		
+		// 경로 상에 images/*/ <- 두개 지우고 파일명만 추출
+		String[] cutFileName = fileName.split("/");
+		
+		// 추출된 3가지 문자열 중 파일명만 있는 문자열 이름으로 파일 생성 -> 파일 존재할 시 삭제
+		File file = new File(filePath, cutFileName[2]);
 		if (file.exists()) {
 			file.delete();
 		}
 	}
+	
 }

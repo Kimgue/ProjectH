@@ -9,7 +9,6 @@
 <title>기프티콘 삭제</title>
 <script src="resources/js/jquery-3.4.1.min.js"></script>
 <link href="<c:url value="/resources/css/adminMenu.css"/>" rel="stylesheet" />
-<link href="<c:url value="/resources/css/gifticonInsert.css"/>" rel="stylesheet" />
 <script>
 	$(document).ready(function() {
 		
@@ -18,13 +17,33 @@
 			var result = confirm("삭제하시겠습니까?");
 			if(result) {
 				alert("삭제되었습니다");
+				
 				var a = $(this).attr("id");
-				$("#form"+a).submit();
+				
+				const filePath = "C:/2108KHS/Git/WebProject/src/main/webapp/resources/images/gifticon";
+				const fileName = $(".img"+a).attr("value");
+				
+				const formData = new FormData();
+				formData.append("filePath", filePath);
+				formData.append("fileName", fileName);
+				
+				$.ajax({
+					type : "POST",
+					url : "fileDelete.do",
+					processData : false,
+					contentType : false,
+					data : formData,						
+					success : function(response) {
+						
+						$("#form"+a).submit();
+					},
+					error : function(jqXHR) {
+						alert(jqXHR.responseText); 
+					}
+				});
 			} else {
 				return false;
-			}
-			
-			
+			}	
 		});
 	});
 </script>
@@ -81,7 +100,7 @@
 				<input type="hidden" value="${gift.gifticonCode}" name="gifticonCode">
 				<c:out value="${gift.gifticonCode}" /><br>
 				
-				<input type="hidden" value="${gift.gifticonImg}" name="gifticonImg">
+				<input type="hidden" class="imgbtn${gift.gifticonCode}" value="${gift.gifticonImg}" name="gifticonImg">
 				<img src="<c:url value='${gift.gifticonImg}' />" alt="${gift.gifticonImg}" height="270" width="270"/><br>
 				
 				<input type="hidden" value="${gift.gifticonName}" name="gifticonName">
