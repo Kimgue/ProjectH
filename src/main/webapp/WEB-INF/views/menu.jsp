@@ -23,12 +23,12 @@ function inputCheck(){
 			};
 	
 }
-
-$(document).ready(function(){
-	$("form").submit(function() {		
-		inputCheck();
+	$(document).ready(function(){
+		$("form").submit(function() {		
+			inputCheck();
+		$
+		});
 	});
-});
 	
 
 </script>
@@ -60,7 +60,6 @@ hr {
 			<input type="submit" value="검색" />
 		</form>
 		<hr>
-		<div id="container">
 		<h4>메뉴 리뷰 점수순위</h4>
 		<c:forEach var="rank" items="${ reviewRanking }">
 			<c:set var="i" value="${i+1}"/>
@@ -73,6 +72,12 @@ hr {
 			<br>
 		</c:forEach>
 		<hr>
+		<a href="javascript:recentList();">최신순</a>
+		<br>
+		<a href="javascript:menuHighPrice">높은가격순</a>
+		<br>
+		<a href="javascript:menuLowPrice">낮은가격순</a>
+		<div id="menu_list">
 		<c:forEach var="menu" items="${menu}">
 			<c:url value="menuDetail" var="menuDetail">
 					<c:param name="brandCode" value="${menu.brandCode}"/>

@@ -21,6 +21,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hungpick.dto.MenuVo;
 import com.hungpick.service.IBrandService;
 import com.hungpick.service.IMenuService;
@@ -55,6 +56,12 @@ public class UserController2 {
 	public void menu(Model model) throws Exception {
 		logger.info("menu called ========");	
 		
+		ObjectMapper mapper = new ObjectMapper();
+		String jsonStr = mapper.writeValueAsString(menuService.sltMulti());
+		
+		System.out.println(jsonStr);
+		
+		
 		model.addAttribute("menu", menuService.sltMulti());
 		model.addAttribute("brand", brandService.sltMulti());
 		model.addAttribute("menuIng", menuService.sltIngredients());
@@ -69,8 +76,6 @@ public class UserController2 {
 			@RequestParam(required = false) String[] menuIngredients,
 			@RequestParam(required = false) String menuName, 
 			Model model) throws Exception {
-		System.out.println(brandCode);
-		System.out.println(menuIngredients);
 		
 		logger.info("menuVo called ========");
 		List<MenuVo> list = menuService.sltSearch(brandCode, menuPrice, menuIngredients, menuName);

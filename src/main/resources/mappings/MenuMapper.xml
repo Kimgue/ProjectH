@@ -4,9 +4,9 @@
 
 <mapper namespace="com.hungpick.dao.IMenuDao"> <!-- "<" 는 문법오류나서  "<![CDATA[ < ]]>" 이렇게 해야한다. -->
 	
-	<!-- 브랜드코드순 메뉴코드순으로 메뉴 전체 불러오기 -->
+	<!-- 메뉴 전체 불러오기 -->
 	<select id="sltMulti" resultType="menuDto"> 
-		SELECT * FROM MENU ORDER BY BRAND_CODE ASC, MENU_CODE ASC 
+		SELECT * FROM MENU
 	</select>
 	
 	<!-- 메뉴 재료 불러오기 -->
