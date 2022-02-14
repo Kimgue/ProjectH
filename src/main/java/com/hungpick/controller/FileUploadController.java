@@ -16,29 +16,29 @@ import org.springframework.web.multipart.MultipartFile;
 public class FileUploadController {
 
 	// 파일 업로드를 위한 경로 설정
-	private String getDestinationLocation() {
-		return "C:/KHS/Git/WebProject/src/main/webapp/resources/images/gifticon/";
+	private String getDestinationLocation(String fileLoc) {
+		return fileLoc;
 	}
-
+	
 	// 파일 업로드
-	public void fileUpload(@RequestParam("uploadfile") MultipartFile uploadfile, ModelMap modelMap) throws Exception {
+	public void fileUpload(@RequestParam("uploadfile") MultipartFile uploadfile, String fileLoc, ModelMap modelMap) throws Exception {
 		OutputStream out = null;
 		PrintWriter printWriter = null;
 
 		try {
-			// 파일명 얻기
+			// 원본 파일명 얻기
 			String fileName = uploadfile.getOriginalFilename();
 
 			// 파일의 바이트 정보 얻기
 			byte[] bytes = uploadfile.getBytes();
 
 			// 파일의 저장 경로 얻기
-			String uploadPath = getDestinationLocation();
+			String uploadPath = getDestinationLocation(fileLoc);
 
 			// UUID 생성 후 지정
 			final String uuid = UUID.randomUUID().toString().replace("-", "");
 			fileName = uuid + "_" + fileName;
-			modelMap.addAttribute("gifticonImg", fileName);
+			modelMap.addAttribute("fileName",fileName);
 
 			// 파일 객체 생성
 			File file = new File(uploadPath, fileName);
@@ -65,12 +65,12 @@ public class FileUploadController {
 	}
 
 	// 파일 삭제
-	public void fileDelete(ModelMap modelMap) throws Exception {
+	public void fileDelete(ModelMap modelMap, String fileLoc) throws Exception {
 
-		String filepath = getDestinationLocation();
-		String fileName = ((String) modelMap.get("delImg")).substring(16);
+		String filepath = getDestinationLocation(fileLoc);
+		String[] fileName = ((String) modelMap.get("fileName")).split("/");
 
-		File file = new File(filepath, fileName);
+		File file = new File(filepath, fileName[2]);
 		if (file.exists()) {
 			file.delete();
 		}

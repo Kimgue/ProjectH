@@ -31,21 +31,22 @@ public class GifticonServiceImpl implements IGifticonService {
 
 	// 기프티콘 등록
 	@Override
-	public String insertGifticon(GifticonDto Dto, MultipartFile uploadfile, ModelMap modelMap) throws Exception {
-		fileUpload.fileUpload(uploadfile, modelMap);
-		Dto.setGifticonImg((String) "images/gifticon/" + modelMap.get("gifticonImg"));
+	public String insertGifticon(GifticonDto Dto, MultipartFile uploadfile, String fileLoc, ModelMap modelMap) throws Exception {
+		fileLoc = "C:/2108KHS/Git/WebProject/src/main/webapp/resources/images/gifticon"; 
+		fileUpload.fileUpload(uploadfile, fileLoc, modelMap);
+		Dto.setGifticonImg("images/gifticon/" + modelMap.get("fileName"));
 		gifticonDao.insertGifticon(Dto);
 		return "redirect:/gifticonInsert";
 	}
 
 	// 기프티콘 삭제
 	@Override
-	public String deleteGifticon(GifticonDto Dto, ModelMap modelMap) throws Exception {
-
-		modelMap.addAttribute("delImg",Dto.getGifticonImg());
+	public String deleteGifticon(GifticonDto Dto, ModelMap modelMap, String fileLoc) throws Exception {
+		fileLoc = "C:/2108KHS/Git/WebProject/src/main/webapp/resources/images/gifticon";
+		modelMap.addAttribute("fileName",Dto.getGifticonImg());
 		
 		gifticonDao.deleteGifticon(Dto);
-		fileUpload.fileDelete(modelMap);
+		fileUpload.fileDelete(modelMap, fileLoc);
 		
 		return "redirect:/gifticonDelete";
 	}
