@@ -94,7 +94,7 @@ public class UserController {
 		/*memberCode = (String) session.getAttribute("memberCode");*/
 		
 		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		Date date = new Date();
+		Date date = new Date(); 
 		String time1 = format1.format(date);
 		model.addAttribute("sltOne", question.sltOne(memberCode, qstnCode));
 		model.addAttribute("selectOne", answer.selectQuestionview(memberCode, qstnCode));
