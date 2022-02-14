@@ -20,7 +20,7 @@
 		f.method= "post"
 		f.submit();
 	};
-	function insert(   )
+	function insert()
 	{
 		var f = document.paging;
 		

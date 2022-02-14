@@ -59,7 +59,7 @@ public class UserController {
 		model.addAttribute("date", time1);
 	}
 
-	/*----------Q&A 리스트 조회 -----------------*/
+	/*------------------- Q&A 리스트 조회 -----------------*/
 	@RequestMapping("Questionlist")
 	public String QA(Model model, String memberCode, @ModelAttribute("cri") Criteria cri, HttpSession session)
 			throws Exception {
@@ -71,18 +71,17 @@ public class UserController {
 		String jsonOut = jsonObj.toString();
 		System.out.println(jsonOut);
 		*/
-		memberCode = (String) session.getAttribute("memberCode");	
+		
+		memberCode = (String)session.getAttribute("memberCode");	
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(question.listCount(memberCode));
 		int currentPage = cri.getPage();
 
-		Question member = question.MemberCode(memberCode);
-		System.out.println(question.listPage(cri, memberCode));
 		model.addAttribute("pageMaker", pageMaker);
 		model.addAttribute("currentPage", currentPage);
 		model.addAttribute("listpage", question.listPage(cri, memberCode));
-		model.addAttribute("member", member);
+		model.addAttribute("member", question.MemberCode(memberCode));
 		
 		
 		return "Questionlist";
@@ -124,6 +123,8 @@ public class UserController {
 		return "QuestioninsertQ";
 	}
 
+	
+	/*-------------------------Q&A 작성 ------------------*/
 	@RequestMapping("Questioninsert")
 	public String updateView(Question qes, Model model, @RequestParam("memberCode") String memberCode, Criteria cri,
 			HttpSession session) throws Exception {
@@ -146,6 +147,7 @@ public class UserController {
 		return "Questionlist";
 	}
 
+	/*-----------------------Q&A 업데이트 -------------------------*/
 	@RequestMapping("QuestionUpdate")
 	public String updateE(Model model, @RequestParam("memberCode") String memberCode, Question qes, Criteria cri,
 			HttpSession session) throws Exception {
@@ -166,13 +168,15 @@ public class UserController {
 
 		return "Questionlist";
 	}
-
+	
+	
+	/*-----------------------------Q&A 삭제-----------------------*/
 	@RequestMapping("Questiondelete")
 	public String delete(Model model, @RequestParam("memberCode") String memberCode, String qstnCode, Question qes,
 			Criteria cri, HttpSession session) throws Exception {
 
 		question.delete(memberCode, qstnCode);
-		memberCode = (String) session.getAttribute("memberCode");
+		memberCode = (String)session.getAttribute("memberCode");
 
 
 		List<QuestionVo> list = question.listPage(cri, memberCode);
@@ -211,6 +215,7 @@ public class UserController {
 		return "NoticePage";	
 			
 	}
+	
 	@RequestMapping("AdminNoticelist")
 	public String admin(Model model,  String noticeCode, @ModelAttribute("cri") Criteria cri,HttpSession session)
 			throws Exception {
@@ -245,7 +250,8 @@ public class UserController {
 		pageMaker.setTotalCount(notice.listCount());
 		int currentPage = cri.getPage();
 		String adminCode = (String)session.getAttribute("adminCode"); 
-		System.out.println(adminCode);
+		
+		
 		model.addAttribute("adminCode", adminCode);
 		model.addAttribute("listpage", notice.listPage(cri));
 		model.addAttribute("pageMaker", pageMaker);
@@ -321,13 +327,13 @@ public class UserController {
 	@RequestMapping("Noticedelete")
 	public String Noticedelete(Model model,  String noticeCode, Notice noti, Criteria cri,HttpSession session)
 			throws Exception {
-		System.out.println("delete");
+		
 		String adminCode = (String)session.getAttribute("adminCode");
 		
 		
 		notice.delete(adminCode, noticeCode);
 
-		model.addAttribute("adminCode", adminCode);
+		
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(notice.listCount());
@@ -335,6 +341,8 @@ public class UserController {
 		Date date = new Date();
 		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String time1 = format1.format(date);
+		
+		model.addAttribute("adminCode", adminCode);
 		model.addAttribute("date", time1);
 		model.addAttribute("listpage", notice.listPage(cri));
 		model.addAttribute("pageMaker", pageMaker);
@@ -348,11 +356,14 @@ public class UserController {
 	@RequestMapping("Nconfirm")
 	public String selectconfirm(Model model, @ModelAttribute("cri")Criteria cri)throws Exception
 	{
-		model.addAttribute("selectNlist", answer.selectN(cri));
+		
+		
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(question.answerCount());
 		int currentPage = cri.getPage();
+		
+		model.addAttribute("selectNlist", answer.selectN(cri));
 		model.addAttribute("pageMaker", pageMaker);
 		model.addAttribute("currentPage", currentPage);
 		
@@ -363,15 +374,15 @@ public class UserController {
 	public String reply(Model model,String memberCode,String qstnCode,@ModelAttribute("cri") Criteria cri,HttpSession session) 
 	{
 
-		model.addAttribute("sltOne", question.sltOne(memberCode, qstnCode));
-		String adminCode = (String)session.getAttribute("adminCode");
 		
-		model.addAttribute("adminCode", adminCode);
+		String adminCode = (String)session.getAttribute("adminCode");
 		Date date = new Date();
 		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String time1 = format1.format(date);
-		model.addAttribute("date", time1);
 		
+		model.addAttribute("date", time1);
+		model.addAttribute("adminCode", adminCode);
+		model.addAttribute("sltOne", question.sltOne(memberCode, qstnCode));
 		
 		return "answerview";
 		
@@ -380,13 +391,15 @@ public class UserController {
 	public String insertreply(Model model,@Param("memberCode") String memberCode,@Param("qstnCode")String qstnCode,@ModelAttribute("cri") Criteria cri,AnswerDto ans
 		) throws Exception 
 	{
-		logger.info("성공");
+		
 		answer.insert(ans);
-		model.addAttribute("selectNlist", answer.selectN(cri));
+		logger.info("insert 성공");
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(question.answerCount());
 		int currentPage = cri.getPage();
+		
+		model.addAttribute("selectNlist", answer.selectN(cri));
 		model.addAttribute("pageMaker", pageMaker);
 		model.addAttribute("currentPage", currentPage);
 		

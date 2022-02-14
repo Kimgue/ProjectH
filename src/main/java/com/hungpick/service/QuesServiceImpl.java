@@ -9,9 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.hungpick.dao.IDaoAnswer;
 import com.hungpick.dao.IDaoQuestion;
-import com.hungpick.dto.AnswerDto;
 import com.hungpick.dto.Criteria;
 import com.hungpick.dto.Question;
 import com.hungpick.dto.QuestionVo;
@@ -42,9 +40,9 @@ public class QuesServiceImpl implements IQuestionSerivce{
 			@Param("memberCode")String memberCode) throws Exception {
 		
 			
-		/*if( memberCode == null)
+		/*if( memberCode == null )
 		{
-			return a;
+			return ;
 		}
 		else*/
 			
@@ -83,7 +81,7 @@ public class QuesServiceImpl implements IQuestionSerivce{
 		logger.info("입력한 confrim : {}", confirm);
 		
 		daoQes.insert(qes);
-		/*ans.updateQCODE(answer);*/
+		
 		
 		return;
 	}
@@ -163,13 +161,12 @@ public class QuesServiceImpl implements IQuestionSerivce{
 
 	@Override
 	public List<Question> selectN(@Param("cri")Criteria cri) {
-		// TODO Auto-generated method stub
+	
 		return daoQes.selectN(cri);
 	}
 
 	@Override
 	public int answerCount() {
-		// TODO Auto-generated method stub
 		return daoQes.answerCount();
 	}
 
