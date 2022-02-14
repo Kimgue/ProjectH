@@ -2,15 +2,10 @@ package com.hungpick.controller;
 
 
 import java.net.URLEncoder;
-
 import java.util.List;
 
-
-
-
-
-
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -50,24 +45,46 @@ public class UserController2 {
 		logger.info("brand called ========");
 		model.addAttribute("brand", brandService.sltMulti());
 	}
-
+	
 	//메뉴 페이지
 	@RequestMapping("menu")
 	public void menu(Model model) throws Exception {
 		logger.info("menu called ========");	
-		
-		ObjectMapper mapper = new ObjectMapper();
-		String jsonStr = mapper.writeValueAsString(menuService.sltMulti());
-		
-		System.out.println(jsonStr);
-		
-		
+	
 		model.addAttribute("menu", menuService.sltMulti());
 		model.addAttribute("brand", brandService.sltMulti());
 		model.addAttribute("menuIng", menuService.sltIngredients());
 		model.addAttribute("reviewRanking", reviewService.sltReviewRanking());
 	}
 	
+	//메뉴 높은가격순 JSON 처리
+	@RequestMapping("menuHigh")
+	public void menuHigh(HttpServletResponse response) throws Exception {
+		logger.info("menuHigh called ========");	
+		
+		ObjectMapper mapper = new ObjectMapper();
+		String json = mapper.writeValueAsString(menuService.sltMenuHighPrice());
+		
+		System.out.println(json);
+		
+		response.getWriter().print(mapper.writeValueAsString(json));
+		
+	}
+	
+	//메뉴 낮은가격순 JSON 처리
+	@RequestMapping("menuLow")
+	public void menuLow(HttpServletResponse response) throws Exception {
+		logger.info("menuHigh called ========");	
+		
+		ObjectMapper mapper = new ObjectMapper();
+		String json = mapper.writeValueAsString(menuService.sltMenuLowPrice());
+		
+		System.out.println(json);
+		
+		response.getWriter().print(mapper.writeValueAsString(json));
+		
+	}
+
 	//메뉴 조건검색한 페이지
 	@RequestMapping("menuResult")
 	public void menuVo(

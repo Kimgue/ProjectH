@@ -21,12 +21,12 @@
 	
 	<!-- 메뉴  높은 가격 순-->
 	<select id="sltMenuHighPrice" resultType="menuDto">
-		SELECT * FROM MENU ORDER BY MENU_PRICE ASC
+		SELECT * FROM MENU ORDER BY MENU_PRICE DESC
 	</select>
 	
 	<!-- 메뉴  낮은 가격 순-->
 	<select id="sltMenuLowPrice" resultType="menuDto">
-		SELECT * FROM MENU ORDER BY MENU_PRICE DESC
+		SELECT * FROM MENU ORDER BY MENU_PRICE ASC
 	</select>
 	
 	<resultMap type="brandDto" id="BrandDtoRm">

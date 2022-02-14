@@ -23,12 +23,55 @@ function inputCheck(){
 			};
 	
 }
+
+function menuHighPrice(){
+	
+		$.ajax({
+			type: 'GET',
+			url: 'menuHigh',
+			dataType: 'json',
+			contentType : "application/json; charset=UTF-8",
+			error: function() {
+				console.log('에러');
+				console.log(result);
+			},
+			success: function() {
+				console.log('성공');
+				console.log(result);
+			}			
+			});
+}
+	
+function menuLowPrice(){
+	
+	$.ajax({
+		type: 'GET',
+		url: 'menuLow',
+		dataType: 'json',
+		contentType : "application/json; charset=UTF-8",
+		error: function() {
+			console.log('에러');
+			console.log(result);
+		},
+		success: function() {
+			console.log('성공');
+			console.log(result);
+		}			
+		});
+}	
+
 	$(document).ready(function(){
 		$("form").submit(function() {		
 			inputCheck();
-		$
+		
 		});
-	});
+		$("#menuHighPrice").click(function(){
+			menuHighPrice();
+		});
+		$("#menuLowPrice").click(function(){
+			menuLowPrice();
+		});
+});
 	
 
 </script>
@@ -72,11 +115,9 @@ hr {
 			<br>
 		</c:forEach>
 		<hr>
-		<a href="javascript:recentList();">최신순</a>
+		<button id="menuHighPrice">높은가격순</button>
 		<br>
-		<a href="javascript:menuHighPrice">높은가격순</a>
-		<br>
-		<a href="javascript:menuLowPrice">낮은가격순</a>
+		<button id="menuLowPrice">낮은가격순</button>
 		<div id="menu_list">
 		<c:forEach var="menu" items="${menu}">
 			<c:url value="menuDetail" var="menuDetail">
