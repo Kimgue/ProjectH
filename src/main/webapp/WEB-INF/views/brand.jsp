@@ -21,10 +21,12 @@ hr {
 	<br>
 	<div class="container">
 	<c:forEach var="brand" items="${brand}">
-		<a href="https://map.kakao.com/link/search/${brand.brandName}">가까운 매장찾기</a>
+		<a href="https://map.kakao.com/link/search/${brand.brandName}" target="_blank">가까운 매장찾기</a>
 		<br>
-		<a href="#"> <img src="<c:out value="resources/${brand.brandImg}"/>" 
-		alt="브랜드 이미지" height="270" width="270" /></a>
+		<a href="menuResult?brandCode=${brand.brandCode}&menuPrice=&menuName=">메뉴 보기</a>
+		<br>
+		<img src="<c:out value="resources/${brand.brandImg}" />" 
+		alt="브랜드 이미지" height="270" width="270" />
 		<p style="font-size: 15pt">
 			<c:out value="${brand.brandName}" />
 		</p>

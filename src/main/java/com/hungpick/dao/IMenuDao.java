@@ -17,6 +17,12 @@ public interface IMenuDao {
 	//상품 재료 종류 보기
 	List<MenuDto> sltIngredients();
 	
+	//상품 높은 가격순
+	List<MenuDto> sltMenuHighPrice();
+	
+	//상품 낮은 가격순
+	List<MenuDto> sltMenuLowPrice();
+	
 	//한 상품 보기
 	MenuDto sltOneMenu(
 			@Param(value = "brandCode") String brandCode,
