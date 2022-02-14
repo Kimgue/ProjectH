@@ -15,7 +15,16 @@ public class GifticonServiceImpl implements IGifticonService {
 	@Autowired
 	private IGifticonDao gifticonDao;
 	
-	// 기프티콘 조회
+	// 기프티콘 단건 조회
+	@Override
+	public String sltGifticon(String gifticonCode, Model model) throws Exception {
+		GifticonDto Dto = gifticonDao.sltGifticon(gifticonCode);
+		model.addAttribute("gifticonList",Dto);
+		
+		return "gifticonUpdatePage";
+	}
+	
+	// 기프티콘 다건 조회
 	@Override
 	public String showGifticon(GifticonDto Dto, Model model) throws Exception {
 		
@@ -39,14 +48,12 @@ public class GifticonServiceImpl implements IGifticonService {
 		return "redirect:/gifticonDelete";
 	}
 
-	// 기프티콘 단건 조회
+
+	// 기프티콘 수정
 	@Override
-	public String sltGifticon(String gifticonCode, Model model) throws Exception {
-		GifticonDto Dto = gifticonDao.sltGifticon(gifticonCode);
-		model.addAttribute("gifticonList",Dto);
-		System.out.println("확인 : " + Dto);
-		
-		return "gifticonUpdatePage";
+	public String updateGifticon(GifticonDto Dto) throws Exception {
+		gifticonDao.updateGifticon(Dto);
+		return "redirect:/gifticonUpdate";
 	}
 	
 }

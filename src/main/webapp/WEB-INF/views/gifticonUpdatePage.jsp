@@ -30,6 +30,64 @@
 	        reader.readAsDataURL(input.files[0]);
 	    }
 	}
+	
+	function update() {
+		var result = confirm("수정하시겠습니까?");
+		if(result) {
+			alert("수정되었습니다");
+			
+			const uploadPath = "gifticon";
+			
+			const imageInput = $("#input-image")[0];
+			if(imageInput.files.length === 0){
+			    alert("파일은 선택해주세요");
+			    return;
+			}
+			
+			const formData = new FormData();
+			const fileName = $("#gifticonImg").val();
+			
+			formData.append("uploadFile", imageInput.files[0]);
+			formData.append("filePath", uploadPath);
+			formData.append("fileName", fileName);
+			
+			
+			
+			$.ajax({
+				type : "POST",
+				url : "fileDelete.do",
+				processData : false,
+				contentType : false,
+				data : formData,						
+				success : function(response) {
+					$.ajax({
+						type : "POST",
+						url : "fileUpload.do",
+						processData : false,
+						contentType : false,
+						data : formData,						
+						success : function(response) {
+							$("#gifticonImg").attr("value","images/gifticon/"+response);
+							$("#updateGifticon").submit();
+						},
+						error : function(jqXHR) {
+							alert(jqXHR.responseText); 
+						}
+					});	
+				},
+				error : function(jqXHR) {
+					alert(jqXHR.responseText); 
+				}
+			});
+			
+			
+			
+					
+		} else {
+			return false;
+		}
+		
+	}
 </script>
 </head>
 <body>
@@ -79,7 +137,7 @@
 
 	<!---------------------------------- CONTENT ---------------------------------->
 	<div id="content">
-		<form id="updateGifticon" action="" method="post">
+		<form id="updateGifticon" action="gifticonUpdateSubmit" method="post">
 			<table>
 				<tr>
 					<td>
@@ -93,7 +151,7 @@
 					<img src="<c:url value='${gifticonList.gifticonImg}' />" alt="${gifticonList.gifticonImg}" height="270" width="270"/><br>
 					수정할 이미지<br>
 					<img style="width: 100px;" id="preview-image" src="">
-					<input type="hidden" value="${gifticonList.gifticonImg}" name="gifticonImg"> 
+					<input type="hidden" id="gifticonImg" value="${gifticonList.gifticonImg}" name="gifticonImg"> 
 					<input type="file" id="input-image" name="uploadfile" required="required">
 					</td>
 				</tr>
@@ -124,6 +182,7 @@
 			</table>
 		</form>
 		<input type="button" value="수정" onclick="update()">
+		<input type="button" value="취소" onClick="location.href='gifticonUpdate'">
 	</div>
 
 	<!---------------------------------- FOOTER ---------------------------------->

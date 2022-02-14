@@ -37,7 +37,7 @@
 		if(result) {
 			alert("등록되었습니다");
 			
-			const uploadPath = "C:/2108KHS/Git/WebProject/src/main/webapp/resources/images/gifticon";
+			const filePath = "gifticon";
 			
 			const imageInput = $("#input-image")[0];
 			if(imageInput.files.length === 0){
@@ -47,7 +47,7 @@
 			
 			const formData = new FormData();
 			formData.append("uploadFile", imageInput.files[0]);
-			formData.append("uploadPath", uploadPath);
+			formData.append("filePath", filePath);
 			
 			$.ajax({
 				type : "POST",
@@ -122,12 +122,18 @@
 			<ul>
 				<li>기프티콘 이름 <input type="text" name="gifticonName"></li>
 				<li>기프티콘 가격 <input type="text" name="gifticonPrice"></li>
-				<li>메뉴 <input type="text" name="menuCode"></li>
-				<li>브랜드 <select name="brandCode" id="testslt">
+				<li>브랜드<select name="brandCode" id="testslt">
 						<option value="">브랜드 선택</option>
 						<option value="H1">맥도날드</option>
 						<option value="H2">롯데리아</option>
-				</select>
+						</select>
+				</li>
+				
+				<li>메뉴<select name="menuCode" id="testslt">
+						<option value="">메뉴 선택</option>
+						<option value="01">01</option>
+						<option value="02">02</option>
+						</select>
 				</li>
 				<li><img style="width: 100px;" id="preview-image" src="">
 					<input type="hidden" id="gifticonImg" name="gifticonImg"> 
@@ -136,7 +142,7 @@
 			</ul>
 		</form>
 		<input type="button" value="작성" onclick="insert()"> 
-		<input type="reset" value="취소">
+		<input type="button" value="취소" onClick="location.href='gifticonList'">
 	</div>
 
 	<!---------------------------------- FOOTER ---------------------------------->

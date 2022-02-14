@@ -32,7 +32,7 @@
 	</repositories>
 
 	<dependencies>
-
+	
 		<!-- 문자 인증관련 라이브러리 -->
 		<dependency>
 			<groupId>net.nurigo</groupId>

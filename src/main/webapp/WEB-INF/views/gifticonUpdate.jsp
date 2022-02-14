@@ -69,7 +69,9 @@
 
 	<!---------------------------------- CONTENT ---------------------------------->
 	<div id="content">
-		<c:forEach var="gift" items="${gifticonList}">
+		<c:choose>
+			<c:when test="${not empty gifticonList}">	
+				<c:forEach var="gift" items="${gifticonList}">
 			<form id="form${gift.gifticonCode}" action="gifticonUpdatePage" method="post">
 				<input type="hidden" value="${gift.gifticonCode}" name="gifticonCode">
 				<c:out value="${gift.gifticonCode}" /><br>
@@ -89,8 +91,14 @@
 				<input type="hidden" value="${gift.menuCode}" name="menuCode">
 				<c:out value="${gift.menuCode}" /><br> 
 			</form>
-			<input type="button" class="btn" id="btn${gift.gifticonCode}" value="수정">
-		</c:forEach>
+				<input type="button" class="btn" id="btn${gift.gifticonCode}" value="수정">
+				</c:forEach>
+			</c:when>
+			
+			<c:otherwise>
+				<h1>기프티콘이 없네요</h1>
+			</c:otherwise>
+		</c:choose>
 	</div>
 
 	<!---------------------------------- FOOTER ---------------------------------->

@@ -10,7 +10,7 @@
 	</select>
 
 	<!-- 기프티콘 등록 -->
-	<insert id="insertGifticon" parameterType="gifticonDto">
+	<insert id="insertGifticon">
 		INSERT INTO GIFTICON 
 		(
 			GIFTICON_CODE, BRAND_CODE, MENU_CODE, GIFTICON_NAME, GIFTICON_IMG, GIFTICON_PRICE
@@ -26,8 +26,8 @@
 		)
    	</insert>
    	
-   	<update id="updateGifticon" parameterType="gifticonDto">
-		UPDATE GIFTICON SET #{gifticonName}, #{gifticonImg}, #{gifticonPrice} WHERE GIFTICON_CODE = #{ gifticonCode } AND BRAND_CODE = #{brandCode} AND MENU_CODE = #{menuCode}  
+   	<update id="updateGifticon">
+		UPDATE GIFTICON SET GIFTICON_NAME = #{gifticonName}, GIFTICON_PRICE = #{gifticonPrice}, GIFTICON_IMG = #{gifticonImg} WHERE GIFTICON_CODE = #{gifticonCode} AND BRAND_CODE = #{brandCode} AND MENU_CODE = #{menuCode}  
 	</update>
 	
 	<delete id="deleteGifticon">

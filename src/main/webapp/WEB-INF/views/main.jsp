@@ -48,7 +48,7 @@
 <a href="Questionlist">Q . A</a> 
 <input type="hidden" id="memberCode" />
 <br>
-<a href="gifticonList">기프티콘</a>
+<a href="gifticonListUser">기프티콘</a>
 <br>
 </form>
 		<a href="menu">메뉴</a><br> <a href="brand">브랜드</a><br>
