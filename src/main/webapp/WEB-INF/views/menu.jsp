@@ -24,41 +24,40 @@ function inputCheck(){
 	
 }
 
-function menuHighPrice(){
+var menuPriceHigh = function(url){
 	
-		$.ajax({
-			type: 'GET',
-			url: 'menuHigh',
-			dataType: 'json',
-			contentType : "application/json; charset=UTF-8",
-			error: function() {
-				console.log('에러');
-				console.log(result);
-			},
-			success: function() {
-				console.log('성공');
-				console.log(result);
-			}			
-			});
-}
-	
-function menuLowPrice(){
 	
 	$.ajax({
-		type: 'GET',
-		url: 'menuLow',
-		dataType: 'json',
-		contentType : "application/json; charset=UTF-8",
-		error: function() {
-			console.log('에러');
-			console.log(result);
-		},
-		success: function() {
-			console.log('성공');
-			console.log(result);
-		}			
-		});
-}	
+			type: 'get',
+			url: 'menuPriceHigh.do',
+			data: "",
+			contentType:"application/x-www-form-urlencoded; charset=UTF-8",
+			success: function(data){
+				$('#menu_list').html(data)
+			},
+			error: function(request, status, error){
+				alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+			}
+	});
+};
+
+var menuPriceLow = function(url){
+	
+	
+	$.ajax({
+			type: 'get',
+			url: 'menuPriceLow.do',
+			data: "",
+			contentType:"application/x-www-form-urlencoded; charset=UTF-8",
+			success: function(data){
+				$('#menu_list').html(data)
+			},
+			error: function(request, status, error){
+				alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+			}
+	});
+};
+
 
 	$(document).ready(function(){
 		$("form").submit(function() {		
@@ -115,9 +114,9 @@ hr {
 			<br>
 		</c:forEach>
 		<hr>
-		<button id="menuHighPrice">높은가격순</button>
+		<a href="javascript:menuPriceHigh();">높은가격순</a>
 		<br>
-		<button id="menuLowPrice">낮은가격순</button>
+		<a href="javascript:menuPriceLow();">낮은가격순</a>
 		<div id="menu_list">
 		<c:forEach var="menu" items="${menu}">
 			<c:url value="menuDetail" var="menuDetail">

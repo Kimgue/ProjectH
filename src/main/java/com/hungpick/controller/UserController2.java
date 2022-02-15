@@ -5,7 +5,6 @@ import java.net.URLEncoder;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -15,8 +14,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hungpick.dto.MenuVo;
 import com.hungpick.service.IBrandService;
 import com.hungpick.service.IMenuService;
@@ -57,34 +56,29 @@ public class UserController2 {
 		model.addAttribute("reviewRanking", reviewService.sltReviewRanking());
 	}
 	
-	//메뉴 높은가격순 JSON 처리
-	@RequestMapping("menuHigh")
-	public void menuHigh(HttpServletResponse response) throws Exception {
-		logger.info("menuHigh called ========");	
+	//메뉴 높은가격순 ajax
+	@RequestMapping("menuPriceHigh.do")
+	public ModelAndView menuPriceHigh() throws Exception {
+		logger.info("menuPriceHigh called ========");	
 		
-		ObjectMapper mapper = new ObjectMapper();
-		String json = mapper.writeValueAsString(menuService.sltMenuHighPrice());
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("menuPrice");
+		mv.addObject("menu", menuService.sltMenuHighPrice());
 		
-		System.out.println(json);
-		
-		response.getWriter().print(mapper.writeValueAsString(json));
-		
+		return mv;
 	}
 	
-	//메뉴 낮은가격순 JSON 처리
-	@RequestMapping("menuLow")
-	public void menuLow(HttpServletResponse response) throws Exception {
-		logger.info("menuHigh called ========");	
+	//메뉴 낮은가격순 ajax
+	@RequestMapping("menuPriceLow.do")
+	public ModelAndView menuPriceLow() throws Exception {
+		logger.info("menuPriceLow called ========");	
 		
-		ObjectMapper mapper = new ObjectMapper();
-		String json = mapper.writeValueAsString(menuService.sltMenuLowPrice());
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("menuPrice");
+		mv.addObject("menu", menuService.sltMenuLowPrice());
 		
-		System.out.println(json);
-		
-		response.getWriter().print(mapper.writeValueAsString(json));
-		
+		return mv;
 	}
-
 	//메뉴 조건검색한 페이지
 	@RequestMapping("menuResult")
 	public void menuVo(
