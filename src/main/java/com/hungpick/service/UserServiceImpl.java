@@ -246,7 +246,7 @@ public class UserServiceImpl implements IUserService {
 	// 보유 기프티콘 다건 조회
 	@Override
 	public String userGifticonMulti(UserVo Vo, Model model) throws Exception {
-		
+
 		List<UserVo> list = userDao.userGifticonMulti(Vo);
 		model.addAttribute("userVo", list);
 		

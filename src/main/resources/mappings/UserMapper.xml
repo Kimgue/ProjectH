@@ -144,34 +144,23 @@
 		<collection property="gifticonExchangeDto" resultMap="gifticonExchangeDtoRm"></collection>
 	</resultMap>
 	
-	<!-- 
 	<select id="userGifticonMulti" resultMap="userVoRm">
-		SELECT * FROM MEMBERS A, GIFTICON_EXCHANGE B, GIFTICON C
-		WHERE A.MEMBER_CODE = B.MEMBER_CODE AND B.GIFTICON_CODE = C.GIFTICON_CODE
-	</select>
-	 -->
-	
-	<select id="userGifticonMulti" resultMap="userVoRm">
-		select 
-		    members.member_code,
-		    gifticon_exchange.gifticon_excode,
-		    gifticon_exchange.gifticon_code,
-		    gifticon_exchange.gifticon_number,
-		    gifticon_exchange.gifticon_exdate,
-		    gifticon_exchange.use_point,
-		    gifticon.brand_code,
-		    gifticon.menu_code,
-		    gifticon.gifticon_name,
-		    gifticon.gifticon_img,
-		    gifticon.gifticon_price
-		from members
-		inner join gifticon_exchange on members.member_code = gifticon_exchange.member_code
-		inner join gifticon on gifticon_exchange.gifticon_code = gifticon.gifticon_code
+		SELECT 
+		    MEMBERS.MEMBER_CODE,
+		    GIFTICON_EXCHANGE.GIFTICON_EXCODE,
+		    GIFTICON_EXCHANGE.GIFTICON_CODE,
+		    GIFTICON_EXCHANGE.GIFTICON_NUMBER,
+		    GIFTICON_EXCHANGE.GIFTICON_EXDATE,
+		    GIFTICON_EXCHANGE.USE_POINT,
+		    GIFTICON.BRAND_CODE,
+		    GIFTICON.MENU_CODE,
+		    GIFTICON.GIFTICON_NAME,
+		    GIFTICON.GIFTICON_IMG,
+		    GIFTICON.GIFTICON_PRICE
+		FROM MEMBERS
+		INNER JOIN GIFTICON_EXCHANGE ON MEMBERS.MEMBER_CODE = GIFTICON_EXCHANGE.MEMBER_CODE
+		INNER JOIN GIFTICON ON GIFTICON_EXCHANGE.GIFTICON_CODE = GIFTICON.GIFTICON_CODE
+		WHERE MEMBERS.MEMBER_CODE = #{userDto.memberCode}
 	</select>
 	
-	<!-- 보유 기프티콘 조회 -->
-	<!-- <select id="userGifticonMulti" resultType="userVo">
-		SELECT * FROM MEMBERS A, GIFTICON_EXCHANGE B, GIFTICON C
-		WHERE A.MEMBER_CODE = B.MEMBER_CODE AND B.GIFTICON_CODE = C.GIFTICON_CODE
-	</select> -->
 </mapper>
