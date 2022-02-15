@@ -107,4 +107,71 @@
 		DELETE FROM MEMBERS WHERE MEMBER_CODE = #{memberCode}
 	</delete>
 	
+	
+	<resultMap type="userDto" id="userDtoRm">
+	<id column="MEMBER_CODE" property="memberCode"/>
+    <result column="MEMBER_ID" property="memberId"/>
+    <result column="MEMBER_PW" property="memberPw"/>
+    <result column="MEMBER_NAME" property="memberName"/>
+    <result column="MEMBER_NICKNAME" property="memberNickname"/>
+    <result column="MEMBER_EMAIL" property="memberEmail"/>
+    <result column="MEMBER_NUMBER" property="memberNumber"/>
+    <result column="MEMBER_DATE" property="memberDate"/>
+    <result column="HOLD_POINT" property="holdPoint"/>
+	</resultMap>
+	
+	<resultMap type="gifticonDto" id="gifticonDtoRm">
+	<id column="GIFTICON_CODE" property="gifticonCode"/>
+	<result column="BRAND_CODE" property="brandCode"/>
+	<result column="MENU_CODE" property="menuCode"/>
+	<result column="GIFTICON_NAME" property="gifticonName"/>
+	<result column="GIFTICON_IMG" property="gifticonImg"/>
+	<result column="GIFTICON_PRICE" property="gifticonPrice"/>
+	</resultMap>
+	
+	<resultMap type="gifticonExchangeDto" id="gifticonExchangeDtoRm">
+	<id column="MEMBER_CODE" property="memberCode"/>
+	<result column="GIFTICON_EXCODE" property="gifticonExcode"/>
+	<result column="GIFTICON_CODE" property="gifticonCode"/>
+	<result column="GIFTICON_NUMBER" property="gifticonNumber"/>
+	<result column="GIFTICON_EXDATE" property="gifticonExdate"/>
+	<result column="USE_POINT" property="usePoint"/>
+	</resultMap>
+	
+	<resultMap type="userVo" id="userVoRm">
+		<collection property="userDto" resultMap="userDtoRm"></collection>
+		<collection property="gifticonDto" resultMap="gifticonDtoRm"></collection>
+		<collection property="gifticonExchangeDto" resultMap="gifticonExchangeDtoRm"></collection>
+	</resultMap>
+	
+	<!-- 
+	<select id="userGifticonMulti" resultMap="userVoRm">
+		SELECT * FROM MEMBERS A, GIFTICON_EXCHANGE B, GIFTICON C
+		WHERE A.MEMBER_CODE = B.MEMBER_CODE AND B.GIFTICON_CODE = C.GIFTICON_CODE
+	</select>
+	 -->
+	
+	<select id="userGifticonMulti" resultMap="userVoRm">
+		select 
+		    members.member_code,
+		    gifticon_exchange.gifticon_excode,
+		    gifticon_exchange.gifticon_code,
+		    gifticon_exchange.gifticon_number,
+		    gifticon_exchange.gifticon_exdate,
+		    gifticon_exchange.use_point,
+		    gifticon.brand_code,
+		    gifticon.menu_code,
+		    gifticon.gifticon_name,
+		    gifticon.gifticon_img,
+		    gifticon.gifticon_price
+		from members
+		inner join gifticon_exchange on members.member_code = gifticon_exchange.member_code
+		inner join gifticon on gifticon_exchange.gifticon_code = gifticon.gifticon_code
+	</select>
+	
+	<!-- 보유 기프티콘 조회 -->
+	<!-- <select id="userGifticonMulti" resultType="userVo">
+		SELECT * FROM MEMBERS A, GIFTICON_EXCHANGE B, GIFTICON C
+		WHERE A.MEMBER_CODE = B.MEMBER_CODE AND B.GIFTICON_CODE = C.GIFTICON_CODE
+	</select> -->
 </mapper>

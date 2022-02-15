@@ -6,7 +6,28 @@
 
 	<!-- 기프티콘 교환 : 보유 포인트 수정 -->
    	<update id="exchangeGifticon">
-		UPDATE MEMBERS SET HOLD_POINT = #{holdPoint} WHERE GIFTICON_CODE = #{gifticonCode} AND BRAND_CODE = #{brandCode} AND MENU_CODE = #{menuCode}  
+		UPDATE GIFTICON_EXCHANGE SET HOLD_POINT = #{holdPoint} WHERE GIFTICON_CODE = #{gifticonCode} AND BRAND_CODE = #{brandCode} AND MENU_CODE = #{menuCode}  
 	</update>
+	
+	<insert id="insertGifticonExchange" parameterType="gifticonExchangeDto">
+		INSERT INTO gifticon_exchange 
+			(
+			MEMBER_CODE,
+	        GIFTICON_EXCODE,
+	        GIFTICON_CODE,
+	        GIFTICON_NUMBER,
+	        GIFTICON_EXDATE,
+	        USE_POINT
+			)
+			VALUES 
+			( 
+				#{memberCode},
+				(SELECT NVL(MAX(TO_NUMBER(GIFTICON_EXCODE)),0)+1 FROM GIFTICON_EXCHANGE),
+				#{gifticonCode},
+				#{gifticonNumber},
+				#{gifticonExdate},
+				#{usePoint}
+		)
+	</insert>
 	
 </mapper>

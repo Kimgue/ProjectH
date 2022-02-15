@@ -9,10 +9,13 @@
 <script src="resources/js/jquery-3.4.1.min.js"></script>
 <link href="<c:url value="/resources/css/adminMenu.css"/>" rel="stylesheet" />
 <script>
-	function exchange() {
-		<c:choose>
+	$(document).ready(function() {
+		$(".btn").click(function() {
+			var a = $(this).attr("id");
+			
+			<c:choose>
 			<c:when test="${loginBool eq true}">
-				$("#gifticonExchange").submit();
+				$("#form"+a).submit();
 			</c:when>
 			
 			<c:otherwise>
@@ -20,7 +23,8 @@
 				document.location.href = "userLogin";
 			</c:otherwise>
 		</c:choose>
-	}
+		});
+	});
 </script>
 </head>
 <body>
@@ -37,16 +41,16 @@
 	<!---------------------------------- CONTENT ---------------------------------->
 	<div id="content">
 		<c:choose>
-			<c:when test="${not empty gifticonList}">
-			<form id="gifticonExchange" action="gifticonExchange" method="post">	
+			<c:when test="${not empty gifticonList}">			
 				<c:forEach var="gift" items="${gifticonList}">
+					<form id="formbtn${gift.gifticonCode}" action="gifticonExchange" method="post">
 						<input type="hidden" name="gifticonCode" value="${gift.gifticonCode}" />
 						<img src="<c:url value='${gift.gifticonImg}' />" alt="${gift.gifticonImg}" height="270" width="270"/>
 						<c:out value="${gift.gifticonName}" /> 
 						<c:out value="${gift.gifticonPrice}" />
-						<input type="button" value="교환" onclick="exchange()">
+					</form>
+					<input type="button" class="btn" id="btn${gift.gifticonCode}" value="교환">
 				</c:forEach>
-			</form>
 			</c:when>
 			
 			<c:otherwise>

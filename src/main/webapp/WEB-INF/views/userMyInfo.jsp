@@ -403,6 +403,7 @@
 		</div>
 		<br>
 		<input type="button" value="회원탈퇴" onClick="location.href='userDelete'">
+		<input type="button" value="보유 기프티콘" onClick="location.href='userGifticon'">
 	</c:otherwise>
 </c:choose>
 

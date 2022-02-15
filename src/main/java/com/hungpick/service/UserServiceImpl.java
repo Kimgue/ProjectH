@@ -16,6 +16,7 @@ import org.springframework.ui.Model;
 import com.hungpick.dao.IUserDao;
 import com.hungpick.dao.IUserDaoHist;
 import com.hungpick.dto.UserDto;
+import com.hungpick.dto.UserVo;
 
 import net.nurigo.java_sdk.api.Message;
 import net.nurigo.java_sdk.exceptions.CoolsmsException;
@@ -232,5 +233,26 @@ public class UserServiceImpl implements IUserService {
 		} 
 	}
 
+	// 보유 기프티콘 단건 조회
+	@Override
+	public String userGifticonOne(String memberCode, Model model) throws Exception {
+		UserDto Dto = userDao.userGifticonOne(memberCode);
+		
+		model.addAttribute("userGifticon",Dto);
+		
+		return "userGifticon";
+	}
+
+	// 보유 기프티콘 다건 조회
+	@Override
+	public String userGifticonMulti(UserVo Vo, Model model) throws Exception {
+		
+		List<UserVo> list = userDao.userGifticonMulti(Vo);
+		model.addAttribute("userVo", list);
+		
+		return "userGifticon";
+	}
+
+	
 
 }
