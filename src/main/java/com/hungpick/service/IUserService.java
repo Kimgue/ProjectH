@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.ui.Model;
 
 import com.hungpick.dto.UserDto;
+import com.hungpick.dto.UserVo;
 
 public interface IUserService {
 	
@@ -22,6 +23,12 @@ public interface IUserService {
 	
 	
 	/*---------------- Parameter Type : 그 외 ----------------*/
+	
+	// 보유 기프티콘 단건 조회
+	public String userGifticonOne(String memberCode, Model model) throws Exception;
+	
+	// 보유 기프티콘 다건 조회
+	public String userGifticonMulti(UserVo Vo, Model model) throws Exception;
 	
 	// 로그아웃
 	public String userLogout(HttpSession session) throws Exception;

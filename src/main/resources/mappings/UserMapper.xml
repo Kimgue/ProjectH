@@ -107,4 +107,60 @@
 		DELETE FROM MEMBERS WHERE MEMBER_CODE = #{memberCode}
 	</delete>
 	
+	
+	<resultMap type="userDto" id="userDtoRm">
+	<id column="MEMBER_CODE" property="memberCode"/>
+    <result column="MEMBER_ID" property="memberId"/>
+    <result column="MEMBER_PW" property="memberPw"/>
+    <result column="MEMBER_NAME" property="memberName"/>
+    <result column="MEMBER_NICKNAME" property="memberNickname"/>
+    <result column="MEMBER_EMAIL" property="memberEmail"/>
+    <result column="MEMBER_NUMBER" property="memberNumber"/>
+    <result column="MEMBER_DATE" property="memberDate"/>
+    <result column="HOLD_POINT" property="holdPoint"/>
+	</resultMap>
+	
+	<resultMap type="gifticonDto" id="gifticonDtoRm">
+	<id column="GIFTICON_CODE" property="gifticonCode"/>
+	<result column="BRAND_CODE" property="brandCode"/>
+	<result column="MENU_CODE" property="menuCode"/>
+	<result column="GIFTICON_NAME" property="gifticonName"/>
+	<result column="GIFTICON_IMG" property="gifticonImg"/>
+	<result column="GIFTICON_PRICE" property="gifticonPrice"/>
+	</resultMap>
+	
+	<resultMap type="gifticonExchangeDto" id="gifticonExchangeDtoRm">
+	<id column="MEMBER_CODE" property="memberCode"/>
+	<result column="GIFTICON_EXCODE" property="gifticonExcode"/>
+	<result column="GIFTICON_CODE" property="gifticonCode"/>
+	<result column="GIFTICON_NUMBER" property="gifticonNumber"/>
+	<result column="GIFTICON_EXDATE" property="gifticonExdate"/>
+	<result column="USE_POINT" property="usePoint"/>
+	</resultMap>
+	
+	<resultMap type="userVo" id="userVoRm">
+		<collection property="userDto" resultMap="userDtoRm"></collection>
+		<collection property="gifticonDto" resultMap="gifticonDtoRm"></collection>
+		<collection property="gifticonExchangeDto" resultMap="gifticonExchangeDtoRm"></collection>
+	</resultMap>
+	
+	<select id="userGifticonMulti" resultMap="userVoRm">
+		SELECT 
+		    MEMBERS.MEMBER_CODE,
+		    GIFTICON_EXCHANGE.GIFTICON_EXCODE,
+		    GIFTICON_EXCHANGE.GIFTICON_CODE,
+		    GIFTICON_EXCHANGE.GIFTICON_NUMBER,
+		    GIFTICON_EXCHANGE.GIFTICON_EXDATE,
+		    GIFTICON_EXCHANGE.USE_POINT,
+		    GIFTICON.BRAND_CODE,
+		    GIFTICON.MENU_CODE,
+		    GIFTICON.GIFTICON_NAME,
+		    GIFTICON.GIFTICON_IMG,
+		    GIFTICON.GIFTICON_PRICE
+		FROM MEMBERS
+		INNER JOIN GIFTICON_EXCHANGE ON MEMBERS.MEMBER_CODE = GIFTICON_EXCHANGE.MEMBER_CODE
+		INNER JOIN GIFTICON ON GIFTICON_EXCHANGE.GIFTICON_CODE = GIFTICON.GIFTICON_CODE
+		WHERE MEMBERS.MEMBER_CODE = #{userDto.memberCode}
+	</select>
+	
 </mapper>

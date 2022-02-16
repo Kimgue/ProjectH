@@ -31,7 +31,7 @@
 		</ul>
 
 		<ul>
-			<li>회원 조회</li>
+			<li><a href="userInfo">회원 조회</a></li>
 		</ul>
 
 		<ul>
