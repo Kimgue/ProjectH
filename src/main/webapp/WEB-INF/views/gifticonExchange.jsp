@@ -13,38 +13,38 @@
 		return Math.floor(Math.random() * (max - min +1)) + min;
 	}
 
-
 	function insertGifticonExchange() {
 		var currentPoint = $("#holdPoint").val();
 		var gifticonPoint = $("#gifticonPrice").val();
 		var gifticonName = $("#gifticonName").val();
-
-		if(currentPoint < gifticonPoint) {
-			alert("보유 포인트가 부족합니다");
-			return false;
-		} else {
-			var result = confirm(gifticonName + " 상품을 교환하시겠습니까?");
+		
+		alert(currentPoint);
+		alert(gifticonPoint);
+		
+		if(currentPoint > gifticonPoint) {
+			var result = confirm(gifticonName + " 상품을 교환하시겠습니까?\n" +
+					"현재 보유 중인 포인트 : " + currentPoint + "\n" +
+					"필요 포인트 : " + gifticonPoint + "\n" +
+					"교환 후 잔여 포인트 : " + (currentPoint - gifticonPoint)
+			);
 			if(result) {
-				alert("교환");
+				alert(gifticonPoint + " 포인트를 소비하여 " + gifticonName + " 상품을 교환하였습니다");
 				
 				var gifticonNumber = rand(1,899999999)+100000000;
-				alert(gifticonNumber);
 				$("#gifticonNumber").attr("value",gifticonNumber);
 				
-				
 				var usePoint = $("#gifticonPrice").val();
-				alert(usePoint);
 				$("#usePoint").attr("value",usePoint);
 				
-				
 				var gifticonExdate = new Date();
-				alert(gifticonExdate);
 				$("#gifticonExdate").attr("value",gifticonExdate);
 				
 				$("#insertGifticonExchange").submit();
 			} else {
 				return false;
 			}
+		} else {
+			alert("보유 포인트가 부족합니다");
 		}
 	}
 </script>
