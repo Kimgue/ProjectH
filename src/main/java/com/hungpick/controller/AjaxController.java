@@ -5,6 +5,8 @@ import java.util.Random;
 import javax.servlet.http.HttpSession;
 
 import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -14,8 +16,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.hungpick.dto.UserDto;
+import com.hungpick.service.IMenuService;
 import com.hungpick.service.IUserService;
 
 @Controller
@@ -26,7 +30,13 @@ public class AjaxController {
 
 	@Autowired
 	private IUserService userService;
+	
+	@Autowired
+	private IMenuService menuService;
 
+	private static final Logger logger = LoggerFactory.getLogger(AjaxController.class);
+
+	
 	/*--------------------- Ajax 사용 : 비밀번호 검사 ---------------------*/
 /*	@RequestMapping("pwChkCtrl.do")
 	@ResponseBody
@@ -215,5 +225,30 @@ public class AjaxController {
 		userService.certifiedPhoneNumber(userPhoneNumber, key); 
 		return key; 
 	}
+	
+	/*--------------------- 메뉴 가격 높은순  ---------------------*/
+	@RequestMapping("menuPriceHigh.do")
+	public ModelAndView menuPriceHigh() throws Exception {
+		logger.info("menuPriceHigh called ========");	
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("menuPrice");
+		mv.addObject("menu", menuService.sltMenuHighPrice());
+		
+		return mv;
+	}
+	
+	/*--------------------- 메뉴 가격 낮은순  ---------------------*/
+	@RequestMapping("menuPriceLow.do")
+	public ModelAndView menuPriceLow() throws Exception {
+		logger.info("menuPriceLow called ========");	
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("menuPrice");
+		mv.addObject("menu", menuService.sltMenuLowPrice());
+		
+		return mv;
+	}
+	
 }
 

@@ -14,7 +14,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.hungpick.dto.MenuVo;
 import com.hungpick.service.IBrandService;
@@ -56,29 +55,6 @@ public class UserController2 {
 		model.addAttribute("reviewRanking", reviewService.sltReviewRanking());
 	}
 	
-	//메뉴 높은가격순 ajax
-	@RequestMapping("menuPriceHigh.do")
-	public ModelAndView menuPriceHigh() throws Exception {
-		logger.info("menuPriceHigh called ========");	
-		
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("menuPrice");
-		mv.addObject("menu", menuService.sltMenuHighPrice());
-		
-		return mv;
-	}
-	
-	//메뉴 낮은가격순 ajax
-	@RequestMapping("menuPriceLow.do")
-	public ModelAndView menuPriceLow() throws Exception {
-		logger.info("menuPriceLow called ========");	
-		
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("menuPrice");
-		mv.addObject("menu", menuService.sltMenuLowPrice());
-		
-		return mv;
-	}
 	//메뉴 조건검색한 페이지
 	@RequestMapping("menuResult")
 	public void menuVo(
@@ -141,10 +117,16 @@ public class UserController2 {
 		HttpSession session = request.getSession();
 		
 		if (session.getAttribute("memberCode") == null) {
+			
+			String QueryString = request.getQueryString();
+			System.out.println("reviewWrite?"+ QueryString);
+			session.setAttribute("prevUrl", "reviewWrite?"+QueryString);
+		
 			String msg = "리뷰 작성시 로그인이 필요합니다.";
 			String url = "userLogin";
 			model.addAttribute("msg", msg);
 			model.addAttribute("url", url);
+			
 			return;
 		};
 		
@@ -165,8 +147,8 @@ public class UserController2 {
 			@RequestParam String menuName,
 			@RequestParam double reviewScore,
 			@RequestParam String reviewContent, 
-			@RequestParam String reviewImg1,
-			@RequestParam String reviewImg2, 
+			@RequestParam(required = false) String reviewImg1,
+			@RequestParam(required = false) String reviewImg2, 
 			HttpServletRequest request,
 			Model model) throws Exception {
 		

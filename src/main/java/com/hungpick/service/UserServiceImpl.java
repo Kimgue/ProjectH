@@ -66,11 +66,19 @@ public class UserServiceImpl implements IUserService {
 			session.setAttribute("memberNumber", Dto.getMemberNumber());
 			session.setAttribute("memberEmail", Dto.getMemberEmail());
 			session.setAttribute("memberDate", Dto.getMemberDate());
-			session.setAttribute("holdPoint", Dto.getHoldPoint());
+			session.setAttribute("holdPoint", Dto.getHoldPoint());			
+			
+			if(session.getAttribute("prevUrl") != null) {
+				String prevUrl = (String) session.getAttribute("prevUrl");
+				session.removeAttribute("prevUrl");
+				return prevUrl;
+			}
+			
 			return "redirect:/main";
 		} else {
 			session.setAttribute("loginNotice", "아이디 또는 비밀번호가 잘못 입력 되었습니다.\r\n" + "아이디와 비밀번호를 정확히 입력해 주세요.");
 			session.setMaxInactiveInterval(1);
+	
 			return "redirect:/userLogin";
 		}
 	}

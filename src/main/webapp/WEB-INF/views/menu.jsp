@@ -83,7 +83,7 @@ hr {
 <body>
 	<div align="center">
 		<h1>메뉴</h1>
-		<br> <a href="">메인 페이지로</a><br> 검색하고 싶은 메뉴 조건을 입력해주세요.<br>
+		<br> <a href="main">메인 페이지로</a><br> 검색하고 싶은 메뉴 조건을 입력해주세요.<br>
 		<form action="menuResult" id="menuSearch">
 			<%-- 체크박스일 경우 값들을 배열로 받아서 처리해야함 --%>
 			<br> 브랜드<br> 
