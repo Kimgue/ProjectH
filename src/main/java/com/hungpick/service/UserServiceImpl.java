@@ -1,6 +1,7 @@
 package com.hungpick.service;
 
 import java.io.PrintWriter;
+
 import java.util.HashMap;
 import java.util.List;
 
@@ -69,13 +70,17 @@ public class UserServiceImpl implements IUserService {
 			session.setAttribute("memberDate", Dto.getMemberDate());
 			session.setAttribute("holdPoint", Dto.getHoldPoint());			
 			
-			if(session.getAttribute("prevUrl") != null) {
-				String prevUrl = (String) session.getAttribute("prevUrl");
+			String prevUrl = (String) session.getAttribute("prevUrl");
+			System.out.println("확인 : " + prevUrl);
+			if(prevUrl != null ) {
+				
 				session.removeAttribute("prevUrl");
 				return prevUrl;
 			}
 			
+			
 			return "redirect:/main";
+			
 		} else {
 			session.setAttribute("loginNotice", "아이디 또는 비밀번호가 잘못 입력 되었습니다.\r\n" + "아이디와 비밀번호를 정확히 입력해 주세요.");
 			session.setMaxInactiveInterval(1);

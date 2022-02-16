@@ -118,9 +118,12 @@ public class UserController2 {
 		
 		if (session.getAttribute("memberCode") == null) {
 			
+			
 			String QueryString = request.getQueryString();
-			System.out.println("reviewWrite?"+ QueryString);
-			session.setAttribute("prevUrl", "reviewWrite?"+QueryString);
+			
+			String prevUrl = "redirect:/reviewWrite/?" + QueryString;
+			System.out.println(prevUrl);
+			session.setAttribute("prevUrl", prevUrl);
 		
 			String msg = "리뷰 작성시 로그인이 필요합니다.";
 			String url = "userLogin";
@@ -159,10 +162,10 @@ public class UserController2 {
 
 		logger.info("reviewWriteSubmit called =======");
 		
-		String url = URLEncoder.encode(menuName, "UTF-8");
+		String menuNameEncoded = URLEncoder.encode(menuName, "UTF-8");
 		
 		
-		return "redirect:/menuDetail" + "?brandCode=" + brandCode + "&menuCode=" + menuCode + "&menuName=" + url;
+		return "redirect:/menuDetail" + "?brandCode=" + brandCode + "&menuCode=" + menuCode + "&menuName=" + menuNameEncoded;
 	
 	}
 }
