@@ -6,19 +6,35 @@
 
 	<!-- 기프티콘 단건 조회 -->
 	<select id="sltGifticon" parameterType="string" resultType="gifticonDto">
-		SELECT * FROM GIFTICON WHERE GIFTICON_CODE = #{gifticonCode}
+		SELECT 
+			GIFTICON_CODE,
+			BRAND_CODE,
+			MENU_CODE,
+			GIFTICON_NAME,
+			GIFTICON_IMG,
+			GIFTICON_PRICE, 
+			GIFTICON_DATE
+		FROM GIFTICON WHERE GIFTICON_CODE = #{gifticonCode}
 	</select>
 	
 	<!-- 기프티콘 다건 조회 -->
 	<select id="showGifticon" resultType="gifticonDto">
-		SELECT * FROM GIFTICON ORDER BY GIFTICON_CODE
+		SELECT 
+			GIFTICON_CODE,
+			BRAND_CODE,
+			MENU_CODE,
+			GIFTICON_NAME,
+			GIFTICON_IMG,
+			GIFTICON_PRICE, 
+			GIFTICON_DATE
+		FROM GIFTICON ORDER BY GIFTICON_CODE
 	</select>
 
 	<!-- 기프티콘 등록 -->
 	<insert id="insertGifticon">
 		INSERT INTO GIFTICON 
 		(
-			GIFTICON_CODE, BRAND_CODE, MENU_CODE, GIFTICON_NAME, GIFTICON_IMG, GIFTICON_PRICE
+			GIFTICON_CODE, BRAND_CODE, MENU_CODE, GIFTICON_NAME, GIFTICON_IMG, GIFTICON_PRICE, GIFTICON_DATE
 		)
 		VALUES 
 		(
@@ -27,7 +43,8 @@
 			#{menuCode},
 			#{gifticonName},
 			#{gifticonImg},
-			#{gifticonPrice}
+			#{gifticonPrice},
+			SYSDATE
 		)
    	</insert>
    	
@@ -43,12 +60,28 @@
 	
 	<!-- 기프티콘 조건 조회 (브랜드) -->
 	<select id="sltGifticonBrand" resultType="gifticonDto">
-		SELECT * FROM GIFTICON WHERE BRAND_CODE = #{brandCode}
+		SELECT 
+			GIFTICON_CODE,
+			BRAND_CODE,
+			MENU_CODE,
+			GIFTICON_NAME,
+			GIFTICON_IMG,
+			GIFTICON_PRICE, 
+			GIFTICON_DATE
+		FROM GIFTICON WHERE BRAND_CODE = #{brandCode}
 	</select>
 	
 	<!-- 기프티콘 조건 조회 (브랜드, 메뉴) -->
 	<select id="sltGifticonBrandMenu" resultType="gifticonDto">
-		SELECT * FROM GIFTICON WHERE BRAND_CODE = #{brandCode} AND MENU_CODE = #{menuCode}
+		SELECT 
+			GIFTICON_CODE,
+			BRAND_CODE,
+			MENU_CODE,
+			GIFTICON_NAME,
+			GIFTICON_IMG,
+			GIFTICON_PRICE, 
+			GIFTICON_DATE
+		FROM GIFTICON WHERE BRAND_CODE = #{brandCode} AND MENU_CODE = #{menuCode}
 	</select>
 	
 </mapper>

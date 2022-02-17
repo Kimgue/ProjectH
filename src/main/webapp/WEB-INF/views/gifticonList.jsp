@@ -119,7 +119,8 @@ var menuSltBool = false;
 						<div align="center">
 						<img src="<c:url value='${gift.gifticonImg}' />" alt="${gift.gifticonImg}" height="270" width="270"/><br>
 						<c:out value="${gift.gifticonName}" /><br>
-						<c:out value="${gift.gifticonPrice}" />
+						<c:out value="${gift.gifticonPrice}" /><br>
+						<c:out value="${gift.gifticonDate}" />
 						</div>
 				</c:forEach>
 			</c:when>

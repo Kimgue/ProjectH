@@ -33,9 +33,7 @@
 
 				$.getJSON(url, {"point" : resultPoint}, function(json) {
 					var gifticonNumber = rand(1,899999999)+100000000;
-					var gifticonExdate = new Date();
 					$("#gifticonNumber").attr("value",gifticonNumber);
-					$("#gifticonExdate").attr("value",gifticonExdate);
 					$("#insertGifticonExchange").submit();
 				});
 			} else {
@@ -75,8 +73,7 @@
 					<input type="hidden" id="menuCode" name="menuCode" value="${gifticonList.menuCode}" />
 					
 					<input type="hidden" id="gifticonExcode" name="gifticonExcode" />
-					<input type="hidden" id="gifticonNumber" name="gifticonNumber" />
-					<input type="hidden" id="gifticonExdate" name="gifticonExdate" />
+					<input type="hidden" id="gifticonNumber" name="gifticonNumber" />					
 					
 					<img src="<c:url value='${gifticonList.gifticonImg}' />" alt="${gifticonList.gifticonImg}" height="270" width="270"/><br>
 					<c:out value="${gifticonList.gifticonCode}" /><br> 

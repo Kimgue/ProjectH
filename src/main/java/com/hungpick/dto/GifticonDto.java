@@ -1,5 +1,7 @@
 package com.hungpick.dto;
 
+import java.util.Date;
+
 public class GifticonDto {
 
 	private String gifticonCode;
@@ -8,7 +10,12 @@ public class GifticonDto {
 	private String gifticonName;
 	private String gifticonImg;
 	private int gifticonPrice;
+//	private Date gifticonDate;
+	private String gifticonDate;
 	
+	public void setGifticonDate(String gifticonDate) {
+		this.gifticonDate = gifticonDate;
+	}
 	public String getGifticonCode() {
 		return gifticonCode;
 	}
@@ -45,13 +52,19 @@ public class GifticonDto {
 	public void setGifticonPrice(int gifticonPrice) {
 		this.gifticonPrice = gifticonPrice;
 	}
+
+	public String getGifticonDate() {
+		return gifticonDate;
+	}
+//	public void setGifticonDate(Date gifticonDate) {
+//		this.gifticonDate = gifticonDate;
+//	}
 	
 	@Override
 	public String toString() {
-		return "Gifticon [gifticonCode=" + gifticonCode + ", brandCode=" + brandCode + ", menuCode=" + menuCode
+		return "GifticonDto [gifticonCode=" + gifticonCode + ", brandCode=" + brandCode + ", menuCode=" + menuCode
 				+ ", gifticonName=" + gifticonName + ", gifticonImg=" + gifticonImg + ", gifticonPrice=" + gifticonPrice
-				+ "]";
+				+ ", gifticonDate=" + gifticonDate + "]";
 	}
-	
 	
 }

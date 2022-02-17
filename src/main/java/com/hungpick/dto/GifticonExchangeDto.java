@@ -8,8 +8,12 @@ public class GifticonExchangeDto {
 	private String gifticonExcode;
 	private String gifticonCode;
 	private String gifticonNumber;
-	private Date gifticonExdate;
+//	private Date gifticonExdate;
+	private String gifticonExdate;
 	
+	public void setGifticonExdate(String gifticonExdate) {
+		this.gifticonExdate = gifticonExdate;
+	}
 	public String getMemberCode() {
 		return memberCode;
 	}
@@ -34,12 +38,12 @@ public class GifticonExchangeDto {
 	public void setGifticonNumber(String gifticonNumber) {
 		this.gifticonNumber = gifticonNumber;
 	}
-	public Date getGifticonExdate() {
+	public String getGifticonExdate() {
 		return gifticonExdate;
 	}
-	public void setGifticonExdate(Date gifticonExdate) {
-		this.gifticonExdate = gifticonExdate;
-	}
+//	public void setGifticonExdate(Date gifticonExdate) {
+//		this.gifticonExdate = gifticonExdate;
+//	}
 	
 	@Override
 	public String toString() {

@@ -19,7 +19,7 @@
 				(SELECT NVL(MAX(TO_NUMBER(GIFTICON_EXCODE)),0)+1 FROM GIFTICON_EXCHANGE WHERE MEMBER_CODE= #{memberCode}),
 				#{gifticonCode},
 				#{gifticonNumber},
-				#{gifticonExdate}
+				SYSDATE
 		)
 	</insert>
 	
