@@ -1,12 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>회원가입</title>
-<script src="resources/js/jquery-3.4.1.min.js"></script>
-<script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>헝픽 회원가입</title>
+    
+	<link href="resources/css/sb-admin-2.min.css" rel="stylesheet">
+	<link href="resources/css/user.css" rel="stylesheet">
+	<script src="https://kit.fontawesome.com/730c440743.js" crossorigin="anonymous"></script>
+	<script src="resources/js/jquery-3.4.1.min.js"></script>
+	<script>
 	var checkId 	= false;
 	var checkPw 	= false;
 	var checkName 	= false;
@@ -23,6 +33,7 @@
 	var validateEmail 	= RegExp(/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/);
 	var validateNumber 	= RegExp(/^01[0179][0-9]{7,8}$/);
 
+	
 	function UserSignUp() {
 		var val_Id 			= $("#memberId").val();
 		var val_Pw 			= $("#memberPw").val();
@@ -83,6 +94,7 @@
 $(document).ready(function() {
 	$("#EmailChk").hide();
 	$("#NumberChk").hide();
+	
 	
 	/* --------------- 이메일 검사 --------------- */
 	$("#Email_Transmit").click(function() {
@@ -205,6 +217,7 @@ $(document).ready(function() {
 	$("#memberNickname").blur(function() {
 		var val_Namename = $("#memberNickname").val();
 		if (val_Namename == "") {
+			$("#resultNickname").text("닉네임을 입력해주세요").css("color","red");
 			checkNick = false;
 			return false;
 		}
@@ -283,71 +296,120 @@ $(document).ready(function() {
 	});
 });
 </script>
-
+	
 </head>
-<body>
-	<h2>회원가입 정보 입력</h2>
-	<form id="UserSignUp" action="userSignUpSubmit" method="post">
-		<table border="1">
-			<tr>
-				<td width=100>ID</td>
-				<td>
-				<input type="text" name="memberId" id="memberId">
-				<div id="resultId"></div>
-				</td>
-			</tr>
-			<tr>
-				<td width=100>비밀번호</td>
-				<td>
-				<input type="password" name="memberPw" id="memberPw">
-				<div id="resultPw"></div>
-				</td>
-			</tr>
-			<tr>
-				<td width=100>이름</td>
-				<td>
-				<input type="text" name="memberName" id="memberName">
-				<div id="resultName"></div>
-				</td>
-			</tr>
-			<tr>
-				<td width=100>닉네임</td>
-				<td>
-				<input type="text" name="memberNickname" id="memberNickname">
-				<div id="resultNickname"></div>
-				</td>
-			</tr>
-			<tr>
-				<td width=100>이메일</td>
-				<td>
-				<input type="text" name="memberEmail" id="memberEmail">
-				<input type="button" id="Email_Transmit" value="인증번호 전송">
-				<div id="resultEmail"></div>
-				
-				<div id="EmailChk">
-				인증 번호를 입력해주세요 
-				<input type="text" id="Email_Number">
-				<input type="button" id="Email_Check" value="인증번호 확인">
-				<div id="resultEmailChk"></div>
-				</div></td>
-			</tr>
-			<tr>
-				<td width=100>전화번호</td>
-				<td>
-				<input type="text" name="memberNumber" id="memberNumber">
-				<input type="button" id="Number_Transmit" value="인증번호 전송">
-				<div id="resultNumber"></div>
-				
-				<div id="NumberChk">
-				인증 번호를 입력해주세요 
-				<input type="text" id="Number_Number">
-				<input type="button" id="Number_Check" value="인증번호 확인">
-				<div id="resultNumberChk"></div>
-				</div></td>
-			</tr>
-		</table>
-		<input type="button" value="회원가입" onclick="UserSignUp()"> 
-		<input type="button" value="회원조회" onClick="location.href='userInfo'">
-	</form>
+
+<body class="bg-gradient-primary">
+    <div class="container">
+        <div class="card o-hidden border-0 shadow-lg my-5">
+            <div class="card-body p-0">
+                <!-- Nested Row within Card Body -->
+                <div class="row">
+                    <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+                    <div class="col-lg-7">
+                        <div class="p-5">
+                            <div class="text-center">
+                                <h1 class="h4 text-gray-900 mb-4">회원가입을 환영합니다!</h1>
+                            </div>
+                            <form id="UserSignUp" action="userSignUpSubmit" method="post">
+                            	<div class="testcss">
+	                                <div class="form-group">
+		                                <input type="text" class="form-control form-control-user" id="memberId" name="memberId" placeholder="아이디">
+		                                <div id="resultId"></div>
+	                                </div>
+								</div>
+								
+								<div class="testcss">
+                                <div class="form-group">
+                                    <input type="password" class="form-control form-control-user" id="memberPw" name="memberPw" placeholder="비밀번호">
+                                    <div id="resultPw"></div>
+                                </div>
+                                </div>
+                                
+                                <div class="testcss">
+                                <div class="form-group row">
+                                	<div class="col-sm-6 mb-3 mb-sm-0">
+	                                	<input type="text" class="form-control form-control-user" id="memberName" name="memberName" placeholder="이름">
+	                                	<div id="resultName"></div>
+                                	</div>
+                                	
+                                	<div class="col-sm-6">
+	                                	<input type="text" class="form-control form-control-user" id="memberNickname" name="memberNickname" placeholder="닉네임">
+	                                	<div id="resultNickname"></div>                                	
+                                	</div>
+                                </div>
+                                </div>
+                                
+                                <div class="testcss">
+                                <div class="form-group row">
+                                	<div class="col-sm-9">
+                                    	<input type="text" class="form-control form-control-user" id="memberEmail" name="memberEmail" placeholder="이메일을 입력해주세요">
+                                    	<div id="resultEmail"></div>   
+                                    </div>
+									<div class="col-sm-3">
+										<input type="button" class="btn btn-primary" id="Email_Transmit" value="인증번호 전송">
+										
+                                    </div>
+                                </div>
+                                </div>
+
+								<div class="testcss" id="EmailChk">
+                                <div class="form-group row">
+                                	<div class="col-sm-9">
+                                    	<input type="text" class="form-control form-control-user" id="Email_Number" placeholder="인증번호 입력">
+                                    	<div id="resultEmailChk"></div>
+                                    </div>
+									<div class="col-sm-3">
+										<input type="button" class="btn btn-primary" id="Email_Check" value="인증번호 확인">
+										
+                                    </div>
+                                </div>
+                                </div>                                
+
+ 								<div class="testcss">
+                                <div class="form-group row">
+                                	<div class="col-sm-9">
+                                    	<input type="text" class="form-control form-control-user" id="memberNumber" name="memberNumber" placeholder="전화번호를 입력해주세요">
+                                    	<div id="resultNumber"></div> 
+                                    </div>
+									<div class="col-sm-3">
+										<input type="button" class="btn btn-primary" id="Number_Transmit" value="인증번호 전송">
+										
+                                    </div>
+                                </div>
+                                </div>
+
+								<div class="testcss" id="NumberChk">
+                                <div class="form-group row">
+                                	<div class="col-sm-9">
+                                    	<input type="text" class="form-control form-control-user" id="Number_Number" placeholder="인증번호 입력">
+                                    	<div id="resultNumberChk"></div>   
+                                    </div>
+									<div class="col-sm-3">
+										<input type="button" class="btn btn-primary" id="Number_Check" value="인증번호 확인">
+										
+                                    </div>
+                                </div>
+                                </div>    
+                                
+                                
+                                <input type="button" class="btn btn-primary btn-user btn-block" value="회원가입">
+                                <hr>
+                                
+                            </form>
+                            <div class="text-center">
+                                <a class="small" href="userLogin">이미 회원가입 하셨나요? 로그인</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="resources/js/sb-admin-2.min.js"></script>
 </body>
+
 </html>

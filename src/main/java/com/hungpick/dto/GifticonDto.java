@@ -1,7 +1,5 @@
 package com.hungpick.dto;
 
-import java.util.Date;
-
 public class GifticonDto {
 
 	private String gifticonCode;

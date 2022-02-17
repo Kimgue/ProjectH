@@ -7,7 +7,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="resources/js/jquery-3.4.1.min.js"></script>
-<link href="<c:url value="/resources/css/adminMenu.css"/>" rel="stylesheet" />
 <script>
 
 	function dateFormat(date) {

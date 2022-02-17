@@ -167,7 +167,7 @@ public class UserServiceImpl implements IUserService {
 			model.addAttribute("userFindId", "입력한 정보에 일치하는 아이디가 존재하지 않습니다");
 			return "userFindIdComplete";
 		} else {
-			model.addAttribute("userFindId", "입력한 정보에 일치하는 아이디는 " + Dto.getMemberId() + " 입니다");
+			model.addAttribute("userFindId", Dto.getMemberId());
 			return "userFindIdComplete";
 		}
 	}
