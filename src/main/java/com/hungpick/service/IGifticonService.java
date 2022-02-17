@@ -20,4 +20,10 @@ public interface IGifticonService {
 	
 	// 기프티콘 수정
 	public String updateGifticon(GifticonDto Dto) throws Exception;
+	
+	// 기프티콘 조건 조회 (브랜드)
+	public String sltGifticonBrand(GifticonDto Dto, Model model) throws Exception;
+
+	// 기프티콘 조건 조회 (브랜드, 메뉴)
+	public String sltGifticonBrandMenu(GifticonDto Dto, Model model) throws Exception;	
 }

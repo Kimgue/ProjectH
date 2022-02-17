@@ -8,12 +8,14 @@
 <meta charset="UTF-8">
 <title>기프티콘 등록</title>
 <script src="resources/js/jquery-3.4.1.min.js"></script>
-<link href="<c:url value="/resources/css/adminMenu.css"/>"
-	rel="stylesheet" />
+<link href="resources/css/adminMenu.css" rel="stylesheet" />
 <script>
+var menuSltBool = false;
+
 	$(document).ready(function() {
 		const inputImage = document.getElementById("input-image");
 		inputImage.addEventListener("change", e => {readImage(e.target)});
+		
 	});
 	
 	function readImage(input) {
@@ -33,17 +35,19 @@
 	}
 	
 	function insert() {
+		const imageInput = $("#input-image")[0];
+		const nameInput = $("#gifticonName").val();
+		const priceInput = $("#gifticonPrice").val();
+		
+		if(imageInput.files.length === 0 || imageInput=="" || nameInput=="" || priceInput=="" || menuSltBool == false){
+		    alert("입력되지 않은 항목이 있습니다");
+		    return;
+		}
+		
 		var result = confirm("등록하시겠습니까?");
 		if(result) {
 			alert("등록되었습니다");
-			
 			const filePath = "gifticon";
-			
-			const imageInput = $("#input-image")[0];
-			if(imageInput.files.length === 0){
-			    alert("파일은 선택해주세요");
-			    return;
-			}
 			
 			const formData = new FormData();
 			formData.append("uploadFile", imageInput.files[0]);
@@ -66,6 +70,29 @@
 		} else {
 			return false;
 		}
+	}
+	
+	function brandSelect() {
+		var brandCode = $("#brandCode").val();
+		
+		switch(brandCode) {
+		case 'H1':
+			$("#menuCode option").remove();
+			$("#menuCode").append("<option selected disabled>메뉴를 선택해주세요</option>");
+			$("#menuCode").append("<option value=01>빅맥</option>");
+			$("#menuCode").append("<option value=02>1955버거</option>");
+			break;
+		case 'H2':
+			$("#menuCode option").remove();
+			$("#menuCode").append("<option selected disabled>메뉴를 선택해주세요</option>");
+			$("#menuCode").append("<option value=01>새우버거</option>");
+			$("#menuCode").append("<option value=02>불고기버거</option>");
+			break;
+		}
+	}
+	
+	function menuSelect() {
+		menuSltBool = true;
 	}
 	
 </script>
@@ -120,21 +147,20 @@
 		<form id="insertForm" action="gifticonInsertSubmit" method="post"
 			enctype="multipart/form-data">
 			<ul>
-				<li>기프티콘 이름 <input type="text" name="gifticonName"></li>
-				<li>기프티콘 가격 <input type="text" name="gifticonPrice"></li>
-				<li>브랜드<select name="brandCode" id="testslt">
-						<option value="">브랜드 선택</option>
+				<li>기프티콘 이름 <input type="text" id="gifticonName" name="gifticonName"></li>
+				<li>기프티콘 가격 <input type="text" id="gifticonPrice" name="gifticonPrice"></li>
+				<li>브랜드<select id="brandCode" name="brandCode" onchange="brandSelect()">
+						<option value="" selected disabled>브랜드 선택</option>
 						<option value="H1">맥도날드</option>
 						<option value="H2">롯데리아</option>
 						</select>
 				</li>
 				
-				<li>메뉴<select name="menuCode" id="testslt">
-						<option value="">메뉴 선택</option>
-						<option value="01">01</option>
-						<option value="02">02</option>
+				<li>메뉴<select id="menuCode" name="menuCode" onchange="menuSelect()">
+						<option value="" selected disabled>-- 브랜드를 먼저 선택해주세요 --</option>
 						</select>
 				</li>
+					
 				<li><img style="width: 100px;" id="preview-image" src="">
 					<input type="hidden" id="gifticonImg" name="gifticonImg"> 
 					<input type="file" id="input-image" name="uploadfile" required="required">

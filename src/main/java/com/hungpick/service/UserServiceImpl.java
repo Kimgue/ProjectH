@@ -139,6 +139,12 @@ public class UserServiceImpl implements IUserService {
 	public void updatePw(UserDto Dto) throws Exception {
 		userDao.updatePw(Dto);
 	}
+	
+	// 포인트 수정
+	@Override
+	public void updatePoint(UserDto Dto) throws Exception {
+		userDao.updatePoint(Dto);
+	}
 
 	// 이메일 중복검사
 	@Override
@@ -265,7 +271,5 @@ public class UserServiceImpl implements IUserService {
 		
 		return "userGifticon";
 	}
-
-	
 
 }

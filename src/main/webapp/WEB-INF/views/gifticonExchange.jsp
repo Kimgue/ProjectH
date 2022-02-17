@@ -17,29 +17,27 @@
 		var currentPoint = $("#holdPoint").val();
 		var gifticonPoint = $("#gifticonPrice").val();
 		var gifticonName = $("#gifticonName").val();
-		
-		alert(currentPoint);
-		alert(gifticonPoint);
+		var resultPoint = currentPoint - gifticonPoint;
 		
 		if(currentPoint > gifticonPoint) {
 			var result = confirm(gifticonName + " 상품을 교환하시겠습니까?\n" +
 					"현재 보유 중인 포인트 : " + currentPoint + "\n" +
 					"필요 포인트 : " + gifticonPoint + "\n" +
-					"교환 후 잔여 포인트 : " + (currentPoint - gifticonPoint)
+					"교환 후 잔여 포인트 : " + resultPoint
 			);
 			if(result) {
-				alert(gifticonPoint + " 포인트를 소비하여 " + gifticonName + " 상품을 교환하였습니다");
+				alert(gifticonPoint + " 포인트를 소비하여 " + gifticonName + " 상품을 교환하였습니다\n" +
+						"잔여 포인트는 " + resultPoint +"점 입니다");
 				
-				var gifticonNumber = rand(1,899999999)+100000000;
-				$("#gifticonNumber").attr("value",gifticonNumber);
-				
-				var usePoint = $("#gifticonPrice").val();
-				$("#usePoint").attr("value",usePoint);
-				
-				var gifticonExdate = new Date();
-				$("#gifticonExdate").attr("value",gifticonExdate);
-				
-				$("#insertGifticonExchange").submit();
+				var url = "updatePoint.do";
+
+				$.getJSON(url, {"point" : resultPoint}, function(json) {
+					var gifticonNumber = rand(1,899999999)+100000000;
+					var gifticonExdate = new Date();
+					$("#gifticonNumber").attr("value",gifticonNumber);
+					$("#gifticonExdate").attr("value",gifticonExdate);
+					$("#insertGifticonExchange").submit();
+				});
 			} else {
 				return false;
 			}
@@ -79,7 +77,6 @@
 					<input type="hidden" id="gifticonExcode" name="gifticonExcode" />
 					<input type="hidden" id="gifticonNumber" name="gifticonNumber" />
 					<input type="hidden" id="gifticonExdate" name="gifticonExdate" />
-					<input type="hidden" id="usePoint" name="usePoint" />
 					
 					<img src="<c:url value='${gifticonList.gifticonImg}' />" alt="${gifticonList.gifticonImg}" height="270" width="270"/><br>
 					<c:out value="${gifticonList.gifticonCode}" /><br> 

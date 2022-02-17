@@ -3,11 +3,6 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.hungpick.dao.IGifticonExchangeDao">
-
-	<!-- 기프티콘 교환 : 보유 포인트 수정 -->
-   	<update id="exchangeGifticon">
-		UPDATE GIFTICON_EXCHANGE SET HOLD_POINT = #{holdPoint} WHERE GIFTICON_CODE = #{gifticonCode} AND BRAND_CODE = #{brandCode} AND MENU_CODE = #{menuCode}  
-	</update>
 	
 	<insert id="insertGifticonExchange" parameterType="gifticonExchangeDto">
 		INSERT INTO gifticon_exchange 
@@ -16,17 +11,15 @@
 	        GIFTICON_EXCODE,
 	        GIFTICON_CODE,
 	        GIFTICON_NUMBER,
-	        GIFTICON_EXDATE,
-	        USE_POINT
+	        GIFTICON_EXDATE
 			)
 			VALUES 
 			( 
 				#{memberCode},
-				(SELECT NVL(MAX(TO_NUMBER(GIFTICON_EXCODE)),0)+1 FROM GIFTICON_EXCHANGE),
+				(SELECT NVL(MAX(TO_NUMBER(GIFTICON_EXCODE)),0)+1 FROM GIFTICON_EXCHANGE WHERE MEMBER_CODE= #{memberCode}),
 				#{gifticonCode},
 				#{gifticonNumber},
-				#{gifticonExdate},
-				#{usePoint}
+				#{gifticonExdate}
 		)
 	</insert>
 	

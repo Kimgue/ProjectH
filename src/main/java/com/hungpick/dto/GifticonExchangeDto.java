@@ -9,7 +9,6 @@ public class GifticonExchangeDto {
 	private String gifticonCode;
 	private String gifticonNumber;
 	private Date gifticonExdate;
-	private int usePoint;
 	
 	public String getMemberCode() {
 		return memberCode;
@@ -41,17 +40,12 @@ public class GifticonExchangeDto {
 	public void setGifticonExdate(Date gifticonExdate) {
 		this.gifticonExdate = gifticonExdate;
 	}
-	public int getUsePoint() {
-		return usePoint;
-	}
-	public void setUsePoint(int usePoint) {
-		this.usePoint = usePoint;
-	}
+	
 	@Override
 	public String toString() {
 		return "GifticonExchangeDto [memberCode=" + memberCode + ", gifticonExcode=" + gifticonExcode
 				+ ", gifticonCode=" + gifticonCode + ", gifticonNumber=" + gifticonNumber + ", gifticonExdate="
-				+ gifticonExdate + ", usePoint=" + usePoint + "]";
+				+ gifticonExdate + "]";
 	}
 	
 }

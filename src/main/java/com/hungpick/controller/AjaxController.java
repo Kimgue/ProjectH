@@ -186,7 +186,20 @@ public class AjaxController {
 		return jsonOut;
 	}
 	
-	
+	/*--------------------- 포인트 수정 ---------------------*/
+	@RequestMapping("updatePoint.do")
+	@ResponseBody
+	public String updatePoint(@ModelAttribute("point") int holdPoint, UserDto Dto, HttpSession session) throws Exception {
+		Dto = (UserDto) session.getAttribute("memberDTO");
+
+		Dto.setHoldPoint(holdPoint);
+		userService.updatePoint(Dto);
+
+		JSONObject jsonObj = new JSONObject();
+		String jsonOut = jsonObj.toString();
+
+		return jsonOut;
+	}
 
 	/*--- 인증번호 ---*/
 	/*--------------------- 이메일 전송 및 인증  ---------------------*/

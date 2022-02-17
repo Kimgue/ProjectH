@@ -65,6 +65,9 @@ public interface IUserService {
 	// 비밀번호 변경
 	public void updatePw(UserDto Dto) throws Exception;
 	
+	// 포인트 변경
+	public void updatePoint(UserDto Dto) throws Exception;
+	
 	// ID 중복검사
 	public String checkId(String memberId) throws Exception;
 		

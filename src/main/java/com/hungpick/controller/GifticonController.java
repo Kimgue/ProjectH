@@ -31,6 +31,21 @@ public class GifticonController {
 		gifticonsltMulti(Dto, model);
 	}
 	
+	/*--------------------- 기프티콘 조건 조회 (브랜드) ---------------------*/
+	@RequestMapping("sltGifticonBrand")
+	public String sltGifticonBrand(GifticonDto Dto, Model model) throws Exception {
+		String view = gifticonService.sltGifticonBrand(Dto, model);
+		return view;
+	}
+	
+	/*--------------------- 기프티콘 조건 조회 (브랜드, 메뉴) ---------------------*/
+	@RequestMapping("sltGifticonBrandMenu")
+	public String sltGifticonBrandMenu(GifticonDto Dto, Model model) throws Exception {
+		String view = gifticonService.sltGifticonBrandMenu(Dto, model);
+		return view;
+	}
+	
+	
 	/*--------------------- 기프티콘 조회 페이지(사용자) ---------------------*/
 	@RequestMapping("gifticonListUser")
 	public void giftiConListUser(GifticonDto Dto, Model model) throws Exception {

@@ -55,5 +55,21 @@ public class GifticonServiceImpl implements IGifticonService {
 		gifticonDao.updateGifticon(Dto);
 		return "redirect:/gifticonUpdate";
 	}
+
+	@Override
+	public String sltGifticonBrand(GifticonDto Dto, Model model) throws Exception {
+		List<GifticonDto> list = gifticonDao.sltGifticonBrand(Dto);
+		model.addAttribute("gifticonList",list);
+		
+		return "gifticonList";
+	}
+
+	@Override
+	public String sltGifticonBrandMenu(GifticonDto Dto, Model model) throws Exception {
+		List<GifticonDto> list = gifticonDao.sltGifticonBrandMenu(Dto);
+		model.addAttribute("gifticonList",list);
+		
+		return "gifticonList";
+	}
 	
 }

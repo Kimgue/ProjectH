@@ -22,4 +22,11 @@ public interface IGifticonDao {
 	// 기프티콘 수정
 	public void updateGifticon(GifticonDto Dto) throws Exception;
 	
+	// 기프티콘 조건 조회(브랜드)
+	public List<GifticonDto> sltGifticonBrand(GifticonDto Dto) throws Exception;
+	
+	// 기프티콘 조건 조회(브랜드, 메뉴)
+	public List<GifticonDto> sltGifticonBrandMenu(GifticonDto Dto) throws Exception;
+	
+		
 }

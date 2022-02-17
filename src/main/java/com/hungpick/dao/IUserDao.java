@@ -65,6 +65,9 @@ public interface IUserDao {
 	// 전화번호 변경
 	public void updateNumber(UserDto Dto) throws Exception;
 	
+	// 포인트 변경
+	public void updatePoint(UserDto Dto) throws Exception;
+	
 		
 	/*------------------ Delete ------------------*/
 	

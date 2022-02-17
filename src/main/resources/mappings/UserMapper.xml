@@ -107,7 +107,7 @@
 		DELETE FROM MEMBERS WHERE MEMBER_CODE = #{memberCode}
 	</delete>
 	
-	
+	<!-- 기프티콘 교환을 위한 resultMap 생성 -->
 	<resultMap type="userDto" id="userDtoRm">
 	<id column="MEMBER_CODE" property="memberCode"/>
     <result column="MEMBER_ID" property="memberId"/>
@@ -135,7 +135,6 @@
 	<result column="GIFTICON_CODE" property="gifticonCode"/>
 	<result column="GIFTICON_NUMBER" property="gifticonNumber"/>
 	<result column="GIFTICON_EXDATE" property="gifticonExdate"/>
-	<result column="USE_POINT" property="usePoint"/>
 	</resultMap>
 	
 	<resultMap type="userVo" id="userVoRm">
@@ -144,6 +143,7 @@
 		<collection property="gifticonExchangeDto" resultMap="gifticonExchangeDtoRm"></collection>
 	</resultMap>
 	
+	<!-- 기프티콘 보유 조회 -->
 	<select id="userGifticonMulti" resultMap="userVoRm">
 		SELECT 
 		    MEMBERS.MEMBER_CODE,
@@ -151,7 +151,6 @@
 		    GIFTICON_EXCHANGE.GIFTICON_CODE,
 		    GIFTICON_EXCHANGE.GIFTICON_NUMBER,
 		    GIFTICON_EXCHANGE.GIFTICON_EXDATE,
-		    GIFTICON_EXCHANGE.USE_POINT,
 		    GIFTICON.BRAND_CODE,
 		    GIFTICON.MENU_CODE,
 		    GIFTICON.GIFTICON_NAME,
@@ -162,5 +161,10 @@
 		INNER JOIN GIFTICON ON GIFTICON_EXCHANGE.GIFTICON_CODE = GIFTICON.GIFTICON_CODE
 		WHERE MEMBERS.MEMBER_CODE = #{userDto.memberCode}
 	</select>
+	
+	<!-- 기프티콘 교환 후 포인트 수정 -->
+   	<update id="updatePoint">
+		UPDATE MEMBERS SET HOLD_POINT = #{holdPoint} WHERE MEMBER_CODE = #{memberCode}  
+	</update>
 	
 </mapper>

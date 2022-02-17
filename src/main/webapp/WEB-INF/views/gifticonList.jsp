@@ -8,6 +8,50 @@
 <title>Insert title here</title>
 <script src="resources/js/jquery-3.4.1.min.js"></script>
 <link href="<c:url value="/resources/css/adminMenu.css"/>" rel="stylesheet" />
+<script>
+var brandSltBool = false;
+var menuSltBool = false;
+
+	function brandSelect() {
+		var brandCode = $("#brandCode").val();
+		brandSltBool = true;
+		
+		switch(brandCode) {
+		case 'H1':
+			$("#menuCode option").remove();
+			$("#menuCode").append("<option selected disabled>메뉴를 선택해주세요</option>");
+			$("#menuCode").append("<option value=01>빅맥</option>");
+			$("#menuCode").append("<option value=02>1955버거</option>");
+			break;
+		case 'H2':
+			$("#menuCode option").remove();
+			$("#menuCode").append("<option selected disabled>메뉴를 선택해주세요</option>");
+			$("#menuCode").append("<option value=01>새우버거</option>");
+			$("#menuCode").append("<option value=02>불고기버거</option>");
+			break;
+		}
+	}
+	
+	function menuSelect() {
+		menuSltBool = true;
+	}
+
+	function conditionSearch() {
+
+		if(brandSltBool == false) {
+			$("#conditionSearch").attr("action","gifticonList");
+			$("#conditionSearch").submit();
+		} else if(menuSltBool == false) {
+			$("#conditionSearch").attr("action","sltGifticonBrand");
+			$("#conditionSearch").submit();
+		} else {
+			$("#conditionSearch").attr("action","sltGifticonBrandMenu");
+			$("#conditionSearch").submit();
+		}
+		
+		
+	}
+</script>
 </head>
 <body>
 	<!---------------------------------- HEADER ---------------------------------->
@@ -55,11 +99,28 @@
 	<!---------------------------------- CONTENT ---------------------------------->
 	<div id="content">
 		<c:choose>
-			<c:when test="${not empty gifticonList}">	
+			<c:when test="${not empty gifticonList}">
+				<form id="conditionSearch" method="POST">
+					<select id="brandCode" name="brandCode" onchange="brandSelect()">
+							<option value="" selected disabled>브랜드 선택</option>
+							<option value="H1">맥도날드</option>
+							<option value="H2">롯데리아</option>
+					</select>
+					
+					<select id="menuCode" name="menuCode" onchange="menuSelect()">
+							<option value="" selected disabled>-- 브랜드를 먼저 선택해주세요 --</option>
+					</select>
+				</form>
+				
+				<input type="button" value="조회" onClick="conditionSearch()">
+				<hr>
+				
 				<c:forEach var="gift" items="${gifticonList}">
-						<img src="<c:url value='${gift.gifticonImg}' />" alt="${gift.gifticonImg}" height="270" width="270"/>
-						<c:out value="${gift.gifticonName}" /> 
+						<div align="center">
+						<img src="<c:url value='${gift.gifticonImg}' />" alt="${gift.gifticonImg}" height="270" width="270"/><br>
+						<c:out value="${gift.gifticonName}" /><br>
 						<c:out value="${gift.gifticonPrice}" />
+						</div>
 				</c:forEach>
 			</c:when>
 			

@@ -41,4 +41,14 @@
 		DELETE FROM GIFTICON WHERE GIFTICON_CODE = #{gifticonCode} AND BRAND_CODE = #{brandCode} AND MENU_CODE = #{menuCode}
 	</delete>	
 	
+	<!-- 기프티콘 조건 조회 (브랜드) -->
+	<select id="sltGifticonBrand" resultType="gifticonDto">
+		SELECT * FROM GIFTICON WHERE BRAND_CODE = #{brandCode}
+	</select>
+	
+	<!-- 기프티콘 조건 조회 (브랜드, 메뉴) -->
+	<select id="sltGifticonBrandMenu" resultType="gifticonDto">
+		SELECT * FROM GIFTICON WHERE BRAND_CODE = #{brandCode} AND MENU_CODE = #{menuCode}
+	</select>
+	
 </mapper>
