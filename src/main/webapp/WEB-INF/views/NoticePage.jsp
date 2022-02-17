@@ -6,21 +6,16 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>공지사항</title>
-<style>
 
-/* table, td, th {
-  border : 1px solid black;
-  border-collapse : collapse;
-};
-table {
-  width : 300px;
-  height : 200px;
-}; */
-</style>
+<title>공지사항</title>
+<script type="text/javascript" src="resources/js/jquery-3.4.1.min.js"></script>
+<script>
+	
+</script>
 </head>
 <body>
 	<H4>공지사항</H4>
+<form>
 	<table border="1">
 		<tr>
 			<td width=40>번호</td>
@@ -40,11 +35,16 @@ table {
 			</tr>
 		</c:forEach>
 	</table>	
+	<input type="hidden" name="adminCode" /> 
+	<input type="hidden"name="noticeCode" />
+</form>
 	<br>
 	<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
     	<a href="Notice?page=${idx}">${idx}</a>
     </c:forEach>
 	<hr>
+	
+	<div class="board"></div>
 	
 </body>
 </html>

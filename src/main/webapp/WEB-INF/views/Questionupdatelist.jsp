@@ -68,8 +68,13 @@ input {
 							</tr>	
 							<tr>
 								<td>
-									<label for="qstnContent">내용 : </label><textarea id="qstnContent" name="qstnContent" >${ sltOne.qstnContent } </textarea>
+									<label for="qstnContent">내용 : </label><textarea id="qstnContent" name="qstnContent" >${ sltOne.qstnContent } 
+									</textarea>		
 									<input type="hidden" id="qstnImg" name="qstnImg" value="${sltOne.qstnImg }" />
+									<td>
+									<div id="test" contentEditable="true" style="overflow-x:auto; width:500px; height: 300px; border: solid; 1px; margin: 20px; line-height: 20px; background-image: ; " >
+									<img src="<c:url value='${sltOne.qstnImg }' />" alt="${sltOne.qstnImg }" height="150" width="150"/>
+									</div>									
 								</td>
 							</tr>
 							<tr>

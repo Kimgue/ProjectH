@@ -10,8 +10,12 @@
 <script src="resources/js/jquery-3.4.1.min.js"></script>
 <script>
 	$(document).ready(function() {
+		
+		const inputImage = document.getElementById("qstnImg");
+		inputImage.addEventListener("change", e => {readImage(e.target)});
+		
 		$("#submit").click(function() {
-
+			
 			if ($("#qstnTitle").val().length == 0) {
 				alert("제목을 입력해주세요");
 				$("#qstnTitle").focus();
@@ -25,58 +29,59 @@
 			}
 		});
 	});
-</script>
-<script type="text/javascript">
-	//이미지 미리보기
-	var sel_file;
-
-	$(document).ready(function() {
-		$("#file1").on("change", handleImgFileSelect);
-	});
-
-	function handleImgFileSelect(e) {
-		var files = e.target.files;
-		var filesArr = Array.prototype.slice.call(files);
-
-		var reg = /(.*?)\/(jpg|jpeg|png|bmp)$/;
-
-		filesArr.forEach(function(f) {
-			if (!f.type.match(reg)) {
-				alert("확장자는 이미지 확장자만 가능합니다.");
-				return;
-			}
-
-			sel_file = f;
-
-			var reader = new FileReader();
-			reader.onload = function(e) {
-				$("#img").attr("src", e.target.result);
-			}
-			reader.readAsDataURL(f);
-		});
+	
+	function readImage(input) {
+	    // 인풋 태그에 파일이 있는 경우
+	    if(input.files && input.files[0]) {
+	        // 이미지 파일인지 검사 (생략)
+	        // FileReader 인스턴스 생성
+	        const reader = new FileReader();
+	        // 이미지가 로드가 된 경우
+	        reader.onload = e => {
+	            const previewImage = document.getElementById("preview-image");
+	            previewImage.src = e.target.result;
+	        }
+	        // reader가 이미지 읽도록 하기
+	        reader.readAsDataURL(input.files[0]);
+	    }
 	}
-</script>
-<script type="text/javascript">
-	//파일 업로드
-	function fn_submit() {
+	
 
-		var form = new FormData();
-		form.append("file1", $("#file1")[0].files[0]);
-
-		jQuery.ajax({
-			url : "result",
-			type : "POST",
-			processData : false,
-			contentType : false,
-			data : form,
-			success : function(response) {
-				alert("성공하였습니다.");
-				console.log(response);
-			},
-			error : function(jqXHR) {
-				alert(jqXHR.responseText);
-			}
-		});
+	// 파일 업로드
+	function insert() {
+							
+		var result = confirm("등록하시겠습니까?");
+		if(result) {
+			alert("등록되었습니다");
+			
+			const uploadPath = "G:/rbtjd/WebProject/src/main/webapp/resources/images/Q&AImg";
+			
+			const imageInput = $("#qstnImg")[0];
+			if(imageInput.files.length == 0){
+			   $("#qstnInsert").submit();
+			} else {
+				const formData = new FormData();
+				formData.append("uploadFile", imageInput.files[0]);
+				formData.append("uploadPath", uploadPath);
+				
+				$.ajax({
+					type : "POST",
+					url : "fileUpload.do",
+					processData : false,
+					contentType : false,
+					data : formData,						
+					success : function(response) {
+						$("#testabc").attr("value","images/Q&AImg/"+response);
+						$("#qstnInsert").submit();
+					},
+					error : function(jqXHR) {
+						alert(jqXHR.responseText); 
+					}
+				});
+			}	
+		} else {
+			return false;
+		}
 	}
 </script>
 <style>
@@ -103,7 +108,7 @@ input {
 		<hr />
 
 		<section id="container" >
-			<form role="form" method="post" action="Questioninsert" encType ="multipart/form-data">
+			<form id="qstnInsert" role="form" method="post" action="Questioninsert" encType ="multipart/form-data">
 				<table>
 					<tbody>
 					<thead>
@@ -122,8 +127,9 @@ input {
 							id="qstnTitle" name="qstnTitle" /></td>
 					</tr>
 					<tr>
-						<td><label for="qstnContent">내용</label> <textarea
-								id="qstnContent" name="qstnContent"></textarea></td>
+						<td><label for="qstnContent">내용</label>
+						<textarea id="qstnContent" name="qstnContent"></textarea> 
+						</td>
 					</tr>
 					<tr>
 						<td><label for="qstnDate" id="qstnDate">작성날짜 : ${ date }</label>
@@ -131,13 +137,18 @@ input {
 							value="${date }"></td>	
 					</tr>
 					<tr>
-						<td>
-								<input type="file" id="qstnImg">
+						<td>	
+							
+							<input type="hidden" id="testabc" name="qstnImg">
+							<input type="file" id="qstnImg" name="uploadfile">
+							<img style="width: 100px;" id="preview-image" src="">
+							<div class="img"></div>
 							</td>
 						</tr>			
 					<tr>
 						<td>
-							<button type="submit" id="submit">작성</button>
+						<!-- <button type="submit" id="submit">작성</button> -->						
+							 <input type="button" value="작성" onclick="insert()"> 
 						</td>
 					</tr>
 					</tbody>
@@ -146,5 +157,6 @@ input {
 		</section>
 		<hr />
 	</div>
+	<!-- <textarea id="qstnContent" name="qstnContent"></textarea> -->
 </body>
 </html>

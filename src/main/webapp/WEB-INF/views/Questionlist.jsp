@@ -29,6 +29,15 @@
 		f.method= "post"
 		f.submit();
 	}; 
+	
+	//페이지 번호 이동
+	$('#pagingDiv a').click(function(e){
+		e.preventDefault();
+		$('#pageNum').val($(this).attr("href"));
+		pagingForm.submit();
+		
+	});
+	
 </script>
 <style>
 table, td, th {
@@ -75,10 +84,12 @@ table {
 		
 	
 		<br>
+		<div id="pagingDiv">
 		<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}"
 			var="idx">
 			<a href="Questionlist?page=${idx}">${idx}</a>
 		</c:forEach>
+		</div>
 		<hr>
 		<input type="button" value="작성" onClick="insert()"> 
 		<input type="button" value="메인페이지" onClick="location.href='main.jsp'">

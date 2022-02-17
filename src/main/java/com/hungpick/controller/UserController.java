@@ -139,6 +139,7 @@ public class UserController {
 		pageMaker.setTotalCount(question.listCount(memberCode));
 		int currentPage = cri.getPage();
 
+		
 		model.addAttribute("pageMaker", pageMaker);
 		model.addAttribute("currentPage", currentPage);
 		model.addAttribute("listpage", question.listPage(cri, memberCode));
@@ -150,7 +151,7 @@ public class UserController {
 	/*-----------------------Q&A 업데이트 -------------------------*/
 	@RequestMapping("QuestionUpdate")
 	public String updateE(Model model, @RequestParam("memberCode") String memberCode, Question qes, Criteria cri,
-			HttpSession session) throws Exception {
+			HttpSession session,String qstnCode) throws Exception {
 		logger.info("updatelist");
 		question.update(qes);
 		memberCode = (String) session.getAttribute("memberCode");
@@ -160,6 +161,7 @@ public class UserController {
 		pageMaker.setTotalCount(question.listCount(memberCode));
 		int currentPage = cri.getPage();
 
+		model.addAttribute("sltOne", question.sltOne(memberCode, qstnCode));
 		model.addAttribute("pageMaker", pageMaker);
 		model.addAttribute("currentPage", currentPage);
 		Question member = question.MemberCode(memberCode);
@@ -190,7 +192,7 @@ public class UserController {
 		model.addAttribute("listpage", list);
 		model.addAttribute("member", question.MemberCode(memberCode));
 
-		return "Questionlist";
+		return "redirect:/Questionlist";
 
 	}
 
