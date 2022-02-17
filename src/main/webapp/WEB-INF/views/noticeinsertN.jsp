@@ -10,6 +10,10 @@
 <script src="js/jquery-3.4.1.min.js"></script>
 <script>	
 	$(document).ready(function(){
+		
+		const inputImage = document.getElementById("noticeImg");
+		inputImage.addEventListener("change", e => {readImage(e.target)});
+		
 		$("#submit").click(function(){
 			
 			if($("#noticeTitle").val().length == 0)
@@ -25,8 +29,7 @@
 			}
 		});
 	});
-</script>
-<script>	
+	
 	function readImage(input) {
 	    // 인풋 태그에 파일이 있는 경우
 	    if(input.files && input.files[0]) {
@@ -81,21 +84,6 @@
 		}
 	}
 </script>
-<style>
-/* input {
-  
-  vertical-align: top; 
-  width:500px;
-  
-}
-#noticeContent
-{
-	width:500px; 
-	height:50px; 
-    resize:none;
-	vertical-align:-20px;
-} */
-</style>
 </head>
 <body>
 		<div id="root">
@@ -137,7 +125,15 @@
 								<td> 
 									<label for="noticeDate" id="noticeDate">작성날짜 : ${ date }</label>
 									<input type="hidden" id="noticeDate" name="noticeDate" value="${ date }">  
+								</td>
+								</tr>
+								<tr>
+								<td>
 									<input type="hidden" id="noticeImg" name="noticeImg" value="noticeImg">
+								
+										<input type="file" id="noticeImg" name="uploadfile">
+										<img style="width: 100px;" id="preview-image" src="">
+										<div class="img"></div>
 								</td>
 								</tr>
 							<tr>

@@ -42,12 +42,12 @@
 		</ul>
 
 		<ul>
-			<li>공지사항 조회</li>
-			<li>공지사항 등록</li>
+			<li><a href="AdminNoticelist">공지사항 조회</a></li>
+			<li><a href="noticeinsertN">공지사항 등록</a></li>
 		</ul>
 
 		<ul>
-			<li>질문과 답변</li>
+			<li><a href="Nconfirm">질문과 답변</a></li>
 		</ul>
 
 		<ul>
