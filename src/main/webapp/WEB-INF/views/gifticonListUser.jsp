@@ -8,58 +8,48 @@
 <title>Insert title here</title>
 <script src="resources/js/jquery-3.4.1.min.js"></script>
 <link href="<c:url value="/resources/css/adminMenu.css"/>" rel="stylesheet" />
+<script>
+	$(document).ready(function() {
+		$(".btn").click(function() {
+			var a = $(this).attr("id");
+			
+			<c:choose>
+			<c:when test="${loginBool eq true}">
+				$("#form"+a).submit();
+			</c:when>
+			
+			<c:otherwise>
+				alert("로그인이 필요합니다");
+				document.location.href = "userLogin";
+			</c:otherwise>
+		</c:choose>
+		});
+	});
+</script>
 </head>
 <body>
 	<!---------------------------------- HEADER ---------------------------------->
 	<div id="header">
-		<h1>관리 페이지</h1>
+		<h1>이달의 기프티콘</h1>
 	</div>
 
 	<!---------------------------------- NAV ---------------------------------->
 	<div id="nav">
-		<ul>
-			<li>메뉴</li>
-			<li>메뉴 등록</li>
-			<li>메뉴 수정</li>
-			<li>메뉴 삭제</li>
-		</ul>
-
-		<ul>
-			<li>회원 조회</li>
-		</ul>
-
-		<ul>
-			<li>브랜드</li>
-			<li>브랜드 등록</li>
-			<li>브랜드 수정</li>
-			<li>브랜드 삭제</li>
-		</ul>
-
-		<ul>
-			<li>공지사항 조회</li>
-			<li>공지사항 등록</li>
-		</ul>
-
-		<ul>
-			<li>질문과 답변</li>
-		</ul>
-
-		<ul>
-			<li><a href="gifticonList">기프티콘 조회</a></li>
-			<li><a href="gifticonInsert">기프티콘 등록</a></li>
-			<li><a href="gifticonUpdate">기프티콘 수정</a></li>
-			<li><a href="gifticonDelete">기프티콘 삭제</a></li>
-		</ul>
+		
 	</div>
 
 	<!---------------------------------- CONTENT ---------------------------------->
 	<div id="content">
 		<c:choose>
-			<c:when test="${not empty gifticonList}">	
+			<c:when test="${not empty gifticonList}">			
 				<c:forEach var="gift" items="${gifticonList}">
+					<form id="formbtn${gift.gifticonCode}" action="gifticonExchange" method="post">
+						<input type="hidden" name="gifticonCode" value="${gift.gifticonCode}" />
 						<img src="<c:url value='${gift.gifticonImg}' />" alt="${gift.gifticonImg}" height="270" width="270"/>
 						<c:out value="${gift.gifticonName}" /> 
 						<c:out value="${gift.gifticonPrice}" />
+					</form>
+					<input type="button" class="btn" id="btn${gift.gifticonCode}" value="교환">
 				</c:forEach>
 			</c:when>
 			

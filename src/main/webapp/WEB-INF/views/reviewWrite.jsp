@@ -6,35 +6,25 @@
 <head>
 <meta charset="UTF-8">
 <title>상품 리뷰 작성</title>
-<style>
-input[type=text]::-ms-clear{
-	display: none;
-}
-</style>
 <script src="resources/js/jquery-3.4.1.min.js"></script>
 <script>
 	var msg = "<c:out value='${msg}'/>";
 	var url = "<c:out value='${url}'/>";
+	
 	if(msg != null && msg !=''){
 	alert(msg);
 	location.href = url;
 	}
 	
-	$(function() {
-	    $("#bizFile").change(function() {
-	    	var filename = $('fileName');
-			if(this.files[0] == undefined){
-				filename.innerText = '선택된 파일없음';
-				return;
-			}
-			filename.innerText = this.files[0].name;
-	    });
+	
+
 	
 </script>
 </head>
 <body>
 
 <div align="center">
+		<button onclick="history.back()">돌아가기</button>	
 		<form action="reviewWriteSubmit" method="post" enctype="multipart/form-data">
 			<br> 
 			<input type='hidden' name='brandCode' value='${brandCode}' readonly/>
@@ -45,17 +35,21 @@ input[type=text]::-ms-clear{
 			<input type='text' name='menuName' value='${menuName}' readonly/>
 			<br> 
 			리뷰점수: 
-			<input type='number' name='reviewScore' min='1' max='5' required/>
+			<input type='number' name='reviewScore' min='1' max='5' step='0.1' required/>
 			<br> 
 			리뷰내용:
 			<input type='text' name='reviewContent' style="width:300px;height:200px;" required/>
 			<br> 
 			리뷰이미지1:
-			<input type="file" name="uploadfile" required/>
+			<img style="width: 100px;" id="preview-image" src="" />
+			<input type="hidden" id="reviewImg1" name="reviewImg1" /> 
+			<input type="file" id="input-image" name="uploadfile" required />
 			<br> 
 			리뷰이미지2:
-			<input type="file" name="uploadfile" required/>
-			<br> 
+			<img style="width: 100px;" id="preview-image" src="" />
+			<input type="hidden" id="reviewImg1" name="reviewImg1" /> 
+			<input type="file" id="input-image" name="uploadfile" required />
+			<br>
 			<input type="submit" value="전송">
 			<input type="reset" value="취소">
 		</form>

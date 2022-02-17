@@ -42,14 +42,6 @@ public class UserController {
  	
 	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
-
-	@RequestMapping(value = "/")
-	public String home() {
-		logger.info("home called ==========");
-
-		return "main";
-	}
-	
 	/*--------------------- 공지사항 등록 페이지로 이동 ---------------------*/
 	@RequestMapping("noticeinsertN")
 	public void noticeinsertN(Model model) {

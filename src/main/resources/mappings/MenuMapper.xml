@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
@@ -77,3 +78,84 @@
 	</select>
 	
 </mapper>
+=======
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hungpick.dao.IMenuDao"> <!-- "<" 는 문법오류나서  "<![CDATA[ < ]]>" 이렇게 해야한다. -->
+	
+	<!-- 메뉴 전체 불러오기 -->
+	<select id="sltMulti" resultType="menuDto"> 
+		SELECT * FROM MENU
+	</select>
+	
+	<!-- 메뉴 재료 불러오기 -->
+	<select id="sltIngredients" resultType="menuDto">
+		SELECT DISTINCT MENU_INGREDIENTS FROM MENU
+	</select>
+	
+	<!-- 브랜드코드와 메뉴코드로 메뉴 찾기 -->
+	<select id="sltOneMenu" parameterType="String" resultType="menuDto">
+		SELECT * FROM MENU WHERE BRAND_CODE = #{ brandCode } AND MENU_CODE = #{ menuCode }
+	</select>
+	
+	<!-- 메뉴  높은 가격 순-->
+	<select id="sltMenuHighPrice" resultType="menuDto">
+		SELECT * FROM MENU ORDER BY MENU_PRICE DESC
+	</select>
+	
+	<!-- 메뉴  낮은 가격 순-->
+	<select id="sltMenuLowPrice" resultType="menuDto">
+		SELECT * FROM MENU ORDER BY MENU_PRICE ASC
+	</select>
+	
+	<resultMap type="brandDto" id="BrandDtoRm">
+	<id column="BRAND_CODE" property="brandCode"/>
+    <result column="BRAND_NAME" property="brandName"/>
+    <result column="BRAND_IMG" property="brandImg"/>
+    <result column="BRAND_DESCRIPTION" property="brandDescription"/>
+	</resultMap>
+ 
+	<resultMap type="menuDto" id="MenuDtoRm">
+	<id column="BRAND_CODE" property="brandCode"/>
+	<id column="MENU_CODE" property="menuCode"/>
+    <result column="MENU_NAME" property="menuName"/>
+    <result column="MENU_IMG" property="menuImg"/>
+    <result column="MENU_PRICE" property="menuPrice"/>
+    <result column="MENU_DESCRIPTION" property="menuDescription"/>
+    <result column="MENU_INGREDIENTS" property="menuIngredients"/>   
+	</resultMap>
+	
+	<resultMap type="menuVo" id="MenuVoRm">
+		<collection property="brandDto" resultMap="BrandDtoRm"></collection >
+        <collection property="menuDto" resultMap="MenuDtoRm"></collection >
+	</resultMap>
+	
+	<!-- 메뉴 조건검색 -->
+	<select id="sltSearch" parameterType="String" resultMap="MenuVoRm">
+		SELECT A.BRAND_NAME, B.BRAND_CODE, B.MENU_CODE, B.MENU_NAME,
+		 B.MENU_PRICE, B.MENU_IMG, B.MENU_DESCRIPTION, B.MENU_INGREDIENTS 
+		FROM BRAND A JOIN MENU B ON A.BRAND_CODE = B.BRAND_CODE 
+			<if test="brandCode != null and brandCode != ''">
+				AND B.BRAND_CODE IN
+				<foreach item="brandCode" collection="brandCode" open="(" close=")" separator="," >
+				 #{brandCode}
+				</foreach>	
+			</if>	
+			<if test="menuPrice != null and menuPrice != ''">
+				AND B.MENU_PRICE <![CDATA[ <= ]]>  #{menuPrice}
+			</if>
+			<if test="menuName != null and menuName != ''">
+				AND B.MENU_NAME LIKE '%' || #{menuName} || '%'
+			</if>			
+			<if test="menuIngredients != null and menuIngredients != ''">
+				AND B.MENU_INGREDIENTS IN
+				<foreach item="menuIngredients" collection="menuIngredients" open="(" close=")" separator="," >
+				 #{menuIngredients}
+				 </foreach>
+			</if>
+	</select>
+	
+</mapper>
+>>>>>>> branch 'master' of https://github.com/Kimgue/WebProject.git

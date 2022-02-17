@@ -31,7 +31,7 @@ public class AdminServiceImpl implements IAdminService{
 			session.setAttribute("adminName", Dto.getAdminName());
 		}
 		
-		return "redirect:/main.jsp";
+		return "redirect:/main";
 		
 		
 		

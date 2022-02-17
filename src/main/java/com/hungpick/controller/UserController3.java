@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.hungpick.dto.UserDto;
+import com.hungpick.dto.UserVo;
 import com.hungpick.service.IUserService;
 
 @Controller
@@ -61,6 +62,12 @@ public class UserController3 {
 	/*--------------------- 회원탈퇴완료 페이지로 이동 ---------------------*/
 	@RequestMapping("userDeleteComplete")
 	public void userDeleteComplete() {
+	}
+	
+	/*--------------------- 보유 기프티콘 페이지로 이동 ---------------------*/
+	@RequestMapping("userGifticon")
+	public void userGifticon(UserVo Vo, Model model) throws Exception {
+		userService.userGifticonMulti(Vo, model);
 	}
 	
 	

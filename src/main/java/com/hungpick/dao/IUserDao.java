@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import com.hungpick.dto.UserDto;
+import com.hungpick.dto.UserVo;
 
 public interface IUserDao {
 	
@@ -15,6 +16,12 @@ public interface IUserDao {
 	public void registMember(UserDto Dto) throws Exception;
 	
 	/*------------------ Read ------------------*/
+	
+	// 보유 기프티콘 조회
+	public UserDto userGifticonOne(String memberCode) throws Exception; 
+	
+	// 보유 기프티콘 조회
+	public List<UserVo> userGifticonMulti(UserVo Vo) throws Exception;
 	
 	// 다건조회
 	public List<UserDto> sltMulti(UserDto Dto) throws Exception;

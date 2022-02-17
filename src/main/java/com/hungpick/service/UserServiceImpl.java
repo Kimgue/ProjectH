@@ -1,6 +1,7 @@
 package com.hungpick.service;
 
 import java.io.PrintWriter;
+
 import java.util.HashMap;
 import java.util.List;
 
@@ -16,6 +17,7 @@ import org.springframework.ui.Model;
 import com.hungpick.dao.IUserDao;
 import com.hungpick.dao.IUserDaoHist;
 import com.hungpick.dto.UserDto;
+import com.hungpick.dto.UserVo;
 
 import net.nurigo.java_sdk.api.Message;
 import net.nurigo.java_sdk.exceptions.CoolsmsException;
@@ -66,11 +68,23 @@ public class UserServiceImpl implements IUserService {
 			session.setAttribute("memberNumber", Dto.getMemberNumber());
 			session.setAttribute("memberEmail", Dto.getMemberEmail());
 			session.setAttribute("memberDate", Dto.getMemberDate());
-			session.setAttribute("holdPoint", Dto.getHoldPoint());
-			return "main";
+			session.setAttribute("holdPoint", Dto.getHoldPoint());			
+			
+			String prevUrl = (String) session.getAttribute("prevUrl");
+			System.out.println("확인 : " + prevUrl);
+			if(prevUrl != null ) {
+				
+				session.removeAttribute("prevUrl");
+				return prevUrl;
+			}
+			
+			
+			return "redirect:/main";
+			
 		} else {
 			session.setAttribute("loginNotice", "아이디 또는 비밀번호가 잘못 입력 되었습니다.\r\n" + "아이디와 비밀번호를 정확히 입력해 주세요.");
 			session.setMaxInactiveInterval(1);
+	
 			return "redirect:/userLogin";
 		}
 	}
@@ -79,7 +93,7 @@ public class UserServiceImpl implements IUserService {
 	@Override
 	public String userLogout(HttpSession session) throws Exception {
 		session.invalidate();
-		return "main";
+		return "redirect:/main";
 
 	}
 
@@ -232,5 +246,26 @@ public class UserServiceImpl implements IUserService {
 		} 
 	}
 
+	// 보유 기프티콘 단건 조회
+	@Override
+	public String userGifticonOne(String memberCode, Model model) throws Exception {
+		UserDto Dto = userDao.userGifticonOne(memberCode);
+		
+		model.addAttribute("userGifticon",Dto);
+		
+		return "userGifticon";
+	}
+
+	// 보유 기프티콘 다건 조회
+	@Override
+	public String userGifticonMulti(UserVo Vo, Model model) throws Exception {
+
+		List<UserVo> list = userDao.userGifticonMulti(Vo);
+		model.addAttribute("userVo", list);
+		
+		return "userGifticon";
+	}
+
+	
 
 }

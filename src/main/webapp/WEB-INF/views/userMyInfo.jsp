@@ -1,3 +1,5 @@
+
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -294,6 +296,10 @@
 		});
 		
 	});
+	
+	function userGifticon() {
+		$("#userGifticon").submit();
+	}
 </script>
 </head>
 <body>
@@ -401,6 +407,10 @@
 		</div>
 		<br>
 		<input type="button" value="회원탈퇴" onClick="location.href='userDelete'">
+		<form id="userGifticon" action="userGifticon" method="POST">
+			<input type="hidden" id="memberCode" name="userDto.memberCode" value="${memberDTO.memberCode}">
+			<input type="button" value="보유 기프티콘" onClick="userGifticon()">
+		</form>
 	</c:otherwise>
 </c:choose>
 
