@@ -12,7 +12,7 @@
 	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
         <property name="port" value="587" />
         <property name="username" value="hungrypickdev@gmail.com" />
-        <property name="password" value="hgpkdev1!" />
+        <property name="password" value="nglqvevjusjipcdb" />
         <property name="defaultEncoding" value="UTF-8" />
         <property name="javaMailProperties">
             <props>
