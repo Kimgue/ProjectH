@@ -47,6 +47,16 @@
 
 <body class="bg-gradient-primary">
 
+	<header class="d-flex align-items-center justify-content-center">
+		<div class="col-xl-2 col-lg-12 col-md-9">
+			<div class="card border-0 my-5 text-center bg-transparent">
+				<a href="main" class="text-decoration-none">
+                	<h1 class="font-weight-bolder text-warning">HUNGPICK</h1>
+            	</a>
+			</div>
+		</div>
+    </header>
+
     <div class="container">
 
         <!-- Outer Row -->
@@ -66,15 +76,18 @@
                                         <p class="mb-4">비밀번호를 찾고자 하는 아이디를 입력해주세요</p>
                                     </div>
                                     
-                                    <form id="FindPw" action="userFindPwSubmit" method="post">
+                                    <form id="FindPw" action="userFindPwSubmit" method="post">                                        
                                         <div class="form-group row">
-                                        	<div class="col-sm-8">
-                                        		<input type="text" class="form-control form-control-user" id="memberId" name="memberId" placeholder="아이디를 입력해주세요">
-                                        	</div>
-                                        	<div class="col-sm-3">
-                                            	<input type="button" class="btn btn-primary form-control form-control-user" value="다음" onclick="FindPw()">
-                                            </div>
-                                        </div>
+		                            		<div class="col-sm-9">
+		                            			<input type="text" class="form-control form-control-user" id="memberId" name="memberId" placeholder="아이디를 입력해주세요">
+		                            		</div>
+		                            		
+		                            		<div class="form-inline">
+			                            		<a href="#" id="Email_Check" class="form-control btn btn-primary" onclick="FindPw()">
+		                                        	<i class="fas fa-check"></i>
+		                                    	</a>
+			                            	</div>
+				                        </div>
                                     </form>
                                     <hr>
                                     <div class="text-center">

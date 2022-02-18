@@ -13,16 +13,30 @@
 	<select id="sltMulti" resultType="userDto">
 		SELECT 
 			LPAD(MEMBER_CODE, 5, '0') AS MEMBER_CODE,
-			MEMBER_ID, MEMBER_PW,
-			MEMBER_NAME, MEMBER_NICKNAME, 
-			MEMBER_EMAIL, MEMBER_NUMBER, 
-			MEMBER_DATE, HOLD_POINT 
+			MEMBER_ID, 
+			MEMBER_PW,
+			MEMBER_NAME, 
+			MEMBER_NICKNAME, 
+			MEMBER_EMAIL, 
+			MEMBER_NUMBER, 
+			TO_CHAR(MEMBER_DATE,'YYYY"년" MM"월" DD"일" HH24"시" MI"분"') AS MEMBER_DATE,
+			HOLD_POINT 
 		FROM MEMBERS ORDER BY TO_NUMBER(MEMBER_CODE)
 	</select>
 	
 	<!-- 로그인 -->
 	<select id="userLogin" resultType="userDto">
-		SELECT * FROM MEMBERS WHERE MEMBER_ID = #{memberId} AND MEMBER_PW = #{memberPw}
+		SELECT
+			MEMBER_CODE,
+			MEMBER_ID, 
+			MEMBER_PW,
+			MEMBER_NAME, 
+			MEMBER_NICKNAME, 
+			MEMBER_EMAIL, 
+			MEMBER_NUMBER, 
+			TO_CHAR(MEMBER_DATE,'YYYY"년" MM"월" DD"일" HH24"시" MI"분"') AS MEMBER_DATE,
+			HOLD_POINT 
+		FROM MEMBERS WHERE MEMBER_ID = #{memberId} AND MEMBER_PW = #{memberPw}
 	</select>
 	
 	<!-- 회원가입 -->
@@ -42,7 +56,7 @@
 			#{memberNickname},
 			#{memberEmail},
 			#{memberNumber},
-			SYSDATE,
+			TO_DATE(SYSDATE,'yyyy-mm-dd hh24:mi'),
 			'0'
 		)
 	</insert>

@@ -14,8 +14,7 @@
 <title>헝픽 로그인</title>
 
 <link href="resources/css/sb-admin-2.min.css" rel="stylesheet">
-<script src="https://kit.fontawesome.com/730c440743.js"
-	crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/730c440743.js" crossorigin="anonymous"></script>
 <script src="resources/js/jquery-3.4.1.min.js"></script>
 <script>
 	function login() {
@@ -25,6 +24,7 @@
 		if (idChk == "HungPick1" && pwChk == "12341234") {
 			$("#login").attr("action", "adminLoginTry");
 			$("#login").submit();
+			
 		} else {
 			$("#login").attr("action", "userLoginTry");
 			$("#login").submit();
@@ -36,13 +36,22 @@
 
 <body class="bg-gradient-primary">
 
+	<header class="d-flex align-items-center justify-content-center">
+		<div class="col-xl-2 col-lg-12 col-md-9">
+			<div class="card border-0 my-5 text-center bg-transparent">
+				<a href="main" class="text-decoration-none">
+                	<h1 class="font-weight-bolder text-warning">HUNGPICK</h1>
+            	</a>
+			</div>
+		</div>
+    </header>
+    
 	<div class="container">
-
+		
 		<!-- Outer Row -->
 		<div class="row justify-content-center">
-
+			
 			<div class="col-xl-10 col-lg-12 col-md-9">
-
 				<div class="card o-hidden border-0 shadow-lg my-5">
 					<div class="card-body p-0">
 						<!-- Nested Row within Card Body -->
@@ -63,6 +72,9 @@
 											<input type="password" class="form-control form-control-user"
 												id="Pw" name="memberPw" placeholder="비밀번호를 입력해주세요">
 										</div>
+										<div class="form-group">
+											${loginNotice}
+										</div>										
 										<hr>
 										<input type="button" class="btn btn-primary btn-user btn-block" value="로그인" onclick="login()">
 									</form>
@@ -81,11 +93,8 @@
 						</div>
 					</div>
 				</div>
-
 			</div>
-
 		</div>
-
 	</div>
 
 	<script src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

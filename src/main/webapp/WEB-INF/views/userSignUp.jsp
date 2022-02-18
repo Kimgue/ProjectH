@@ -13,7 +13,6 @@
     <title>헝픽 회원가입</title>
     
 	<link href="resources/css/sb-admin-2.min.css" rel="stylesheet">
-	<link href="resources/css/user.css" rel="stylesheet">
 	<script src="https://kit.fontawesome.com/730c440743.js" crossorigin="anonymous"></script>
 	<script src="resources/js/jquery-3.4.1.min.js"></script>
 	<script>
@@ -101,7 +100,7 @@ $(document).ready(function() {
 		var val_Email = $("#memberEmail").val();
 		
 		if (val_Email == "") {
-			$("#resultEmail").text("이메일을 입력해주세요").css("color", "red");
+			alert("이메일을 입력해주세요");
 			checkEmail = false;
 			return false;
 		} else if (validateEmail.test($('#memberEmail').val())) {
@@ -112,35 +111,34 @@ $(document).ready(function() {
 					var url = "sendEmail.do";
 					$.getJSON(url,{"mail" : val_Email}, function(json) {
 						
-						$("#resultEmail").text("인증번호가 전송되었습니다").css("color","blue");
+						alert("인증번호 발송이 완료되었습니다.");
 						$("#memberEmail").prop("readonly", true);
 						$("#EmailChk").show();
 						
 						$("#Email_Check").click(function() {
 							var Email_Number = $("#Email_Number").val();
 							if (Email_Number == "") {
-								$("#resultEmailChk").text("인증 번호를 입력해주세요").css("color","red");
+								alert("인증번호를 입력해주세요");
 							} else if (Email_Number == json.key) {
-								$("#resultEmailChk").text("인증 완료되었습니다").css("color","blue");
-								$("#resultEmail").text("인증 완료되었습니다").css("color","blue");
+								alert("인증완료되었습니다");
 								$("#EmailChk").hide();
 								$("#Email_Transmit").hide();
 								checkEmail = true;
 							} else {
-								$("#resultEmailChk").text("잘못된 인증번호입니다").css("color","red");
+								alert("잘못된 인증번호입니다");
 								checkEmail = false;
 								return false;
 							}
 						});
 					});
 				} else {
-					$("#resultEmail").text("이미 존재하는 이메일입니다").css("color","red");
+					alert("이미 존재하는 이메일입니다");
 					checkEmail = false;
 					return false;
 				}
 			});
 		} else {
-			$("#resultEmail").text("형식에 맞지 않는 이메일입니다").css("color", "red");
+			alert("형식에 맞지 않는 이메일입니다");
 			checkEmail = false;
 			return false;
 		}
@@ -247,7 +245,7 @@ $(document).ready(function() {
 	$("#Number_Transmit").click(function() {
 		var val_Number = $("#memberNumber").val();
 		if (val_Number == "") {
-			$("#resultNumber").text("전화번호를 입력해주세요").css("color", "red");
+			alert("전화번호를 입력해주세요");
 			checkNumber = false;
 		} else if (validateNumber.test($('#memberNumber').val())) {
 			var url = "chkNumber.do";
@@ -255,7 +253,6 @@ $(document).ready(function() {
 				var result_text = json.result;
 				var result = eval(result_text);
 				if (result) {
-					$("#resultNumber").text("사용 가능한 전화번호입니다").css("color", "blue");
 					var code2 = ""; 
 					$("#NumberChk").show();
 					alert("인증번호 발송이 완료되었습니다.\n휴대폰에서 인증번호 확인을 해주십시오"); 
@@ -271,12 +268,12 @@ $(document).ready(function() {
 						emailData = data;
 					}});
 				} else {
-					$("#resultNumber").text("사용할 수 없는 전화번호입니다").css("color", "red");
+					alert("사용할 수 없는 전화번호입니다");
 					checkNumber = false;
 				}
 			});	
 		} else {
-			$("#resultNumber").text("사용할 수 없는 전화번호입니다").css("color", "red");
+			alert("사용할 수 없는 전화번호입니다");
 			checkNumber = false;
 		}
 	});
@@ -285,12 +282,12 @@ $(document).ready(function() {
 	$("#Number_Check").click(function() {
 		var val_Number_Number = $("#Number_Number").val();
 		if(emailData == val_Number_Number) {
-			$("#resultNumber").text("인증 완료되었습니다").css("color","blue");
+			alert("인증 완료되었습니다");
 			$("#NumberChk").hide();
 			$("#Number_Transmit").hide();
 			checkNumber = true;
 		} else {
-			$("#resultNumber").text("잘못된 인증번호입니다").css("color","red");
+			alert("잘못된 인증번호입니다");
 			$("#Number_Number").attr("value", "");
 		}
 	});
@@ -300,6 +297,17 @@ $(document).ready(function() {
 </head>
 
 <body class="bg-gradient-primary">
+
+	<header class="d-flex align-items-center justify-content-center">
+		<div class="col-xl-2 col-lg-12 col-md-9">
+			<div class="card border-0 my-5 text-center bg-transparent">
+				<a href="main" class="text-decoration-none">
+                	<h1 class="font-weight-bolder text-warning">HUNGPICK</h1>
+            	</a>
+			</div>
+		</div>
+    </header>
+    
     <div class="container">
         <div class="card o-hidden border-0 shadow-lg my-5">
             <div class="card-body p-0">
@@ -310,92 +318,100 @@ $(document).ready(function() {
                         <div class="p-5">
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">회원가입을 환영합니다!</h1>
-                            </div>
-                            <form id="UserSignUp" action="userSignUpSubmit" method="post">
-                            	<div class="testcss">
-	                                <div class="form-group">
-		                                <input type="text" class="form-control form-control-user" id="memberId" name="memberId" placeholder="아이디">
-		                                <div id="resultId"></div>
-	                                </div>
-								</div>
-								
-								<div class="testcss">
-                                <div class="form-group">
-                                    <input type="password" class="form-control form-control-user" id="memberPw" name="memberPw" placeholder="비밀번호">
-                                    <div id="resultPw"></div>
-                                </div>
-                                </div>
-                                
-                                <div class="testcss">
-                                <div class="form-group row">
-                                	<div class="col-sm-6 mb-3 mb-sm-0">
-	                                	<input type="text" class="form-control form-control-user" id="memberName" name="memberName" placeholder="이름">
-	                                	<div id="resultName"></div>
-                                	</div>
-                                	
-                                	<div class="col-sm-6">
-	                                	<input type="text" class="form-control form-control-user" id="memberNickname" name="memberNickname" placeholder="닉네임">
-	                                	<div id="resultNickname"></div>                                	
-                                	</div>
-                                </div>
-                                </div>
-                                
-                                <div class="testcss">
-                                <div class="form-group row">
-                                	<div class="col-sm-9">
-                                    	<input type="text" class="form-control form-control-user" id="memberEmail" name="memberEmail" placeholder="이메일을 입력해주세요">
-                                    	<div id="resultEmail"></div>   
-                                    </div>
-									<div class="col-sm-3">
-										<input type="button" class="btn btn-primary" id="Email_Transmit" value="인증번호 전송">
-										
-                                    </div>
-                                </div>
-                                </div>
+                            
+                            <form class="user" id="UserSignUp" action="userSignUpSubmit" method="post">
+                            	
+                            	<div class="form-group row">
+                            		<div class="col-sm-7">
+                            		<input type="text" class="form-control form-control-user" id="memberId" name="memberId" placeholder="아이디">
+                            		</div>
+                            		
+                            		<div class="form-inline">
+	                            		<div id="resultId" class="form-control-plaintext"></div>
+	                            	</div>
+		                        </div>
 
-								<div class="testcss" id="EmailChk">
-                                <div class="form-group row">
-                                	<div class="col-sm-9">
-                                    	<input type="text" class="form-control form-control-user" id="Email_Number" placeholder="인증번호 입력">
-                                    	<div id="resultEmailChk"></div>
-                                    </div>
-									<div class="col-sm-3">
-										<input type="button" class="btn btn-primary" id="Email_Check" value="인증번호 확인">
-										
-                                    </div>
-                                </div>
-                                </div>                                
+                            	<div class="form-group row">
+                            		<div class="col-sm-7">
+                            			<input type="password" class="form-control form-control-user" id="memberPw" name="memberPw" placeholder="비밀번호">
+                            		</div>
+                            		
+                            		<div class="form-inline">
+	                            		<div id="resultPw" class="form-control-plaintext"></div>
+	                            	</div>
+		                        </div>
 
- 								<div class="testcss">
-                                <div class="form-group row">
-                                	<div class="col-sm-9">
-                                    	<input type="text" class="form-control form-control-user" id="memberNumber" name="memberNumber" placeholder="전화번호를 입력해주세요">
-                                    	<div id="resultNumber"></div> 
-                                    </div>
-									<div class="col-sm-3">
-										<input type="button" class="btn btn-primary" id="Number_Transmit" value="인증번호 전송">
-										
-                                    </div>
-                                </div>
-                                </div>
+                            	<div class="form-group row">
+                            		<div class="col-sm-7">
+                            			<input type="text" class="form-control form-control-user" id="memberName" name="memberName" placeholder="이름">
+                            		</div>
+                            		
+                            		<div class="form-inline">
+	                            		<div id="resultName" class="form-control-plaintext"></div>
+	                            	</div>
+		                        </div>
 
-								<div class="testcss" id="NumberChk">
-                                <div class="form-group row">
-                                	<div class="col-sm-9">
-                                    	<input type="text" class="form-control form-control-user" id="Number_Number" placeholder="인증번호 입력">
-                                    	<div id="resultNumberChk"></div>   
-                                    </div>
-									<div class="col-sm-3">
-										<input type="button" class="btn btn-primary" id="Number_Check" value="인증번호 확인">
-										
-                                    </div>
-                                </div>
-                                </div>    
-                                
-                                
-                                <input type="button" class="btn btn-primary btn-user btn-block" value="회원가입">
+                            	<div class="form-group row">
+                            		<div class="col-sm-7">
+                            			<input type="text" class="form-control form-control-user" id="memberNickname" name="memberNickname" placeholder="닉네임">
+                            		</div>
+                            		
+                            		<div class="form-inline">
+	                            		<div id="resultNickname" class="form-control-plaintext"></div>
+	                            	</div>
+		                        </div>
+
+                            	<div class="form-group row">
+                            		<div class="col-sm-7">
+                            			<input type="text" class="form-control form-control-user" id="memberEmail" name="memberEmail" placeholder="이메일을 입력해주세요">
+                            		</div>
+                            		
+                            		<div class="form-inline">
+	                            		<a href="#" id="Email_Transmit" class="form-control btn btn-primary">
+                                        	<i class="fas fa-solid fa-envelope"></i>
+                                    	</a>
+	                            	</div>
+		                        </div>
+
+                            	<div id="EmailChk" class="form-group row">
+                            		<div class="col-sm-7">
+                            			<input type="text" class="form-control form-control-user" id="Email_Number" placeholder="인증번호 입력">
+                            		</div>
+                            		
+                            		<div class="form-inline">
+	                            		<a href="#" id="Email_Check" class="form-control btn btn-primary">
+                                        	<i class="fas fa-check"></i>
+                                    	</a>
+	                            	</div>
+		                        </div>
+
+                            	<div class="form-group row">
+                            		<div class="col-sm-7">
+                            			<input type="text" class="form-control form-control-user" id="memberNumber" name="memberNumber" placeholder="전화번호를 입력해주세요">
+                            		</div>
+                            		
+                            		<div class="form-inline">
+	                            		<a href="#" id="Number_Transmit" class="form-control btn btn-primary">
+                                        	<i class="fas fa-solid fa-envelope"></i>
+                                    	</a>
+	                            	</div>
+		                        </div>
+
+                            	<div id="NumberChk" class="form-group row">
+                            		<div class="col-sm-7">
+                            			<input type="text" class="form-control form-control-user" id="Number_Number" placeholder="인증번호 입력">
+                            		</div>
+                            		
+                            		<div class="form-inline">
+	                            		<a href="#" id="Number_Check" class="form-control btn btn-primary">
+                                        	<i class="fas fa-check"></i>
+                                    	</a>
+	                            	</div>
+		                        </div>
+		                        
+		                        <input type="button" class="btn btn-primary btn-user btn-block" value="회원가입" onclick="UserSignUp()">
                                 <hr>
-                                
+                                	
                             </form>
                             <div class="text-center">
                                 <a class="small" href="userLogin">이미 회원가입 하셨나요? 로그인</a>
