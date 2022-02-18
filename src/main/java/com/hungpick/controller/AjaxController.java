@@ -2,6 +2,7 @@ package com.hungpick.controller;
 
 import java.util.Random;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.json.JSONObject;
@@ -206,6 +207,7 @@ public class AjaxController {
 	@RequestMapping("sendEmail.do")
 	@ResponseBody
 	public String sendEmail(@ModelAttribute("mail") String mail) throws Exception {
+		System.out.println("확인 : " + mail);
 		JSONObject jsonObj = new JSONObject();
 		Random random = new Random();
 		String key = "";

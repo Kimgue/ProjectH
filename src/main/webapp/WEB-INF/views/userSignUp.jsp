@@ -105,9 +105,8 @@ $(document).ready(function() {
 			return false;
 		} else if (validateEmail.test($('#memberEmail').val())) {
 			var url = "chkEmail.do";
-			$.getJSON(url,{"mail" : val_Email},function(json) {
+			$.getJSON(url,{"mail" : val_Email}, function(json) {
 				if (json.result == true) {
-					
 					var url = "sendEmail.do";
 					$.getJSON(url,{"mail" : val_Email}, function(json) {
 						
