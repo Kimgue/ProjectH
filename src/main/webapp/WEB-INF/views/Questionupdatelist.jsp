@@ -7,7 +7,6 @@
 <meta charset="UTF-8">
 <title>수정페이지</title>
 <script src="resources/js/jquery-3.4.1.min.js"></script>
-<script src="resources/js/javascriptUpdate.js"></script>
 <script>	
 	$(document).ready(function(){
 		$("#submit").click(function(){
@@ -22,9 +21,20 @@
 			{alert("내용을 입력해주세요");
 			$("#qstnContent").focus(); 
 				return false;
-			}
+			}	
 		});
-	});
+	});		
+	
+	function commit()
+	{
+		var a = document.paging;
+
+		a.action ="./QuestionUpdate"
+		
+		a.method="post"
+		a.submit();
+	
+	}; 
 </script>
 <style>
 input {
@@ -67,16 +77,19 @@ input {
 								</td>
 							</tr>	
 							<tr>
-								<td>
-									<label for="qstnContent">내용 : </label><textarea id="qstnContent" name="qstnContent" >${ sltOne.qstnContent } 
-									</textarea>		
-									<input type="hidden" id="qstnImg" name="qstnImg" value="${sltOne.qstnImg }" />
 									<td>
-									<div id="test" contentEditable="true" style="overflow-x:auto; width:500px; height: 300px; border: solid; 1px; margin: 20px; line-height: 20px; background-image: ; " >
-									<img src="<c:url value='${sltOne.qstnImg }' />" alt="${sltOne.qstnImg }" height="150" width="150"/>
-									</div>									
-								</td>
+										<label for="qstnContent">내용 : </label><textarea id="qstnContent" name="qstnContent" >${ sltOne.qstnContent } 
+										</textarea>		
+										<input type="hidden" id="qstnImg" name="qstnImg" value="${sltOne.qstnImg }" />
+									</td>	
 							</tr>
+						<tr>
+							<td>
+								<div id="test" contentEditable="true" style="overflow-x:auto; width:1000px; height: 150px; border: solid; 1px; margin: 20px; line-height: 20px; background-image: ; " >
+								<img src="<c:url value='${sltOne.qstnImg }' />" alt="${sltOne.qstnImg }" height="150" width="150"/>
+								</div>								
+							</td>
+						</tr>
 							<tr>
 								<td> 
 									<label for="qstnDate" id="qstnDate">작성날짜 : ${ sltOne.qstnDate }</label>
@@ -87,11 +100,7 @@ input {
 									<td> <input type="hidden" id="qstnConfirm" name="qstnConfirm" value="n"> </td>
 									</tr>
 							<tr>
-								<td>						
-									<button type="submit"  onclick="update()" id="submit">수정하기</button>
-									<button type="submit"  onclick="Quesdelete('${ sltOne.memberCode }','${ sltOne.qstnCode }')">삭제하기</button>
-									
-								</td>
+								<td><button type="submit" onclick="commit()" >등록</button></td>
 							</tr>			
 						</tbody>			
 					</table>
@@ -112,6 +121,5 @@ input {
 		</div>
 	<hr />
 </div>
-
 </body>
 </html>

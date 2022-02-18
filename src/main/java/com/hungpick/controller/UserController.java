@@ -1,5 +1,3 @@
-
-
 package com.hungpick.controller;
 
 import java.text.SimpleDateFormat;
@@ -82,7 +80,8 @@ public class UserController {
 	@RequestMapping("view1")
 	public String view1(Model model, @RequestParam("memberCode") String memberCode,
 			@RequestParam("qstnCode") String qstnCode, HttpSession session) {
-		logger.info("insertMem called ==========");
+		
+		logger.info("update in");
 		/*memberCode = (String) session.getAttribute("memberCode");*/
 		
 		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -90,18 +89,25 @@ public class UserController {
 		String time1 = format1.format(date);
 		model.addAttribute("sltOne", question.sltOne(memberCode, qstnCode));
 		model.addAttribute("selectOne", answer.selectQuestionview(memberCode, qstnCode));
-		model.addAttribute("date", time1);
-		
-		
+		model.addAttribute("date", time1);		
 		
 		return "Questionupdatelist";
 	}
 
+	@RequestMapping("sltOneQnA")
+	public String sltOneQnA(Model model, @RequestParam("memberCode") String memberCode, String qstnCode,
+			HttpSession session) throws Exception {
+
+		memberCode = (String) session.getAttribute("memberCode");
+		model.addAttribute("sltOne", question.sltOne(memberCode, qstnCode));	
+
+		return "questionsltoneQ&A";
+	}
+	
 	@RequestMapping("insertQnA")
 	public String insertUser(Model model, @RequestParam("memberCode") String memberCode, String qstnCode,
 			HttpSession session) throws Exception {
 
-		logger.info("insert");
 		memberCode = (String) session.getAttribute("memberCode");
 		System.out.println(memberCode);
 		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -137,7 +143,7 @@ public class UserController {
 		model.addAttribute("listpage", question.listPage(cri, memberCode));
 		model.addAttribute("member",question.MemberCode(memberCode));
 
-		return "Questionlist";
+		return "redirect:/Questionlist";
 	}
 
 	/*-----------------------Q&A 업데이트 -------------------------*/
@@ -145,6 +151,7 @@ public class UserController {
 	public String updateE(Model model, @RequestParam("memberCode") String memberCode, Question qes, Criteria cri,
 			HttpSession session,String qstnCode) throws Exception {
 		logger.info("updatelist");
+		
 		question.update(qes);
 		memberCode = (String) session.getAttribute("memberCode");
 
@@ -160,7 +167,7 @@ public class UserController {
 		model.addAttribute("listpage", question.listPage(cri, memberCode));
 		model.addAttribute("member", member);
 
-		return "Questionlist";
+		return "redirect:/Questionlist";
 	}
 	
 	

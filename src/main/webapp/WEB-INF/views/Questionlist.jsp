@@ -15,7 +15,7 @@
 		
 		f.memberCode.value = memberCode;
 		f.qstnCode.value = qstnCode;
-		f.action = "./view1"
+		f.action = "./sltOneQnA"
 		
 		f.method= "post"
 		f.submit();
