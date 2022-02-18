@@ -21,6 +21,14 @@
 
 <body class="bg-gradient-primary">
 
+	<header class="d-flex align-items-center justify-content-center">
+			<div class="card border-0 my-5 text-center bg-transparent">
+				<a href="main" class="text-decoration-none">
+                	<h1 class="font-weight-bolder text-warning">HUNGPICK</h1>
+            	</a>
+			</div>
+    </header>
+
     <div class="container">
 
         <!-- Outer Row -->

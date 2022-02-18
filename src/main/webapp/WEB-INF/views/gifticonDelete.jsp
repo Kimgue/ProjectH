@@ -18,14 +18,12 @@
 	<script>
 	$(document).ready(function() {
 		
-		$(".btn").click(function() {
-			
+		$(".col .btn").click(function() {
+
 			var result = confirm("삭제하시겠습니까?");
 			if(result) {
 				alert("삭제되었습니다");
-				
 				var a = $(this).attr("id");
-				
 				const filePath = "gifticon";
 				const fileName = $(".img"+a).attr("value");
 				
@@ -40,7 +38,6 @@
 					contentType : false,
 					data : formData,						
 					success : function(response) {
-						
 						$("#form"+a).submit();
 					},
 					error : function(jqXHR) {
@@ -75,7 +72,7 @@
             <hr class="sidebar-divider my-0">
 
 			<!-- Nav Item - Dashboard -->
-			<li class="nav-item active">
+			<li class="nav-item">
 				<a class="nav-link" href="adminPage">
 					<i class="fas fa-fw fa-cog"></i> 
 					<span>관리자 페이지</span>
@@ -136,7 +133,7 @@
 			</li>
 			
 			<!-- Nav Item - Pages Collapse Menu -->
-			<li class="nav-item">
+			<li class="nav-item active">
 				<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#Gifticon" aria-expanded="true" aria-controls="collapseTwo"> 
 					<i class="fas fa-fw fa-wrench"></i> <span>기프티콘</span>
 				</a>
@@ -191,28 +188,55 @@
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
-                    
-                        <!-- Nav Item - User Information -->
-                        <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">로그인한사람 아이디</span>
-                            </a>
-                            
-                            <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="userMyInfo">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> 마이페이지
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i> 메뉴메뉴
-                                </a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="userLogout">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i> 로그아웃
-                                </a>
-                            </div>
-                        </li>
-
+                    	<c:choose>
+                    		<c:when test="${loginBool eq true}">
+                    			<c:choose>
+                    				<c:when test="${not empty adminDTO}">
+										<li class="nav-item dropdown no-arrow">
+										<input class="btn btn-primary" type="button" id="userDropdown" value="${adminDTO.adminName}"data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+										
+										<div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+										<a class="dropdown-item" href="adminPage">
+										<i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> 관리자 페이지
+										</a>
+										
+										<a class="dropdown-item" href="userMyInfo">
+										<i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> 마이페이지
+										</a>
+										
+										<div class="dropdown-divider"></div>
+										
+										<a class="dropdown-item" href="userLogout">
+										<i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i> 로그아웃
+										</a>
+										</div>
+										</li>
+                    				</c:when>
+                    					
+                    				<c:otherwise>
+                    					<li class="nav-item dropdown no-arrow">
+                        		 		<input class="btn btn-primary" type="button" id="userDropdown" value="${memberDTO.memberName}"data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        		 
+                        		 		<div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+	                        		 	<a class="dropdown-item" href="userMyInfo">
+	                        		 		<i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> 마이페이지
+	                        		 	</a>
+	                        		 	
+	                        		 	<div class="dropdown-divider"></div>
+	                        		 	
+	                        		 	<a class="dropdown-item" href="userLogout">
+	                        		 		<i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i> 로그아웃
+	                        		 	</a>
+                        		 		</div>
+                        		 		</li>
+                    				</c:otherwise>
+                    			</c:choose>
+                    		</c:when>
+                    		
+                    		<c:otherwise>
+                       		 	<input class="btn btn-primary" type="button" onClick="location.href='userLogin'" value="로그인">
+                    		</c:otherwise>
+                    	</c:choose>
                     </ul>
 
                 </nav>
@@ -222,7 +246,7 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-4 text-gray-800">Blank Page</h1>
+                    <h1 class="h3 mb-4 text-gray-800">관리자 기능 : 기프티콘 삭제</h1>
                     
                     <!-- Content Row -->
                     <div class="row">
@@ -249,7 +273,7 @@
 															<c:out value="${gift.gifticonPrice} 포인트" />
 														</div>
 														<img src="<c:url value='${gift.gifticonImg}' />" alt="${gift.gifticonImg}" height="270" width="270" /><br>
-														<input type="button" class="btn" id="btn${gift.gifticonCode}" value="삭제">
+														<input type="button" class="btn btn-primary" id="btn${gift.gifticonCode}" value="삭제">
 													</div>
 												</div>
 											</div>

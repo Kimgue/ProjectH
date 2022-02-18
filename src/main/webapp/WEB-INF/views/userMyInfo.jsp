@@ -1,15 +1,21 @@
-
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>마이페이지</title>
-<script src="resources/js/jquery-3.4.1.min.js"></script>
-<script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>헝픽 관리자 페이지</title>
+    
+	<link href="resources/css/sb-admin-2.min.css" rel="stylesheet">
+	<script src="https://kit.fontawesome.com/730c440743.js" crossorigin="anonymous"></script>
+	<script src="resources/js/jquery-3.4.1.min.js"></script>
+	<script>
 	var validateNickname 	= RegExp(/^[가-힣a-zA-Z0-9]{2,10}$/);
 	var validateEmail		= RegExp(/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/);
 	var validateNumber 		= RegExp(/^01[0179][0-9]{7,8}$/);
@@ -18,7 +24,7 @@
 	$(document).ready(function() {
 		
 		/* 닉네임, 이메일, 전화번호 변경하는 곳 안보이게 */
-		$("#Nickname,#Email,#Number,#Pw,#memberPw").hide();
+		$("#Nickname,#Email,#Number,#Pw").hide();
 		var checkEmail = false;
 		var checkNumber = false;
 		var checkPw = false;
@@ -35,7 +41,7 @@
 		$("#Nick_Cancle").click(function() {
 			$("#Nickname").hide();
 			$("#Nick_Btn").show();
-			location.reload();
+			$("#Nick_Txt").val("");
 		});
 
 		/* 닉네임 수정 완료 버튼 눌렀을 때 */
@@ -82,7 +88,7 @@
 		$("#Email_Cancle").click(function() {
 			$("#Email").hide();
 			$("#Email_Btn").show();
-			location.reload();
+			$("#Email_Txt").val("");
 		});
 
 		/* 이메일 인증번호 전송 버튼 눌렀을 때 */
@@ -159,7 +165,7 @@
 		$("#Number_Cancle").click(function() {
 			$("#Number").hide();
 			$("#Number_Btn").show();
-			location.reload();
+			$("#Number_Txt").val("");
 		});
 		
 		/* 전화번호 인증번호 전송 버튼 눌렀을 때 */
@@ -224,6 +230,7 @@
 		$("#Pw_Btn").click(function() {
 			$("#Pw").show();
 			$("#Pw_Btn").hide();
+			
 			checkPw = false;
 		});
 		
@@ -231,12 +238,18 @@
 		$("#Pw_Cancle").click(function() {
 			$("#Pw").hide();
 			$("#Pw_Btn").show();
-			location.reload();
+			$("#Pw_Current").val("");
+			$("#Pw_Change").val("");
+			$("#Pw_Chk").val("");
+			$("#resultPwCurrent").text("");
+			$("#resultPwChange").text("");
+			$("#resultPwChk").text("");
+			
 		});
 			
 		/* 비밀번호 변경 확인 */
 		$("#Pw_Current, #Pw_Change, #Pw_Chk").blur(function() {
-			var memberPw = $("#memberPw").text();
+			var memberPw = $("#memberPw").val();
 			var val_Current = $("#Pw_Current").val();
 			var val_Change = $("#Pw_Change").val();
 			var val_Chk = $("#Pw_Chk").val();
@@ -292,6 +305,8 @@
 					alert("비밀번호가 변경되었습니다");
 					location.reload();	
 				});	
+			} else {
+				alert("비밀번호를 입력해주세요");
 			}
 		});
 		
@@ -302,118 +317,169 @@
 	}
 </script>
 </head>
-<body>
-<h2>마이페이지</h2>
-<c:choose>
-	<c:when test="${not empty adminDTO}">
-		<table border="1">
-		<tr>
-			<td>아이디
-			<td>${adminDTO.adminId}</td>
-		</tr>
-		<tr>
-			<td>비밀번호
-			<td>${adminDTO.adminPw}</td>
-		</tr>
-		<tr>
-			<td>이름</td>
-			<td>${adminDTO.adminName}</td>
-		</tr>
-		</table>
-	</c:when>
-			
-	<c:otherwise>
-		<table border="1">
-		<tr>
-			<td>ID
-			<td>${memberDTO.memberId}</td>
-		</tr>
-		<tr>
-			<td>이름</td>
-			<td>${memberDTO.memberName}</td>
-		</tr>
-		<tr>
-			<td>닉네임</td>
-			<td>${memberDTO.memberNickname}
-				<div id="Nickname">
-					변경할 닉네임<br> 
-					<input type="text" 		id="Nick_Txt">
-					<input type="button" 	id="Nick_Cancle" value="수정취소"> 
-					<input type="button" 	id="Nick_Submit" value="수정완료">
-				</div> 
-					<input type="button" 	id="Nick_Btn" value="수정">
-			</td>
-		</tr>
-		<tr>
-			<td>이메일</td>
-			<td>${memberDTO.memberEmail}
-				<div id="Email">
-					변경할 이메일<br>
-					<input type="text" 		id="Email_Txt" name="memberEmail">
-					<input type="button" 	id="Email_Transmit" value="인증번호 전송">
-					<br>
-					<input type="text" 		id="Email_Number">
-					<input type="button" 	id="Email_Check" value="인증번호 확인">
-					<br>
-					<input type="button" 	id="Email_Cancle" value="수정취소">
-					<input type="button" 	id="Email_Submit" value="수정완료">
-					<div id="resultEmail"></div>
-				</div> 
-					<input type="button" 	id="Email_Btn" value="수정">
-			</td>
-		</tr>
-		<tr>
-			<td>전화번호</td>
-			<td>${memberDTO.memberNumber}
-				<div id="Number">
-					변경할 전화번호<br>
-					<input type="text" 		id="Number_Txt" name="memberNumber">
-					<input type="button" 	id="Number_Transmit" value="인증번호 전송">
-					<br>
-					<input type="text" 		id="Number_Number">
-					<input type="button" 	id="Number_Check" value="인증번호 확인">
-					<br>
-					<input type="button" 	id="Number_Cancle" value="수정취소">
-					<input type="button" 	id="Number_Submit" value="수정완료">
-					<div id="resultNumber"></div>
-				</div> 
-					<input type="button" 	id="Number_Btn" value="수정">
-			</td>
-		</tr>
-		<tr>
-			<td>가입날짜</td>
-			<td>${memberDTO.memberDate}</td>
-		</tr>
-		<tr>
-			<td>보유포인트</td>
-			<td>${memberDTO.holdPoint}</td>
-		</tr>
-		</table>
-		<input type="button" id="Pw_Btn" value="비밀번호 변경">
-		<div id="Pw">
-			<p id="memberPw">${memberDTO.memberPw}</p>
-			<p>현재 비밀번호</p>
-			<input type="password" id="Pw_Current">
-			<div id="resultPwCurrent"></div>
-			<p>변경 비밀번호</p>
-			<input type="password" id="Pw_Change">
-			<div id="resultPwChange"></div>
-			<p>변경 비밀번호 확인</p>
-			<input type="password" id="Pw_Chk">
-			<div id="resultPwChk"></div>
-			<br>
-			<input type="button" id="Pw_Submit" value="변경 완료">
-			<input type="button" id="Pw_Cancle" value="변경 취소">
-		</div>
-		<br>
-		<input type="button" value="회원탈퇴" onClick="location.href='userDelete'">
-		<form id="userGifticon" action="userGifticon" method="POST">
-			<input type="hidden" id="memberCode" name="userDto.memberCode" value="${memberDTO.memberCode}">
-			<input type="button" value="보유 기프티콘" onClick="userGifticon()">
-		</form>
-	</c:otherwise>
-</c:choose>
 
-<input type="button" value="로그아웃" onClick="location.href='userLogout'">
+<body class="bg-gradient-primary">
+
+	<header class="d-flex align-items-center justify-content-center">
+			<div class="card border-0 my-5 text-center bg-transparent">
+				<a href="main" class="text-decoration-none">
+                	<h1 class="font-weight-bolder text-warning">HUNGPICK</h1>
+            	</a>
+			</div>
+    </header>
+    
+	<div class="container">
+		
+		<!-- Outer Row -->
+		<div class="row justify-content-center">
+			<div class="col-xl-5 col-lg-6 col-md-9">
+				<div class="card border-0 shadow-lg my-4">
+					<div class="card-body p-2">
+						<!-- Nested Row within Card Body -->
+							<div class="text-center">
+								<h1 class="h2 text-gray-900 mt-4 mb-4">내 정보</h1>
+							</div>
+							<c:choose>
+								<c:when test="${not empty adminDTO}">
+									<table class="table">
+									<tr>
+										<td>아이디
+										<td>${adminDTO.adminId}</td>
+									</tr>
+									<tr>
+										<td>비밀번호
+										<td>${adminDTO.adminPw}</td>
+									</tr>
+									<tr>
+										<td>이름</td>
+										<td>${adminDTO.adminName}</td>
+									</tr>
+									</table>
+								</c:when>
+										
+								<c:otherwise>
+									<table class="table">
+									<tr>
+										<td class="align-middle">아이디</td>
+										<td class="align-middle">${memberDTO.memberId}</td>
+									</tr>
+									<tr>
+										<td class="align-middle">이름</td>
+										<td class="align-middle">${memberDTO.memberName}</td>
+									</tr>
+									<tr>
+										<td class="align-middle">닉네임</td>
+										<td class="align-middle">
+											${memberDTO.memberNickname}&nbsp;&nbsp;
+											<div id="Nickname">
+												변경할 닉네임<br> 
+												<input type="text" class="form-control mb-3" id="Nick_Txt">
+												<input type="button" class="btn btn-primary"  id="Nick_Cancle" value="수정취소"> 
+												<input type="button" class="btn btn-primary"  id="Nick_Submit" value="수정완료">
+											</div>
+											<input type="button" class="btn btn-primary" id="Nick_Btn" value="수정">
+										</td>
+									</tr>
+									<tr>
+										<td class="align-middle">이메일</td>
+										<td class="align-middle">${memberDTO.memberEmail}
+											<div id="Email">
+												변경할 이메일<br>
+												<input type="text" class="form-control mb-3" id="Email_Txt" name="memberEmail">
+												<input type="button" class="btn btn-primary mb-3" id="Email_Transmit" value="인증번호 전송">
+												<br>
+												<input type="text" class="form-control mb-3" id="Email_Number">
+												<input type="button" class="btn btn-primary mb-3" id="Email_Check" value="인증번호 확인">
+												<br>
+												<input type="button" class="btn btn-primary" id="Email_Cancle" value="수정취소">
+												<input type="button"  class="btn btn-primary" id="Email_Submit" value="수정완료">
+												<div id="resultEmail"></div>
+											</div> 
+												<input type="button" class="btn btn-primary" id="Email_Btn" value="수정">
+										</td>
+									</tr>
+									<tr>
+										<td class="align-middle">전화번호</td>
+										<td class="align-middle">${memberDTO.memberNumber}
+											<div id="Number">
+												변경할 전화번호<br>
+												<input type="text" class="form-control mb-3" id="Number_Txt" name="memberNumber">
+												<input type="button" class="btn btn-primary mb-3" id="Number_Transmit" value="인증번호 전송">
+												<br>
+												<input type="text" class="form-control mb-3" id="Number_Number">
+												<input type="button" class="btn btn-primary mb-3" id="Number_Check" value="인증번호 확인">
+												<br>
+												<input type="button" class="btn btn-primary" id="Number_Cancle" value="수정취소">
+												<input type="button" class="btn btn-primary" id="Number_Submit" value="수정완료">
+												<div id="resultNumber"></div>
+											</div> 
+												<input type="button" class="btn btn-primary" id="Number_Btn" value="수정">
+										</td>
+									</tr>
+									<tr>
+										<td class="align-middle">가입날짜</td>
+										<td class="align-middle">${memberDTO.memberDate}</td>
+									</tr>
+									<tr>
+										<td class="align-middle">보유포인트</td>
+										<td class="align-middle">${memberDTO.holdPoint}</td>
+									</tr>
+									</table>
+									<br>
+								</c:otherwise>
+							</c:choose>
+					</div>
+					<div class="card-body p-2">
+						<div id="Pw">
+							<input type="hidden" id="memberPw" value="${memberDTO.memberPw}">
+							<table class="table table-borderless">
+								<tr>
+									<td class="align-middle">
+										현재 비밀번호<br>
+										<input type="password" class="form-control" id="Pw_Current">
+										<div id="resultPwCurrent"></div><br>
+									</td>
+								</tr>
+								<tr>
+									<td class="align-middle">
+										변경 비밀번호<br>
+										<input type="password" class="form-control mb-3"  id="Pw_Change">
+										<div id="resultPwChange"></div>
+									</td>
+								</tr>
+								<tr>
+									<td class="align-middle">
+										변경 비밀번호 확인<br>
+										<input type="password" class="form-control mb-3"  id="Pw_Chk">
+										<div id="resultPwChk"></div>
+									</td>									
+								</tr>
+								<tr>
+									<td class="align-middle">
+										<input type="button" class="btn btn-primary" id="Pw_Submit" value="변경 완료">
+										<input type="button" class="btn btn-primary" id="Pw_Cancle" value="변경 취소">
+									</td>									
+								</tr>
+							</table>
+							
+						</div>
+					</div>
+					<div class="card-body p-2">
+						<input type="button" class="form-control mb-2" id="Pw_Btn" value="비밀번호 변경">
+						<form id="userGifticon" action="userGifticon" method="POST">
+							<input type="hidden" id="memberCode" name="userDto.memberCode" value="${memberDTO.memberCode}">
+							<input type="button" class="form-control mb-2" value="보유 기프티콘" onClick="userGifticon()">
+						</form>
+						<input type="button" class="form-control" value="회원탈퇴" onClick="location.href='userDelete'">
+					</div>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="resources/js/sb-admin-2.min.js"></script>
 </body>
+
 </html>

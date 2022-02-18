@@ -25,6 +25,7 @@
 		});
 		
 		function readImage(input) {
+			$("#preview-image").attr("src","");
 		    // 인풋 태그에 파일이 있는 경우
 		    if(input.files && input.files[0]) {
 		        // 이미지 파일인지 검사 (생략)
@@ -123,7 +124,7 @@
             <hr class="sidebar-divider my-0">
 
 			<!-- Nav Item - Dashboard -->
-			<li class="nav-item active">
+			<li class="nav-item">
 				<a class="nav-link" href="adminPage">
 					<i class="fas fa-fw fa-cog"></i> 
 					<span>관리자 페이지</span>
@@ -184,7 +185,7 @@
 			</li>
 			
 			<!-- Nav Item - Pages Collapse Menu -->
-			<li class="nav-item">
+			<li class="nav-item active">
 				<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#Gifticon" aria-expanded="true" aria-controls="collapseTwo"> 
 					<i class="fas fa-fw fa-wrench"></i> <span>기프티콘</span>
 				</a>
@@ -239,28 +240,55 @@
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
-                    
-                        <!-- Nav Item - User Information -->
-                        <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">로그인한사람 아이디</span>
-                            </a>
-                            
-                            <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="userMyInfo">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> 마이페이지
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i> 메뉴메뉴
-                                </a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="userLogout">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i> 로그아웃
-                                </a>
-                            </div>
-                        </li>
-
+                    	<c:choose>
+                    		<c:when test="${loginBool eq true}">
+                    			<c:choose>
+                    				<c:when test="${not empty adminDTO}">
+										<li class="nav-item dropdown no-arrow">
+										<input class="btn btn-primary" type="button" id="userDropdown" value="${adminDTO.adminName}"data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+										
+										<div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+										<a class="dropdown-item" href="adminPage">
+										<i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> 관리자 페이지
+										</a>
+										
+										<a class="dropdown-item" href="userMyInfo">
+										<i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> 마이페이지
+										</a>
+										
+										<div class="dropdown-divider"></div>
+										
+										<a class="dropdown-item" href="userLogout">
+										<i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i> 로그아웃
+										</a>
+										</div>
+										</li>
+                    				</c:when>
+                    					
+                    				<c:otherwise>
+                    					<li class="nav-item dropdown no-arrow">
+                        		 		<input class="btn btn-primary" type="button" id="userDropdown" value="${memberDTO.memberName}"data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        		 
+                        		 		<div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+	                        		 	<a class="dropdown-item" href="userMyInfo">
+	                        		 		<i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> 마이페이지
+	                        		 	</a>
+	                        		 	
+	                        		 	<div class="dropdown-divider"></div>
+	                        		 	
+	                        		 	<a class="dropdown-item" href="userLogout">
+	                        		 		<i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i> 로그아웃
+	                        		 	</a>
+                        		 		</div>
+                        		 		</li>
+                    				</c:otherwise>
+                    			</c:choose>
+                    		</c:when>
+                    		
+                    		<c:otherwise>
+                       		 	<input class="btn btn-primary" type="button" onClick="location.href='userLogin'" value="로그인">
+                    		</c:otherwise>
+                    	</c:choose>
                     </ul>
 
                 </nav>
@@ -270,35 +298,53 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-4 text-gray-800">Blank Page</h1>
+                    <h1 class="h3 mb-4 text-gray-800">관리자 기능 : 기프티콘 등록</h1>
                     
                     <!-- Content Row -->
                     <div class="row">
                     	<form id="insertForm" action="gifticonInsertSubmit" method="post" enctype="multipart/form-data">
-							<ul>
-								<li>기프티콘 이름 <input type="text" id="gifticonName" name="gifticonName"></li>
-								<li>기프티콘 가격 <input type="text" id="gifticonPrice" name="gifticonPrice"></li>
-								<li>브랜드<select id="brandCode" name="brandCode" onchange="brandSelect()">
+							<table class="table">
+								<tr>
+									<td class="align-middle">기프티콘 이름</td>
+									<td class="align-middle"><input type="text" id="gifticonName" name="gifticonName"></td>
+								</tr>
+								<tr>
+									<td class="align-middle">기프티콘 가격</td>
+									<td class="align-middle"><input type="text" id="gifticonPrice" name="gifticonPrice"></td>
+								</tr>
+								<tr>
+									<td class="align-middle">브랜드</td>
+									<td class="align-middle">
+										<select id="brandCode" name="brandCode" onchange="brandSelect()">
 										<option value="" selected disabled>브랜드 선택</option>
 										<option value="H1">맥도날드</option>
 										<option value="H2">롯데리아</option>
 										</select>
-								</li>
-								
-								<li>메뉴<select id="menuCode" name="menuCode" onchange="menuSelect()">
+									</td>
+								</tr>
+								<tr>
+									<td class="align-middle">메뉴</td>
+									<td class="align-middle">
+										<select id="menuCode" name="menuCode" onchange="menuSelect()">
 										<option value="" selected disabled>-- 브랜드를 먼저 선택해주세요 --</option>
 										</select>
-								</li>
-									
-								<li><img style="width: 100px;" id="preview-image" src="">
-									<input type="hidden" id="gifticonImg" name="gifticonImg"> 
-									<input type="file" id="input-image" name="uploadfile" required="required">
-								</li>
-							</ul>
+									</td>
+								</tr>
+								<tr>
+									<td class="align-middle">이미지</td>
+									<td class="align-middle">
+									<img style="width: 150px;" id="preview-image" src="">
+									<input type="hidden" id="gifticonImg" name="gifticonImg">
+									<input type="file" class="form-control-file" id="input-image" name="uploadfile" required="required">
+									</td>
+								</tr>
+								<tr>
+									<td class="align-middle"><input type="button" class="btn btn-primary" value="작성" onclick="insert()"> </td>
+								</tr>								
+							</table>
 						</form>
-						<input type="button" value="작성" onclick="insert()"> 
+						
                     </div>
-
                 </div>
                 <!-- /.container-fluid -->
 

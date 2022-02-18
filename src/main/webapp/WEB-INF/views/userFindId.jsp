@@ -76,6 +76,14 @@
 
 <body class="bg-gradient-primary">
 
+	<header class="d-flex align-items-center justify-content-center">
+			<div class="card border-0 my-5 text-center bg-transparent">
+				<a href="main" class="text-decoration-none">
+                	<h1 class="font-weight-bolder text-warning">HUNGPICK</h1>
+            	</a>
+			</div>
+    </header>
+
     <div class="container">
 
         <!-- Outer Row -->
@@ -100,23 +108,29 @@
                                             <input type="text" class="form-control form-control-user" id="memberName" name="memberName" placeholder="이름을 입력해주세요">
                                             </div>
                                         </div>
-                                        <div class="form-group row">
-                                        	<div class="col-sm-8">
-                                        	<input type="text" class="form-control form-control-user" id="memberEmail" name="memberEmail" placeholder="이메일을 입력해주세요">
-                                        	</div>
-                                        	<div class="col-sm-3">
-                                            <input type="button" class="btn btn-primary" id="Email_Transmit" value="전송">
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="form-group row">
-                                        	<div class="col-sm-8">
-                                        	<input type="text" class="form-control form-control-user" id="Email_Number" placeholder="인증번호를 입력해주세요">
-                                        	</div>
-                                        	<div class="col-sm-3">
-                                            <input type="button" class="btn btn-primary" value="다음" onclick="FindId()">
-                                            </div>
-                                        </div>
+		                            	<div class="form-group row">
+		                            		<div class="col-sm-9">
+		                            			<input type="text" class="form-control form-control-user" id="memberEmail" name="memberEmail" placeholder="이메일을 입력해주세요">
+		                            		</div>
+		                            		
+		                            		<div class="form-inline">
+			                            		<a href="#" id="Email_Transmit" class="form-control btn btn-primary">
+		                                        	<i class="fas fa-solid fa-envelope"></i>
+		                                    	</a>
+			                            	</div>
+				                        </div>
+		
+		                            	<div id="EmailChk" class="form-group row">
+		                            		<div class="col-sm-9">
+		                            			<input type="text" class="form-control form-control-user" id="Email_Number" placeholder="인증번호 입력">
+		                            		</div>
+		                            		
+		                            		<div class="form-inline">
+			                            		<a href="#" id="Email_Check" class="form-control btn btn-primary" onclick="FindId()">
+		                                        	<i class="fas fa-check"></i>
+		                                    	</a>
+			                            	</div>
+				                        </div>
                                     </form>
                                     
                                     <hr>

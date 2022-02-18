@@ -10,7 +10,7 @@ public class UserDto {
 	private String memberNickname;
 	private String memberEmail;
 	private String memberNumber;
-	private Date memberDate;
+	private String memberDate;
 	private int holdPoint;
 	
 	public String getMemberCode() {
@@ -55,10 +55,10 @@ public class UserDto {
 	public void setMemberNumber(String memberNumber) {
 		this.memberNumber = memberNumber;
 	}
-	public Date getMemberDate() {
+	public String getMemberDate() {
 		return memberDate;
 	}
-	public void setMemberDate(Date memberDate) {
+	public void setMemberDate(String memberDate) {
 		this.memberDate = memberDate;
 	}
 	public int getHoldPoint() {
