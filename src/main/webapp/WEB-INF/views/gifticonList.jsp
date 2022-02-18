@@ -155,10 +155,34 @@
                     <ul class="navbar-nav ml-auto">
                     	<c:choose>
                     		<c:when test="${loginBool eq true}">
-                    			<li class="nav-item dropdown no-arrow">
-                        		 	<input class="btn btn-primary" type="button" id="userDropdown" value="${memberDTO.memberName}"data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        		 	
-                        		 	<div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                    			<c:choose>
+                    				<c:when test="${not empty adminDTO}">
+										<li class="nav-item dropdown no-arrow">
+										<input class="btn btn-primary" type="button" id="userDropdown" value="${adminDTO.adminName}"data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+										
+										<div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+										<a class="dropdown-item" href="adminPage">
+										<i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> 관리자 페이지
+										</a>
+										
+										<a class="dropdown-item" href="userMyInfo">
+										<i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> 마이페이지
+										</a>
+										
+										<div class="dropdown-divider"></div>
+										
+										<a class="dropdown-item" href="userLogout">
+										<i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i> 로그아웃
+										</a>
+										</div>
+										</li>
+                    				</c:when>
+                    					
+                    				<c:otherwise>
+                    					<li class="nav-item dropdown no-arrow">
+                        		 		<input class="btn btn-primary" type="button" id="userDropdown" value="${memberDTO.memberName}"data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        		 
+                        		 		<div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
 	                        		 	<a class="dropdown-item" href="userMyInfo">
 	                        		 		<i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> 마이페이지
 	                        		 	</a>
@@ -168,8 +192,10 @@
 	                        		 	<a class="dropdown-item" href="userLogout">
 	                        		 		<i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i> 로그아웃
 	                        		 	</a>
-                        		 	</div>
-                        		 </li>
+                        		 		</div>
+                        		 		</li>
+                    				</c:otherwise>
+                    			</c:choose>
                     		</c:when>
                     		
                     		<c:otherwise>
@@ -185,7 +211,7 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-4 text-gray-800">Blank Page</h1>
+                    <h1 class="h3 mb-4 text-gray-800">관리자 기능 : 기프티콘 조회</h1>
                     
                     <!-- Content Row -->
                     <div class="row">

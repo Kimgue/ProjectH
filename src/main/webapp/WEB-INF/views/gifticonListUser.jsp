@@ -263,7 +263,7 @@
 															</div>
 																<img src="<c:url value='${gift.gifticonImg}' />" alt="${gift.gifticonImg}" height="270" width="270" /><br>
 														</form>	
-																<input class="btn btn-primary" id="btn${gift.gifticonCode}" type="button" value="교환">
+																<input type="button" class="btn btn-primary" id="btn${gift.gifticonCode}" value="교환">
 													</div>
 												</div>
 											</div>
