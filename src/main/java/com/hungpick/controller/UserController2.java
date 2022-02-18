@@ -120,9 +120,9 @@ public class UserController2 {
 			
 			
 			String QueryString = request.getQueryString();
-			
-			String prevUrl = "redirect:/reviewWrite/?" + QueryString;
-			System.out.println(prevUrl);
+			String requestUri = "redirect:/" + "reviewWrite";
+			String prevUrl = requestUri + "?" + QueryString;
+
 			session.setAttribute("prevUrl", prevUrl);
 		
 			String msg = "리뷰 작성시 로그인이 필요합니다.";
@@ -150,15 +150,14 @@ public class UserController2 {
 			@RequestParam String menuName,
 			@RequestParam double reviewScore,
 			@RequestParam String reviewContent, 
-			@RequestParam(required = false) String reviewImg1,
-			@RequestParam(required = false) String reviewImg2, 
+			@RequestParam(required = false) String reviewImg,
 			HttpServletRequest request,
 			Model model) throws Exception {
 		
 		HttpSession session = request.getSession();
 		String memberCode = (String) session.getAttribute("memberCode");
 		
-		reviewService.insertReview(brandCode, menuCode, memberCode, reviewScore, reviewContent, reviewImg1, reviewImg2);
+		reviewService.insertReview(brandCode, menuCode, memberCode, reviewScore, reviewContent, reviewImg);
 
 		logger.info("reviewWriteSubmit called =======");
 		

@@ -33,7 +33,6 @@ public interface IReviewService {
 				@Param(value = "memberCode") String memberCode,
 				@Param(value = "reviewScore") double reviewScore,
 				@Param(value = "reviewContent") String reviewContent,
-				@Param(value = "reviewImg1") String reviewImg1,
-				@Param(value = "reviewImg2") String reviewImg2
+				@Param(value = "reviewImg") String reviewImg
 				);
 }

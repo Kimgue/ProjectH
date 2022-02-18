@@ -41,8 +41,7 @@
     <result column="REVIEW_SCORE" property="reviewScore"/>
     <result column="REVIEW_CONTENT" property="reviewContent"/>
     <result column="REVIEW_DATE" property="reviewDate"/>
-    <result column="REVIEW_IMG1" property="reviewImg1"/>
-    <result column="REVIEW_IMG2" property="reviewImg2"/>
+    <result column="REVIEW_IMG" property="reviewImg"/>
     <result column="REVIEW_CONFIRM" property="reviewConfirm"/>
     <result column="EARN_POINT" property="earnPoint"/>
     <result column="EARNDATE_POINT" property="earnDatePoint"/>
@@ -73,7 +72,7 @@
 	
 	<select id="sltLookUp" parameterType="String" resultMap="ReviewVoRm">
 		SELECT A.MEMBER_NICKNAME, B.REVIEW_SCORE, B.REVIEW_CONTENT, B.REVIEW_DATE, 
-		B.REVIEW_IMG1, B.REVIEW_IMG2 
+		B.REVIEW_IMG
 		FROM MEMBERS A JOIN REVIEW B ON A.MEMBER_CODE = B.MEMBER_CODE
 			<if test="brandCode != null and brandCode != ''">
 				AND B.BRAND_CODE = #{brandCode}
@@ -106,12 +105,12 @@
 	
 	<insert id="insertReview" parameterType="reviewDto">
 		<selectKey resultType="String" keyProperty="reviewCode" order="BEFORE">
-		SELECT LPAD(TO_CHAR(MAX(TO_NUMBER(NVL(REVIEW_CODE, '0'))) +1), 4, '0') FROM REVIEW
+		SELECT TO_CHAR(MAX(TO_NUMBER(NVL(REVIEW_CODE, '0'))) +1) FROM REVIEW
 		WHERE BRAND_CODE = #{brandCode} AND MENU_CODE = #{menuCode} 
 		</selectKey>
 		INSERT INTO REVIEW VALUES (#{brandCode}, #{menuCode}, 
 		#{reviewCode}, #{memberCode}, #{reviewScore}, #{reviewContent}, TO_DATE(SYSDATE, 'YYYY-MM-DD HH24:MI'), 
-		#{reviewImg1}, #{reviewImg2}, 'N', 500, '2000-01-01')	
+		#{reviewImg}, 'N', 500, '2000-01-01')	
 	</insert> <!-- 나중에 관리자가 'N'에서 Y로 바꿔주고 포인트획득날짜도 update로 바꿔줘야함 -->
 
 	

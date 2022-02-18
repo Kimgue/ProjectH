@@ -11,8 +11,7 @@ public class ReviewDto {
 	private double reviewScore;
 	private String reviewContent;
 	private Date reviewDate;
-	private String reviewImg1;
-	private String reviewImg2;
+	private String reviewImg;
 	private String reviewConfirm;
 	private int earnPoint;
 	private Date earnDatePoint;
@@ -59,18 +58,13 @@ public class ReviewDto {
 	public void setReviewDate(Date reviewDate) {
 		this.reviewDate = reviewDate;
 	}
-	public String getReviewImg1() {
-		return reviewImg1;
+	public String getReviewImg() {
+		return reviewImg;
 	}
-	public void setReviewImg1(String reviewImg1) {
-		this.reviewImg1 = reviewImg1;
+	public void setReviewImg(String reviewImg) {
+		this.reviewImg = reviewImg;
 	}
-	public String getReviewImg2() {
-		return reviewImg2;
-	}
-	public void setReviewImg2(String reviewImg2) {
-		this.reviewImg2 = reviewImg2;
-	}
+
 	public String getReviewConfirm() {
 		return reviewConfirm;
 	}
