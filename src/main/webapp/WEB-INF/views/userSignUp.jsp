@@ -299,13 +299,11 @@ $(document).ready(function() {
 <body class="bg-gradient-primary">
 
 	<header class="d-flex align-items-center justify-content-center">
-		<div class="col-xl-2 col-lg-12 col-md-9">
 			<div class="card border-0 my-5 text-center bg-transparent">
 				<a href="main" class="text-decoration-none">
                 	<h1 class="font-weight-bolder text-warning">HUNGPICK</h1>
             	</a>
 			</div>
-		</div>
     </header>
     
     <div class="container">
@@ -366,10 +364,10 @@ $(document).ready(function() {
                             			<input type="text" class="form-control form-control-user" id="memberEmail" name="memberEmail" placeholder="이메일을 입력해주세요">
                             		</div>
                             		
-                            		<div class="form-inline">
-	                            		<a href="#" id="Email_Transmit" class="form-control btn btn-primary">
-                                        	<i class="fas fa-solid fa-envelope"></i>
-                                    	</a>
+	                           		<div class="form-inline">                   		
+										<a href="#" id="Email_Transmit" class="form-control btn btn-primary">
+                                       	<i class="fas fa-solid fa-envelope"></i>
+                                   		</a> 
 	                            	</div>
 		                        </div>
 
