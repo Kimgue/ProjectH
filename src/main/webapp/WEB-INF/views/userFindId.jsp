@@ -13,7 +13,6 @@
     <title>헝픽 아이디 찾기</title>
     
 	<link href="resources/css/sb-admin-2.min.css" rel="stylesheet">
-	<link href="resources/css/user.css" rel="stylesheet">
 	<script src="https://kit.fontawesome.com/730c440743.js" crossorigin="anonymous"></script>
 	<script src="resources/js/jquery-3.4.1.min.js"></script>
 	<script>
