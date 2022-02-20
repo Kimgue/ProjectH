@@ -203,7 +203,7 @@
 						<div align="center">
 							<h1>브랜드</h1>
 							<br>
-							<a href="">메인 페이지로</a>
+							<a href="main">메인 페이지로</a>
 							<hr>
 							<br>
 							<div class="container">
@@ -212,8 +212,10 @@
 								<br>
 								<a href="menuResult?brandCode=${brand.brandCode}&menuPrice=&menuName=">메뉴 보기</a>
 								<br>
+								<a href="${brand.brandLink}">
 								<img src="<c:out value="resources/${brand.brandImg}" />" 
 								alt="브랜드 이미지" height="270" width="270" />
+								</a>
 								<p style="font-size: 15pt">
 									<c:out value="${brand.brandName}" />
 								</p>

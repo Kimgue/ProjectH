@@ -116,6 +116,10 @@
 	       	  processData: false,
 	   	      contentType: false,
 	   	      success: function (data) {
+	   	    	if($('input[name=reviewScore]').val() =="" || $('input[name=reviewContent]').val() ==""){
+	 	    			alert("리뷰 작성란에 빈칸이 있습니다.")
+	 	    			return;	  
+	   	    	}
 	   	    	if(JSON.parse(data)['result'] == "OK"){
 	   	    		var result = confirm("등록하시겠습니까?");
 	   	 			if(result) {
@@ -123,8 +127,8 @@
 	   	    			//초기화 한다.
 	   	 	    		$("#input_file").val("");  	    			
 	   	 	    		$("#reviewImg").attr("value", JSON.parse(data)['reviewImg']);
-   	    				$("form").submit();
-	   	 			}
+	   	 	    		$("form").submit();
+	   	 	    		}
 				} else
 					alert("서버내 오류로 처리가 지연되고있습니다. 잠시 후 다시 시도해주세요");
 	   	      },
