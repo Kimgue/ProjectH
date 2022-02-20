@@ -4,34 +4,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="">
-<meta name="author" content="">
-
-<title>헝픽 로그인</title>
-
-<link href="resources/css/sb-admin-2.css" rel="stylesheet">
-<script src="https://kit.fontawesome.com/730c440743.js" crossorigin="anonymous"></script>
-<script src="resources/js/jquery-3.4.1.min.js"></script>
-<script>
-	function login() {
-		var idChk = $("#Id").val();
-		var pwChk = $("#Pw").val();
-
-		if (idChk == "HungPick1" && pwChk == "12341234") {
-			$("#login").attr("action", "adminLoginTry");
-			$("#login").submit();
-			
-		} else {
-			$("#login").attr("action", "userLoginTry");
-			$("#login").submit();
-		}
-
-	}
-</script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+	
+	<title>헝픽 로그인</title>
+	
+	<link href="resources/css/sb-admin-2.css" rel="stylesheet">
+	<script src="https://kit.fontawesome.com/730c440743.js" crossorigin="anonymous"></script>
+	<script src="resources/js/jquery-3.4.1.min.js"></script>
+	<script src="resources/js/user/userLogin.js"></script>
 </head>
 
 <body class="bg-gradient-primary">

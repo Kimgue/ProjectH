@@ -15,33 +15,7 @@
 	<link href="resources/css/sb-admin-2.css" rel="stylesheet">
 	<script src="https://kit.fontawesome.com/730c440743.js" crossorigin="anonymous"></script>
 	<script src="resources/js/jquery-3.4.1.min.js"></script>
-	<script>
-	var passwdCheck = RegExp(/^[A-Za-z0-9]{8,16}$/);
-	
-	function FindPw() {
-		var pw = $("#memberPw").val();
-		var pwchk = $("#memberPwChk").val();
-		
-		if(pw == "" || pwchk == "") {
-			$("#resultPw").text("비밀번호를 입력해주세요").css("color", "red");
-			return;
-		} else if(pw == pwchk){
-			
-			if(passwdCheck.test($('#memberPw').val())) {
-				alert("비밀번호가 변경되었습니다");
-				$("#FindPw").submit();
-			} else {
-				$("#resultPw").text("");
-				$("#resultPwChk").text("형식에 맞지 않는 이메일입니다").css("color", "red");
-			}
-	
-		} else {
-			$("#resultPw").text("");
-			$("#resultPwChk").text("변경할 비밀번호가 다릅니다").css("color", "red");
-			return;
-		} 
-	}
-</script>
+	<script src="resources/js/user/userFindPwComplete.js"></script>
 </head>
 
 <body class="bg-gradient-primary">

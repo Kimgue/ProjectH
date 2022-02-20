@@ -15,20 +15,8 @@
 	<link href="resources/css/sb-admin-2.css" rel="stylesheet">
 	<script src="https://kit.fontawesome.com/730c440743.js" crossorigin="anonymous"></script>
 	<script src="resources/js/jquery-3.4.1.min.js"></script>
-	<script>
-	function userDelete() {
-		var chk = $("#userDelChk").val();
-		if(chk != "회원탈퇴") {
-			alert("잘못된 입력입니다")
-		} else {
-			var chkFinal = confirm("정말 탈퇴하시겠습니까?");
-			
-			if(chkFinal == true) {
-				$("#userDelete").submit();
-			}
-		}
-	}
-</script>
+	<script src="resources/js/user/userDelete.js"></script>
+
 </head>
 
 <body class="bg-gradient-primary">

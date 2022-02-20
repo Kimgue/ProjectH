@@ -27,7 +27,7 @@
                 	<h1 class="font-weight-bolder text-warning">HUNGPICK</h1>
             	</a>
 			</div>
-    </header>iv>
+    </header>
     </header>
 
     <div class="container">
