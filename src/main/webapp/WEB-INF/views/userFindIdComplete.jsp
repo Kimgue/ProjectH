@@ -12,7 +12,7 @@
 
     <title>헝픽 아이디 찾기</title>
     
-	<link href="resources/css/sb-admin-2.min.css" rel="stylesheet">
+	<link href="resources/css/sb-admin-2.css" rel="stylesheet">
 	<script src="https://kit.fontawesome.com/730c440743.js" crossorigin="anonymous"></script>
 	<script src="resources/js/jquery-3.4.1.min.js"></script>
 	
@@ -44,7 +44,7 @@
                                 <div class="p-5">
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-2">아이디 찾기</h1>
-                                        <p class="mb-4">회원님의 아이디는 ${userFindId}입니다</p>
+                                        <p class="mb-4">${userFindId}</p>
                                     </div>
                                     
                                     <hr>

@@ -12,7 +12,7 @@
 
     <title>헝픽 아이디 찾기</title>
     
-	<link href="resources/css/sb-admin-2.min.css" rel="stylesheet">
+	<link href="resources/css/sb-admin-2.css" rel="stylesheet">
 	<script src="https://kit.fontawesome.com/730c440743.js" crossorigin="anonymous"></script>
 	<script src="resources/js/jquery-3.4.1.min.js"></script>
 	<script>
@@ -23,20 +23,23 @@
 		var pwchk = $("#memberPwChk").val();
 		
 		if(pw == "" || pwchk == "") {
-			alert("변경할 비밀번호를 입력해주세요");
+			$("#resultPw").text("비밀번호를 입력해주세요").css("color", "red");
 			return;
 		} else if(pw == pwchk){
+			
 			if(passwdCheck.test($('#memberPw').val())) {
 				alert("비밀번호가 변경되었습니다");
 				$("#FindPw").submit();
 			} else {
-				alert("형식에 맞지 않는 비밀번호입니다");
+				$("#resultPw").text("");
+				$("#resultPwChk").text("형식에 맞지 않는 이메일입니다").css("color", "red");
 			}
 	
 		} else {
-			alert("변경할 비밀번호가 다릅니다");
+			$("#resultPw").text("");
+			$("#resultPwChk").text("변경할 비밀번호가 다릅니다").css("color", "red");
 			return;
-		}
+		} 
 	}
 </script>
 </head>
@@ -65,29 +68,23 @@
                             <div class="col-lg-6 d-none d-lg-block bg-password-image"></div>
                             <div class="col-lg-6">
                                 <div class="p-5">
-                                    <div class="text-center">
+                                    <div>
                                         <h1 class="h4 text-gray-900 mb-2">비밀번호 변경</h1>
                                         <p class="mb-4">비밀번호를 변경해주세요</p>
                                     </div>
                                     
-                                    <form id="FindPw" action="userFindPwUpdate" method="post">                                        
-                                        <div class="form-group">
-		                            		<div class="col-sm-11">
-		                            			<input type="password" class="form-control form-control-user" id="memberPw" name="memberPw" placeholder="변경할 비밀번호를 입력해주세요">
-		                            		</div>
-				                        </div>
+                                    <form id="FindPw" action="userFindPwUpdate" method="post">
+		                            	<div class="inputHeight">
+		                            		<input type="password" class="form-control col-9" id="memberPw" name="memberPw" placeholder="비밀번호 입력">
+		                            		<div id="resultPw" class="result-text"></div>
+		                            	</div>
 
-                                        <div class="form-group">
-		                            		<div class="col-sm-11">
-		                            			<input type="password" class="form-control form-control-user" id="memberPwChk" placeholder="변경할 비밀번호를 확인해주세요">
-		                            		</div>
-				                        </div>
-				                        <hr>
-                                        <div class="form-group">
-		                            		<div class="col-sm-11">
-		                            			<input type="button" class="btn btn-primary btn-user btn-block" value="비밀번호 변경" onclick="FindPw()">
-		                            		</div>
-		                            		
+		                            	<div class="inputHeight">
+		                            		<input type="password" class="form-control col-9" id="memberPwChk" placeholder="비밀번호 확인">
+		                            		<div id="resultPwChk" class="result-text"></div>
+		                            	</div>
+                                        <div>
+                                        	<input type="button" class="btn btn-primary" value="비밀번호 변경" onclick="FindPw()">
 				                        </div>					                        				                        
                                     </form>
                                     <hr>

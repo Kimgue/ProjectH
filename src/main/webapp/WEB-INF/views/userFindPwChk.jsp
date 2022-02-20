@@ -12,7 +12,7 @@
 
     <title>헝픽 아이디 찾기</title>
     
-	<link href="resources/css/sb-admin-2.min.css" rel="stylesheet">
+	<link href="resources/css/sb-admin-2.css" rel="stylesheet">
 	<script src="https://kit.fontawesome.com/730c440743.js" crossorigin="anonymous"></script>
 	<script src="resources/js/jquery-3.4.1.min.js"></script>
 	<script>
@@ -25,48 +25,49 @@
 		var val_EmailNumber = $("#Email_Number").val();
 		if(val_Name == "") {
 			$("#memberName").focus();
-			alert("이름을 입력해주세요");
+			$("#resultEmail").text("");
+			$("#resultName").text("이름을 입력해주세요").css("color", "red");
 			return;
 		}
 		if(val_Email == "") {
 			$("#memberEmail").focus();
-			alert("이메일을 입력해주세요");
+			$("#resultName").text("");
+			$("#resultEmail").text("이메일을 입력해주세요").css("color", "red");
 			return;
 		}
 		
 		if(val_EmailNumber == "") {
 			$("#Email_Number").focus();
-			alert("인증번호를 입력해주세요");
+			$("#resultEmailChk").text("인증번호를 입력해주세요").css("color", "red");
 			return;
 		} else if(val_EmailNumber == key) {
 			$("#FindPw").submit();
 		} else {
-			alert("잘못된 인증번호입니다");
+			$("#resultEmailChk").text("잘못된 인증번호입니다").css("color", "red");
 			return;
 		}
 	}
 	
 	$(document).ready(function() {
-		$("#Email_Number").attr("value","인증 번호를 입력해주세요");
 		$("#Email_Number").prop("readonly",true);
 		$("#Email_Transmit").click(function() {
 			var val_Email = $("#memberEmail").val();
 			if (val_Email == "") {
-				alert("이메일 주소를 정확하게 입력해주세요");
+				$("#resultEmail").text("이메일을 입력해주세요").css("color", "red");
 			} else if (validateEmail.test($('#memberEmail').val())) {
 				var url = "sendEmail.do";
 				
 				$.getJSON(url, {
 					"mail" : val_Email
 				}, function(json) {
-					alert("인증번호가 전송되었습니다. 인증번호가 오지 않으면 입력하신 정보가 회원정보와 일치하는지 확인해주세요");
+					$("#resultEmail").text("인증 번호가 발송되었습니다").css("color", "blue");
 					$("#memberEmail").prop("readonly",true);
 					$("#Email_Number").prop("readonly",false);
 					$("#Email_Number").attr("value","");
 					key = json.key;
 				});
 			} else {
-				alert("형식에 맞지 않는 이메일입니다");
+				$("#resultEmail").text("형식에 맞지 않는 이메일입니다").css("color", "red");
 			}
 		})
 	})
@@ -97,42 +98,36 @@
                             <div class="col-lg-6 d-none d-lg-block bg-password-image"></div>
                             <div class="col-lg-6">
                                 <div class="p-5">
-                                    <div class="text-center">
+                                    <div>
                                         <h1 class="h4 text-gray-900 mb-2">비밀번호 찾기</h1>
-                                        <p class="mb-4">비밀번호를 찾기 위해서는 본인 확인이 필요합니다</p>
+                                        <p class="mb-4">본인 확인이 필요합니다</p>
                                     </div>
                                     
-                                    <form id="FindPw" action="userFindPwChk" method="post">                                        
-                                        <div class="form-group row">
-		                            		<div class="col-sm-11">
-		                            			<input type="text" class="form-control form-control-user" id="memberName" name="memberName" placeholder="이름을 입력해주세요">
-		                            		</div>
-				                        </div>
-
-                                        <div class="form-group row">
-		                            		<div class="col-sm-9">
-		                            			<input type="text" class="form-control form-control-user" id="memberEmail" name="memberEmail" placeholder="이메일을 입력해주세요">
-		                            		</div>
-		                            		
-		                            		<div class="form-inline">
-			                            		<a href="#" id="Email_Transmit" class="form-control btn btn-primary">
-		                                        	<i class="fas fa-solid fa-envelope"></i>
-		                                    	</a>
-			                            	</div>
-				                        </div>
-
-                                        <div class="form-group row">
-		                            		<div class="col-sm-9">
-		                            			<input type="text" class="form-control form-control-user" id="Email_Number" placeholder="인증번호를 입력해주세요">
-		                            		</div>
-		                            		
-		                            		<div class="form-inline">
-			                            		<a href="#" id="Email_Check" class="form-control btn btn-primary" onclick="FindPw()">
-		                                        	<i class="fas fa-check"></i>
-		                                    	</a>
-			                            	</div>
-				                        </div>					                        				                        
-                                    </form>
+                                    <form id="FindPw" action="userFindPwChk" method="post">
+                                    	<div class="inputHeight">
+		                            		<input type="text" class="form-control col-9" id="memberName" name="memberName" placeholder="이름">
+		                            		<div id="resultName" class="result-text"></div>
+		                            	</div>
+		                            	
+		                            	<div class="inputHeight">
+											<input type="text" class="form-control col-9" id="memberEmail" name="memberEmail" placeholder="이메일을 입력해주세요">
+											<a href="#" id="Email_Transmit" class="btn btn-primary btnMarginTop">
+		                            			<i class="fas fa-solid fa-envelope"></i>
+		                           			</a>
+		                            		<div id="resultEmail" class="result-text"></div>   
+		                            	</div>
+		                            	
+		                            	<div id="EmailChk">
+		                            	<div class="inputHeight">
+											<input type="text" class="form-control col-9" id="Email_Number" placeholder="인증번호 입력">
+			                            	<a href="#" id="Email_Check" class="btn btn-primary btnMarginTop" onclick="FindPw()">
+			                            		<i class="fas fa-check"></i>
+			                           		</a>
+			                           		<div id="resultEmailChk" class="result-text"></div> 
+		                            	</div>
+		                            	</div>
+		                            </form>
+                                    
                                     <hr>
                                     <div class="text-center">
                                         <a class="small" href="userFindId">아이디를 찾으시나요?</a>

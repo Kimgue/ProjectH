@@ -41,11 +41,15 @@
   --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
-
 *,
 *::before,
 *::after {
   box-sizing: border-box;
+}
+
+ul {
+	list-style: none;
+	padding: 0px;
 }
 
 html {
@@ -1827,7 +1831,7 @@ pre code {
 }
 
 .form-control {
-  display: block;
+  display: inline-block;
   width: 100%;
   height: calc(1.5em + 0.75rem + 2px);
   padding: 0.375rem 0.75rem;
@@ -1840,6 +1844,13 @@ pre code {
   border: 1px solid #d1d3e2;
   border-radius: 0.35rem;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.result-text {
+	padding: 0px 0.75rem;
+	font-size: 1rem;
+	font-weight: 400;
+	line-height: 1.5;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -7520,6 +7531,12 @@ button.bg-dark:focus {
   position: sticky !important;
 }
 
+.sticky-left {
+  position: sticky !important;
+  top: 0;
+  z-index: 1030;
+}
+
 .fixed-top {
   position: fixed;
   top: 0;
@@ -11279,5 +11296,54 @@ footer.sticky-footer .copyright {
 
 body.sidebar-toggled footer.sticky-footer {
   width: 100%;
+}
+
+.inputHeight {
+	height: 65px !important;
+}
+
+.btnMarginTop {
+	margin-top: -4px !important;
+}
+
+
+.slide{height:300px;overflow:hidden;position:relative;}
+.slide ul{width:calc(100% * 4);display:flex;transition:1s;}
+.slide li{width:calc(100% / 4);height:300px;}
+.slide li:nth-child(1){background:#ffa;}
+.slide li:nth-child(2){background:#faa;}
+.slide li:nth-child(3){background:#afa;}
+.slide li:nth-child(4){background:#aaf;}
+.slide input{display:none;}
+.slide .bullet{position:absolute;bottom:20px;left:0;right:0;text-align:center;z-index:10;}
+.slide .bullet label{width:10px;height:10px;border-radius:10px;border:2px solid #666;display:inline-block;background:#fff;font-size:0;transition:0.5s;cursor:pointer;}
+
+ /* 슬라이드 조작 */
+#pos1:checked ~ ul{margin-left:0;}
+#pos2:checked ~ ul{margin-left:-100%;}
+#pos3:checked ~ ul{margin-left:-200%;}
+#pos4:checked ~ ul{margin-left:-300%;}
+
+/* bullet 조작 */
+#pos1:checked ~ .bullet label:nth-child(1),
+#pos2:checked ~ .bullet label:nth-child(2),
+#pos3:checked ~ .bullet label:nth-child(3),
+#pos4:checked ~ .bullet label:nth-child(4){background:#666;}
+
+
+.md {
+    display: grid;
+    grid-template-rows: 300px 300px 300px;
+    grid-template-columns: 300px 300px 300px;
+}
+
+.mdList {
+	margin:20px 20px;
+	background: #444;
+	border: 1px solid #555;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: #AAA;
 }
 

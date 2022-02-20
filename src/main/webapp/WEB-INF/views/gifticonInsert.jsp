@@ -12,7 +12,7 @@
 
     <title>헝픽 관리자 페이지</title>
     
-	<link href="resources/css/sb-admin-2.min.css" rel="stylesheet">
+	<link href="resources/css/sb-admin-2.css" rel="stylesheet">
 	<script src="https://kit.fontawesome.com/730c440743.js" crossorigin="anonymous"></script>
 	<script src="resources/js/jquery-3.4.1.min.js"></script>
 	<script>
@@ -333,7 +333,7 @@
 								<tr>
 									<td class="align-middle">이미지</td>
 									<td class="align-middle">
-									<img style="width: 150px;" id="preview-image" src="">
+									<img style="width: 150px;" class="img img-fluid img-thumbnail" id="preview-image" src="">
 									<input type="hidden" id="gifticonImg" name="gifticonImg">
 									<input type="file" class="form-control-file" id="input-image" name="uploadfile" required="required">
 									</td>

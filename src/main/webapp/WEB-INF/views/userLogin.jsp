@@ -13,7 +13,7 @@
 
 <title>헝픽 로그인</title>
 
-<link href="resources/css/sb-admin-2.min.css" rel="stylesheet">
+<link href="resources/css/sb-admin-2.css" rel="stylesheet">
 <script src="https://kit.fontawesome.com/730c440743.js" crossorigin="anonymous"></script>
 <script src="resources/js/jquery-3.4.1.min.js"></script>
 <script>
@@ -57,34 +57,35 @@
 							<div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
 							<div class="col-lg-6">
 								<div class="p-5">
-									<div class="text-center">
-										<h1 class="h4 text-gray-900 mb-4">로그인</h1>
-									</div>
+									<h1 class="h2 mb-4">로그인</h1>
 									<form id="login" method="post">
-										<div class="form-group">
-											<input type="text" class="form-control form-control-user"
-												id="Id" name="memberId" aria-describedby="emailHelp"
-												placeholder="아이디를 입력해주세요">
-										</div>
-										<div class="form-group">
-											<input type="password" class="form-control form-control-user"
-												id="Pw" name="memberPw" placeholder="비밀번호를 입력해주세요">
-										</div>
-										<div class="form-group">
-											${loginNotice}
-										</div>										
-										<hr>
-										<input type="button" class="btn btn-primary btn-user btn-block" value="로그인" onclick="login()">
+		                            	<div class="inputHeight">
+			                            	<input type="text" class="form-control col" id="Id" name="memberId" placeholder="아이디">
+		                            	</div>
+		                            	<div class="inputHeight">
+			                            	<input type="password" class="form-control col" id="Pw" name="memberPw" placeholder="비밀번호">
+		                            	</div>
 									</form>
+									<div class="form-group text-danger">
+										${loginNotice}
+									</div>
 									<hr>
-		                            <div class="text-center">
-		                                <a class="small" href="userFindId">아이디를 잊으셨나요?</a>
-		                            </div>
-		                            <div class="text-center">
-		                                <a class="small" href="userFindPw">비밀번호를 잊으셨나요?</a>
-		                            </div>		                            
-									<div class="text-center">
-										<a class="small" href="userSignUp">아직 아이디가 없으신가요?</a>
+									<div>
+										<input type="button" class="form-control btn btn-primary block" value="로그인" onclick="login()">
+									</div>
+									
+									<br>
+									
+									<div>
+			                            <div class="text-center">
+			                                <a class="small" href="userFindId">아이디를 잊으셨나요?</a>
+			                            </div>
+			                            <div class="text-center">
+			                                <a class="small" href="userFindPw">비밀번호를 잊으셨나요?</a>
+			                            </div>		                            
+										<div class="text-center">
+											<a class="small" href="userSignUp">아직 아이디가 없으신가요?</a>
+										</div>
 									</div>
 								</div>
 							</div>
