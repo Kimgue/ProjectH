@@ -40,6 +40,10 @@ public class FileUploadController {
 		// 파일의 크기
 		byte bytes[] = uploadFile.getBytes();
 		
+        if ( ! new File(realPath).exists()) {
+            new File(realPath).mkdirs();
+        }
+		
 		// UUID 설정
 		final String uuid = UUID.randomUUID().toString().replace("-", "");
 		fileName = uuid + "_" + fileName;
