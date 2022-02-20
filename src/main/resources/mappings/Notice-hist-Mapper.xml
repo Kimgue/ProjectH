@@ -10,7 +10,6 @@
 		NOTICE
 		WHERE ADMIN_CODE = #{ adminCode } AND
 		NOTICE_CODE = #{ noticeCode } 
-		
 	</select>
 	
 	<select id="listCount" resultType="int">

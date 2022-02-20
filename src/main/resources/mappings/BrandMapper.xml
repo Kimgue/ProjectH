@@ -8,4 +8,11 @@
 		SELECT * FROM BRAND ORDER BY BRAND_CODE ASC
 	</select>
 	
+	<insert id="insertBrand" parameterType="brandDto">
+		<selectKey resultType="String" keyProperty="brandCode" order="BEFORE">
+		SELECT TO_CHAR(MAX(BRAND_CODE)+1) FROM BRAND
+		</selectKey>
+		INSERT INTO BRAND VALUES (#{brandCode}, #{brandName}, 
+		#{brandImg}, #{brandDescription}, #{brandLink})	
+	</insert>
 </mapper>
