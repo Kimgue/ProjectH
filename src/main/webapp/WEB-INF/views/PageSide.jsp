@@ -26,7 +26,53 @@
 				</div>
 			<div class="sidebar-brand-text mx-3">메인 페이지</div>
 			</a>
-			
+
+			<c:choose>
+				<c:when test="${loginBool eq true}">
+					<c:choose>
+						<c:when test="${not empty adminDTO}">
+							<li class="nav-item">
+								<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#Admin" aria-expanded="true" aria-controls="collapseTwo">
+									<i class="fas fa-user fa-sm fa-fw"></i> <span>관리자</span>
+								</a>					
+								<div id="Admin" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+									<div class="bg-white py-2 collapse-inner rounded">
+										<a class="collapse-item" href="adminPage">관리자 페이지</a>									
+										<a class="collapse-item" href="userMyInfo">나의 정보</a>
+										<a class="collapse-item" href="userLogout">로그아웃</a>
+									</div>
+								</div>
+							</li>						
+						</c:when>
+						
+						<c:otherwise>
+							<li class="nav-item">
+								<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#Mbr" aria-expanded="true" aria-controls="collapseTwo">
+									<i class="fas fa-user fa-sm fa-fw"></i> <span>회원</span>
+								</a>					
+								<div id="Mbr" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+									<div class="bg-white py-2 collapse-inner rounded">
+										<a class="collapse-item" href="userMyInfo">나의 정보</a>
+										<a class="collapse-item" href="userLogout">로그아웃</a>
+									</div>
+								</div>
+							</li>						
+						</c:otherwise>
+					</c:choose>
+				</c:when>
+				
+				<c:otherwise>
+					<li class="nav-item">
+						<a class="nav-link collapsed" href="userLogin">
+							<i class="fas fa-fw fa-wrench"></i> <span>로그인</span>					
+						</a>
+						<a class="nav-link collapsed" href="userSignUp">
+							<i class="fas fa-fw fa-wrench"></i> <span>회원가입</span>					
+						</a>
+					</li>
+				</c:otherwise>
+			</c:choose>
+				
 			<!-- 구분선 -->
 			<hr class="sidebar-divider my-0">
 			

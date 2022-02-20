@@ -17,7 +17,7 @@
 <body>
 
 	<!-- 상단바 시작 -->
-	<nav class="navbar navbar-expand navbar-light bg-white topbar static-top">
+	<nav class="navbar navbar-expand navbar-light bg-white topbar static-top shadow">
 	
 	<!-- 사이드바 토글 버튼 (상단에 붙은것) -->
 	<button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
@@ -37,7 +37,7 @@
 	</form>
 
 	<!-- 상단바 : 회원버튼 -->
-	<ul class="navbar-nav ml-auto">
+	<%-- <ul class="navbar-nav">
 		<c:choose>
 			<c:when test="${loginBool eq true}">
 				<c:choose>
@@ -79,7 +79,7 @@
 			<a class="btn rounded-0" href="userSignUp">회원가입</a>			
 			</c:otherwise>
 		</c:choose>
-	</ul>
+	</ul> --%>
 
 	</nav>
 	<!-- 상단바 끝 -->
