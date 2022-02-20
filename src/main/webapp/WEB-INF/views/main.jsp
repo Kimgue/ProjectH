@@ -69,7 +69,7 @@
 				</a>
 				<div id="Notice" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" href="AdminNoticelist">공지사항 조회</a>
+						<a class="collapse-item" href="Notice">공지사항 조회</a>
 					</div>
 				</div>
 			</li>
@@ -81,7 +81,7 @@
 				</a>
 				<div id="QnA" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" href="Nconfirm">질문과 답변</a> 
+						<a class="collapse-item" href="Questionlist">질문과 답변</a> 
 					</div>
 				</div>
 			</li>
