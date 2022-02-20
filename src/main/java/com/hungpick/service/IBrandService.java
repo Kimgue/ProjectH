@@ -2,6 +2,8 @@ package com.hungpick.service;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.hungpick.dto.BrandDto;
 
 public interface IBrandService {
@@ -11,4 +13,10 @@ public interface IBrandService {
 	
 	//브랜드 등록
 	void insertBrand(BrandDto brandDto);
+	
+	//브랜드 수정
+	void updateBrand(BrandDto brandDto);
+	
+	//브랜드 삭제
+	void deleteBrand(@Param("brandCode") String brandCode);
 }

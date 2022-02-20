@@ -36,4 +36,19 @@ public class BrandServiceImpl implements IBrandService {
 		brandDao.insertBrand(brandDto);
 	}
 
+
+	@Override
+	public void updateBrand(BrandDto brandDto) {
+	
+		brandDao.updateBrand(brandDto);
+	}
+
+
+	@Override
+	public void deleteBrand(String brandCode) {
+		
+		brandDao.deleteBrand(brandCode);
+	}
+	
+
 }

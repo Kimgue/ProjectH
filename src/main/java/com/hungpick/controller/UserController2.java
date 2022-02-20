@@ -45,7 +45,7 @@ public class UserController2 {
 		model.addAttribute("brand", brandService.sltMulti());
 	}
 	
-	//브랜드 페이지이동
+	//브랜드 등록 페이지이동
 	@RequestMapping("brandInsert")
 	public String brandInsert() throws Exception {
 		logger.info("brandInsert called ========");
@@ -62,6 +62,23 @@ public class UserController2 {
 		return "brandInsert";
 	}
 	
+	//브랜드 삭제 페이지이동
+	@RequestMapping("brandDelete")
+	public String brandDelete(Model model) throws Exception {
+		logger.info("brandDelete called ========");
+		model.addAttribute("brand", brandService.sltMulti());
+		return "brandDelete";
+	}
+	
+	//브랜드 삭제 페이지이동
+		@RequestMapping("deleteBrand")
+		public String deleteBrand(@RequestParam String brandCode) throws Exception {
+			logger.info("deleteBrand called ========");
+			System.out.println(brandCode);
+			brandService.deleteBrand(brandCode);
+			return "redirect:/brandDelete";
+		}
+		
 	//메뉴 페이지
 	@RequestMapping("menu")
 	public void menu(Model model) throws Exception {

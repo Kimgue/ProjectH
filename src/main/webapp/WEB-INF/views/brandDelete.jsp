@@ -15,7 +15,7 @@
    	<link href="resources/css/sb-admin-2.css" rel="stylesheet">
 	<script src="https://kit.fontawesome.com/730c440743.js" crossorigin="anonymous"></script>
 	<script src="resources/js/jquery-3.4.1.min.js"></script>
-	<script src="resources/js/gifticon/gifticonInsert.js"></script>
+	<script src="resources/js/brand/brandDelete.js"></script>
     
 </head>
 
@@ -30,34 +30,36 @@
 	<jsp:include page="PageHeader.jsp" flush="false"/>
 					
 		<!-- 메인 -->
-		<div id="content">
-			<form id="insertForm" action="brandInsert" method="post" enctype="multipart/form-data">
-				<table class="table">
-					<tr>
-						<td class="align-middle">브랜드 이름</td>
-						<td class="align-middle"><input type="text" id="brandName" name="brandName"></td>
-					</tr>
-					<tr>
-						<td class="align-middle">브랜드 설명</td>
-						<td class="align-middle"><input type="text" id="brandDescription" name="brandDescription"></td>
-					</tr>
-					<tr>
-						<td class="align-middle">브랜드 링크</td>
-						<td class="align-middle"><input type="text" id="brandLink" name="brandLink"></td>
-					</tr>
-					<tr>
-						<td class="align-middle">브랜드 이미지</td>
-						<td class="align-middle">
-						<img style="width: 150px;" class="img img-fluid img-thumbnail" id="preview-image" src="">
-						<input type="hidden" id="brandImg" name="brandImg">
-						<input type="file" class="form-control-file" id="input-image" name="uploadfile" required="required">
-						</td>
-					</tr>
-					<tr>
-						<td class="align-middle"><input type="button" class="btn btn-primary" value="작성" onclick="insert()"> </td>
-					</tr>								
-				</table>
-			</form>
+			<div id="content">
+			<c:choose>
+				<c:when test="${not empty brand}">
+					<c:forEach var="brand" items="${brand}">
+						<div class="col-xl-3 col-md-6 mb-4">
+							<div class="card border-left-primary shadow h-100 py-2">
+								<div class="card-body">
+									<div class="row no-gutters align-items-center">
+										<div class="col mr-2">
+											<form id="formbtn${brand.brandCode}" action="deleteBrand" method="post">
+												<input type="text" value="${brand.brandCode}" name="brandCode">
+												<input type="text" class="imgbtn${brand.brandCode}" value="${brand.brandImg}" name="brandImg">
+											</form>
+											<div class="h2 font-weight-bold text-primary">
+												<c:out value="${brand.brandName}" />
+											</div>
+											<img src="<c:url value='${brand.brandImg}' />" alt="${gift.brandImg}" height="270" width="270" /><br>
+											<input type="button" class="btn btn-primary" id="btn${brand.brandCode}" value="삭제">
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</c:forEach>
+				</c:when>
+				
+				<c:otherwise>
+					<div class="h2 font-weight-bold text-primary">현재 등록된 브랜드가 없습니다</div>
+				</c:otherwise>
+			</c:choose>
 		</div>
 		<!-- 메인 컨텐츠 끝 -->
 			

@@ -15,4 +15,16 @@
 		INSERT INTO BRAND VALUES (#{brandCode}, #{brandName}, 
 		#{brandImg}, #{brandDescription}, #{brandLink})	
 	</insert>
+	
+	<update id="updateBrand" parameterType="BrandDto">
+		
+		UPDATE BRAND SET BRAND_NAME = #{brandName}, BRAND_IMG = #{brandImg}, 
+		BRAND_DESCRIPTION = #{brandDescription}, BRAND_LINK = #{brandLink}
+	
+	</update>
+	
+	
+	<delete id="deleteBrand" parameterType="String">
+		DELETE FROM BRAND WHERE BRAND_CODE = #{brandCode}
+	</delete>
 </mapper>
