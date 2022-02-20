@@ -46,8 +46,8 @@
 						<td class="align-middle">
 							<select id="brandCode" name="brandCode" onchange="brandSelect()">
 							<option value="" selected disabled>브랜드 선택</option>
-							<option value="H1">맥도날드</option>
-							<option value="H2">롯데리아</option>
+							<option value="1">맥도날드</option>
+							<option value="2">롯데리아</option>
 							</select>
 						</td>
 					</tr>
