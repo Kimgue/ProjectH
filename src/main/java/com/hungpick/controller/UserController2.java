@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.hungpick.dto.BrandDto;
+import com.hungpick.dto.MenuDto;
 import com.hungpick.dto.MenuVo;
 import com.hungpick.service.IBrandService;
 import com.hungpick.service.IMenuService;
@@ -55,11 +56,10 @@ public class UserController2 {
 	
 	//브랜드 등록
 	@RequestMapping("insertBrand")
-	public String insertBrand(BrandDto brandDto) throws Exception {
+	public void insertBrand(BrandDto brandDto) throws Exception {
 		logger.info("insertBrand called ========");
 		brandService.insertBrand(brandDto);
-		
-		return "brandInsert";
+	
 	}
 	
 	//브랜드 삭제 페이지이동
@@ -74,7 +74,7 @@ public class UserController2 {
 		@RequestMapping("deleteBrand")
 		public String deleteBrand(@RequestParam String brandCode) throws Exception {
 			logger.info("deleteBrand called ========");
-			System.out.println(brandCode);
+			
 			brandService.deleteBrand(brandCode);
 			return "redirect:/brandDelete";
 		}
@@ -125,6 +125,23 @@ public class UserController2 {
 		logger.info("menuDetail called ========");
 		model.addAttribute("menu", menuService.sltOneMenu(brandCode, menuCode));
 		model.addAttribute("review", reviewService.sltReviewList(brandCode, menuCode));
+	}
+	
+	//메뉴등록 페이지
+	@RequestMapping("menuInsert")
+	public String menuInsert(Model model)	throws Exception {
+		logger.info("menuInsert called ========");
+		model.addAttribute("brand", brandService.sltMulti());
+		
+		return "menuInsert";
+	}
+	//메뉴등록하기
+	@RequestMapping("insertMenu")
+	public String insertMenu(MenuDto menuDto) throws Exception {
+		logger.info("insertMenu called ========");
+		menuService.insertMenu(menuDto);
+		
+		return "menuInsert";
 	}
 	
 	//상세리뷰 페이지

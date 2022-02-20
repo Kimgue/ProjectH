@@ -35,4 +35,8 @@ public interface IMenuDao {
 			@Param(value = "menuPrice") String menuPrice,
 			@Param(value = "menuIngredients") String[] menuIngredients,
 			@Param(value = "menuName") String menuName);
+	
+	//메뉴 등록
+	void insertMenu(MenuDto menuDto);
+	
 }

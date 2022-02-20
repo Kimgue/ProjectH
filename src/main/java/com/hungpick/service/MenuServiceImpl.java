@@ -60,14 +60,22 @@ public class MenuServiceImpl implements IMenuService {
 	}
 
 	//메뉴 조건검색한 결과 보기
-		@Override
-		public List<MenuVo> sltSearch(
-				@Param(value = "brandCode") String[] brandCode,
-				@Param(value = "menuPrice") String menuPrice,
-				@Param(value = "menuIngredients") String[] menuIngredients,
-				@Param(value = "menuName") String menuName) {
-			
-			return menuDao.sltSearch(brandCode, menuPrice, menuIngredients, menuName);
-		}
+	@Override
+	public List<MenuVo> sltSearch(
+			@Param(value = "brandCode") String[] brandCode,
+			@Param(value = "menuPrice") String menuPrice,
+			@Param(value = "menuIngredients") String[] menuIngredients,
+			@Param(value = "menuName") String menuName) {
+		
+		return menuDao.sltSearch(brandCode, menuPrice, menuIngredients, menuName);
+	}
+	
+	//메뉴 등록
+	@Override
+	public void insertMenu(MenuDto menuDto) {
+	
+		menuDao.insertMenu(menuDto);
+		
+	}
 	
 }

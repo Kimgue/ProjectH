@@ -76,4 +76,13 @@
 			</if>
 	</select>
 	
+	<!--메뉴 등록  -->
+	<insert id="insertMenu" parameterType="menuDto">
+		<selectKey resultType="String" keyProperty="menuCode" order="BEFORE">
+		SELECT TO_CHAR(MAX(MENU_CODE)+1) FROM MENU WHERE BRAND_CODE = #{brandCode}
+		</selectKey>
+		INSERT INTO MENU VALUES (#{brandCode}, #{menuCode}, 
+		#{menuName}, #{menuImg}, #{menuPrice}, #{menuDescription}, #{menuIngredients})	
+	</insert>
+	
 </mapper>

@@ -40,8 +40,8 @@
 									<div class="row no-gutters align-items-center">
 										<div class="col mr-2">
 											<form id="formbtn${brand.brandCode}" action="deleteBrand" method="post">
-												<input type="text" value="${brand.brandCode}" name="brandCode">
-												<input type="text" class="imgbtn${brand.brandCode}" value="${brand.brandImg}" name="brandImg">
+												<input type="hidden" value="${brand.brandCode}" name="brandCode">
+												<input type="hidden" class="imgbtn${brand.brandCode}" value="${brand.brandImg}" name="brandImg">
 											</form>
 											<div class="h2 font-weight-bold text-primary">
 												<c:out value="${brand.brandName}" />
