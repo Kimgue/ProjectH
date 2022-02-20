@@ -12,7 +12,7 @@
 
     <title>헝픽 회원탈퇴</title>
     
-	<link href="resources/css/sb-admin-2.min.css" rel="stylesheet">
+	<link href="resources/css/sb-admin-2.css" rel="stylesheet">
 	<script src="https://kit.fontawesome.com/730c440743.js" crossorigin="anonymous"></script>
 	<script src="resources/js/jquery-3.4.1.min.js"></script>
 	<script>
@@ -56,25 +56,15 @@
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-2">회원탈퇴</h1>
-                                        <p class="mb-4">회원탈퇴를 진행하시려면 '회원탈퇴'를 입력하고 탈퇴 버튼을 눌러주세요</p>
-                                    </div>
-                                    
-                                    <form id="userDelete" action="userDeleteSubmit" method="post">                                        
-                                        <div class="form-group row">
-		                            		<div class="col-sm-9">
-		                            			<input type="text" class="form-control form-control-user" id="userDelChk" placeholder="회원탈퇴를 입력해주세요">
-		                            		</div>
-		                            		
-		                            		<div class="form-inline">
-			                            		<a href="#" class="form-control btn btn-primary" onclick="userDelete()">
-		                                        	<i class="fas fa-check"></i>
-		                                    	</a>
-			                            	</div>
-				                        </div>
+                                    <h1 class="h4 text-gray-900 mb-2">회원탈퇴</h1>
+                                    <p class="mb-4">회원탈퇴를 진행하시려면 '회원탈퇴'를 입력하고 탈퇴 버튼을 눌러주세요</p>
+                                    <form id="userDelete" action="userDeleteSubmit" method="post">
+										<input type="text" class="form-control col-9" id="userDelChk" placeholder="회원탈퇴를 입력해주세요">
+		                            	<a href="#" class="btn btn-primary btnMarginTop" onclick="userDelete()"">
+		                            		<i class="fas fa-check"></i>
+		                           		</a>
                                     </form>
                                     <hr>
-                                    <div class="text-center">
                                         <a class="small" href="main">메인페이지</a>
                                     </div>
                                 </div>

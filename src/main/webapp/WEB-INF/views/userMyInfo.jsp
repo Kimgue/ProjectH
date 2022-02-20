@@ -12,7 +12,7 @@
 
     <title>헝픽 관리자 페이지</title>
     
-	<link href="resources/css/sb-admin-2.min.css" rel="stylesheet">
+	<link href="resources/css/sb-admin-2.css" rel="stylesheet">
 	<script src="https://kit.fontawesome.com/730c440743.js" crossorigin="anonymous"></script>
 	<script src="resources/js/jquery-3.4.1.min.js"></script>
 	<script>
@@ -336,12 +336,13 @@
 				<div class="card border-0 shadow-lg my-4">
 					<div class="card-body p-2">
 						<!-- Nested Row within Card Body -->
-							<div class="text-center">
-								<h1 class="h2 text-gray-900 mt-4 mb-4">내 정보</h1>
-							</div>
+							
 							<c:choose>
 								<c:when test="${not empty adminDTO}">
-									<table class="table">
+									<div class="text-center">
+										<h1 class="h2 text-gray-900 mt-4 mb-4">관리자 정보</h1>
+									</div>
+									<table class="table">				
 									<tr>
 										<td>아이디
 										<td>${adminDTO.adminId}</td>
@@ -358,6 +359,9 @@
 								</c:when>
 										
 								<c:otherwise>
+									<div class="text-center">
+										<h1 class="h2 text-gray-900 mt-4 mb-4">내 정보</h1>
+									</div>
 									<table class="table">
 									<tr>
 										<td class="align-middle">아이디</td>
@@ -426,53 +430,52 @@
 									</tr>
 									</table>
 									<br>
+									<div class="card-body p-2">
+										<div id="Pw">
+											<input type="hidden" id="memberPw" value="${memberDTO.memberPw}">
+											<table class="table table-borderless">
+												<tr>
+													<td class="align-middle">
+														현재 비밀번호<br>
+														<input type="password" class="form-control" id="Pw_Current">
+														<div id="resultPwCurrent"></div><br>
+													</td>
+												</tr>
+												<tr>
+													<td class="align-middle">
+														변경 비밀번호<br>
+														<input type="password" class="form-control mb-3"  id="Pw_Change">
+														<div id="resultPwChange"></div>
+													</td>
+												</tr>
+												<tr>
+													<td class="align-middle">
+														변경 비밀번호 확인<br>
+														<input type="password" class="form-control mb-3"  id="Pw_Chk">
+														<div id="resultPwChk"></div>
+													</td>									
+												</tr>
+												<tr>
+													<td class="align-middle">
+														<input type="button" class="btn btn-primary" id="Pw_Submit" value="변경 완료">
+														<input type="button" class="btn btn-primary" id="Pw_Cancle" value="변경 취소">
+													</td>									
+												</tr>
+											</table>
+											
+										</div>
+									</div>
+									<div class="card-body p-2">
+										<input type="button" class="form-control mb-2" id="Pw_Btn" value="비밀번호 변경">
+										<form id="userGifticon" action="userGifticon" method="POST">
+											<input type="hidden" id="memberCode" name="userDto.memberCode" value="${memberDTO.memberCode}">
+											<input type="button" class="form-control mb-2" value="보유 기프티콘" onClick="userGifticon()">
+										</form>
+										<input type="button" class="form-control" value="회원탈퇴" onClick="location.href='userDelete'">
+									</div>
 								</c:otherwise>
 							</c:choose>
 					</div>
-					<div class="card-body p-2">
-						<div id="Pw">
-							<input type="hidden" id="memberPw" value="${memberDTO.memberPw}">
-							<table class="table table-borderless">
-								<tr>
-									<td class="align-middle">
-										현재 비밀번호<br>
-										<input type="password" class="form-control" id="Pw_Current">
-										<div id="resultPwCurrent"></div><br>
-									</td>
-								</tr>
-								<tr>
-									<td class="align-middle">
-										변경 비밀번호<br>
-										<input type="password" class="form-control mb-3"  id="Pw_Change">
-										<div id="resultPwChange"></div>
-									</td>
-								</tr>
-								<tr>
-									<td class="align-middle">
-										변경 비밀번호 확인<br>
-										<input type="password" class="form-control mb-3"  id="Pw_Chk">
-										<div id="resultPwChk"></div>
-									</td>									
-								</tr>
-								<tr>
-									<td class="align-middle">
-										<input type="button" class="btn btn-primary" id="Pw_Submit" value="변경 완료">
-										<input type="button" class="btn btn-primary" id="Pw_Cancle" value="변경 취소">
-									</td>									
-								</tr>
-							</table>
-							
-						</div>
-					</div>
-					<div class="card-body p-2">
-						<input type="button" class="form-control mb-2" id="Pw_Btn" value="비밀번호 변경">
-						<form id="userGifticon" action="userGifticon" method="POST">
-							<input type="hidden" id="memberCode" name="userDto.memberCode" value="${memberDTO.memberCode}">
-							<input type="button" class="form-control mb-2" value="보유 기프티콘" onClick="userGifticon()">
-						</form>
-						<input type="button" class="form-control" value="회원탈퇴" onClick="location.href='userDelete'">
-					</div>
-					
 				</div>
 			</div>
 		</div>

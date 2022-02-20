@@ -10,9 +10,9 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>헝픽 아이디 찾기</title>
+    <title>헝픽 비밀번호 찾기</title>
     
-	<link href="resources/css/sb-admin-2.min.css" rel="stylesheet">
+	<link href="resources/css/sb-admin-2.css" rel="stylesheet">
 	<script src="https://kit.fontawesome.com/730c440743.js" crossorigin="anonymous"></script>
 	<script src="resources/js/jquery-3.4.1.min.js"></script>
 	<script>
@@ -20,7 +20,7 @@
 		var val_Id = $("#memberId").val();
 		if (val_Id == "") {
 			$("#memberId").focus();
-			alert("아이디를 입력해주세요");
+			$("#resultId").text("아이디를 입력해주세요").css("color", "red");
 			return;
 		} else {
 			var url = "chkId.do";
@@ -32,8 +32,8 @@
 				var result = eval(result_text);
 
 				if (result) {
-					alert("입력한 아이디를 찾을 수 없습니다");
-					$("#memberId").attr("value", "");
+					$("#resultId").text("아이디를 찾을 수 없습니다").css("color", "red");
+					$("#memberId").val("");
 					$("#memberId").focus();
 				} else {
 					$("#FindPw").submit();
@@ -68,24 +68,21 @@
                             <div class="col-lg-6 d-none d-lg-block bg-password-image"></div>
                             <div class="col-lg-6">
                                 <div class="p-5">
-                                    <div class="text-center">
+                                    <div>
                                         <h1 class="h4 text-gray-900 mb-2">비밀번호 찾기</h1>
                                         <p class="mb-4">비밀번호를 찾고자 하는 아이디를 입력해주세요</p>
                                     </div>
                                     
-                                    <form id="FindPw" action="userFindPwSubmit" method="post">                                        
-                                        <div class="form-group row">
-		                            		<div class="col-sm-9">
-		                            			<input type="text" class="form-control form-control-user" id="memberId" name="memberId" placeholder="아이디를 입력해주세요">
-		                            		</div>
-		                            		
-		                            		<div class="form-inline">
-			                            		<a href="#" id="Email_Check" class="form-control btn btn-primary" onclick="FindPw()">
-		                                        	<i class="fas fa-check"></i>
-		                                    	</a>
-			                            	</div>
-				                        </div>
+                                    <form id="FindPw" action="userFindPwSubmit" method="post">
+                                    	<div class="inputHeight">
+											<input type="text" class="form-control col-9" id="memberId" name="memberId" placeholder="아이디">
+											<a href="#" class="btn btn-primary btnMarginTop" onclick="FindPw()">
+		                            			<i class="fas fa-check"></i>
+		                           			</a>
+		                            		<div id="resultId" class="result-text"></div>   
+		                            	</div>
                                     </form>
+                                    <p class="text-center text-danger">${wrongNotice}</p>
                                     <hr>
                                     <div class="text-center">
                                         <a class="small" href="userFindId">아이디를 찾으시나요?</a>
