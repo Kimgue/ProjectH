@@ -253,9 +253,9 @@
 										</tr>	
 										<tr>
 											<td>
-												<label for="qstnContent">내용 :${ sltOne.qstnContent } 
-												${sltOne.qstnImg }</label><!-- <textarea id="qstnContent" name="qstnContent" >
-												</textarea>	 -->	
+												<label for="qstnContent">내용 :${ sltOne.qstnContent } </label><!-- <textarea id="qstnContent" name="qstnContent" >
+												</textarea>	 -->	</td>
+												
 												<input type="hidden" id="qstnContent" name="qstnContent" value="${ sltOne.qstnContent } " />
 												<input type="hidden" id="qstnImg" name="qstnImg" value="${sltOne.qstnImg }" /> 
 												<%-- <td>
@@ -263,6 +263,11 @@
 												<img src="<c:url value='${sltOne.qstnImg }' />" alt="${sltOne.qstnImg }" height="150" width="150"/>
 												</div>									
 											</td> --%>
+										</tr>
+										<tr>
+											<td>								
+												<img src="<c:url value='${sltOne.qstnImg }' />" alt="${sltOne.qstnImg }" height="150" width="150" onError="this.style.visibility='hidden'" />
+											</td>
 										</tr>
 										<tr>
 											<td> 

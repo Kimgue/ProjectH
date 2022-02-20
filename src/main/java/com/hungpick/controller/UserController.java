@@ -100,7 +100,8 @@ public class UserController {
 
 		memberCode = (String) session.getAttribute("memberCode");
 		model.addAttribute("sltOne", question.sltOne(memberCode, qstnCode));	
-
+		model.addAttribute("selectOne", answer.selectQuestionview(memberCode, qstnCode));
+		
 		return "questionsltoneQ&A";
 	}
 	

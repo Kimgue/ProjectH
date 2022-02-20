@@ -61,7 +61,7 @@
 		if(result) {
 			alert("등록되었습니다");
 			
-			const uploadPath = "G:/rbtjd/WebProject/src/main/webapp/resources/images/Q&AImg";
+			const uploadPath = "/WebProject/src/main/webapp/resources/images/Q&AImg";
 			
 			const imageInput = $("#qstnImg")[0];
 			if(imageInput.files.length == 0){
@@ -78,7 +78,7 @@
 					contentType : false,
 					data : formData,						
 					success : function(response) {
-						$("#testabc").attr("value","images/Q&AImg/"+response);
+						$("#qstnimg").attr("value","images/Q&AImg/"+response);
 						$("#qstnInsert").submit();
 					},
 					error : function(jqXHR) {
@@ -324,7 +324,7 @@
 										<tr>
 											<td>	
 												
-												<input type="hidden" id="testabc" name="qstnImg">
+												<input type="hidden" id="qstnimg" name="qstnImg">
 												<input type="file" id="qstnImg" name="uploadfile">
 												<img style="width: 100px;" id="preview-image" src="">
 												<div class="img"></div>

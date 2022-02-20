@@ -15,6 +15,60 @@
 	<link href="resources/css/sb-admin-2.min.css" rel="stylesheet">
 	<script src="https://kit.fontawesome.com/730c440743.js" crossorigin="anonymous"></script>
 	<script src="resources/js/jquery-3.4.1.min.js"></script>
+	<script>
+	function view2(  adminCode ,   noticeCode )
+	{
+		var f = document.paging;
+		
+		f.adminCode.value = adminCode;
+		f.noticeCode.value = noticeCode;
+		f.action = "./view2"
+		
+		f.method= "post"
+		f.submit();
+	};
+	 function insert(  adminCode )
+	{
+		var f = document.paging;
+		
+		f.adminCode.value = adminCode;
+		
+		f.action = "./insertNotice"
+		
+		f.method= "post"
+		f.submit();
+	};
+	function Noticeupdatelist(  adminCode ,   noticeCode )
+	{
+		var f = document.paging;
+		
+		f.adminCode.value = adminCode;
+		f.noticeCode.value = noticeCode;
+		f.action = "./Noticeupdatepage"
+		
+		f.method= "post"
+		f.submit();
+	}; 
+	
+	 function Noticedelete( adminCode , noticeCode)
+	 {
+		 var g = confirm('정말 삭제하시겠습니까?')
+		 
+		 if(g == false)
+			 {
+			 	return;
+			 }
+		 else
+			 var f = document.paging;	 
+		 	f.adminCode.value = adminCode;
+			f.noticeCode.value = noticeCode;
+			f.action = "./Noticedelete"
+			
+			f.method="post"
+			f.submit();
+		
+	 };
+	</script>
 </head>
 
 <body id="page-top">

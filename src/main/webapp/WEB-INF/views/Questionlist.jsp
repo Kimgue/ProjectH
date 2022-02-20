@@ -231,8 +231,6 @@
                     
                     <!-- Content Row -->
                     <div class="row">
-						안녕하세이모미ㅓㄹ
-						ㄴ이ㅏㅓㄹ민ㅇㄻ
 						<HR>
 							<form name="paging">
 								<H4>Q.A</H4>
