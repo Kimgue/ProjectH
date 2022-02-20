@@ -33,7 +33,9 @@
 			<P> ${ noticecontent.noticeContent }
 		</div>
 		<!-- 메인 컨텐츠 끝 -->
-			
+		<div>
+			 <p>${ noticecontent.noticeImg }
+		</div>
 	<!-- 하단 -->
 	<jsp:include page="PageFooter.jsp" flush="false"/>
 	<!-- 컨텐츠 Wrapper 끝 -->
