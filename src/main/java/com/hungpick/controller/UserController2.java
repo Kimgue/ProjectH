@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.hungpick.dto.BrandDto;
 import com.hungpick.dto.MenuVo;
 import com.hungpick.service.IBrandService;
 import com.hungpick.service.IMenuService;
@@ -42,6 +43,23 @@ public class UserController2 {
 	public void brand(Model model) throws Exception {
 		logger.info("brand called ========");
 		model.addAttribute("brand", brandService.sltMulti());
+	}
+	
+	//브랜드 페이지이동
+	@RequestMapping("brandInsert")
+	public String brandInsert() throws Exception {
+		logger.info("brandInsert called ========");
+		
+		return "brandInsert";
+	}
+	
+	//브랜드 등록
+	@RequestMapping("insertBrand")
+	public String insertBrand(BrandDto brandDto) throws Exception {
+		logger.info("insertBrand called ========");
+		brandService.insertBrand(brandDto);
+		
+		return "brandInsert";
 	}
 	
 	//메뉴 페이지

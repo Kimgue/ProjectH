@@ -29,4 +29,11 @@ public class BrandServiceImpl implements IBrandService {
 		return brandDao.sltMulti();
 	}
 
+
+	@Override
+	public void insertBrand(BrandDto brandDto) {
+		
+		brandDao.insertBrand(brandDto);
+	}
+
 }

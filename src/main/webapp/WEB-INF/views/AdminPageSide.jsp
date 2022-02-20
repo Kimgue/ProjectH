@@ -59,9 +59,9 @@
 				</a>
 				<div id="Brand" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" href="">브랜드 등록</a> 
-						<a class="collapse-item" href="">브랜드 수정</a> 
-						<a class="collapse-item" href="">브랜드 삭제</a>
+						<a class="collapse-item" href="brandInsert">브랜드 등록</a> 
+						<a class="collapse-item" href="brandUpdate">브랜드 수정</a> 
+						<a class="collapse-item" href="brandDelete">브랜드 삭제</a>
 					</div>
 				</div>
 			</li>

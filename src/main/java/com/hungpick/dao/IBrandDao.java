@@ -8,5 +8,7 @@ public interface IBrandDao {
 	
 	//브랜드 전체 리스트 보기
 	List<BrandDto> sltMulti();
-	
+
+	//브랜드 등록
+	void insertBrand(BrandDto brandDto);
 }
