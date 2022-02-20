@@ -74,9 +74,7 @@
 				<div id="QnA" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 
-						<a class="collapse-item" href="Nconfirm">질문과 답변</a>
-
-						<a class="collapse-item" href="Questionlist">질문과 답변</a> 
+						<a class="collapse-item" href="Questionlist">질문과 답변</a>
 
 					</div>
 				</div>
