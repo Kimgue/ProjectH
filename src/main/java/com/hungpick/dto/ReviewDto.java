@@ -10,11 +10,11 @@ public class ReviewDto {
 	private String memberCode;
 	private double reviewScore;
 	private String reviewContent;
-	private Date reviewDate;
+	private String reviewDate;
 	private String reviewImg;
 	private String reviewConfirm;
 	private int earnPoint;
-	private Date earnDatePoint;
+	private String earnDatePoint;
 	
 	public String getBrandCode() {
 		return brandCode;
@@ -52,10 +52,10 @@ public class ReviewDto {
 	public void setReviewContent(String reviewContent) {
 		this.reviewContent = reviewContent;
 	}
-	public Date getReviewDate() {
+	public String getReviewDate() {
 		return reviewDate;
 	}
-	public void setReviewDate(Date reviewDate) {
+	public void setReviewDate(String reviewDate) {
 		this.reviewDate = reviewDate;
 	}
 	public String getReviewImg() {
@@ -77,10 +77,10 @@ public class ReviewDto {
 	public void setEarnPoint(int earnPoint) {
 		this.earnPoint = earnPoint;
 	}
-	public Date getEarnDatePoint() {
+	public String getEarnDatePoint() {
 		return earnDatePoint;
 	}
-	public void setEarnDatePoint(Date earnDatePoint) {
+	public void setEarnDatePoint(String earnDatePoint) {
 		this.earnDatePoint = earnDatePoint;
 	}
 

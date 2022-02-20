@@ -5,6 +5,7 @@ public class BrandDto {
 	private String brandName;
 	private String brandImg;
 	private String brandDescription;
+	private String brandLink;
 	
 	public String getBrandCode() {
 		return brandCode;
@@ -29,6 +30,12 @@ public class BrandDto {
 	}
 	public void setBrandDescription(String brandDescription) {
 		this.brandDescription = brandDescription;
+	}
+	public String getBrandLink() {
+		return brandLink;
+	}
+	public void setBrandLink(String brandLink) {
+		this.brandLink = brandLink;
 	}
 	
 	

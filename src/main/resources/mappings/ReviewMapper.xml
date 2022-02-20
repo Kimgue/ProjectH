@@ -109,7 +109,7 @@
 		WHERE BRAND_CODE = #{brandCode} AND MENU_CODE = #{menuCode} 
 		</selectKey>
 		INSERT INTO REVIEW VALUES (#{brandCode}, #{menuCode}, 
-		#{reviewCode}, #{memberCode}, #{reviewScore}, #{reviewContent}, TO_DATE(SYSDATE, 'YYYY-MM-DD HH24:MI'), 
+		#{reviewCode}, #{memberCode}, #{reviewScore}, #{reviewContent}, TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI'), 
 		#{reviewImg}, 'N', 500, '2000-01-01')	
 	</insert> <!-- 나중에 관리자가 'N'에서 Y로 바꿔주고 포인트획득날짜도 update로 바꿔줘야함 -->
 
