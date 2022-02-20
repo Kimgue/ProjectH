@@ -8,6 +8,9 @@
 		SELECT * FROM BRAND ORDER BY BRAND_CODE ASC
 	</select>
 	
+	<select id="sltEachBrand" resultType="brandDto">
+		SELECT DISTINCT BRAND_NAME, BRAND_CODE FROM BRAND
+	</select>
 	<insert id="insertBrand" parameterType="brandDto">
 		<selectKey resultType="String" keyProperty="brandCode" order="BEFORE">
 		SELECT TO_CHAR(MAX(BRAND_CODE)+1) FROM BRAND
@@ -22,8 +25,7 @@
 		BRAND_DESCRIPTION = #{brandDescription}, BRAND_LINK = #{brandLink}
 	
 	</update>
-	
-	
+
 	<delete id="deleteBrand" parameterType="String">
 		DELETE FROM BRAND WHERE BRAND_CODE = #{brandCode}
 	</delete>

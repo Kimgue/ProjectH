@@ -56,10 +56,11 @@ public class UserController2 {
 	
 	//브랜드 등록
 	@RequestMapping("insertBrand")
-	public void insertBrand(BrandDto brandDto) throws Exception {
+	public String insertBrand(BrandDto brandDto) throws Exception {
 		logger.info("insertBrand called ========");
 		brandService.insertBrand(brandDto);
 	
+		return "brandInsert";
 	}
 	
 	//브랜드 삭제 페이지이동
@@ -142,6 +143,23 @@ public class UserController2 {
 		menuService.insertMenu(menuDto);
 		
 		return "menuInsert";
+	}
+	
+	//메뉴삭제 페이지
+	@RequestMapping("menuDelete")
+	public String menuDelete(Model model)	throws Exception {
+		logger.info("menuDelete called ========");
+		model.addAttribute("brand", brandService.sltEachBrand());
+		
+		return "menuDelete";
+	}
+	//메뉴삭제하기
+	@RequestMapping("deleteMenu")
+	public String deleteMenu(MenuDto menuDto) throws Exception {
+		logger.info("deleteMenu called ========");
+		menuService.deleteMenu(menuDto);
+		
+		return "redirect:/menuDelete";
 	}
 	
 	//상세리뷰 페이지

@@ -36,5 +36,8 @@ public interface IMenuService {
 	
 	//메뉴 등록
 	void insertMenu(MenuDto menuDto);
+	
+	//메뉴 삭제
+	void deleteMenu(MenuDto menuDto);
 }
 

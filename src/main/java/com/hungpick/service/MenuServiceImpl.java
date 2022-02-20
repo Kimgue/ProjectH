@@ -77,5 +77,12 @@ public class MenuServiceImpl implements IMenuService {
 		menuDao.insertMenu(menuDto);
 		
 	}
+
+	@Override
+	public void deleteMenu(MenuDto menuDto) {
+		
+		menuDao.deleteMenu(menuDto);
+		
+	}
 	
 }

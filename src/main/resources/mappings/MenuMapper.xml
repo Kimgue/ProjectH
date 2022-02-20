@@ -85,4 +85,8 @@
 		#{menuName}, #{menuImg}, #{menuPrice}, #{menuDescription}, #{menuIngredients})	
 	</insert>
 	
+	<delete id="deleteMenu" parameterType="menuDto">
+		DELETE FROM BRAND WHERE BRAND_CODE = #{brandCode} AND MENU_CODE = #{menuCode}
+	</delete>
+	
 </mapper>

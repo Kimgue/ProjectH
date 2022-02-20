@@ -28,7 +28,15 @@ public class BrandServiceImpl implements IBrandService {
 		
 		return brandDao.sltMulti();
 	}
-
+	
+	//각 브랜드 이름과 코드
+	@Override
+	public List<BrandDto> sltEachBrand() {
+		logger.info("Brand sltMulti called =========");
+			
+		return brandDao.sltEachBrand();
+	}
+	
 
 	@Override
 	public void insertBrand(BrandDto brandDto) {

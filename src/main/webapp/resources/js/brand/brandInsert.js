@@ -37,7 +37,6 @@
 			
 			var result = confirm("등록하시겠습니까?");
 			if(result) {
-				alert("등록되었습니다");
 				const filePath = "brand";
 				
 				const formData = new FormData();

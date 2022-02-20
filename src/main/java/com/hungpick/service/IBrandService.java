@@ -11,6 +11,9 @@ public interface IBrandService {
 	//브랜드 전체 리스트 보기
 	List<BrandDto> sltMulti();
 	
+	//각 브랜드 이름과 코드
+	List<BrandDto> sltEachBrand();
+	
 	//브랜드 등록
 	void insertBrand(BrandDto brandDto);
 	

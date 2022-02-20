@@ -47,7 +47,7 @@
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" href="menuInsert">메뉴 등록</a> 
 						<a class="collapse-item" href="">메뉴 수정</a> 
-						<a class="collapse-item" href="brandDelete">메뉴 삭제</a>
+						<a class="collapse-item" href="menuDelete">메뉴 삭제</a>
 					</div>
 				</div>
 			</li>
