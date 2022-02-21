@@ -19,15 +19,6 @@
 </head>
 
 <body>
-	<!-- 페이지 Wrapper 시작 -->
-	<div id="wrapper">
-	<!-- 사이드바 -->
-	<jsp:include page="PageSide.jsp" flush="false"/>
-	<!-- 컨텐츠 Wrapper 시작 -->
-	<div id="content-wrapper" class="d-flex flex-column">
-	<!-- 상단 -->
-	<jsp:include page="PageHeader.jsp" flush="false"/>
-					
 		<!-- 메인 -->
 		<div id="content">
 			<div id="menu_list">
@@ -53,15 +44,7 @@
 			</div>
 		</div>
 		<!-- 메인 컨텐츠 끝 -->
-			
-	<!-- 하단 -->
-	<jsp:include page="PageFooter.jsp" flush="false"/>
-	<!-- 컨텐츠 Wrapper 끝 -->
-	</div>
-	<!-- 페이지 Wrapper 끝 -->
-	</div>
-	<!-- 페이지 상단 버튼 -->
-	<jsp:include page="PageTopBtn.jsp" flush="false"/>
+
     <script src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="resources/js/sb-admin-2.min.js"></script>	
 </body>
