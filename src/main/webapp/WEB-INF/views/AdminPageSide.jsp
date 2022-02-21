@@ -46,7 +46,6 @@
 				<div id="Menu" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" href="menuInsert">메뉴 등록</a> 
-						<a class="collapse-item" href="">메뉴 수정</a> 
 						<a class="collapse-item" href="menuDelete">메뉴 삭제</a>
 					</div>
 				</div>
@@ -60,8 +59,19 @@
 				<div id="Brand" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" href="brandInsert">브랜드 등록</a> 
-						<a class="collapse-item" href="">브랜드 수정</a> 
 						<a class="collapse-item" href="brandDelete">브랜드 삭제</a>
+					</div>
+				</div>
+			</li>
+			
+			<!-- 사이드바 : 리뷰 -->
+			<li class="nav-item">
+				<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#Review" aria-expanded="true" aria-controls="collapseTwo"> 
+					<i class="fas fa-fw fa-wrench"></i> <span>리뷰</span>
+				</a>
+				<div id="Review" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" href="reviewConfirm">리뷰 승인</a> 
 					</div>
 				</div>
 			</li>

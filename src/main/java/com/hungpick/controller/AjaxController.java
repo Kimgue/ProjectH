@@ -2,7 +2,6 @@ package com.hungpick.controller;
 
 import java.util.Random;
 
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.json.JSONObject;
@@ -22,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hungpick.dto.UserDto;
 import com.hungpick.service.IMenuService;
+import com.hungpick.service.IReviewService;
 import com.hungpick.service.IUserService;
 
 @Controller
@@ -35,6 +35,9 @@ public class AjaxController {
 	
 	@Autowired
 	private IMenuService menuService;
+	
+	@Autowired
+	private IReviewService reviewService;
 
 	private static final Logger logger = LoggerFactory.getLogger(AjaxController.class);
 
@@ -269,7 +272,7 @@ public class AjaxController {
 	/*--------------------- 브랜드에 맞는 메뉴  ---------------------*/
 	@RequestMapping(value = "brandMenu.do", produces = "application/text; charset=utf8")
 	@ResponseBody
-	public String brandMenu(HttpServletResponse rs, String brandCode) throws Exception {
+	public String brandMenu(String brandCode) throws Exception {
 		logger.info("brandMenu called ========");	
 		
 		System.out.println(brandCode);
@@ -280,6 +283,26 @@ public class AjaxController {
 		System.out.println(jsonStr);
 		
 		return jsonStr;
+	}
+	
+	/*--------------------- 리뷰 승인하기  ---------------------*/
+	@RequestMapping(value = "confirmReview.do", produces = "application/text; charset=utf8" )
+	@ResponseBody
+	public void confirmReview(
+			@RequestParam String brandCode,
+			@RequestParam String menuCode,
+			@RequestParam String reviewCode,
+			@RequestParam String memberCode
+			) throws Exception{
+		
+		logger.info("confirmReview called ======");
+		
+		System.out.println(brandCode +","+ menuCode +","+ reviewCode +","+ memberCode);
+		
+		
+		reviewService.updateReviewY(brandCode, menuCode, reviewCode, memberCode);
+		reviewService.updateHoldPoint(memberCode);
+	
 	}
 	
 }

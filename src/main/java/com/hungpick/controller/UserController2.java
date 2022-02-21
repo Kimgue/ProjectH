@@ -2,6 +2,7 @@ package com.hungpick.controller;
 
 
 import java.net.URLEncoder;
+
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -243,4 +244,14 @@ public class UserController2 {
 		return "redirect:/menuDetail" + "?brandCode=" + brandCode + "&menuCode=" + menuCode + "&menuName=" + menuNameEncoded;
 	
 	}
+	
+	//상세리뷰 페이지
+	@RequestMapping("reviewConfirm")
+	public void reviewConfirm(Model model) throws Exception {
+
+		logger.info("reviewConfirm called =======");
+		
+		model.addAttribute("review", reviewService.sltReviewN());
+	}
+	
 }

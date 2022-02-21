@@ -117,4 +117,14 @@
 		SELECT * FROM REVIEW WHERE REVIEW_CONFIRM = 'N'
 	</select>
 	
+	<update id="updateReviewY" parameterType="String">
+		UPDATE REVIEW SET REVIEW_CONFIRM = 'Y', EARNDATE_POINT = SYSDATE 
+		WHERE BRAND_CODE = #{brandCode} AND MENU_CODE = #{menuCode}
+		AND REVIEW_CODE = #{reviewCode} AND MEMBER_CODE = #{memberCode}
+	</update>
+	
+	<update id="updateHoldPoint" parameterType="String">
+		UPDATE MEMBERS SET HOLD_POINT = HOLD_POINT + 500 WHERE MEMBER_CODE = #{memberCode}
+	</update>
+	
 </mapper>

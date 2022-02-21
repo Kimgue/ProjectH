@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hungpick.dao.IReviewDao;
+import com.hungpick.dto.ReviewDto;
 import com.hungpick.dto.ReviewRankingVo;
 import com.hungpick.dto.ReviewVo;
 
@@ -73,6 +74,32 @@ public class ReviewServiceImpl implements IReviewService {
 		
 		reviewDao.insertReview(brandCode, menuCode, memberCode, reviewScore, reviewContent, reviewImg);
 				
+	}
+	
+	//승인안된 리뷰 조회
+	@Override
+	public List<ReviewDto> sltReviewN() {
+		
+		return reviewDao.sltReviewN();
+	}
+	
+	//리뷰 승인여부 Y로 바꾸기
+	@Override
+	public void updateReviewY(
+			@Param(value = "brandCode") String brandCode,
+			@Param(value = "menuCode") String menuCode,
+			@Param(value = "reviewCode") String reviewCode,
+			@Param(value = "memberCode") String memberCode
+			) {
+		
+		reviewDao.updateReviewY(brandCode, menuCode, reviewCode, memberCode);
+	}
+	
+	//리뷰 승인후 획득포인트 회원 포인트에 더해주기
+	@Override
+	public void updateHoldPoint(@Param(value = "memberCode") String memberCode) {
+		
+		reviewDao.updateHoldPoint(memberCode);
 	};
 	
 	
