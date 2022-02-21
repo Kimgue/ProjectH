@@ -179,6 +179,7 @@ public class UserController2 {
 		model.addAttribute("Lookup", reviewService.sltLookUp(brandCode, menuCode, reviewCode, memberCode));
 	}
 	
+	//리뷰 작성 페이지 이동
 	@RequestMapping("reviewWrite")
 	public void reviewWrite(
 			@RequestParam String brandCode, 
@@ -186,11 +187,11 @@ public class UserController2 {
 			@RequestParam String menuName,
 			HttpServletRequest request,
 			Model model) throws Exception {
+			
+		logger.info("reviewWrite called ========");
 		
 		HttpSession session = request.getSession();
-		
-		if (session.getAttribute("memberCode") == null) {
-			
+		if (session.getAttribute("memberCode") == null) {			
 			
 			String QueryString = request.getQueryString();
 			String requestUri = "redirect:/" + "reviewWrite";
@@ -203,15 +204,17 @@ public class UserController2 {
 			model.addAttribute("msg", msg);
 			model.addAttribute("url", url);
 			
+			logger.info("reviewWrite1 called ========");
+			
 			return;
-		};
-		
-		logger.info("reviewWrite called ========");
+		}
 		
 		model.addAttribute("brandCode", brandCode);
 		model.addAttribute("menuCode", menuCode);
 		model.addAttribute("menuName", menuName);
-
+		
+		logger.info("reviewWrite2 called ========");
+		
 	};
 	
 

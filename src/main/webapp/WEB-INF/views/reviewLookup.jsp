@@ -15,8 +15,27 @@
    	<link href="resources/css/sb-admin-2.css" rel="stylesheet">
 	<script src="https://kit.fontawesome.com/730c440743.js" crossorigin="anonymous"></script>
 	<script src="resources/js/jquery-3.4.1.min.js"></script>
+	<script>
+	var reviewImg = '<c:out value= "${Lookup.reviewDto.reviewImg}"/>';
+	var imgFile = reviewImg.split(',');
+	var filePath = "images/review/"
+	var reviewImg1 = filePath + imgFile[0];
+	var reviewImg2 = filePath + imgFile[1];
+	
+	function ImgAttr(){
+		$("#reviewImg1").attr("src", reviewImg1);
+		$("#reviewImg2").attr("src", reviewImg2);
+	}
+
+	$(document).ready(function()
+			{
+				ImgAttr();
+			});
+	
+	</script>
+	<%-- 
 	<script src="resources/js/review/reviewLookup.js"></script>
-    
+    --%>
 </head>
 
 <body>

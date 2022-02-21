@@ -105,13 +105,16 @@
 	
 	<insert id="insertReview" parameterType="reviewDto">
 		<selectKey resultType="String" keyProperty="reviewCode" order="BEFORE">
-		SELECT TO_CHAR(MAX(TO_NUMBER(NVL(REVIEW_CODE, '0'))) +1) FROM REVIEW
+		SELECT TO_CHAR(NVL(MAX(TO_NUMBER(REVIEW_CODE)), 0 ) +1) FROM REVIEW
 		WHERE BRAND_CODE = #{brandCode} AND MENU_CODE = #{menuCode} 
 		</selectKey>
 		INSERT INTO REVIEW VALUES (#{brandCode}, #{menuCode}, 
-		#{reviewCode}, #{memberCode}, #{reviewScore}, #{reviewContent}, TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI'), 
+		#{reviewCode}, #{memberCode}, #{reviewScore}, #{reviewContent}, SYSDATE, 
 		#{reviewImg}, 'N', 500, '2000-01-01')	
 	</insert> <!-- 나중에 관리자가 'N'에서 Y로 바꿔주고 포인트획득날짜도 update로 바꿔줘야함 -->
 
+	<select id="sltReviewN" resultType="reviewDto">
+		SELECT * FROM REVIEW WHERE REVIEW_CONFIRM = 'N'
+	</select>
 	
 </mapper>
