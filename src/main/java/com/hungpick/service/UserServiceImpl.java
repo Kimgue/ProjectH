@@ -30,7 +30,14 @@ public class UserServiceImpl implements IUserService {
 
 	@Autowired
 	private IUserDaoHist userDaoHist;
-
+	
+	//단건 조회
+	public UserDto sltSearch(String memberCode) throws Exception {
+		
+		return userDao.sltSearch(memberCode);
+	}
+		
+	
 	// 다건조회
 	@Override
 	public String sltMulti(UserDto Dto, Model model) throws Exception {

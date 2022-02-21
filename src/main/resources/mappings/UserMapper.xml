@@ -6,7 +6,7 @@
 
 	<!-- 단건조회 -->
 	<select id="sltSearch" resultType="userDto">
-		SELECT MEMBER_CODE FROM MEMBERS WHERE MEMBER_CODE = #{memberCode}
+		SELECT * FROM MEMBERS WHERE MEMBER_CODE = #{memberCode}
 	</select>
 
 	<!-- 다건조회 -->

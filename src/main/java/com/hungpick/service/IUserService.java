@@ -24,6 +24,9 @@ public interface IUserService {
 	
 	/*---------------- Parameter Type : 그 외 ----------------*/
 	
+	//단건 조회
+	public UserDto sltSearch(String memberCode) throws Exception;
+	
 	// 보유 기프티콘 단건 조회
 	public String userGifticonOne(String memberCode, Model model) throws Exception;
 	

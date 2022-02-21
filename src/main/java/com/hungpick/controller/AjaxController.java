@@ -287,21 +287,22 @@ public class AjaxController {
 	/*--------------------- 리뷰 승인하기  ---------------------*/
 	@RequestMapping(value = "confirmReview.do", produces = "application/text; charset=utf8" )
 	@ResponseBody
-	public void confirmReview(
+	public String confirmReview(
 			@RequestParam String brandCode,
 			@RequestParam String menuCode,
 			@RequestParam String reviewCode,
 			@RequestParam String memberCode
 			) throws Exception{
 		
-		logger.info("confirmReview called ======");
-		
-		System.out.println(brandCode +","+ menuCode +","+ reviewCode +","+ memberCode);
-		
-		
+		logger.info("confirmReview called ======");		
+				
 		reviewService.updateReviewY(brandCode, menuCode, reviewCode, memberCode);
 		reviewService.updateHoldPoint(memberCode);
-	
+		
+		ObjectMapper mapper = new ObjectMapper();
+		String jsonStr = mapper.writeValueAsString(userService.sltSearch(memberCode));
+		
+		return jsonStr;
 	}
 	
 }

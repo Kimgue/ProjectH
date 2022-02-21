@@ -23,6 +23,9 @@ public interface IUserDao {
 	// 보유 기프티콘 조회
 	public List<UserVo> userGifticonMulti(UserVo Vo) throws Exception;
 	
+	//단건 조회
+	public UserDto sltSearch(String memberCode) throws Exception;
+	
 	// 다건조회
 	public List<UserDto> sltMulti(UserDto Dto) throws Exception;
 	

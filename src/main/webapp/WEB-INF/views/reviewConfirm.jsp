@@ -22,21 +22,17 @@
 			 var menuCode = $("input[name='menuCode']").val();	
 			 var reviewCode = $("input[name='reviewCode']").val();
 			 var memberCode = $("input[name='memberCode']").val();
-			 
-			 console.log(brandCode);
-			 console.log(menuCode);
-			 console.log(reviewCode);
-			 console.log(memberCode);
 			
 			$.ajax({
 				type: 'POST',
 				url: 'confirmReview.do',
-				async: false,
+				async: true,
 				data: {"brandCode" : brandCode,"menuCode" : menuCode,"reviewCode" : reviewCode,"memberCode" : memberCode },
 				dataType: "json",
 				contentType: "application/x-www-form-urlencoded; charset=UTF-8",
 				success: function(jdata){
-						alert("승인되었습니다.")
+						alert("고객님의 포인트가 "+ jdata.holdPoint+"점이 되었습니다.")
+						document.location.href = document.location.href;
 					}, 
 				error: function(request, status, error){
 					console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
