@@ -71,7 +71,6 @@ public class UserServiceImpl implements IUserService {
 			session.setAttribute("holdPoint", Dto.getHoldPoint());			
 			
 			String prevUrl = (String) session.getAttribute("prevUrl");
-			System.out.println("확인 : " + prevUrl);
 			if(prevUrl != null ) {
 				
 				session.removeAttribute("prevUrl");
