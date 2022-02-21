@@ -7,7 +7,7 @@ function rand(min, max) {
 		var gifticonPoint = $("#gifticonPrice").val();
 		var gifticonName = $("#gifticonName").val();
 		var resultPoint = currentPoint - gifticonPoint;
-		
+
 		if(currentPoint > gifticonPoint) {
 			var result = confirm(gifticonName + " 상품을 교환하시겠습니까?\n" +
 					"현재 보유 중인 포인트 : " + currentPoint + "\n" +

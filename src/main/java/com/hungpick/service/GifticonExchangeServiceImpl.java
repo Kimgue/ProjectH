@@ -15,7 +15,7 @@ public class GifticonExchangeServiceImpl implements IGifticonExchangeService {
 	@Override
 	public String insertGifticonExchange(GifticonExchangeDto Dto) throws Exception {
 		gifticonExchangeDao.insertGifticonExchange(Dto);
-		return "redirect:/gifticonListUser";
+		return "redirect:/gifticonList";
 	}
 	
 }

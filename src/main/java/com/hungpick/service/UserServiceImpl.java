@@ -68,7 +68,7 @@ public class UserServiceImpl implements IUserService {
 			session.setAttribute("memberNumber", Dto.getMemberNumber());
 			session.setAttribute("memberEmail", Dto.getMemberEmail());
 			session.setAttribute("memberDate", Dto.getMemberDate());
-			session.setAttribute("holdPoint", Dto.getHoldPoint());			
+			session.setAttribute("holdPoint", Dto.getHoldPoint());
 			
 			String prevUrl = (String) session.getAttribute("prevUrl");
 			if(prevUrl != null ) {

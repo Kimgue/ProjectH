@@ -31,7 +31,7 @@
 					
 		<!-- 메인 -->
 		<div id="content">
-		
+			
 			<div class="row align-items-center justify-content-center">
 				<c:choose>
 					<c:when test="${not empty gifticonList}">

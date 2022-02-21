@@ -28,7 +28,6 @@
             	</a>
 			</div>
     </header>
-    </header>
 
     <div class="container">
 

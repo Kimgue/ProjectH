@@ -13,6 +13,7 @@
     <title>헝픽</title>
     
    	<link href="resources/css/sb-admin-2.css" rel="stylesheet">
+   	<link href="resources/css/menuGridLayout.css" rel="stylesheet">
 	<script src="https://kit.fontawesome.com/730c440743.js" crossorigin="anonymous"></script>
 	<script src="resources/js/jquery-3.4.1.min.js"></script>
     
@@ -20,38 +21,34 @@
 
 <body>	
 	<div id="content">
-		<div align="center">
-			<div id="menuResult">
-				<c:forEach var="menuVo" items="${menuVo}">
-					<div class="card shadow h-100 py-2 mb-3">
-						<div class="card-body">
-							<div class="col text-center">
-								<img src="<c:out value="resources/${menuVo.menuDto.menuImg}"/>" alt="메뉴 이미지" height="270" width="270" />
-							</div>
-							
-							<div class="h4 font-weight-bold text-gray-800 m-3">
-								<c:out value="${menuVo.brandDto.brandName}" />
-							</div>
-							
-							<div class="h4 font-weight-bold text-gray-800 m-3">
+		<div id="menuResult">
+			<c:forEach var="menuVo" items="${menuVo}">
+				<div class="card shadow h-100 py-2 mb-3 rounded-0">
+					<div class="menu-grid">
+						<div class="menuImg d-flex align-items-center justify-content-center">
+							<img class="overflow-hidden" src="<c:out value="resources/${menuVo.menuDto.menuImg}"/>" alt="메뉴 이미지" height="270" width="270" />
+						</div>
+						
+						<div class="menuTitle">
+							<div class="textHeight">
 								<c:out value="${menuVo.menuDto.menuName}" />
 							</div>
-	
-							<div class="h4 font-weight-bold text-gray-800 m-3">
-								<c:out value="${menuVo.menuDto.menuPrice}" />
+							<div class="textHeight">
+								<c:out value="${menuVo.menuDto.menuPrice}" />원
 							</div>
+							<div class="textHeight">
+								재료 : <c:out value="${menuVo.menuDto.menuIngredients}" />
+							</div>
+						</div>
 	
-							<div class="h4 font-weight-bold text-gray-800 m-3">
+						<div class="menuDescription">
+							<div class="textHeight">
 								<c:out value="${menuVo.menuDto.menuDescription}" />
-							</div>
-	
-							<div class="h4 font-weight-bold text-gray-800 m-3">
-								<c:out value="${menuVo.menuDto.menuIngredients}" />
 							</div>
 						</div>
 					</div>
-				</c:forEach>
-			</div>
+				</div>
+			</c:forEach>
 		</div>
 	</div>
 </body>
