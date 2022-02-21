@@ -31,7 +31,7 @@
 					
 		<!-- 메인 -->
 		<div id="content">
-			<c:choose>
+<%-- 			<c:choose>
 				<c:when test="${not empty gifticonList}">
 					<c:forEach var="gift" items="${gifticonList}">
 						<div class="col-xl-3 col-md-6 mb-4">
@@ -66,7 +66,48 @@
 				<c:otherwise>
 					<div class="h2 font-weight-bold text-primary">현재 등록된 기프티콘이 없습니다</div>
 				</c:otherwise>
-			</c:choose>
+			</c:choose> --%>
+			
+			<div class="row justify-content-center">
+				<c:choose>
+					<c:when test="${not empty gifticonList}">
+						<c:forEach var="gift" items="${gifticonList}">
+							<div class="m-3">
+								<div class="card shadow h-100 py-2">
+									<div class="card-body">
+										<div class="row no-gutters align-items-center">
+											<div class="col mr-2 text-center">
+												<form id="formbtn${gift.gifticonCode}" action="gifticonDeleteSubmit" method="post">
+													<input type="hidden" value="${gift.gifticonCode}" name="gifticonCode">
+													<input type="hidden" class="imgbtn${gift.gifticonCode}" value="${gift.gifticonImg}" name="gifticonImg">
+													<input type="hidden" value="${gift.gifticonName}" name="gifticonName">
+													<input type="hidden" value="${gift.gifticonPrice}" name="gifticonPrice">
+													<input type="hidden" value="${gift.brandCode}" name="brandCode">
+													<input type="hidden" value="${gift.menuCode}" name="menuCode">
+												</form>
+												<div class="h2 font-weight-bold text-primary m-3">
+													<c:out value="${gift.gifticonName}" />
+												</div>
+												<div class="h4 mb-0 font-weight-bold text-gray-800 m-3">
+													<c:out value="${gift.gifticonPrice}" /> 포인트
+												</div>
+												<img class="m-3" src="<c:url value='${gift.gifticonImg}' />" alt="${gift.gifticonImg}" height="270" width="270" /><br>
+												<div class="m-3">
+													<input type="button" class="form-control btn btn-primary" id="btn${gift.gifticonCode}" value="삭제">
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</c:forEach>
+					</c:when>
+	
+					<c:otherwise>
+						<div class="h2 font-weight-bold text-primary">현재 등록된 기프티콘이 없습니다</div>
+					</c:otherwise>
+				</c:choose>
+			</div>
 		</div>
 		<!-- 메인 컨텐츠 끝 -->
 			

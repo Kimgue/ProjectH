@@ -48,7 +48,7 @@
 						<c:otherwise>
 							<li class="nav-item">
 								<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#Mbr" aria-expanded="true" aria-controls="collapseTwo">
-									<i class="fas fa-user fa-sm fa-fw"></i> <span>회원</span>
+									<i class="fas fa-user fa-sm fa-fw"></i> <span>${memberDTO.memberName}님 반갑습니다</span>
 								</a>					
 								<div id="Mbr" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
 									<div class="bg-white py-2 collapse-inner rounded">
@@ -133,7 +133,7 @@
 				</a>
 				<div id="Gifticon" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" href="gifticonListUser">기프티콘 조회</a>
+						<a class="collapse-item" href="gifticonList">기프티콘 조회</a>
 					</div>
 				</div>
 			</li>

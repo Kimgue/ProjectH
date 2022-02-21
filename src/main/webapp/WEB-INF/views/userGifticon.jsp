@@ -10,44 +10,65 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>헝픽</title>
+    <title>헝픽 관리자 페이지</title>
     
-   	<link href="resources/css/sb-admin-2.css" rel="stylesheet">
+	<link href="resources/css/sb-admin-2.css" rel="stylesheet">
 	<script src="https://kit.fontawesome.com/730c440743.js" crossorigin="anonymous"></script>
 	<script src="resources/js/jquery-3.4.1.min.js"></script>
-    
+	
 </head>
 
-<body>
-	<!-- 페이지 Wrapper 시작 -->
-	<div id="wrapper">
-	<!-- 사이드바 -->
-	<jsp:include page="PageSide.jsp" flush="false"/>
-	<!-- 컨텐츠 Wrapper 시작 -->
-	<div id="content-wrapper" class="d-flex flex-column">
-	<!-- 상단 -->
-	<jsp:include page="PageHeader.jsp" flush="false"/>
-					
-		<!-- 메인 -->
-		<div id="content">	
-			<c:forEach var="userVo" items="${userVo}">
-				<img src="<c:url value="${userVo.gifticonDto.gifticonImg}" />" alt="${userVo.gifticonDto.gifticonImg}" height="270" width="270"/> <br>
-				기프티콘명 : <c:url value="${userVo.gifticonDto.gifticonName}" /> <br>
-				기프티콘 번호 : <c:out value="${userVo.gifticonExchangeDto.gifticonNumber}" /> <br>
-				기프티콘 교환 날짜 : <c:out value="${userVo.gifticonExchangeDto.gifticonExdate}" /> <br>
-			</c:forEach>
+<body class="bg-gradient-primary">
+
+	<header class="d-flex align-items-center justify-content-center">
+			<div class="card border-0 my-5 text-center bg-transparent">
+				<a href="main" class="text-decoration-none">
+                	<h1 class="font-weight-bolder text-warning">HUNGPICK</h1>
+            	</a>
+			</div>
+    </header>
+    
+	<div class="container">
+	
+		<div class="row justify-content-center">
+			<div class="col-xl-5 col-lg-6 col-md-9">
+				<div class="card border-0 shadow-lg my-4">
+					<c:choose>
+						<c:when test="${not empty userVo}">
+							<div class="text-center">
+								<h1 class="h2 text-gray-900 mt-4 mb-4">보유 기프티콘</h1>
+							</div>
+							<c:forEach var="userVo" items="${userVo}">
+								<div class="card shadow h-100 py-2">
+									<div class="card-body">
+										<div class="row no-gutters align-items-center">
+											<div class="col mr-2 text-center">
+												<img class="m-3" src="<c:url value="${userVo.gifticonDto.gifticonImg}" />" alt="${userVo.gifticonDto.gifticonImg}" height="270" width="270"/> <br>
+												<div class="text-primary m-3">
+													기프티콘명 : <c:url value="${userVo.gifticonDto.gifticonName}" /> <br>
+													기프티콘 번호 : <c:out value="${userVo.gifticonExchangeDto.gifticonNumber}" /> <br>
+													기프티콘 교환 날짜 : <c:out value="${userVo.gifticonExchangeDto.gifticonExdate}" /> <br>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</c:forEach>				
+						</c:when>
+						
+						<c:otherwise>
+							<div class="text-center">
+								<h1 class="h2 text-gray-900 mt-4 mb-4">보유중인 기프티콘이 없습니다</h1>
+							</div>
+						</c:otherwise>
+					</c:choose>
+				</div>
+			</div>
 		</div>
-		<!-- 메인 컨텐츠 끝 -->
-			
-	<!-- 하단 -->
-	<jsp:include page="PageFooter.jsp" flush="false"/>
-	<!-- 컨텐츠 Wrapper 끝 -->
 	</div>
-	<!-- 페이지 Wrapper 끝 -->
-	</div>
-	<!-- 페이지 상단 버튼 -->
-	<jsp:include page="PageTopBtn.jsp" flush="false"/>
-    <script src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="resources/js/sb-admin-2.min.js"></script>	
+
+	<script src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="resources/js/sb-admin-2.min.js"></script>
 </body>
+
 </html>

@@ -45,13 +45,6 @@ public class GifticonController {
 		return view;
 	}
 	
-	
-	/*--------------------- 기프티콘 조회 페이지(사용자) ---------------------*/
-	@RequestMapping("gifticonListUser")
-	public void giftiConListUser(GifticonDto Dto, Model model) throws Exception {
-		gifticonsltMulti(Dto, model);
-	}
-	
 	/*--------------------- 기프티콘 등록 페이지 ---------------------*/
 	@RequestMapping("gifticonInsert")
 	public void gifticonInsert() {

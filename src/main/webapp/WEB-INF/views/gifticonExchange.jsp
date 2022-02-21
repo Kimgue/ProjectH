@@ -31,52 +31,58 @@
 					
 		<!-- 메인 -->
 		<div id="content">
-			<c:choose>
-				<c:when test="${not empty gifticonList}">
-					<div class="col-xl-3 col-md-6 mb-4">
-						<div class="card border-left-primary shadow h-100 py-2">
-							<div class="card-body">
-								<div class="row no-gutters align-items-center">
-									<div class="col mr-2">
-										<form id="insertGifticonExchange" action="insertGifticonExchange" method="POST">
-											<input type="hidden" id="gifticonCode" name="gifticonCode" value="${gifticonList.gifticonCode}" />
-											<input type="hidden" id="memberCode" name="memberCode" value="${memberDTO.memberCode}" />
-											<input type="hidden" id="holdPoint" name="holdPoint" value="${memberDTO.holdPoint}" />
-											<input type="hidden" id="gifticonImg" name="gifticonImg" value="${gifticonList.gifticonImg}" />
-											<input type="hidden" id="gifticonName" name="gifticonName" value="${gifticonList.gifticonName}" />
-											<input type="hidden" id="gifticonPrice" name="gifticonPrice" value="${gifticonList.gifticonPrice}" />
-											<input type="hidden" id="brandCode" name="brandCode" value="${gifticonList.brandCode}" />
-											<input type="hidden" id="menuCode" name="menuCode" value="${gifticonList.menuCode}" />
-											<input type="hidden" id="gifticonExcode" name="gifticonExcode" />
-											<input type="hidden" id="gifticonNumber" name="gifticonNumber" />
-											
-											<div class="h2 font-weight-bold text-primary">
-												<c:out value="${gifticonList.gifticonName}" /><br>
-											</div>
-											 
-											<div class="h4 mb-0 font-weight-bold text-gray-800">
-												<c:out value="${gifticonList.gifticonPrice}" /><br>
-											</div>
-											
-											<img src="<c:url value='${gifticonList.gifticonImg}' />" alt="${gifticonList.gifticonImg}" height="270" width="270"/><br>
-											
-											<div class="h4 mb-0 font-weight-bold text-gray-800">
-												현재 보유 포인트<br>
-												<c:out value="${memberDTO.holdPoint}" />
-											</div>
-										</form>	
-											<input type="button" class="btn btn-primary" value="교환" onclick="insertGifticonExchange()">
+		
+			<div class="row align-items-center justify-content-center">
+				<c:choose>
+					<c:when test="${not empty gifticonList}">
+						<div class="mt-5">
+							<div class="card shadow h-100 py-2">
+								<div class="card-body">
+									<div class="row no-gutters align-items-center">
+										<div class="col mr-2 text-center">
+											<form id="insertGifticonExchange" action="insertGifticonExchange" method="POST">
+												<input type="hidden" id="gifticonCode" name="gifticonCode" value="${gifticonList.gifticonCode}" />
+												<input type="hidden" id="memberCode" name="memberCode" value="${memberDTO.memberCode}" />
+												<input type="hidden" id="holdPoint" name="holdPoint" value="${memberDTO.holdPoint}" />
+												<input type="hidden" id="gifticonImg" name="gifticonImg" value="${gifticonList.gifticonImg}" />
+												<input type="hidden" id="gifticonName" name="gifticonName" value="${gifticonList.gifticonName}" />
+												<input type="hidden" id="gifticonPrice" name="gifticonPrice" value="${gifticonList.gifticonPrice}" />
+												<input type="hidden" id="brandCode" name="brandCode" value="${gifticonList.brandCode}" />
+												<input type="hidden" id="menuCode" name="menuCode" value="${gifticonList.menuCode}" />
+												<input type="hidden" id="gifticonExcode" name="gifticonExcode" />
+												<input type="hidden" id="gifticonNumber" name="gifticonNumber" />
+												
+												<div class="h2 font-weight-bold text-primary m-3">
+													<c:out value="${gifticonList.gifticonName}" /><br>
+												</div>
+												 
+												<div class="h4 mb-0 font-weight-bold text-gray-800 m-3">
+													<c:out value="${gifticonList.gifticonPrice}" /> 포인트<br>
+												</div>
+												
+												<img src="<c:url value='${gifticonList.gifticonImg}' />" alt="${gifticonList.gifticonImg}" height="270" width="270"/><br>
+												
+												<div class="h4 font-weight-bold text-gray-800 m-3">
+													현재 보유 포인트 <c:out value="${memberDTO.holdPoint}" />
+												</div>
+												<div class="m-3">
+													<input type="button" class="form-control btn btn-primary" value="교환" onclick="insertGifticonExchange()">
+												</div>
+
+											</form>	
+
+										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-				</c:when>
-
-				<c:otherwise>
-					<div class="h2 font-weight-bold text-primary">현재 등록된 기프티콘이 없습니다</div>
-				</c:otherwise>
-			</c:choose>
+					</c:when>
+	
+					<c:otherwise>
+						<div class="h2 font-weight-bold text-primary">현재 등록된 기프티콘이 없습니다</div>
+					</c:otherwise>
+				</c:choose>
+			</div>
 		</div>
 		<!-- 메인 컨텐츠 끝 -->
 			
