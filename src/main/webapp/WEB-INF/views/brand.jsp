@@ -33,31 +33,31 @@
 		<div id="content">
 			<div class="w-25 float-left">
 				<c:forEach var="brand" items="${brand}">
-					<div class="card shadow h-100 py-2 m-3">
+					<div class="card shadow h-100 py-2 m-3 text-center">
 						<div class="card-body">
-								<div class="h2 font-weight-bold text-primary m-3">
+								<div class="h3 font-weight-bold text-primary m-3 textHeight">
 									<c:out value="${brand.brandName}" />
 								</div>
 								
-								<div class="h4 font-weight-bold text-gray-800 m-3">
+								<div class="h4 font-weight-bold text-gray-800 m-3 textHeight">
 									<c:out value="${brand.brandDescription}" />
 								</div>
 
-								<div class="h4 font-weight-bold text-gray-800 m-3">
+								<div class="h4 font-weight-bold text-gray-800 m-3 overflow-hidden">
 									<a href="${brand.brandLink}">
 									<img src="<c:out value="resources/${brand.brandImg}" />" alt="브랜드 이미지" height="150" width="150" />
 									</a>
 								</div>
 								
-								<div class="h4 font-weight-bold text-gray-800 m-3">
+								<div class="h4 font-weight-bold text-gray-800 m-3 textHeight">
 									<input type="hidden" id="val${brand.brandCode}" value="https://map.kakao.com/link/search/${brand.brandName}">
 									<%-- <a href="https://map.kakao.com/link/search/${brand.brandName}" target="_blank">가까운 매장찾기</a> --%>
 									<a class="store" id="brand${brand.brandCode}" href="#">
-										<i class="fas fa-solid fa-store"> 가까운 매장 검색</i> 
+										근처 매장 검색
 									</a>
 								</div>
 
-								<div class="h4 font-weight-bold text-gray-800 m-3">
+								<div class="h4 font-weight-bold text-gray-800 m-3 textHeight">
 									<input type="hidden" id="menuVal${brand.brandCode}" value="menuResultTest?brandCode=${brand.brandCode}&menuPrice=&menuName=">										
 									<a class="menu" id="menu${brand.brandCode}" href="#">
 										메뉴 보기

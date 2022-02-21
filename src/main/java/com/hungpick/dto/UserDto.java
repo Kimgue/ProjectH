@@ -1,7 +1,5 @@
 package com.hungpick.dto;
 
-import java.util.Date;
-
 public class UserDto {
 	private String memberCode;
 	private String memberId;

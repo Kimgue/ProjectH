@@ -208,7 +208,6 @@ public class AjaxController {
 	@RequestMapping("sendEmail.do")
 	@ResponseBody
 	public String sendEmail(@ModelAttribute("mail") String mail) throws Exception {
-		System.out.println("확인 : " + mail);
 		JSONObject jsonObj = new JSONObject();
 		Random random = new Random();
 		String key = "";

@@ -99,16 +99,17 @@
 	                            	
 	                           		<input type="button" class="form-control btn btn-primary" value="회원가입" onclick="UserSignUp()">
 	                                <hr>
-	                                	
+		                                	
 	                            </form>
-                            <div class="text-center">
-                                <a class="small" href="userLogin">이미 회원가입 하셨나요? 로그인</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+	                            <div class="text-center">
+	                                <a class="small" href="userLogin">이미 회원가입 하셨나요? 로그인</a>
+	                            </div>
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
     </div>
 
     <script src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

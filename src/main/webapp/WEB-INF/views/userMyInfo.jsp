@@ -77,8 +77,11 @@
 										<td class="align-middle">
 											${memberDTO.memberNickname}&nbsp;&nbsp;
 											<div id="Nickname">
-												변경할 닉네임<br> 
-												<input type="text" class="form-control mb-3" id="Nick_Txt">
+												변경할 닉네임<br>
+												<div class="mb-2">
+													<input type="text" class="col-9 form-control" id="Nick_Txt"><br>
+												</div>
+												
 												<input type="button" class="btn btn-primary"  id="Nick_Cancle" value="수정취소"> 
 												<input type="button" class="btn btn-primary"  id="Nick_Submit" value="수정완료">
 											</div>
@@ -90,15 +93,25 @@
 										<td class="align-middle">${memberDTO.memberEmail}
 											<div id="Email">
 												변경할 이메일<br>
-												<input type="text" class="form-control mb-3" id="Email_Txt" name="memberEmail">
-												<input type="button" class="btn btn-primary mb-3" id="Email_Transmit" value="인증번호 전송">
-												<br>
-												<input type="text" class="form-control mb-3" id="Email_Number">
-												<input type="button" class="btn btn-primary mb-3" id="Email_Check" value="인증번호 확인">
-												<br>
-												<input type="button" class="btn btn-primary" id="Email_Cancle" value="수정취소">
+
+				                            	<div class="mb-2 rightMarginTest">
+													<input type="text" class="col-9 form-control" id="Email_Txt" name="memberEmail" placeholder="변경 이메일 입력">
+													<a href="#" id="Email_Transmit" class="btn btn-primary btnMarginTop">
+				                            			<i class="fas fa-solid fa-envelope"></i>
+				                           			</a>   
+				                            	</div>
+
+				                            	<div class="mb-2 rightMarginTest">
+													<input type="text" class="col-9 form-control" id="Email_Number" placeholder="인증번호 입력">
+					                            	<a href="#" id="Email_Check" class="btn btn-primary btnMarginTop">
+					                            		<i class="fas fa-check"></i>
+					                           		</a> 
+				                            	</div>
+				                            	
+				                            	<input type="button" class="btn btn-primary" id="Email_Cancle" value="수정취소">
 												<input type="button"  class="btn btn-primary" id="Email_Submit" value="수정완료">
 												<div id="resultEmail"></div>
+												
 											</div> 
 												<input type="button" class="btn btn-primary" id="Email_Btn" value="수정">
 										</td>
@@ -108,12 +121,21 @@
 										<td class="align-middle">${memberDTO.memberNumber}
 											<div id="Number">
 												변경할 전화번호<br>
-												<input type="text" class="form-control mb-3" id="Number_Txt" name="memberNumber">
-												<input type="button" class="btn btn-primary mb-3" id="Number_Transmit" value="인증번호 전송">
-												<br>
-												<input type="text" class="form-control mb-3" id="Number_Number">
-												<input type="button" class="btn btn-primary mb-3" id="Number_Check" value="인증번호 확인">
-												<br>
+												
+				                            	<div class="mb-2 rightMarginTest">
+													<input type="text" class="form-control col-9" id="Number_Txt" name="memberNumber" placeholder="변경 전화번호 입력">
+													<a href="#" id="Number_Transmit" class="btn btn-primary btnMarginTop">
+				                            			<i class="fas fa-solid fa-envelope"></i>
+				                           			</a>
+				                           		</div>
+
+				                            	<div class="mb-2 rightMarginTest">
+													<input type="text" class="form-control col-9" id="Number_Number" placeholder="인증번호 입력">
+													<a href="#" id="Number_Check" class="btn btn-primary btnMarginTop">
+				                            			<i class="fas fa-check"></i>
+				                           			</a>
+				                           		</div>			
+
 												<input type="button" class="btn btn-primary" id="Number_Cancle" value="수정취소">
 												<input type="button" class="btn btn-primary" id="Number_Submit" value="수정완료">
 												<div id="resultNumber"></div>
@@ -130,40 +152,27 @@
 										<td class="align-middle">${memberDTO.holdPoint}</td>
 									</tr>
 									</table>
-									<br>
-									<div class="card-body p-2">
+									<div class="card-body ml-5">
 										<div id="Pw">
 											<input type="hidden" id="memberPw" value="${memberDTO.memberPw}">
-											<table class="table table-borderless">
-												<tr>
-													<td class="align-middle">
-														현재 비밀번호<br>
-														<input type="password" class="form-control" id="Pw_Current">
-														<div id="resultPwCurrent"></div><br>
-													</td>
-												</tr>
-												<tr>
-													<td class="align-middle">
-														변경 비밀번호<br>
-														<input type="password" class="form-control mb-3"  id="Pw_Change">
-														<div id="resultPwChange"></div>
-													</td>
-												</tr>
-												<tr>
-													<td class="align-middle">
-														변경 비밀번호 확인<br>
-														<input type="password" class="form-control mb-3"  id="Pw_Chk">
-														<div id="resultPwChk"></div>
-													</td>									
-												</tr>
-												<tr>
-													<td class="align-middle">
-														<input type="button" class="btn btn-primary" id="Pw_Submit" value="변경 완료">
-														<input type="button" class="btn btn-primary" id="Pw_Cancle" value="변경 취소">
-													</td>									
-												</tr>
-											</table>
 											
+			                            	<div class="mb-2 inputHeight">
+												<input type="password" class="form-control col-9" id="Pw_Current" placeholder="현재 비밀번호 입력">
+												<div id="resultPwCurrent"></div><br>
+			                            	</div>
+
+			                            	<div class="mb-2 inputHeight">
+												<input type="password" class="form-control col-9" id="Pw_Change" placeholder="변경 비밀번호 입력">
+												<div id="resultPwChange"></div><br>
+			                            	</div>
+
+			                            	<div class="mb-2 inputHeight">
+												<input type="password" class="form-control col-9" id="Pw_Chk" placeholder="변경 비밀번호 확인">
+												<div id="resultPwChk"></div><br>
+			                            	</div>
+
+											<input type="button" class="btn btn-primary" id="Pw_Submit" value="변경 완료">
+											<input type="button" class="btn btn-primary" id="Pw_Cancle" value="변경 취소">
 										</div>
 									</div>
 									<div class="card-body p-2">

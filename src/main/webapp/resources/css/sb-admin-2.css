@@ -6629,7 +6629,7 @@ button.bg-dark:focus {
 }
 
 .rounded-0 {
-  border-radius: 0 !important;
+	border-radius: 0 !important;
 }
 
 .clearfix::after {
@@ -9928,6 +9928,69 @@ a:focus {
   animation-timing-function: transform cubic-bezier(0.18, 1.25, 0.4, 1), opacity cubic-bezier(0, 1, 0.4, 1);
 }
 
+@-webkit-keyframes translateYIn {
+  0% {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
+@keyframes translateYIn {
+  0% {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes translateYOut {
+  0% {
+    transform: translateY(0px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(-20px);
+    opacity: 1;
+  }
+}
+
+@keyframes translateYOut {
+  0% {
+    transform: translateY(0px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(-20px);
+    opacity: 1;
+  }
+}
+
+.animated--translateYIn, .sidebar .nav-item .collapse {
+  -webkit-animation-name: translateYIn;
+  animation-name: translateYIn;
+  -webkit-animation-duration: 200ms;
+  animation-duration: 200ms;
+  -webkit-animation-timing-function: transform cubic-bezier(0.18, 1.25, 0.4, 1), opacity cubic-bezier(0, 1, 0.4, 1);
+  animation-timing-function: transform cubic-bezier(0.18, 1.25, 0.4, 1), opacity cubic-bezier(0, 1, 0.4, 1);
+}
+
+.animated--translateYOut, .sidebar .nav-item .collapse {
+  -webkit-animation-name: translateYOut;
+  animation-name: translateYOut;
+  -webkit-animation-duration: 200ms;
+  animation-duration: 200ms;
+  -webkit-animation-timing-function: transform cubic-bezier(0.18, 1.25, 0.4, 1), opacity cubic-bezier(0, 1, 0.4, 1);
+  animation-timing-function: transform cubic-bezier(0.18, 1.25, 0.4, 1), opacity cubic-bezier(0, 1, 0.4, 1);
+}
+
+
 @-webkit-keyframes fadeIn {
   0% {
     opacity: 0;
@@ -11343,4 +11406,19 @@ body.sidebar-toggled footer.sticky-footer {
 .btnMarginTop {
 	margin-top: -4px !important;
 }
+
+.rightMarginTest {
+	margin-right: -27.48px !important;
+}
+
+.textHeight {
+	overflow : hidden;
+	text-overflow : ellipsis;
+	height : 30px;
+	word-wrap : brek-word; 
+	display : -webkit-box;
+	-webkit-line-clamp : 1;
+	-webkit-box-orient: vertical;
+}
+
 
