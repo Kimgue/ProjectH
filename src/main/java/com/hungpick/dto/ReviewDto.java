@@ -1,5 +1,7 @@
 package com.hungpick.dto;
 
+import java.util.Date;
+
 public class ReviewDto {
 	
 	private String brandCode;
