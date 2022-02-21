@@ -14,6 +14,11 @@
 		SELECT DISTINCT MENU_INGREDIENTS FROM MENU
 	</select>
 	
+	<!-- 브랜드코드로 브랜드별 메뉴 찾기 -->
+	<select id="sltBrandMenu" parameterType="String" resultType="menuDto">
+		SELECT * FROM MENU WHERE BRAND_CODE = #{ brandCode }
+	</select>
+		
 	<!-- 브랜드코드와 메뉴코드로 메뉴 찾기 -->
 	<select id="sltOneMenu" parameterType="String" resultType="menuDto">
 		SELECT * FROM MENU WHERE BRAND_CODE = #{ brandCode } AND MENU_CODE = #{ menuCode }
@@ -86,7 +91,7 @@
 	</insert>
 	
 	<delete id="deleteMenu" parameterType="menuDto">
-		DELETE FROM BRAND WHERE BRAND_CODE = #{brandCode} AND MENU_CODE = #{menuCode}
+		DELETE FROM MENU WHERE BRAND_CODE = #{brandCode} AND MENU_CODE = #{menuCode}
 	</delete>
 	
 </mapper>

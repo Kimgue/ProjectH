@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hungpick.dto.UserDto;
 import com.hungpick.service.IMenuService;
 import com.hungpick.service.IUserService;
@@ -263,6 +264,22 @@ public class AjaxController {
 		mv.addObject("menu", menuService.sltMenuLowPrice());
 		
 		return mv;
+	}
+	
+	/*--------------------- 브랜드에 맞는 메뉴  ---------------------*/
+	@RequestMapping(value = "brandMenu.do", produces = "application/text; charset=utf8")
+	@ResponseBody
+	public String brandMenu(HttpServletResponse rs, String brandCode) throws Exception {
+		logger.info("brandMenu called ========");	
+		
+		System.out.println(brandCode);
+		
+		ObjectMapper mapper = new ObjectMapper();
+		String jsonStr = mapper.writeValueAsString(menuService.sltBrandMenu(brandCode));
+		
+		System.out.println(jsonStr);
+		
+		return jsonStr;
 	}
 	
 }

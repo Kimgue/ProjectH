@@ -15,9 +15,8 @@
    	<link href="resources/css/sb-admin-2.css" rel="stylesheet">
 	<script src="https://kit.fontawesome.com/730c440743.js" crossorigin="anonymous"></script>
 	<script src="resources/js/jquery-3.4.1.min.js"></script>
-	<%--
 	<script src="resources/js/menu/menuDelete.js"></script>
-     --%>
+ 
 </head>
 
 <body>
@@ -37,7 +36,7 @@
 					<tr>
 						<td class="align-middle">브랜드</td>
 						<td class="align-middle">
-							<select id="brandCode" name="brandCode">
+							<select id="brandCode" name="brandCode" onChange="brandSelect(this.value);">
 							<option value="" selected disabled>브랜드 선택</option>
 							<c:forEach var="brand" items="${brand}">
 							<option value="${brand.brandCode}">${brand.brandName}</option>
@@ -46,18 +45,10 @@
 						</td>
 					</tr>
 					<tr>
-						<td class="align-middle">메뉴</td>
+						<td class="align-middle">메뉴 선택</td>
 						<td class="align-middle">
 							<select id="menuCode" name="menuCode" >
-							<option value="" selected disabled>-- 브랜드를 먼저 선택해주세요 --</option>
-							<c:if test="${'맥도날드' eq brandName}">
-								<option value="1">빅맥</option>
-								<option value="2">1955버거</option>
-							</c:if>
-							<c:if test="${'롯데리아' eq brandName}">
-								<option value="1">새우버거</option>
-								<option value="2">불고기버거</option>
-							</c:if>
+							<option value="">메뉴 선택</option>
 							</select>
 						</td>
 					</tr>												

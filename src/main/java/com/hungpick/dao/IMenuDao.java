@@ -23,6 +23,11 @@ public interface IMenuDao {
 	//상품 낮은 가격순
 	List<MenuDto> sltMenuLowPrice();
 	
+	//브랜드코드로 브랜드별 메뉴 찾기
+	List<MenuDto> sltBrandMenu(
+			@Param(value = "brandCode") String brandCode
+			);
+	
 	//한 상품 보기
 	MenuDto sltOneMenu(
 			@Param(value = "brandCode") String brandCode,
@@ -40,6 +45,9 @@ public interface IMenuDao {
 	void insertMenu(MenuDto menuDto);
 	
 	//메뉴 삭제
-	void deleteMenu(MenuDto menuDto);
+	void deleteMenu(
+			@Param(value = "brandCode") String brandCode,
+			@Param(value = "menuCode") String menuCode
+			);
 	
 }

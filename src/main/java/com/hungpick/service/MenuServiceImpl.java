@@ -49,6 +49,13 @@ public class MenuServiceImpl implements IMenuService {
 		return menuDao.sltMenuLowPrice();
 	}
 	
+	@Override
+	public List<MenuDto> sltBrandMenu(
+			@Param(value = "brandCode") String brandCode
+			) {
+		return menuDao.sltBrandMenu(brandCode);
+	}
+	
 	//한 상품 보기
 	@Override
 	public MenuDto sltOneMenu(
@@ -79,10 +86,15 @@ public class MenuServiceImpl implements IMenuService {
 	}
 
 	@Override
-	public void deleteMenu(MenuDto menuDto) {
-		
-		menuDao.deleteMenu(menuDto);
+	public void deleteMenu(
+			@Param(value = "brandCode") String brandCode,
+			@Param(value = "menuCode") String menuCode
+			) {
+	
+		menuDao.deleteMenu(brandCode, menuCode);
 		
 	}
+
+	
 	
 }

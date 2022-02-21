@@ -155,9 +155,12 @@ public class UserController2 {
 	}
 	//메뉴삭제하기
 	@RequestMapping("deleteMenu")
-	public String deleteMenu(MenuDto menuDto) throws Exception {
+	public String deleteMenu(
+			@RequestParam String brandCode, 
+			@RequestParam String menuCode
+			) throws Exception {
 		logger.info("deleteMenu called ========");
-		menuService.deleteMenu(menuDto);
+		menuService.deleteMenu(brandCode, menuCode);
 		
 		return "redirect:/menuDelete";
 	}
