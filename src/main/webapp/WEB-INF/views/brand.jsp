@@ -13,8 +13,9 @@
     <title>헝픽</title>
     
    	<link href="resources/css/sb-admin-2.css" rel="stylesheet">
-	<script src="https://kit.fontawesome.com/730c440743.js" crossorigin="anonymous"></script>
-	<script src="resources/js/jquery-3.4.1.min.js"></script>
+   	<script src="https://kit.fontawesome.com/730c440743.js" crossorigin="anonymous"></script>
+   	<script src="resources/js/jquery-3.4.1.min.js"></script>
+	<script src="resources/js/brand/brand.js"></script>
     
 </head>
 
@@ -30,33 +31,72 @@
 					
 		<!-- 메인 -->
 		<div id="content">
-			<div align="center">
-				<h1>브랜드</h1>
-				<br>
-				<a href="main">메인 페이지로</a>
-				<hr>
-				<br>
-				<div class="container">
-					<c:forEach var="brand" items="${brand}">
-						<a href="https://map.kakao.com/link/search/${brand.brandName}" target="_blank">가까운 매장찾기</a>
-						<br>
-						<a href="menuResult?brandCode=${brand.brandCode}&menuPrice=&menuName=">메뉴 보기</a>
-						<br>
-						<a href="${brand.brandLink}">
-						<img src="<c:out value="resources/${brand.brandImg}" />" 
-						alt="브랜드 이미지" height="270" width="270" />
-						</a>
-						<p style="font-size: 15pt">
-							<c:out value="${brand.brandName}" />
-						</p>
-						<p style="font-size: 12pt">
-							<c:out value="${brand.brandDescription}" />
-						</p>
-						<hr>
-						<br>
-					</c:forEach>
+			<div class="w-25 float-left">
+				<c:forEach var="brand" items="${brand}">
+					<div class="card shadow h-100 py-2 m-3">
+						<div class="card-body">
+								<div class="h2 font-weight-bold text-primary m-3">
+									<c:out value="${brand.brandName}" />
+								</div>
+								
+								<div class="h4 font-weight-bold text-gray-800 m-3">
+									<c:out value="${brand.brandDescription}" />
+								</div>
+
+								<div class="h4 font-weight-bold text-gray-800 m-3">
+									<a href="${brand.brandLink}">
+									<img src="<c:out value="resources/${brand.brandImg}" />" alt="브랜드 이미지" height="150" width="150" />
+									</a>
+								</div>
+								
+								<div class="h4 font-weight-bold text-gray-800 m-3">
+									<input type="hidden" id="val${brand.brandCode}" value="https://map.kakao.com/link/search/${brand.brandName}">
+									<%-- <a href="https://map.kakao.com/link/search/${brand.brandName}" target="_blank">가까운 매장찾기</a> --%>
+									<a class="store" id="brand${brand.brandCode}" href="#">
+										<i class="fas fa-solid fa-store"> 가까운 매장 검색</i> 
+									</a>
+								</div>
+
+								<div class="h4 font-weight-bold text-gray-800 m-3">
+									<input type="hidden" id="menuVal${brand.brandCode}" value="menuResultTest?brandCode=${brand.brandCode}&menuPrice=&menuName=">										
+									<a class="menu" id="menu${brand.brandCode}" href="#">
+										메뉴 보기
+									</a>
+								</div>
+						</div>
+					</div>
+				</c:forEach>
+			</div>
+			
+			<div class="w-75 float-right">
+				<div id="store" class="h-auto m-3 ml-n1 mb-n1">
+				<div class="card shadow h-100 py-2">
+					<div class="card-body">
+					<input type="button" id="storeClose" class="btn-primary border-0 rounded-top" value="닫기">
+						<div class="col text-center">
+						<fieldset>
+							<iframe class="border-0 embed-responsive" id="nearStore" src="" height="500"></iframe>
+						</fieldset>
+						</div>
+					</div>
+				</div>
 				</div>
 			</div>
+			
+			<div class="w-75 float-right">
+				<div id="menu" class="h-auto m-3 ml-n1">
+				<div class="card shadow h-100 py-2">
+					<div class="card-body">
+					<input type="button" id="menuClose" class="btn-primary border-0 rounded-top" value="닫기">
+						<div class="col text-center">
+						<fieldset>
+							<iframe class="border-0 embed-responsive" id="brandMenu" src="menuResultTest?brandCode=H1&menuPrice=&menuName=" height="500"></iframe>
+						</fieldset>
+						</div>
+					</div>
+				</div>
+				</div>
+			</div>			
 		</div>
 		<!-- 메인 컨텐츠 끝 -->
 			
@@ -69,6 +109,7 @@
 	<!-- 페이지 상단 버튼 -->
 	<jsp:include page="PageTopBtn.jsp" flush="false"/>
     <script src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="resources/vendor/jquery-easing/jquery.easing.min.js"></script>
     <script src="resources/js/sb-admin-2.min.js"></script>	
 </body>
 </html>

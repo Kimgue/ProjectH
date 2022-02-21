@@ -13,7 +13,7 @@
     <title>헝픽</title>
     
    	<link href="resources/css/sb-admin-2.css" rel="stylesheet">
-   	<link href="resources/css/gifticonInsert.css" rel="stylesheet">
+   	<link href="resources/css/fileBtnHidden.css" rel="stylesheet">
 	<script src="https://kit.fontawesome.com/730c440743.js" crossorigin="anonymous"></script>
 	<script src="resources/js/jquery-3.4.1.min.js"></script>
 	<script src="resources/js/gifticon/gifticonInsert.js"></script>
@@ -47,7 +47,7 @@
 								</div>
 								
 								<div>
-									<select id="brandCode" name="brandCode" onchange="brandSelect()">
+									<select class="custom-select" id="brandCode" name="brandCode" onchange="brandSelect()">
 									<option value="" selected disabled>브랜드 선택</option>
 									<option value="1">맥도날드</option>
 									<option value="2">롯데리아</option>
@@ -55,7 +55,7 @@
 								</div>
 								
 								<div>
-									<select id="menuCode" name="menuCode" onchange="menuSelect()">
+									<select class="custom-select" id="menuCode" name="menuCode" onchange="menuSelect()">
 									<option value="" selected disabled>-- 브랜드를 먼저 선택해주세요 --</option>
 									</select>
 								</div>
@@ -68,7 +68,7 @@
 											<i class="fas fa-solid fa-file-image btn btn-primary"> 파일 첨부</i> 
 										</label>
 									</div>
-									<input type="file" class="form-control-file" id="input-image" name="uploadfile" required="required">
+									<input type="file" id="input-image" name="uploadfile" required="required">
 								</div>
 								
 								<div>
