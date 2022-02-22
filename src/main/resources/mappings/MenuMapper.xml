@@ -84,7 +84,7 @@
 	<!--메뉴 등록  -->
 	<insert id="insertMenu" parameterType="menuDto">
 		<selectKey resultType="String" keyProperty="menuCode" order="BEFORE">
-		SELECT TO_CHAR(MAX(MENU_CODE)+1) FROM MENU WHERE BRAND_CODE = #{brandCode}
+		SELECT TO_CHAR(NVL(MAX(TO_NUMBER(MENU_CODE)), 0 ) +1) FROM MENU WHERE BRAND_CODE = #{brandCode}
 		</selectKey>
 		INSERT INTO MENU VALUES (#{brandCode}, #{menuCode}, 
 		#{menuName}, #{menuImg}, #{menuPrice}, #{menuDescription}, #{menuIngredients})	
