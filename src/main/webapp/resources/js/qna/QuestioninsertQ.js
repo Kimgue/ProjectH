@@ -43,7 +43,7 @@
 		if(result) {
 			alert("등록되었습니다");
 			
-			const uploadPath = "/resources/images/Q&AImg"; 
+			const filePath = "Q&AImg";
 			
 			const imageInput = $("#qstnImg")[0];
 			if(imageInput.files.length == 0){
@@ -51,7 +51,7 @@
 			} else {
 				const formData = new FormData();
 				formData.append("uploadFile", imageInput.files[0]);
-				formData.append("uploadPath", uploadPath);
+				formData.append("filePath", filePath);
 				
 				$.ajax({
 					type : "POST",
