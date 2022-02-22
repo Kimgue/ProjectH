@@ -70,7 +70,9 @@
 					
 		<!-- 메인 -->
 		<div id="content">
-			
+			<div class="text-center text-Title mt-3">
+				이달의 기프티콘
+			</div>		
 			<div class="row justify-content-center">
 				<c:choose>
 					<c:when test="${not empty gifticonList}">

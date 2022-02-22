@@ -10114,6 +10114,10 @@ a:focus {
   font-size: 1.2rem;
 }
 
+.text-Title {
+  font-size: 35px;
+}
+
 .text-gray-100 {
   color: #f8f9fc !important;
 }
