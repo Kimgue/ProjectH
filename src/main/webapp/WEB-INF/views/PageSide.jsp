@@ -21,9 +21,7 @@
 		<div class="sticky-left">
 			<!-- 사이드바 : 메인 페이지 -->
 			<a class="sidebar-brand d-flex align-items-center justify-content-center" href="main">
-				<div class="sidebar-brand-icon rotate-n-15">
-					<i class="fas fa-laugh-wink"></i>
-				</div>
+				<img src="images/gifticon/hplogo.png" width="50">
 			<div class="sidebar-brand-text mx-3">메인 페이지</div>
 			</a>
 
@@ -48,7 +46,7 @@
 						<c:otherwise>
 							<li class="nav-item">
 								<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#Mbr" aria-expanded="true" aria-controls="collapseTwo">
-									<i class="fas fa-user fa-sm fa-fw"></i> <span>${memberDTO.memberName}님 반갑습니다</span>
+									<i class="fas fa-user fa-sm fa-fw"></i> <span>${memberDTO.memberName}</span>
 								</a>					
 								<div id="Mbr" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
 									<div class="bg-white py-2 collapse-inner rounded">
@@ -64,10 +62,10 @@
 				<c:otherwise>
 					<li class="nav-item">
 						<a class="nav-link collapsed" href="userLogin">
-							<i class="fas fa-fw fa-wrench"></i> <span>로그인</span>					
+							<i class="fas fa-solid fa-right-to-bracket"></i><span> 로그인</span>					
 						</a>
 						<a class="nav-link collapsed" href="userSignUp">
-							<i class="fas fa-fw fa-wrench"></i> <span>회원가입</span>					
+							<i class="fas fa-user fa-sm fa-fw"></i><span>회원가입</span>					
 						</a>
 					</li>
 				</c:otherwise>
@@ -79,7 +77,7 @@
 			<!-- 사이드바 : 메뉴 -->
 			<li class="nav-item">
 				<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#Menu" aria-expanded="true" aria-controls="collapseTwo">
-					<i class="fas fa-fw fa-wrench"></i> <span>메뉴</span>
+					<i class="fas fa-solid fa-burger"></i><span> 메뉴</span>
 				</a>
 				<div id="Menu" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
@@ -91,7 +89,7 @@
 			<!-- 사이드바 : 브랜드 -->
 			<li class="nav-item">
 				<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#Brand" aria-expanded="true" aria-controls="collapseTwo">
-					<i class="fas fa-fw fa-wrench"></i> <span>브랜드</span>
+					<i class="fas fa-solid fa-copyright"></i><span> 브랜드</span>
 				</a>
 				<div id="Brand" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
@@ -103,7 +101,7 @@
 			<!-- 사이드바 : 공지사항 -->
 			<li class="nav-item">
 				<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#Notice" aria-expanded="true" aria-controls="collapseTwo">
-					<i class="fas fa-fw fa-wrench"></i> <span>공지사항</span>
+					<i class="fas fa-solid fa-circle-exclamation"></i><span> 공지사항</span>
 				</a>
 				<div id="Notice" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
@@ -115,7 +113,7 @@
 			<!-- 사이드바 : 질문과 답변 -->
 			<li class="nav-item">
 				<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#QnA" aria-expanded="true" aria-controls="collapseTwo">
-					<i class="fas fa-solid fa-question"></i> <span>질문과 답변</span>
+					<i class="fas fa-solid fa-circle-question"></i><span> 질문과 답변</span>
 				</a>
 				<div id="QnA" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">

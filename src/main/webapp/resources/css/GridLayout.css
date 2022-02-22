@@ -1,25 +1,25 @@
 /* menuResultTest.jsp 레이아웃 */
 .menu-grid {
-	width:1000px;
+	width: 1000px;
 	display: grid;
 	grid-template-columns: 250px 750px;
 	grid-template-rows: 80px 170px;
 }
 
 .menuImg {
-	width:250px;
+	width: 250px;
 	grid-column: 1;
 	grid-row: 1/4;
 }
 
 .menuTitle {
-	width:500px;
+	width: 500px;
 	grid-column: 2/4;
 	grid-row: 1/2;
 }
 
 .menuDescription {
-	width:500px;
+	width: 500px;
 	grid-column: 2/4;
 	grid-row: 2/4;
 }
@@ -62,31 +62,43 @@
 	grid-row: 6;
 }
 
-.layout{
-    max-width:100%;
-    margin: 0 auto;
-    display: flex;
-    flex-wrap: nowrap;
-    gap: 1em;
+.layout {
+	max-width: 100%;
+	margin: 0 auto;
+	display: flex;
+	flex-wrap: nowrap;
+	gap: 1em;
 }
-aside{
-    flex-basis: 400px;
-    flex-grow: 0;
-    flex-shrink: 0;
+
+aside {
+	flex-basis: 400px;
+	flex-grow: 0;
+	flex-shrink: 0;
 }
-article{
-    flex-basis: auto;
-    flex-grow: 1;
-    flex-shrink: 1;
+
+article {
+	flex-basis: auto;
+	flex-grow: 1;
+	flex-shrink: 1;
 }
-.flexbox{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1em;
+
+.flexbox {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1em;
 }
-.item{
-    min-height: 150px;
-    flex-basis: auto;
-    flex-shrink: 1;
-    flex-grow: 1;
+
+.item {
+	min-height: 150px;
+	flex-basis: auto;
+	flex-shrink: 1;
+	flex-grow: 1;
+}
+
+.mainMenuGrid {
+	display: grid;
+	grid-template-columns: 300px 300px 300px;
+	grid-gap: 15px;
+	grid-template-rows: repeat(3, 400px);
+	grid-auto-flow: row;
 }

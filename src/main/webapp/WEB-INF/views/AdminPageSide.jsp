@@ -21,9 +21,7 @@
 		<div class="sticky-left">
 			<!-- 사이드바 : 메인 페이지 -->
 			<a class="sidebar-brand d-flex align-items-center justify-content-center" href="main">
-				<div class="sidebar-brand-icon rotate-n-15">
-					<i class="fas fa-laugh-wink"></i>
-				</div>
+				<img src="images/gifticon/hplogo.png" width="50">
 			<div class="sidebar-brand-text mx-3">메인 페이지</div>
 			</a>
 			
