@@ -15,7 +15,7 @@
    	<link href="resources/css/sb-admin-2.css" rel="stylesheet">
 	<script src="https://kit.fontawesome.com/730c440743.js" crossorigin="anonymous"></script>
 	<script src="resources/js/jquery-3.4.1.min.js"></script>
-    
+    <script src="resources/js/qna/answerconfirmList.js"></script>
 </head>
 
 <body>

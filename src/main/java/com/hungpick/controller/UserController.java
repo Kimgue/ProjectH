@@ -279,7 +279,7 @@ public class UserController {
 		notice.insert(noti);
 		
 	
-		return "adminPage";
+		return "redirect:/NoticeSWD";
 
 	}
 	
@@ -321,7 +321,7 @@ public class UserController {
 		model.addAttribute("pageMaker", pageMaker);
 		model.addAttribute("currentPage", currentPage);
 
-		return "NoticeSWD";
+		return "redirect:/NoticeSWD";
 
 	}
 	
@@ -350,7 +350,7 @@ public class UserController {
 		model.addAttribute("pageMaker", pageMaker);
 		model.addAttribute("currentPage", currentPage);
 
-		return "NoticeSWD";
+		return "redirect:/NoticeSWD";
 	}
 	
 	//------------------------------answer 질문-------------------------------
