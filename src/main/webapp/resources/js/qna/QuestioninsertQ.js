@@ -70,7 +70,7 @@
                   alert(jqXHR.responseText); 
                }
             });
-         }  
+         }   
       } else {
          return false;
       }

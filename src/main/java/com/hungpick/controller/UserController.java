@@ -54,15 +54,20 @@ public class UserController {
 	public String QA(Model model, String memberCode, @ModelAttribute("cri") Criteria cri, HttpSession session)
 			throws Exception {
 		logger.info("Q&A called ========== ");
-		/*	
-		json 객체 만드는 
-	 	JSONObject jsonObj = new JSONObject();
-		jsonObj.put("list", list);
-		String jsonOut = jsonObj.toString();
-		System.out.println(jsonOut);
-		*/
 		
-		memberCode = (String)session.getAttribute("memberCode");	
+		
+		memberCode = (String)session.getAttribute("memberCode");
+		if(memberCode == null)
+		{
+			String msg = "로그인이 필요합니다.";
+			String url = "userLogin";
+			model.addAttribute("msg", msg);
+			model.addAttribute("url", url);
+			
+			return "main";        
+		}
+		else
+		{
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(question.listCount(memberCode));
@@ -75,6 +80,7 @@ public class UserController {
 		
 		
 		return "Questionlist";
+		}
 	}
 	
 	@RequestMapping("view1")

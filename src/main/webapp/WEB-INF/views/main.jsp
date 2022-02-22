@@ -18,7 +18,7 @@
 	<script src="https://kit.fontawesome.com/730c440743.js" crossorigin="anonymous"></script>
 	<script src="resources/js/jquery-3.4.1.min.js"></script>
 	<script src="resources/js/menu/menuSlide.js"></script>
-    
+  	<script src="resources/js/menu/questionalert.js"></script>
 </head>
 
 <body>
