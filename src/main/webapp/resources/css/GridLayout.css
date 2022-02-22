@@ -62,27 +62,31 @@
 	grid-row: 6;
 }
 
-
-/* menu.jsp 레이아웃 */
-.menuSearchGrid {
-	width:1000px;
-	display: grid;
-	grid-template-columns: 1250px 400px;
-	grid-gap: 10px;
-	grid-auto-rows: minmax(100px, auto);
+.layout{
+    max-width:100%;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 1em;
 }
-
-.menuSearch {
-	grid-column: 1;
-	grid-row: 1;	
+aside{
+    flex-basis: 400px;
+    flex-grow: 0;
+    flex-shrink: 0;
 }
-
-.menuView {
-	grid-column: 1;
-	grid-row: 2;	
+article{
+    flex-basis: auto;
+    flex-grow: 1;
+    flex-shrink: 1;
 }
-
-.menuRanking {
-	grid-column: 2;
-	grid-row: 1/2;
+.flexbox{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+}
+.item{
+    min-height: 150px;
+    flex-basis: auto;
+    flex-shrink: 1;
+    flex-grow: 1;
 }
