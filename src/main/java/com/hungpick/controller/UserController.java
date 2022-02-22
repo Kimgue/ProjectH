@@ -57,7 +57,10 @@ public class UserController {
 		
 		
 		memberCode = (String)session.getAttribute("memberCode");
-		if(memberCode == null)
+		String adminCode = (String)session.getAttribute("adminCode");
+		System.out.println("확인 : " + adminCode);
+		
+		if(memberCode == null && adminCode == null)
 		{
 			String msg = "로그인이 필요합니다.";
 			String url = "userLogin";
@@ -65,21 +68,30 @@ public class UserController {
 			model.addAttribute("url", url);
 			
 			return "main";        
-		}
-		else
-		{
-		PageMaker pageMaker = new PageMaker();
-		pageMaker.setCri(cri);
-		pageMaker.setTotalCount(question.listCount(memberCode));
-		int currentPage = cri.getPage();
-
-		model.addAttribute("pageMaker", pageMaker);
-		model.addAttribute("currentPage", currentPage);
-		model.addAttribute("listpage", question.listPage(cri, memberCode));
-		model.addAttribute("member", question.MemberCode(memberCode));
-		
-		
-		return "Questionlist";
+		} else if(memberCode != null) {
+			PageMaker pageMaker = new PageMaker();
+			pageMaker.setCri(cri);
+			pageMaker.setTotalCount(question.listCount(memberCode));
+			int currentPage = cri.getPage();
+			
+			model.addAttribute("pageMaker", pageMaker);
+			model.addAttribute("currentPage", currentPage);
+			model.addAttribute("listpage", question.listPage(cri, memberCode));
+			model.addAttribute("member", question.MemberCode(memberCode));
+			
+			return "Questionlist";
+			
+		} else {
+			PageMaker pageMaker = new PageMaker();
+			pageMaker.setCri(cri);
+			pageMaker.setTotalCount(question.answerCount());
+			int currentPage = cri.getPage();
+			
+			model.addAttribute("selectNlist", answer.selectN(cri));
+			model.addAttribute("pageMaker", pageMaker);
+			model.addAttribute("currentPage", currentPage);
+			
+			return "answerconfirmList";
 		}
 	}
 	
@@ -372,23 +384,6 @@ public class UserController {
 	
 	//------------------------------answer 질문-------------------------------
 	
-	@RequestMapping("Nconfirm")
-	public String selectconfirm(Model model, @ModelAttribute("cri")Criteria cri)throws Exception
-	{
-		
-		
-		PageMaker pageMaker = new PageMaker();
-		pageMaker.setCri(cri);
-		pageMaker.setTotalCount(question.answerCount());
-		int currentPage = cri.getPage();
-		
-		model.addAttribute("selectNlist", answer.selectN(cri));
-		model.addAttribute("pageMaker", pageMaker);
-		model.addAttribute("currentPage", currentPage);
-		
-		return "answerconfirmList";
-		
-	}
 	@RequestMapping("reply")
 	public String reply(Model model,String memberCode,String qstnCode,@ModelAttribute("cri") Criteria cri,HttpSession session) 
 	{

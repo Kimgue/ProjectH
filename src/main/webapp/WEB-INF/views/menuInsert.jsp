@@ -56,7 +56,7 @@
 								
 							<div>
 								<label for="input-image">
-									<i class="fas fa-solid fa-file-image btn btn-warning">파일 첨부</i>
+									<i class="fas fa-solid fa-file-image btn btn-warning"> 파일 첨부</i>
 								</label>
 							</div>
 							<div>
