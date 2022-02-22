@@ -48,7 +48,7 @@
 		<jsp:include page="mainSlide.jsp" flush="false"/>		
 
 			<!-- 메뉴 리스트 -->
-			<h1 class="text-center mt-3">메뉴 리스트</h1>
+			<h1 class="text-center mt-3">메뉴 리스트</h1> 
 				<div class="d-flex align-items-center justify-content-center">
 					<div class="md">
 						<div class="mdList">1</div>
