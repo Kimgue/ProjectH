@@ -42,11 +42,11 @@
     
     $(document).ready( function () {
         $('#menuReview').DataTable({
-        	pageLength: 10,
+        	pageLength: 5,
         	bPaginate: true,
-        	bAutoWidth: true,
+        	bAutoWidth: false,
         	processing: true,
-        	severSide: true,
+        	severSide: false,
         	searching: true,
         	language : lang_kor
         });
@@ -89,15 +89,14 @@
 				<p style="font-size: 12pt">
 					<c:out value="메뉴재료: ${menu.menuIngredients}" />
 				</p>
-				<hr>
-				<table id="menuReview" class="table table-bordered" style="width:100%">
+				<table id="menuReview" class="table table-bordered"  style="width:100%">
 					<thead>
 						<tr>
-							<th width=70>닉네임</th>
-							<th width=40>점수</th>
-							<th width=150>리뷰날짜</th>
-							<th width=300>내용</th>
-							<th width=120>상세리뷰</th>	
+							<th>닉네임</th>
+							<th>점수</th>
+							<th>리뷰날짜</th>
+							<th>내용</th>
+							<th>상세리뷰</th>	
 					</tr>
 					</thead>
 					<tbody>

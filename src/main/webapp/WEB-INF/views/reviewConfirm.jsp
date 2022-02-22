@@ -16,34 +16,70 @@
 	<script src="https://kit.fontawesome.com/730c440743.js" crossorigin="anonymous"></script>
 	<script src="resources/js/jquery-3.4.1.min.js"></script>
     <script>
-			function confirm(){
-					
-			 var brandCode = $("input[name='brandCode']").val();
-			 var menuCode = $("input[name='menuCode']").val();	
-			 var reviewCode = $("input[name='reviewCode']").val();
-			 var memberCode = $("input[name='memberCode']").val();
+
+	function confirm(){
 			
-			$.ajax({
-				type: 'POST',
-				url: 'confirmReview.do',
-				async: true,
-				data: {"brandCode" : brandCode,"menuCode" : menuCode,"reviewCode" : reviewCode,"memberCode" : memberCode },
-				dataType: "json",
-				contentType: "application/x-www-form-urlencoded; charset=UTF-8",
-				success: function(jdata){
-						alert("고객님의 포인트가 "+ jdata.holdPoint+"점이 되었습니다.")
-						document.location.href = document.location.href;
-					}, 
-				error: function(request, status, error){
-					console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-					alert("지금은 시스템 사정으로 요청하신 작업을 처리할 수 없습니다.");
-					return;
-				}
-			});
-		};				
+	 var brandCode = $("input[name='brandCode']").val();
+	 var menuCode = $("input[name='menuCode']").val();	
+	 var reviewCode = $("input[name='reviewCode']").val();
+	 var memberCode = $("input[name='memberCode']").val();
+	
+	 console.log(brandCode)
+	 
+	$.ajax({
+		type: 'POST',
+		url: 'confirmReview.do',
+		async: true,
+		data: {"brandCode" : brandCode,"menuCode" : menuCode,"reviewCode" : reviewCode,"memberCode" : memberCode },
+		dataType: "json",
+		contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+		success: function(jdata){
+				console.log(jdata)
+				alert(jdata.memberNickname + "고객님의 포인트가 "+ jdata.holdPoint+"점이 되었습니다.")
+				document.location.href = document.location.href;
+			}, 
+		error: function(request, status, error){
+			console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+			alert("지금은 시스템 사정으로 요청하신 작업을 처리할 수 없습니다.");
+			return;
+		}
+	});
+	};	
+	
+	
+	function confirmNo(){
+		
+		 var brandCode = $("input[name='brandCode']").val();
+		 var menuCode = $("input[name='menuCode']").val();	
+		 var reviewCode = $("input[name='reviewCode']").val();
+		 var memberCode = $("input[name='memberCode']").val();
+		
+		 console.log(brandCode)
+		 
+		$.ajax({
+			type: 'POST',
+			url: 'confirmNoReview.do',
+			async: true,
+			data: {"brandCode" : brandCode,"menuCode" : menuCode,"reviewCode" : reviewCode,"memberCode" : memberCode },
+			dataType: "json",
+			contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+			success: function(jdata){
+					console.log(jdata)
+					alert(jdata.memberNickname + "고객의 리뷰가 불승인되어 삭제되었습니다.")
+					document.location.href = document.location.href;
+				}, 
+			error: function(request, status, error){
+				console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+				alert("지금은 시스템 사정으로 요청하신 작업을 처리할 수 없습니다.");
+				return;
+			}
+		});
+		};
+    
+    
+    		
  </script>
 </head>
-
 <body>
 	<!-- 페이지 Wrapper 시작 -->
 	<div id="wrapper">
@@ -58,16 +94,19 @@
 		<div id="content">
 			<div align="center">
 			
-				<table border="1">
+				<table id="menuReview" class="table table-bordered"  style="width:100%">
+					<thead>
 					<tr>
-						<td width=80>회원코드</td>
-						<td width=40>점수</td>
-						<td width=100>리뷰날짜</td>
-						<td width=150>내용</td>
-						<td width=120>리뷰보기</td>	
-						<td width=60>승인</td>
+						<th>회원코드</th>
+						<th>점수</th>
+						<th>리뷰날짜</th>
+						<th>내용</th>
+						<th>리뷰보기</th>	
+						<th>승인</th>
+						<th>불승인</th>
 					</tr>
-				
+					</thead>
+					<tbody>
 				<c:forEach var="review" items="${review}">
 				<input name="memberCode" type="hidden" value="${review.memberCode}" />
 				<input name="reviewCode" type="hidden" value="${review.reviewCode}" />
@@ -86,9 +125,11 @@
 							<c:param name="memberCode" value="${review.memberCode}" />
 						</c:url>
 						<td><a href="${reviewLookup}">상세 리뷰 보기</a></td>
-						<td><button onclick="confirm( )">승인</button></td>	
+						<td><button onclick="confirm( )">승인</button></td>
+						<td><button onclick="confirmNo( )">불승인</button></td>		
 					</tr>										
 				</c:forEach>
+				</tbody>
 				</table>
 				
 			</div>

@@ -114,7 +114,7 @@
 	</insert> <!-- 나중에 관리자가 'N'에서 Y로 바꿔주고 포인트획득날짜도 update로 바꿔줘야함 -->
 
 	<select id="sltReviewN" resultType="reviewDto">
-		SELECT * FROM REVIEW WHERE REVIEW_CONFIRM = 'N'
+		SELECT * FROM REVIEW WHERE REVIEW_CONFIRM = 'N' AND REVIEW_IMG IS NOT NULL
 	</select>
 	
 	<update id="updateReviewY" parameterType="String">
@@ -127,4 +127,8 @@
 		UPDATE MEMBERS SET HOLD_POINT = HOLD_POINT + 500 WHERE MEMBER_CODE = #{memberCode}
 	</update>
 	
+	<delete id="deleteReview" parameterType="String">
+		DELETE FROM REVIEW WHERE BRAND_CODE = #{brandCode} AND MENU_CODE = #{menuCode}
+		AND REVIEW_CODE = #{reviewCode} AND MEMBER_CODE = #{memberCode}
+	</delete>
 </mapper>

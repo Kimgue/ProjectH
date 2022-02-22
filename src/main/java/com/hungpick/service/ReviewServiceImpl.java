@@ -100,6 +100,18 @@ public class ReviewServiceImpl implements IReviewService {
 	public void updateHoldPoint(@Param(value = "memberCode") String memberCode) {
 		
 		reviewDao.updateHoldPoint(memberCode);
+	}
+	
+	//리뷰 삭제
+	@Override
+	public void deleteReview(
+			@Param(value = "brandCode") String brandCode,
+			@Param(value = "menuCode") String menuCode,
+			@Param(value = "reviewCode") String reviewCode,
+			@Param(value = "memberCode") String memberCode
+			) {
+		
+		reviewDao.deleteReview(brandCode, menuCode, reviewCode, memberCode);
 	};
 	
 	

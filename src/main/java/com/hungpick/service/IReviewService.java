@@ -50,4 +50,12 @@ public interface IReviewService {
 	
 	//리뷰 승인후 획득포인트 회원 포인트에 더해주기
 	void updateHoldPoint(@Param(value = "memberCode") String memberCode);	
+	
+	//리뷰 삭제
+	void deleteReview(
+			@Param(value = "brandCode") String brandCode,
+			@Param(value = "menuCode") String menuCode,
+			@Param(value = "reviewCode") String reviewCode,
+			@Param(value = "memberCode") String memberCode
+			);
 }

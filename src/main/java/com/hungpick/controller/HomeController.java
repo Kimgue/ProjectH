@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class HomeController {
 	
 	@Autowired
-	UserController2 menuCtrl;
+	MenuController menuCtrl;
 
 	@RequestMapping("main")
 	public void main(Model model) throws Exception{

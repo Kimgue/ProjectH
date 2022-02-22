@@ -302,6 +302,30 @@ public class AjaxController {
 		ObjectMapper mapper = new ObjectMapper();
 		String jsonStr = mapper.writeValueAsString(userService.sltSearch(memberCode));
 		
+		System.out.println(jsonStr);
+		
+		return jsonStr;
+	}
+
+	/*--------------------- 리뷰 불승인하기  ---------------------*/
+	@RequestMapping(value = "confirmNoReview.do", produces = "application/text; charset=utf8" )
+	@ResponseBody
+	public String confirmNoReview(
+			@RequestParam String brandCode,
+			@RequestParam String menuCode,
+			@RequestParam String reviewCode,
+			@RequestParam String memberCode
+			) throws Exception{
+		
+		logger.info("confirmReview called ======");		
+				
+		reviewService.deleteReview(brandCode, menuCode, reviewCode, memberCode);
+		
+		ObjectMapper mapper = new ObjectMapper();
+		String jsonStr = mapper.writeValueAsString(userService.sltSearch(memberCode));
+		
+		System.out.println(jsonStr);
+		
 		return jsonStr;
 	}
 	
