@@ -1,26 +1,26 @@
 .menu-grid {
+	width:1000px;
 	display: grid;
-	grid-template-columns: repeat(3, 1fr);
-	grid-gap: 10px;
-	grid-auto-rows: minmax(100px, auto);
+	grid-template-columns: 250px 750px;
+	grid-template-rows: 80px 170px;
 }
 
 .menuImg {
+	width:250px;
 	grid-column: 1;
 	grid-row: 1/4;
-	background-color: yellow;
 }
 
 .menuTitle {
+	width:500px;
 	grid-column: 2/4;
-	grid-row: 1;
-	background-color: blue;
+	grid-row: 1/2;
 }
 
 .menuDescription {
+	width:500px;
 	grid-column: 2/4;
 	grid-row: 2/4;
-	background-color: green;
 }
 
 
@@ -60,6 +60,3 @@
 	grid-column: 5;
 	grid-row: 6;
 }
-
-
-
