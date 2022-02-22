@@ -43,7 +43,7 @@
 		if(result) {
 			alert("등록되었습니다");
 			
-			const uploadPath = "/WebProject/src/main/webapp/resources/images/NoticeImg";
+			const uploadPath = "/resources/images/NoticeImg";
 			
 			const imageInput = $("#noticeImg")[0];
 			if(imageInput.files.length == 0){
@@ -60,7 +60,7 @@
 					contentType : false,
 					data : formData,						
 					success : function(response) {
-						$("#testabc").attr("value","images/NoticeImg/"+response);
+						$("#noticeImg").attr("value","images/NoticeImg/"+response);
 						$("#noticeInsert").submit();
 					},
 					error : function(jqXHR) {

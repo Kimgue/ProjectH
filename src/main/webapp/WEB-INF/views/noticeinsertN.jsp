@@ -84,7 +84,7 @@
 								<tr>
 									<td>						
 										<!-- <button type="submit" id="submit">작성</button> -->
-											<input type="button" value="작성" onclick="insert()">								
+											<input type="button" value="작성" onclick="insert()" id="submit">								
 									</td>
 								</tr>			
 							</tbody>			
