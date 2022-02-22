@@ -13,6 +13,7 @@
     <title>헝픽</title>
     
    	<link href="resources/css/sb-admin-2.css" rel="stylesheet">
+   	<link href="resources/css/GridLayout.css" rel="stylesheet">
    	<link href="resources/css/fileBtnHidden.css" rel="stylesheet">
 	<script src="https://kit.fontawesome.com/730c440743.js" crossorigin="anonymous"></script>
 	<script src="resources/js/jquery-3.4.1.min.js"></script>
@@ -32,21 +33,23 @@
 					
 		<!-- 메인 -->
 		<div id="content">
-			<div class="row justify-content-center">
-				<div class="card shadow">
-					<div class="card-body">
-						<div class="col mr-2">
-							<form id="insertForm" action="gifticonInsertSubmit" method="post" enctype="multipart/form-data">
-							
-								<div>
-									<input type="text" class="" id="gifticonName" name="gifticonName" placeholder="기프티콘 이름">
+			<div class="text-center text-Title mt-3">
+				기프티콘 등록
+			</div>
+			<div class="card shadow m-3">
+				<div class="card-body">
+					<div class="text-center">
+						<form id="insertForm" action="gifticonInsertSubmit" method="post" enctype="multipart/form-data">
+							<div class="gifticon-insert-grid align-items-center justify-content-center">
+								<div class="gifticonName">
+									<input type="text" class="form-control" id="gifticonName" name="gifticonName" placeholder="기프티콘 이름">
 								</div>
 								
-								<div>
-								<input type="text" class="" id="gifticonPrice" name="gifticonPrice" placeholder="기프티콘 가격">
+								<div class="gifticonPrice">
+								<input type="text" class="form-control" id="gifticonPrice" name="gifticonPrice" placeholder="기프티콘 가격">
 								</div>
 								
-								<div>
+								<div class="gifticonBrand">
 									<select class="custom-select" id="brandCode" name="brandCode" onchange="brandSelect()">
 									<option value="" selected disabled>브랜드 선택</option>
 									<option value="1">맥도날드</option>
@@ -54,28 +57,28 @@
 									</select>
 								</div>
 								
-								<div>
+								<div class="gifticonMenu">
 									<select class="custom-select" id="menuCode" name="menuCode" onchange="menuSelect()">
 									<option value="" selected disabled>-- 브랜드를 먼저 선택해주세요 --</option>
 									</select>
 								</div>
 								
-								<div>
-									<img style="width: 250px;" class="img img-fluid img-thumbnail" id="preview-image" src="">
+								<div class="gifticonImg">
+									<img style="width: 294px;" class="img img-fluid img-thumbnail" id="preview-image" src="">
 									<input type="hidden" id="gifticonImg" name="gifticonImg">
 									<div class="h4 font-weight-bold text-primary m-3">
 										<label for="input-image">
 											<i class="fas fa-solid fa-file-image btn btn-primary"> 파일 첨부</i> 
 										</label>
 									</div>
-									<input type="file" id="input-image" name="uploadfile" required="required">
 								</div>
 								
-								<div>
-									<input type="button" class="btn btn-primary" value="작성" onclick="insert()">
-								</div>	
-							</form>
-						</div>
+								<div class="gifticonBtn">
+									<input type="button" class="btn btn-primary" value="등록" onclick="insert()">
+									<input type="file" id="input-image" name="uploadfile" required="required">
+								</div>
+							</div>
+						</form>
 					</div>
 				</div>
 			</div>

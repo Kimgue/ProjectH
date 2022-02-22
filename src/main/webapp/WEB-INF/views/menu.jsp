@@ -19,7 +19,7 @@
     
 </head>
 
-<body>--
+<body>
 	<!-- 페이지 Wrapper 시작 -->
 	<div id="wrapper">
 	<!-- 사이드바 -->
