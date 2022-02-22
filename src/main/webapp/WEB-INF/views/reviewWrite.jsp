@@ -171,7 +171,7 @@
 					<input type='text' name='menuName' value='${menuName}' readonly/>
 					<br> 
 					리뷰점수: 
-					<input type='number' name='reviewScore' min='1' max='5' step='0.1' required/>
+					<input type='number' name='reviewScore' min='1' max='5' step='0.5' required/>
 					<br> 
 					리뷰내용:
 					<input type='text' name='reviewContent' style="width:300px;height:200px;" required/>
@@ -187,7 +187,7 @@
 					<div id="articlefileChange">
 					</div>
 					</div>
-		  			<button type="submit" onclick="return registerAction()" >전송</button>
+		  			<button type="submit" onclick="return registerAction()">전송</button>
 				</form>
 			</div>		
 		</div>

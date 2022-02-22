@@ -55,8 +55,8 @@
 					<tr>
 						<td width=50>닉네임</td>
 						<td width=40>점수</td>
-						<td width=100>리뷰날짜</td>
-						<td width=150>내용</td>
+						<td width=150>리뷰날짜</td>
+						<td width=300>내용</td>
 						<td width=120>상세리뷰</td>	
 					</tr>
 				<c:forEach var="review" items="${review}">

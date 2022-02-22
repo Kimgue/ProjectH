@@ -55,7 +55,7 @@
 	
 	<select id="sltReviewList" parameterType="String" resultMap="ReviewVoRm">
 		SELECT A.MEMBER_NICKNAME, B.BRAND_CODE, B.MENU_CODE, B.REVIEW_CODE, B.MEMBER_CODE, 
-		B.REVIEW_SCORE, B.REVIEW_CONTENT, B.REVIEW_DATE
+		B.REVIEW_SCORE, B.REVIEW_CONTENT, TO_CHAR(B.REVIEW_DATE,'YYYY"년"MM"월"DD"일"') AS REVIEW_DATE
 		FROM MEMBERS A JOIN REVIEW B ON A.MEMBER_CODE = B.MEMBER_CODE 
 			<if test="brandCode != null and brandCode != ''">
 				AND B.BRAND_CODE = #{brandCode}
@@ -71,8 +71,8 @@
 	</select>
 	
 	<select id="sltLookUp" parameterType="String" resultMap="ReviewVoRm">
-		SELECT A.MEMBER_NICKNAME, B.REVIEW_SCORE, B.REVIEW_CONTENT, B.REVIEW_DATE, 
-		B.REVIEW_IMG
+		SELECT A.MEMBER_NICKNAME, B.REVIEW_SCORE, B.REVIEW_CONTENT, 
+		TO_CHAR(B.REVIEW_DATE,'YYYY"년"MM"월"DD"일"') AS REVIEW_DATE, B.REVIEW_IMG
 		FROM MEMBERS A JOIN REVIEW B ON A.MEMBER_CODE = B.MEMBER_CODE
 			<if test="brandCode != null and brandCode != ''">
 				AND B.BRAND_CODE = #{brandCode}
