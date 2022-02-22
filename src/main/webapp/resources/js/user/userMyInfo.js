@@ -252,7 +252,7 @@
 		
 		
 		$("#Pw_Btn").click(function() {
-			$("#Pw").addClass("animated--grow-in");
+			$("#Pw").addClass("animated--translateY40In");
 			
 			$("#Pw").show();
 			$("#Pw_Btn").hide();
@@ -262,9 +262,10 @@
 		
 		/* 비밀번호 변경 취소 눌렀을 때*/
 		$("#Pw_Cancle").click(function() {
-			$("#Pw").removeClass("animated--grow-in");
+			$("#Pw").removeClass("animated--translateY40In");
 			
 			$("#Pw").hide();
+			$("#Pw_Btn").addClass("animated--grow-in");
 			$("#Pw_Btn").show();
 			$("#Pw_Current").val("");
 			$("#Pw_Change").val("");
@@ -272,7 +273,6 @@
 			$("#resultPwCurrent").text("");
 			$("#resultPwChange").text("");
 			$("#resultPwChk").text("");
-			
 		});
 			
 		/* 비밀번호 변경 확인 */

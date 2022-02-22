@@ -19,7 +19,7 @@
 
 </head>
 
-<body class="bg-gradient-primary">
+<body class="bg-gradient-light">
 
 	<header class="d-flex align-items-center justify-content-center">
 			<div class="card border-0 my-5 text-center bg-transparent">
@@ -45,10 +45,10 @@
                                 <div class="p-5">
                                     <div class="text-center">
                                     <h1 class="h4 text-gray-900 mb-2">회원탈퇴</h1>
-                                    <p class="mb-4">회원탈퇴를 진행하시려면 '회원탈퇴'를 입력하고 탈퇴 버튼을 눌러주세요</p>
+                                    <p class="mb-4">회원탈퇴를 진행하시려면 '회원탈퇴'를 입력하고 <br>탈퇴 버튼을 눌러주세요</p>
                                     <form id="userDelete" action="userDeleteSubmit" method="post">
 										<input type="text" class="form-control col-9" id="userDelChk" placeholder="회원탈퇴를 입력해주세요">
-		                            	<a href="#" class="btn btn-primary btnMarginTop" onclick="userDelete()">
+		                            	<a href="#" class="btn btn-warning btnMarginTop" onclick="userDelete()">
 		                            		<i class="fas fa-check"></i>
 		                           		</a>
                                     </form>

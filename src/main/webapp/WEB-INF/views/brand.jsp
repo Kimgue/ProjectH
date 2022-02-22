@@ -35,7 +35,7 @@
 				<c:forEach var="brand" items="${brand}">
 					<div class="card shadow h-100 py-2 m-3 text-center">
 						<div class="card-body">
-								<div class="h3 font-weight-bold text-primary m-3 textHeight">
+								<div class="h3 font-weight-bold m-3 textHeight">
 									<c:out value="${brand.brandName}" />
 								</div>
 								

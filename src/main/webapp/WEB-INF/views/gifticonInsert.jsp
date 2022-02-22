@@ -33,9 +33,6 @@
 					
 		<!-- 메인 -->
 		<div id="content">
-			<div class="text-center text-Title mt-3">
-				기프티콘 등록
-			</div>
 			<div class="card shadow m-3">
 				<div class="card-body">
 					<div class="text-center">
@@ -68,13 +65,13 @@
 									<input type="hidden" id="gifticonImg" name="gifticonImg">
 									<div class="h4 font-weight-bold text-primary m-3">
 										<label for="input-image">
-											<i class="fas fa-solid fa-file-image btn btn-primary"> 파일 첨부</i> 
+											<i class="fas fa-solid fa-file-image btn btn-warning"> 파일 첨부</i> 
 										</label>
 									</div>
 								</div>
 								
 								<div class="gifticonBtn">
-									<input type="button" class="btn btn-primary" value="등록" onclick="insert()">
+									<input type="button" class="btn btn-warning" value="등록" onclick="insert()">
 									<input type="file" id="input-image" name="uploadfile" required="required">
 								</div>
 							</div>

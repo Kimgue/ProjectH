@@ -31,9 +31,6 @@
 					
 		<!-- 메인 -->
 		<div id="content">
-			<div class="text-center text-Title mt-3">
-				기프티콘 삭제
-			</div>
 			<div class="row justify-content-center">
 				<c:choose>
 					<c:when test="${not empty gifticonList}">
@@ -51,7 +48,7 @@
 													<input type="hidden" value="${gift.brandCode}" name="brandCode">
 													<input type="hidden" value="${gift.menuCode}" name="menuCode">
 												</form>
-												<div class="h2 font-weight-bold text-primary m-3">
+												<div class="h1 font-weight-bold m-3">
 													<c:out value="${gift.gifticonName}" />
 												</div>
 												<div class="h4 mb-0 font-weight-bold text-gray-800 m-3">
@@ -59,7 +56,7 @@
 												</div>
 												<img class="m-3" src="<c:url value='${gift.gifticonImg}' />" alt="${gift.gifticonImg}" height="270" width="270" /><br>
 												<div class="m-3">
-													<input type="button" class="form-control btn btn-primary" id="btn${gift.gifticonCode}" value="삭제">
+													<input type="button" class="form-control btn btn-warning" id="btn${gift.gifticonCode}" value="삭제">
 												</div>
 											</div>
 										</div>

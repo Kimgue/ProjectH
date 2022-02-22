@@ -12,6 +12,7 @@
 
     <title>헝픽</title>
     
+    
    	<link href="resources/css/sb-admin-2.css" rel="stylesheet">
    	<link href="resources/css/main.css" rel="stylesheet">
 	<script src="https://kit.fontawesome.com/730c440743.js" crossorigin="anonymous"></script>

@@ -18,7 +18,7 @@
 	<script src="resources/js/user/userLogin.js"></script>
 </head>
 
-<body class="bg-gradient-primary">
+<body class="bg-gradient-light">
 
 	<header class="d-flex align-items-center justify-content-center">
 			<div class="card border-0 my-5 text-center bg-transparent">
@@ -43,19 +43,18 @@
 								<div class="p-5 text-center">
 									<h1 class="h2 mb-4">로그인</h1>
 									<form id="login" method="post">
-		                            	<div class="inputHeight">
+		                            	<div class="mb-3">
 			                            	<input type="text" class="form-control col" id="Id" name="memberId" placeholder="아이디">
 		                            	</div>
-		                            	<div class="inputHeight">
+		                            	<div class="mb-3">
 			                            	<input type="password" class="form-control col" id="Pw" name="memberPw" placeholder="비밀번호">
 		                            	</div>
 									</form>
-									<div class="form-group text-danger">
-										${loginNotice}
-									</div>
+									<div class="text-danger">${loginNotice1}</div>
+									<div class="text-danger">${loginNotice2}</div>
 									<hr>
 									<div>
-										<input type="button" class="form-control btn btn-primary block" value="로그인" onclick="login()">
+										<input type="button" class="form-control btn btn-warning block font-weight-bolder" value="로그인" onclick="login()">
 									</div>
 									
 									<br>

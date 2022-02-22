@@ -16,9 +16,10 @@
 	<script src="https://kit.fontawesome.com/730c440743.js" crossorigin="anonymous"></script>
 	<script src="resources/js/jquery-3.4.1.min.js"></script>
 	<script src="resources/js/user/userFindPwComplete.js"></script>
+	
 </head>
 
-<body class="bg-gradient-primary">
+<body class="bg-gradient-light">
 
 	<header class="d-flex align-items-center justify-content-center">
 			<div class="card border-0 my-5 text-center bg-transparent">
@@ -58,7 +59,7 @@
 		                            		<div id="resultPwChk" class="result-text"></div>
 		                            	</div>
                                         <div>
-                                        	<input type="button" class="btn btn-primary" value="비밀번호 변경" onclick="FindPw()">
+                                        	<input type="button" class="btn btn-warning" value="비밀번호 변경" onclick="FindPw()">
 				                        </div>					                        				                        
                                     </form>
                                     <hr>

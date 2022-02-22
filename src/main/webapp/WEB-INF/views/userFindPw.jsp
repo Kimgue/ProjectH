@@ -19,7 +19,7 @@
 
 </head>
 
-<body class="bg-gradient-primary">
+<body class="bg-gradient-light">
 
 	<header class="d-flex align-items-center justify-content-center">
 			<div class="card border-0 my-5 text-center bg-transparent">
@@ -51,7 +51,7 @@
                                     <form id="FindPw" action="userFindPwSubmit" method="post">
                                     	<div class="inputHeight">
 											<input type="text" class="form-control col-9" id="memberId" name="memberId" placeholder="아이디">
-											<a href="#" class="btn btn-primary btnMarginTop" onclick="FindPw()">
+											<a href="#" class="btn btn-warning btnMarginTop" onclick="FindPw()">
 		                            			<i class="fas fa-check"></i>
 		                           			</a>
 		                            		<div id="resultId" class="result-text"></div>   

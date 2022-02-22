@@ -29,7 +29,7 @@
 		<div class="input-group">
 			<input type="text" class="form-control bg-light border-0 small" name="menuName" placeholder="메뉴 검색" aria-label="Search" aria-describedby="basic-addon2">
 			<div class="input-group-append">
-				<button class="btn btn-primary" type="submit">
+				<button class="btn btn-warning" type="submit">
 					<i class="fas fa-search fa-sm"></i>
 				</button>
 			</div>

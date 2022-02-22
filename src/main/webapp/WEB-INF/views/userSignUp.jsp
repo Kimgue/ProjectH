@@ -19,7 +19,7 @@
 	
 </head>
 
-<body class="bg-gradient-primary">
+<body class="bg-gradient-light">
 
 	<header class="d-flex align-items-center justify-content-center">
 			<div class="card border-0 my-5 text-center bg-transparent">
@@ -63,7 +63,7 @@
 
 	                            	<div class="inputHeight">
 										<input type="text" class="form-control col-9" id="memberEmail" name="memberEmail" placeholder="이메일을 입력해주세요">
-										<a href="#" id="Email_Transmit" class="btn btn-primary btnMarginTop">
+										<a href="#" id="Email_Transmit" class="btn btn-warning btnMarginTop">
 	                            			<i class="fas fa-solid fa-envelope"></i>
 	                           			</a>
 	                            		<div id="resultEmail" class="result-text"></div>   
@@ -72,7 +72,7 @@
 	                            	<div id="EmailChk">
 	                            	<div class="inputHeight">
 										<input type="text" class="form-control col-9" id="Email_Number" placeholder="인증번호 입력">
-		                            	<a href="#" id="Email_Check" class="btn btn-primary btnMarginTop">
+		                            	<a href="#" id="Email_Check" class="btn btn-warning btnMarginTop">
 		                            		<i class="fas fa-check"></i>
 		                           		</a>
 		                           		<div id="resultEmailChk" class="result-text"></div> 
@@ -81,7 +81,7 @@
 
 	                            	<div class="inputHeight">
 										<input type="text" class="form-control col-9" id="memberNumber" name="memberNumber" placeholder="전화번호를 입력해주세요">
-										<a href="#" id="Number_Transmit" class="btn btn-primary btnMarginTop">
+										<a href="#" id="Number_Transmit" class="btn btn-warning btnMarginTop">
 	                            			<i class="fas fa-solid fa-envelope"></i>
 	                           			</a>
 	                            		<div id="resultNumber" class="result-text"></div>   
@@ -90,14 +90,14 @@
 	                            	<div id="NumberChk">
 	                            	<div class="inputHeight">
 										<input type="text" class="form-control col-9" id="Number_Number" placeholder="인증번호 입력">
-		                            	<a href="#" id="Number_Check" class="btn btn-primary btnMarginTop">
+		                            	<a href="#" id="Number_Check" class="btn btn-warning btnMarginTop">
 		                            		<i class="fas fa-check"></i>
 		                           		</a>
 		                           		<div id="resultNumberChk" class="result-text"></div> 
 	                            	</div>
 	                            	</div>
 	                            	
-	                           		<input type="button" class="form-control btn btn-primary" value="회원가입" onclick="UserSignUp()">
+	                           		<input type="button" class="form-control btn btn-warning" value="회원가입" onclick="UserSignUp()">
 	                                <hr>
 		                                	
 	                            </form>

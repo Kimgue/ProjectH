@@ -19,7 +19,7 @@
 	
 </head>
 
-<body class="bg-gradient-primary">
+<body class="bg-gradient-light">
 
 	<header class="d-flex align-items-center justify-content-center">
 			<div class="card border-0 my-5 text-center bg-transparent">
@@ -79,13 +79,13 @@
 											<div id="Nickname">
 												변경할 닉네임<br>
 												<div class="mb-2">
-													<input type="text" class="col-9 form-control" id="Nick_Txt"><br>
+													<input type="text" class="col-9 form-control" id="Nick_Txt" placeholder="변경 닉네임 입력"><br>
 												</div>
 												
-												<input type="button" class="btn btn-primary"  id="Nick_Cancle" value="수정취소"> 
-												<input type="button" class="btn btn-primary"  id="Nick_Submit" value="수정완료">
+												<input type="button" class="btn btn-warning"  id="Nick_Cancle" value="수정취소"> 
+												<input type="button" class="btn btn-warning"  id="Nick_Submit" value="수정완료">
 											</div>
-											<input type="button" class="btn btn-primary" id="Nick_Btn" value="수정">
+											<input type="button" class="btn btn-warning" id="Nick_Btn" value="수정">
 										</td>
 									</tr>
 									<tr>
@@ -96,24 +96,24 @@
 
 				                            	<div class="mb-2 rightMarginTest">
 													<input type="text" class="col-9 form-control" id="Email_Txt" name="memberEmail" placeholder="변경 이메일 입력">
-													<a href="#" id="Email_Transmit" class="btn btn-primary btnMarginTop">
+													<a href="#" id="Email_Transmit" class="btn btn-warning btnMarginTop">
 				                            			<i class="fas fa-solid fa-envelope"></i>
 				                           			</a>   
 				                            	</div>
 
 				                            	<div class="mb-2 rightMarginTest">
 													<input type="text" class="col-9 form-control" id="Email_Number" placeholder="인증번호 입력">
-					                            	<a href="#" id="Email_Check" class="btn btn-primary btnMarginTop">
+					                            	<a href="#" id="Email_Check" class="btn btn-warning btnMarginTop">
 					                            		<i class="fas fa-check"></i>
 					                           		</a> 
 				                            	</div>
 				                            	
-				                            	<input type="button" class="btn btn-primary" id="Email_Cancle" value="수정취소">
-												<input type="button"  class="btn btn-primary" id="Email_Submit" value="수정완료">
+				                            	<input type="button" class="btn btn-warning" id="Email_Cancle" value="수정취소">
+												<input type="button"  class="btn btn-warning" id="Email_Submit" value="수정완료">
 												<div id="resultEmail"></div>
 												
 											</div> 
-												<input type="button" class="btn btn-primary" id="Email_Btn" value="수정">
+												<input type="button" class="btn btn-warning" id="Email_Btn" value="수정">
 										</td>
 									</tr>
 									<tr>
@@ -124,23 +124,23 @@
 												
 				                            	<div class="mb-2 rightMarginTest">
 													<input type="text" class="form-control col-9" id="Number_Txt" name="memberNumber" placeholder="변경 전화번호 입력">
-													<a href="#" id="Number_Transmit" class="btn btn-primary btnMarginTop">
+													<a href="#" id="Number_Transmit" class="btn btn-warning btnMarginTop">
 				                            			<i class="fas fa-solid fa-envelope"></i>
 				                           			</a>
 				                           		</div>
 
 				                            	<div class="mb-2 rightMarginTest">
 													<input type="text" class="form-control col-9" id="Number_Number" placeholder="인증번호 입력">
-													<a href="#" id="Number_Check" class="btn btn-primary btnMarginTop">
+													<a href="#" id="Number_Check" class="btn btn-warning btnMarginTop">
 				                            			<i class="fas fa-check"></i>
 				                           			</a>
 				                           		</div>			
 
-												<input type="button" class="btn btn-primary" id="Number_Cancle" value="수정취소">
-												<input type="button" class="btn btn-primary" id="Number_Submit" value="수정완료">
+												<input type="button" class="btn btn-warning" id="Number_Cancle" value="수정취소">
+												<input type="button" class="btn btn-warning" id="Number_Submit" value="수정완료">
 												<div id="resultNumber"></div>
 											</div> 
-												<input type="button" class="btn btn-primary" id="Number_Btn" value="수정">
+												<input type="button" class="btn btn-warning" id="Number_Btn" value="수정">
 										</td>
 									</tr>
 									<tr>
@@ -152,7 +152,7 @@
 										<td class="align-middle">${memberDTO.holdPoint}</td>
 									</tr>
 									</table>
-									<div class="card-body ml-5">
+									<div class="card-body ml-n2">
 										<div id="Pw">
 											<input type="hidden" id="memberPw" value="${memberDTO.memberPw}">
 											
@@ -171,8 +171,8 @@
 												<div id="resultPwChk"></div><br>
 			                            	</div>
 
-											<input type="button" class="btn btn-primary" id="Pw_Submit" value="변경 완료">
-											<input type="button" class="btn btn-primary" id="Pw_Cancle" value="변경 취소">
+											<input type="button" class="btn btn-warning" id="Pw_Submit" value="변경 완료">
+											<input type="button" class="btn btn-warning" id="Pw_Cancle" value="변경 취소">
 										</div>
 									</div>
 									<div class="card-body p-2">

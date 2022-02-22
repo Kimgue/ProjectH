@@ -88,7 +88,8 @@ public class UserServiceImpl implements IUserService {
 			return "redirect:/main";
 			
 		} else {
-			session.setAttribute("loginNotice", "아이디 또는 비밀번호가 잘못 입력 되었습니다.\r\n" + "아이디와 비밀번호를 정확히 입력해 주세요.");
+			session.setAttribute("loginNotice1", "아이디 또는 비밀번호가 잘못 입력 되었습니다");
+			session.setAttribute("loginNotice2", "아이디와 비밀번호를 정확히 입력해 주세요");
 			session.setMaxInactiveInterval(1);
 	
 			return "redirect:/userLogin";

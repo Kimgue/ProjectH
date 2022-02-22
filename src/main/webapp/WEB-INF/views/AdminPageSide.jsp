@@ -107,11 +107,9 @@
 					<i class="fas fa-fw fa-wrench"></i> <span>기프티콘</span>
 				</a>
 				<div id="Gifticon" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" href="gifticonList">기프티콘 조회</a> 
-						<a class="collapse-item" href="gifticonInsert">기프티콘 등록</a> 
-						<a class="collapse-item" href="gifticonUpdate">기프티콘 수정</a> 
-						<a class="collapse-item" href="gifticonDelete">기프티콘 삭제</a> 
+					<div class="bg-white py-2 collapse-inner rounded"> 
+						<a class="collapse-item" href="gifticonInsert">기프티콘 등록</a>
+						<a class="collapse-item" href="gifticonDelete">기프티콘 삭제</a>
 					</div>
 				</div>
 			</li>

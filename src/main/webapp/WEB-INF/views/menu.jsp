@@ -31,64 +31,89 @@
 					
 		<!-- 메인 -->
 		<div id="content">
-			<div align="center">
-				검색하고 싶은 메뉴 조건을 입력해주세요.<br>
-				<form action="menuResult" id="menuSearch">
-					<%-- 체크박스일 경우 값들을 배열로 받아서 처리해야함 --%>
-				<br> 브랜드<br>
-				<c:forEach var="brand" items="${brand}">
-					<input type='checkbox' name='brandCode' value='${brand.brandCode}' />${brand.brandName}
-				</c:forEach>
-				
-				<br> 좋아하는 패티<br>
-				<c:forEach var="menuIng" items="${menuIng}">
-					<input type='checkbox' name='menuIngredients' value='${menuIng.menuIngredients}' />${menuIng.menuIngredients}
-				</c:forEach>
-				
-				<br> 최대가격<br>
-				<input type='number' name='menuPrice' min='0' max='100000' /> <br>
-				<br> 이름<br>
-				<input type="text" name="menuName">
-				
-				<input type="submit" value="검색" />
-			</form>
-			<hr>
-			<h4>메뉴 리뷰 점수순위</h4>
-			<c:forEach var="rank" items="${ reviewRanking }">
-				<c:set var="i" value="${i+1}"/>
-				<tr>
-					<td><c:out value="${i}" />등</td>
-					<td><c:out value="${rank.brandDto.brandName}" /></td>
-					<td><c:out value="${rank.menuDto.menuName}" /></td>
-					<td><c:out value="${rank.reviewDto.reviewScore}"></c:out>
-				</tr>
-				<br>
-			</c:forEach>
-			<hr>
-			<a href="javascript:menuPriceHigh();">높은가격순</a>
-			<br>
-			<a href="javascript:menuPriceLow();">낮은가격순</a>
-			<div id="menu_list">
-			<c:forEach var="menu" items="${menu}">
-				<c:url value="menuDetail" var="menuDetail">
-					<c:param name="brandCode" value="${menu.brandCode}"/>
-					<c:param name="menuCode" value="${menu.menuCode}"/>
-					<c:param name="menuName" value="${menu.menuName}" />
-				</c:url>
-				<a href="${menuDetail}">
-					<img src="<c:out value="resources/${menu.menuImg}"/>" alt="메뉴 이미지" height="270" width="270" />
-				</a>
-				<p style="font-size: 15pt">
-				<a href="${menuDetail}">
-					<c:out value="메뉴명: ${menu.menuName}" />
-				</a>
-				</p>		
-				<p style="font-size: 15pt">
-					<c:out value="메뉴가격: ${menu.menuPrice}" />
-				</p>		
-				<hr>
-			</c:forEach>
+			<div class="card shadow m-3">
+				<div class="card-body">
+				검색 조건
+					<form action="menuResult" id="menuSearch">
+						<%-- 체크박스일 경우 값들을 배열로 받아서 처리해야함 --%>
+						<div>
+						브랜드
+						</div>
+						<div>
+							<c:forEach var="brand" items="${brand}">
+								<input class="custom-checkbox" type='checkbox' name='brandCode' value='${brand.brandCode}' />${brand.brandName}
+							</c:forEach>
+						</div>
+						
+						<div>
+						재료
+						</div>
+						<div>
+							<c:forEach var="menuIng" items="${menuIng}">
+								<input type='checkbox' name='menuIngredients' value='${menuIng.menuIngredients}' />${menuIng.menuIngredients}
+							</c:forEach>
+						</div>
+						
+						<div>
+						최대 가격
+						</div>
+						<div>
+							<input type='number' name='menuPrice' min='0' max='100000' /> <br>
+						</div>
+						
+						<div>
+						이름
+						</div>
+						<div>
+							<input type="text" name="menuName">
+						</div>
+						
+						<div>
+							<input type="submit" value="검색" />
+						</div>
+					</form>
+				</div>
 			</div>
+			
+			<div class="card shadow m-3">
+				<div class="card-body">		
+					<h4>메뉴 리뷰 점수순위</h4>
+					<c:forEach var="rank" items="${ reviewRanking }">
+						<c:set var="i" value="${i+1}"/>
+						<tr>
+							<td><c:out value="${i}" />등</td>
+							<td><c:out value="${rank.brandDto.brandName}" /></td>
+							<td><c:out value="${rank.menuDto.menuName}" /></td>
+							<td><c:out value="${rank.reviewDto.reviewScore}"></c:out>
+						</tr>
+						<br>
+					</c:forEach>
+					<hr>
+					<a href="javascript:menuPriceHigh();">높은가격순</a>
+					<br>
+					<a href="javascript:menuPriceLow();">낮은가격순</a>
+					<div id="menu_list">
+					<c:forEach var="menu" items="${menu}">
+						<c:url value="menuDetail" var="menuDetail">
+							<c:param name="brandCode" value="${menu.brandCode}"/>
+							<c:param name="menuCode" value="${menu.menuCode}"/>
+							<c:param name="menuName" value="${menu.menuName}" />
+						</c:url>
+						<a href="${menuDetail}">
+							<img src="<c:out value="resources/${menu.menuImg}"/>" alt="메뉴 이미지" height="270" width="270" />
+						</a>
+						<p style="font-size: 15pt">
+						<a href="${menuDetail}">
+							<c:out value="메뉴명: ${menu.menuName}" />
+						</a>
+						</p>		
+						<p style="font-size: 15pt">
+							<c:out value="메뉴가격: ${menu.menuPrice}" />
+						</p>		
+						<hr>
+					</c:forEach>
+					</div>
+				</div>
 			</div>
 		</div>
 		<!-- 메인 컨텐츠 끝 -->

@@ -11,13 +11,13 @@
     <meta name="author" content="">
 
     <title>헝픽</title>
-    
+
 </head>
 
 <body>
 	
 	<!-- 사이드바 시작 -->
-	<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+	<ul class="navbar-nav bg-gradient-warning sidebar sidebar-dark accordion" id="accordionSidebar">
 		<div class="sticky-left">
 			<!-- 사이드바 : 메인 페이지 -->
 			<a class="sidebar-brand d-flex align-items-center justify-content-center" href="main">
@@ -115,7 +115,7 @@
 			<!-- 사이드바 : 질문과 답변 -->
 			<li class="nav-item">
 				<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#QnA" aria-expanded="true" aria-controls="collapseTwo">
-					<i class="fas fa-fw fa-wrench"></i> <span>질문과 답변</span>
+					<i class="fas fa-solid fa-question"></i> <span>질문과 답변</span>
 				</a>
 				<div id="QnA" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
@@ -129,7 +129,7 @@
 			<!--사이드바 : 이달의 기프티콘 -->
 			<li class="nav-item">
 				<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#Gifticon" aria-expanded="true" aria-controls="collapseTwo">
-					<i class="fas fa-fw fa-wrench"></i> <span>이달의 기프티콘</span>
+					<i class="fas fa-solid fa-gift"></i> <span>이달의 기프티콘</span>
 				</a>
 				<div id="Gifticon" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">

@@ -70,29 +70,26 @@
 					
 		<!-- 메인 -->
 		<div id="content">
-			<div class="text-center text-Title mt-3">
-				이달의 기프티콘
-			</div>		
-			<div class="row justify-content-center">
+			<div class="w-100 float-left">
 				<c:choose>
 					<c:when test="${not empty gifticonList}">
 						<c:forEach var="gift" items="${gifticonList}">
-							<div class="card shadow h-100 py-2 m-3">
+							<div class="card d-inline-block shadow h-100 ml-3 mt-3 mb-3-last">
 								<div class="card-body">
 									<div class="col text-center">
 										<form id="form${gift.gifticonCode}" action="gifticonExchange" method="POST">
-											<div class="h2 font-weight-bold text-primary m-3">
+											<div class="h2 font-weight-bolder m-3">
 												<input type="hidden" id="gifticonCode" name="gifticonCode" value="${gift.gifticonCode}">
 												<c:out value="${gift.gifticonName}" />
 											</div>
 											<div class="h4 font-weight-bold text-gray-800 m-3">
 												<c:out value="${gift.gifticonPrice}" /> 포인트
 											</div>
-												<img class="m-3" src="<c:url value='${gift.gifticonImg}' />" alt="${gift.gifticonImg}" height="270" width="270" /><br>
+												<img class="m-3" src="<c:url value='${gift.gifticonImg}' />" alt="${gift.gifticonImg}" height="250" width="250" /><br>
 										</form>	
 											<c:if test="${empty adminDTO}">
 												<div class="m-3">
-													<input type="button" class="form-control btn btn-primary" id="btn${gift.gifticonCode}" value="교환">
+													<input type="button" class="form-control btn btn-warning" id="btn${gift.gifticonCode}" value="교환">
 												</div>
 											</c:if>
 									</div>
