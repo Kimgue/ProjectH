@@ -1,22 +1,8 @@
 	$(document).ready(function() {
 		
-		const inputImage = document.getElementById("qstnImg");
+		const inputImage = document.getElementById("input-image");
 		inputImage.addEventListener("change", e => {readImage(e.target)});
 		
-		$("#submit").click(function() {
-			
-			if ($("#qstnTitle").val().length == 0) {
-				alert("제목을 입력해주세요");
-				$("#qstnTitle").focus();
-				return false;
-			}
-
-			if ($("#qstnContent").val().length == 0) {
-				alert("내용을 입력해주세요");
-				$("#qstnContent").focus();
-				return false;
-			}
-		});
 	});
 	
 	function readImage(input) {
@@ -38,6 +24,18 @@
 
 	// 파일 업로드
 	function insert() {
+		
+		if ($("#qstnTitle").val().length == 0) {
+			alert("제목을 입력해주세요");
+			$("#qstnTitle").focus();
+			return false;
+		}
+
+		if ($("#qstnContent").val().length == 0) {
+			alert("내용을 입력해주세요");
+			$("#qstnContent").focus();
+			return false;
+		}
 							
 		var result = confirm("등록하시겠습니까?");
 		if(result) {
@@ -45,10 +43,12 @@
 			
 			const filePath = "Q&AImg";
 			
-			const imageInput = $("#qstnImg")[0];
+			const imageInput = $("#input-image")[0];
 			if(imageInput.files.length == 0){
+				alert("확인 1");
 			   $("#qstnInsert").submit();
 			} else {
+				alert("확인 2");
 				const formData = new FormData();
 				formData.append("uploadFile", imageInput.files[0]);
 				formData.append("filePath", filePath);
@@ -60,7 +60,10 @@
 					contentType : false,
 					data : formData,						
 					success : function(response) {
-						$("#qstnimg").attr("value","images/Q&AImg/"+response);
+						$("#qstnImg").attr("value","images/Q&AImg/"+response);
+						
+						alert("파일 업로드 성공");
+						alert($("#qstnImg").val());
 						$("#qstnInsert").submit();
 					},
 					error : function(jqXHR) {

@@ -71,8 +71,8 @@
 							<tr>
 								<td>	
 									
-									<input type="hidden" id="qstnimg" name="qstnImg">
-									<input type="file" id="qstnImg" name="uploadfile">
+									<input type="hidden" id="qstnImg" name="qstnImg">
+									<input type="file" id="input-image" name="uploadFile">
 									<img style="width: 100px;" id="preview-image" src="">
 									<div class="img"></div>
 									</td>
