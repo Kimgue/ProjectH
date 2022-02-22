@@ -274,12 +274,23 @@ public class UserController {
 	
 	/*-------------------------Notice insert 공지사항 -----------------*/
 	@RequestMapping("Noticeinsert")
-	public String insertNoticeC(Notice noti) throws Exception {
+	public String insertNoticeC(Notice noti,@ModelAttribute("cri") Criteria cri,HttpSession session,Model model) throws Exception {
 		
 		notice.insert(noti);
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(notice.listCount());
+		int currentPage = cri.getPage();
 		
+		String adminCode = (String)session.getAttribute("adminCode");
+		System.out.println(adminCode);
+		model.addAttribute("adminCode", adminCode);
+		model.addAttribute("listpage", notice.listPage(cri));
+		model.addAttribute("noticecode", notice.noticeCode(adminCode));
+		model.addAttribute("pageMaker", pageMaker);
+		model.addAttribute("currentPage", currentPage);
 	
-		return "adminPage";
+		return "redirect:/NoticeSWD";
 
 	}
 	
@@ -287,7 +298,7 @@ public class UserController {
 	@RequestMapping("Noticeupdatepage")
 	public String Noticeupdatelist(Model model, String adminCode ,String noticeCode,HttpSession session) throws Exception {
 		logger.info("updatelist");
-		
+		 
 		adminCode = (String)session.getAttribute("adminCode");
 		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date date = new Date();
@@ -321,7 +332,7 @@ public class UserController {
 		model.addAttribute("pageMaker", pageMaker);
 		model.addAttribute("currentPage", currentPage);
 
-		return "NoticeSWD";
+		return "redirect:/NoticeSWD";
 
 	}
 	
@@ -350,7 +361,7 @@ public class UserController {
 		model.addAttribute("pageMaker", pageMaker);
 		model.addAttribute("currentPage", currentPage);
 
-		return "NoticeSWD";
+		return "redirect:/NoticeSWD";
 	}
 	
 	//------------------------------answer 질문-------------------------------

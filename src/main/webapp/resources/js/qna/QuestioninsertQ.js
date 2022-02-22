@@ -43,7 +43,7 @@
 		if(result) {
 			alert("등록되었습니다");
 			
-			const uploadPath = "/WebProject/src/main/webapp/resources/images/Q&AImg"; 
+			const uploadPath = "/resources/images/Q&AImg"; 
 			
 			const imageInput = $("#qstnImg")[0];
 			if(imageInput.files.length == 0){

@@ -61,7 +61,6 @@
 				</div>
 				<hr>
 				<input type="button" value="작성" onClick="insert()"> 
-				<input type="button" value="메인페이지" onClick="location.href='main.jsp'">
 				<input type="hidden" name="memberCode" /> 
 				<input type="hidden"name="qstnCode" />
 			</form>		
