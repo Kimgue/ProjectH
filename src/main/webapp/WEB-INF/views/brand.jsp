@@ -90,7 +90,7 @@
 					<input type="button" id="menuClose" class="btn-primary border-0 rounded-top" value="닫기">
 						<div class="col text-center">
 						<fieldset>
-							<iframe class="border-0 embed-responsive" id="brandMenu" src="menuResultTest?brandCode=H1&menuPrice=&menuName=" height="500"></iframe>
+							<iframe class="border-0 embed-responsive" id="brandMenu" src="" height="500"></iframe>
 						</fieldset>
 						</div>
 					</div>

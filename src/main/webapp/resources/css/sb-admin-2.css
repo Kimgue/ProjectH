@@ -51,6 +51,10 @@
   box-sizing: border-box;
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
+
 ul {
 	list-style: none;
 	padding: 0px;
