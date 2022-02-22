@@ -15,7 +15,46 @@
    	<link href="resources/css/sb-admin-2.css" rel="stylesheet">
 	<script src="https://kit.fontawesome.com/730c440743.js" crossorigin="anonymous"></script>
 	<script src="resources/js/jquery-3.4.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"></link>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script>
     
+    var lang_kor = {
+            "decimal" : "",
+            "emptyTable" : "데이터가 없습니다.",
+            "info" : "_START_ - _END_ (총 _TOTAL_ 개)",
+            "infoEmpty" : "0개",
+            "infoFiltered" : "(전체 _MAX_ 개 중 검색결과)",
+            "infoPostFix" : "",
+            "thousands" : ",",
+            "lengthMenu" : "_MENU_ 개씩 보기",
+            "loadingRecords" : "로딩중...",
+            "processing" : "처리중...",
+            "search" : "검색 : ",
+            "zeroRecords" : "검색된 데이터가 없습니다.",
+            "paginate" : {
+                "first" : "첫 페이지",
+                "last" : "마지막 페이지",
+                "next" : "다음",
+                "previous" : "이전"
+            },
+        };  
+    
+    $(document).ready( function () {
+        $('#menuReview').DataTable({
+        	pageLength: 10,
+        	bPaginate: true,
+        	bAutoWidth: true,
+        	processing: true,
+        	severSide: true,
+        	searching: true,
+        	language : lang_kor
+        });
+    } );
+    
+    
+    
+    </script>
 </head>
 
 <body>
@@ -51,14 +90,17 @@
 					<c:out value="메뉴재료: ${menu.menuIngredients}" />
 				</p>
 				<hr>
-				<table border="1">
-					<tr>
-						<td width=50>닉네임</td>
-						<td width=40>점수</td>
-						<td width=150>리뷰날짜</td>
-						<td width=300>내용</td>
-						<td width=120>상세리뷰</td>	
+				<table id="menuReview" class="table table-bordered" style="width:100%">
+					<thead>
+						<tr>
+							<th width=70>닉네임</th>
+							<th width=40>점수</th>
+							<th width=150>리뷰날짜</th>
+							<th width=300>내용</th>
+							<th width=120>상세리뷰</th>	
 					</tr>
+					</thead>
+					<tbody>
 				<c:forEach var="review" items="${review}">
 					<tr>
 						<td><c:out value="${review.memberDto.memberNickname}" /></td>
@@ -76,6 +118,7 @@
 					</tr>
 					<br>
 				</c:forEach>
+				</tbody>
 				</table>	
 				<hr>
 				<c:url value="reviewWrite" var="reviewWrite">

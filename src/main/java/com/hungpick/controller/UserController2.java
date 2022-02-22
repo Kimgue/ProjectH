@@ -2,7 +2,6 @@ package com.hungpick.controller;
 
 
 import java.net.URLEncoder;
-
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -260,5 +259,6 @@ public class UserController2 {
 		
 		model.addAttribute("review", reviewService.sltReviewN());
 	}
+	
 	
 }
