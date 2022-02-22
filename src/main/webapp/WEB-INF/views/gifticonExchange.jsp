@@ -52,7 +52,7 @@
 												<input type="hidden" id="gifticonExcode" name="gifticonExcode" />
 												<input type="hidden" id="gifticonNumber" name="gifticonNumber" />
 												
-												<div class="h2 font-weight-bold text-primary m-3">
+												<div class="h2 font-weight-bold m-3">
 													<c:out value="${gifticonList.gifticonName}" /><br>
 												</div>
 												 
@@ -66,7 +66,7 @@
 													현재 보유 포인트 <c:out value="${memberDTO.holdPoint}" />
 												</div>
 												<div class="m-3">
-													<input type="button" class="form-control btn btn-primary" value="교환" onclick="insertGifticonExchange()">
+													<input type="button" class="form-control btn btn-warning" value="교환" onclick="insertGifticonExchange()">
 												</div>
 
 											</form>	

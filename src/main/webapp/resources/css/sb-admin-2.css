@@ -11494,6 +11494,7 @@ body.sidebar-toggled footer.sticky-footer {
 	display : -webkit-box;
 	-webkit-line-clamp : 1;
 	-webkit-box-orient: vertical;
+	vertical-align: middle;
 }
 
 
