@@ -287,7 +287,7 @@ public class UserController {
 	@RequestMapping("Noticeupdatepage")
 	public String Noticeupdatelist(Model model, String adminCode ,String noticeCode,HttpSession session) throws Exception {
 		logger.info("updatelist");
-		
+		 
 		adminCode = (String)session.getAttribute("adminCode");
 		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date date = new Date();
