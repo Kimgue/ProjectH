@@ -24,44 +24,6 @@
 	grid-row: 2/4;
 }
 
-/* gifticonInsert.jsp 레이아웃 */
-.gifticon-insert-grid {
-	display: grid;
-	grid-template-columns: repeat(9, 1fr);
-	grid-gap: 10px;
-	grid-auto-rows: minmax(50px, auto);
-}
-
-.gifticonName {
-	grid-column: 5;
-	grid-row: 1;
-}
-
-.gifticonPrice {
-	grid-column: 5;
-	grid-row: 2;
-}
-
-.gifticonBrand {
-	grid-column: 5;
-	grid-row: 3;
-}
-
-.gifticonMenu {
-	grid-column: 5;
-	grid-row: 4;
-}
-
-.gifticonImg {
-	grid-column: 5;
-	grid-row: 5;
-}
-
-.gifticonBtn {
-	grid-column: 5;
-	grid-row: 6;
-}
-
 .layout {
 	max-width: 100%;
 	margin: 0 auto;
@@ -101,4 +63,10 @@ article {
 	grid-gap: 15px;
 	grid-template-rows: repeat(3, 400px);
 	grid-auto-flow: row;
+}
+
+.gifticonGrid {
+	display: grid;
+	grid-template-columns: 500px;
+	grid-template-rows: 800px;
 }

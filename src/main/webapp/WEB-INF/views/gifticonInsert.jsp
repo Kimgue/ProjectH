@@ -33,48 +33,38 @@
 					
 		<!-- 메인 -->
 		<div id="content">
-			<div class="card shadow m-3">
-				<div class="card-body">
-					<div class="text-center">
+			<div class="gifticonGrid text-center">
+				<div class="card d-inline-block shadow h-100 m-3">
+					<div class="card-body">
+						<div class="h1 mb-3">
+							기프티콘 등록
+						</div>
 						<form id="insertForm" action="gifticonInsertSubmit" method="post" enctype="multipart/form-data">
-							<div class="gifticon-insert-grid align-items-center justify-content-center">
-								<div class="gifticonName">
-									<input type="text" class="form-control" id="gifticonName" name="gifticonName" placeholder="기프티콘 이름">
-								</div>
+							<input type="text" class="form-control mb-3" id="gifticonName" name="gifticonName" placeholder="기프티콘 이름">
+							<input type="text" class="form-control mb-3" id="gifticonPrice" name="gifticonPrice" placeholder="기프티콘 가격">
+							<select class="custom-select mb-3" id="brandCode" name="brandCode" onchange="brandSelect()">
+								<option value="" selected disabled>브랜드 선택</option>
+								<option value="1">맥도날드</option>
+								<option value="2">롯데리아</option>
+							</select>
+							
+							<select class="custom-select mb-3" id="menuCode" name="menuCode" onchange="menuSelect()">
+								<option value="" selected disabled>-- 브랜드를 먼저 선택해주세요 --</option>
+							</select>
+							
+							<img style="width: 500px;" class="img img-fluid img-thumbnail mb-3" id="preview-image" src="">
+							<input type="hidden" id="gifticonImg" name="gifticonImg">
 								
-								<div class="gifticonPrice">
-								<input type="text" class="form-control" id="gifticonPrice" name="gifticonPrice" placeholder="기프티콘 가격">
-								</div>
-								
-								<div class="gifticonBrand">
-									<select class="custom-select" id="brandCode" name="brandCode" onchange="brandSelect()">
-									<option value="" selected disabled>브랜드 선택</option>
-									<option value="1">맥도날드</option>
-									<option value="2">롯데리아</option>
-									</select>
-								</div>
-								
-								<div class="gifticonMenu">
-									<select class="custom-select" id="menuCode" name="menuCode" onchange="menuSelect()">
-									<option value="" selected disabled>-- 브랜드를 먼저 선택해주세요 --</option>
-									</select>
-								</div>
-								
-								<div class="gifticonImg">
-									<img style="width: 294px;" class="img img-fluid img-thumbnail" id="preview-image" src="">
-									<input type="hidden" id="gifticonImg" name="gifticonImg">
-									<div class="h4 font-weight-bold text-primary m-3">
-										<label for="input-image">
-											<i class="fas fa-solid fa-file-image btn btn-warning"> 파일 첨부</i> 
-										</label>
-									</div>
-								</div>
-								
-								<div class="gifticonBtn">
-									<input type="button" class="btn btn-warning" value="등록" onclick="insert()">
-									<input type="file" id="input-image" name="uploadfile" required="required">
-								</div>
+							<div>
+								<label for="input-image">
+									<i class="fas fa-solid fa-file-image btn btn-warning">파일 첨부</i>
+								</label>
 							</div>
+							<div>
+								<input type="button" class="btn btn-warning" value="등록" onclick="insert()">
+							</div>
+								<input type="file" id="input-image" name="uploadfile" required="required">
+							
 						</form>
 					</div>
 				</div>

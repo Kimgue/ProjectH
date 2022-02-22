@@ -13,11 +13,9 @@
     <title>헝픽</title>
     
    	<link href="resources/css/sb-admin-2.css" rel="stylesheet">
-   	<link href="resources/css/GridLayout.css" rel="stylesheet">
-   	<link href="resources/css/fileBtnHidden.css" rel="stylesheet">
 	<script src="https://kit.fontawesome.com/730c440743.js" crossorigin="anonymous"></script>
 	<script src="resources/js/jquery-3.4.1.min.js"></script>
-	<script src="resources/js/brand/brandInsert.js"></script>
+	<script src="resources/js/menu/menuInsert.js"></script>
     
 </head>
 
@@ -33,34 +31,22 @@
 					
 		<!-- 메인 -->
 		<div id="content">
-			<div class="gifticonGrid text-center">
-				<div class="card d-inline-block shadow h-100 m-3">
-					<div class="card-body">
-						<div class="h1 mb-3">
-							브랜드 등록
-						</div>
-						<form id="insertForm" action="insertBrand" method="post" enctype="multipart/form-data">
-							<input type="text" class="form-control mb-3" id="brandName" name="brandName" placeholder="브랜드 이름">
-							<input type="text" class="form-control mb-3" id="brandDescription" name="brandDescription" placeholder="브랜드 설명">
-							<input type="text" class="form-control mb-3" id="brandLink" name="brandLink" placeholder="브랜드 링크">
-							
-							<img style="width: 500px;" class="img img-fluid img-thumbnail mb-3" id="preview-image" src="">
-							<input type="hidden" id="brandImg" name="brandImg">
-								
-							<div>
-								<label for="input-image">
-									<i class="fas fa-solid fa-file-image btn btn-warning">파일 첨부</i>
-								</label>
-							</div>
-							<div>
-								<input type="button" class="btn btn-warning" value="등록" onclick="insert()">
-							</div>
-								<input type="file" id="input-image" name="uploadfile" required="required">
-							
-						</form>
-					</div>
-				</div>
-			</div>
+			<form id="insertForm" action="insertMenu" method="post" enctype="multipart/form-data">
+				<table class="table">
+
+					<tr>
+						<td class="align-middle">메뉴 이미지</td>
+						<td class="align-middle">
+						<img style="width: 150px;" class="img img-fluid img-thumbnail" id="preview-image" src="">
+						<input type="hidden" id="menuImg" name="menuImg">
+						<input type="file" class="form-control-file" id="input-image" name="uploadfile" required="required">
+						</td>
+					</tr>
+					<tr>
+						<td class="align-middle"><input type="button" class="btn btn-primary" value="등록" onclick="insert()"> </td>
+					</tr>								
+				</table>
+			</form>
 		</div>
 		<!-- 메인 컨텐츠 끝 -->
 			
