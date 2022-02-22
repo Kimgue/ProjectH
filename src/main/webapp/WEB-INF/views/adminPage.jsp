@@ -26,7 +26,6 @@
 	<!-- 컨텐츠 Wrapper 시작 -->
 	<div id="content-wrapper" class="d-flex flex-column">
 	<!-- 상단 -->
-	<jsp:include page="PageHeader.jsp" flush="false"/>
 					
 		<!-- 메인 -->
 		<div id="content">	

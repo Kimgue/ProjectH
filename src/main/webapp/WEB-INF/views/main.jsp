@@ -44,25 +44,15 @@
 		<div id="content">
 			
 			
-		<!--image slider start-->
+		<!-- 이미지 슬라이드 -->
 		<jsp:include page="mainSlide.jsp" flush="false"/>		
 
-			<!-- 메뉴 리스트 -->
-			<h1 class="text-center mt-3">메뉴 리스트</h1> 
-				<div class="d-flex align-items-center justify-content-center">
-					<div class="md">
-						<div class="mdList">1</div>
-						<div class="mdList">2</div>
-						<div class="mdList">3</div>
-						<div class="mdList">4</div>
-						<div class="mdList">5</div>
-						<div class="mdList">6</div>
-						<div class="mdList">7</div>
-						<div class="mdList">8</div>
-						<div class="mdList">9</div>
-					</div>
-				</div>
-				
+		<!-- 메인 메뉴 리스트 -->
+		<div class="d-flex align-items-center justify-content-center mt-5">
+		<jsp:include page="mainMenuList.jsp" flush="false"/>
+		</div>
+		
+		
 		</div>
 		<!-- 메인 컨텐츠 끝 -->
 			

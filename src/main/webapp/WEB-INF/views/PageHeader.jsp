@@ -27,7 +27,7 @@
 	<!-- 상단바 : 검색 -->
 	<form action="menuResult" id="menuSearch" class="navbar-search">
 		<div class="input-group">
-			<input type="text" class="form-control bg-light border-0 small" name="menuName" placeholder="메뉴 검색" aria-label="Search" aria-describedby="basic-addon2">
+			<input type="text" class="form-control bg-light border-0 small" name="menuName" placeholder="메뉴 이름 검색" aria-label="Search" aria-describedby="basic-addon2">
 			<div class="input-group-append">
 				<button class="btn btn-warning" type="submit">
 					<i class="fas fa-search fa-sm"></i>

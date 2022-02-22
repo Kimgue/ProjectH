@@ -37,7 +37,6 @@ var menuSltBool = false;
 			
 			var result = confirm("등록하시겠습니까?");
 			if(result) {
-				alert("등록되었습니다");
 				const filePath = "gifticon";
 				
 				const formData = new FormData();
@@ -53,6 +52,7 @@ var menuSltBool = false;
 					success : function(response) {
 						$("#gifticonImg").attr("value","images/gifticon/"+response);
 						$("#insertForm").submit();
+						alert("등록되었습니다");
 					},
 					error : function(jqXHR) {
 						alert(jqXHR.responseText); 
