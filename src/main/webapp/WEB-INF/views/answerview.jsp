@@ -50,6 +50,11 @@
 					</tr>
 					<tr>
 						<td>
+							<img src="<c:url value='${sltOne.qstnImg }' />" alt="${sltOne.qstnImg }" height="150" width="150" onError="this.style.visibility='hidden'" />
+						</td>
+					</tr>
+					<tr>
+						<td>
 							<label for="qstnDate" id="qstnDate">작성날짜 : ${ sltOne.qstnDate }</label>
 						</td>
 					</tr>

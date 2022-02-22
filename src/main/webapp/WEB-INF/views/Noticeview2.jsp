@@ -31,11 +31,11 @@
 		<!-- 메인 -->
 		<div id="content">
 			<P> ${ noticecontent.noticeContent }
+			<p><img src="<c:url value='${noticecontent.noticeImg }' />" alt="${noticecontent.noticeImg }" height="150" width="150" onError="this.style.visibility='hidden'" />
 		</div>
 		<!-- 메인 컨텐츠 끝 -->
-		<div>
-			 <p>${ noticecontent.noticeImg }
-		</div>
+			
+		
 	<!-- 하단 -->
 	<jsp:include page="PageFooter.jsp" flush="false"/>
 	<!-- 컨텐츠 Wrapper 끝 -->

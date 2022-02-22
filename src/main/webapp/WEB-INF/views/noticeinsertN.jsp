@@ -74,17 +74,16 @@
 									</tr>
 									<tr>
 									<td>
-										<input type="hidden" id="noticeImg" name="noticeImg" value="noticeImg">
-									
-											<input type="file" id="noticeImg" name="uploadfile">
-											<img style="width: 100px;" id="preview-image" src="">
-											<div class="img"></div>
+										<input type="hidden" id="noticeImg" name="noticeImg">
+										<input type="file" id="input-image" name="uploadfile">
+										<img style="width: 100px;" id="preview-image" src="">
+										<div class="img"></div>
 									</td>
 									</tr>
 								<tr>
 									<td>						
 										<!-- <button type="submit" id="submit">작성</button> -->
-											<input type="button" value="작성" onclick="insert()" id="submit">								
+											<input type="button" value="작성" onclick="insert()">								
 									</td>
 								</tr>			
 							</tbody>			

@@ -45,10 +45,10 @@
          
          const imageInput = $("#input-image")[0];
          if(imageInput.files.length == 0){
-            alert("확인 1");
+           
             $("#qstnInsert").submit();
          } else {
-            alert("확인 2");
+           
             const formData = new FormData();
             formData.append("uploadFile", imageInput.files[0]);
             formData.append("filePath", filePath);
@@ -60,10 +60,7 @@
                contentType : false,
                data : formData,                  
                success : function(response) {
-                  $("#qstnImg").attr("value","images/Q&AImg/"+response);
-                  
-                  alert("파일 업로드 성공");
-                  alert($("#qstnImg").val());
+                  $("#qstnImg").attr("value","images/Q&AImg/"+response);   
                   $("#qstnInsert").submit();
                },
                error : function(jqXHR) {

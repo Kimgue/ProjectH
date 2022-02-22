@@ -1,23 +1,8 @@
-		$(document).ready(function(){
+$(document).ready(function(){
 			
-			const inputImage = document.getElementById("noticeImg");
+			const inputImage = document.getElementById("input-image");
 			inputImage.addEventListener("change", e => {readImage(e.target)});
-			
-			$("#submit").click(function(){
-				
-				if($("#noticeTitle").val().length == 0)
-					{alert("제목을 입력해주세요");
-					$("#noticeTitle").focus(); 
-						return false;
-					}
-				
-				if($("#noticeContent").val().length == 0)
-				{alert("내용을 입력해주세요");
-				$("#noticeContent").focus(); 
-					return false;
-				}
-			});
-		});
+});	
 
 	function readImage(input) {
 	    // 인풋 태그에 파일이 있는 경우
@@ -38,20 +23,32 @@
 
 	// 파일 업로드
 	function insert() {
-							
+		
+		if ($("#noticeTitle").val().length == 0) {
+	         alert("제목을 입력해주세요");
+	         $("#noticeTitle").focus();
+	         return false;
+	      }
+
+	      if ($("#noticeContent").val().length == 0) {
+	         alert("내용을 입력해주세요");
+	         $("#noticeContent").focus();
+	         return false;
+	      }		
+	      
 		var result = confirm("등록하시겠습니까?");
 		if(result) {
 			alert("등록되었습니다");
 			
-			const uploadPath = "/resources/images/NoticeImg";
+			const filePath = "NoticeImg";
 			
-			const imageInput = $("#noticeImg")[0];
+			const imageInput = $("#input-image")[0];
 			if(imageInput.files.length == 0){
 			   $("#noticeInsert").submit();
 			} else {
 				const formData = new FormData();
 				formData.append("uploadFile", imageInput.files[0]);
-				formData.append("uploadPath", uploadPath);
+				formData.append("filePath", filePath);
 				
 				$.ajax({
 					type : "POST",
