@@ -1,3 +1,4 @@
+/* menuResultTest.jsp 레이아웃 */
 .menu-grid {
 	width:1000px;
 	display: grid;
@@ -23,7 +24,7 @@
 	grid-row: 2/4;
 }
 
-
+/* gifticonInsert.jsp 레이아웃 */
 .gifticon-insert-grid {
 	display: grid;
 	grid-template-columns: repeat(9, 1fr);
@@ -59,4 +60,33 @@
 .gifticonBtn {
 	grid-column: 5;
 	grid-row: 6;
+}
+
+.layout{
+    max-width:100%;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 1em;
+}
+aside{
+    flex-basis: 400px;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+article{
+    flex-basis: auto;
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+.flexbox{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+}
+.item{
+    min-height: 150px;
+    flex-basis: auto;
+    flex-shrink: 1;
+    flex-grow: 1;
 }

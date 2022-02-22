@@ -101,6 +101,13 @@ public class UserController2 {
 			@RequestParam(required = false) String menuName, 
 			Model model) throws Exception {
 		
+		// 메뉴 result에서 값이 없어서 검색 조건에 안떠서 추가했음
+		model.addAttribute("menu", menuService.sltMulti());
+		model.addAttribute("brand", brandService.sltMulti());
+		model.addAttribute("menuIng", menuService.sltIngredients());
+		model.addAttribute("reviewRanking", reviewService.sltReviewRanking());
+		// --------------------------------------------------------------------
+		
 		logger.info("menuVo called ========");
 		List<MenuVo> list = menuService.sltSearch(brandCode, menuPrice, menuIngredients, menuName);
 		
