@@ -2,7 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<<<<<<< HEAD
 <mapper namespace="com.hungpick.dao.IDaoNotice"> <!-- "<" 는 문법오류나서  "<![CDATA[ < ]]>" 이렇게 해야한다. -->
 	
 	<resultMap type="mbrDto" id="mbrDtoRm">
@@ -20,11 +19,8 @@
     <result column="ADMIN_ID" property="adminId"/>
     <result column="ADMIN_PW" property="adminPw"/>
     <result column="ADMIN_NAME" property="adminName"/>
-=======
-<mapper namespace="com.hungpick.dao.IDaoHist">
->>>>>>> branch 'master' of https://github.com/Kimgue/WebProject.git
 
-<<<<<<< HEAD
+
 	</resultMap>
 	
 	<resultMap type="adminVo" id="adminVoRm">
@@ -69,11 +65,10 @@
 	
 	<insert id="insert" parameterType="mbrDto">
 		INSERT INTO NOTICE VALUES ( #{ adminCode },(SELECT NVL(MAX(TO_NUMBER(NOTICE_CODE)),0)+1 FROM NOTICE), #{ noticeTitle }, #{ noticeContent }, TO_DATE( #{noticeDate} ,'YYYY-MM-DD HH24:MI'), #{noticeImg} )
-=======
+
 	<insert id="insertHist">
 		INSERT INTO MBR_HIST(reg_dt, contents) VALUES ( SYSDATE, #{contents} )
->>>>>>> branch 'master' of https://github.com/Kimgue/WebProject.git
+
 	</insert>
-	
 	
 </mapper>
