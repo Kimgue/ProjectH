@@ -34,57 +34,58 @@
 		<div id="content">
 			<div class="layout">
 			    <article>
-			    	<div class="card shadow ml-3 mt-3 mb-3">
-			    		<div class="card-body">
-						검색 조건
-							<form action="menuResult" id="menuSearch">
-								<%-- 체크박스일 경우 값들을 배열로 받아서 처리해야함 --%>
-								<div>
-								브랜드
-								</div>
-								<div>
-									<c:forEach var="brand" items="${brand}">
-										<input class="custom-checkbox" type='checkbox' name='brandCode' value='${brand.brandCode}' />${brand.brandName}
-									</c:forEach>
-								</div>
-								
-								<div>
-								재료
-								</div>
-								<div>
-									<c:forEach var="menuIng" items="${menuIng}">
-										<input type='checkbox' name='menuIngredients' value='${menuIng.menuIngredients}' />${menuIng.menuIngredients}
-									</c:forEach>
-								</div>
-								
-								<div>
-								최대 가격
-								</div>
-								<div>
-									<input type='number' id="menuPrice" name='menuPrice' min='0' max='100000' /> <br>
-								</div>
-								
-								<div>
-								이름
-								</div>
-								<div>
-									<input type="text" id="menuName" name="menuName">
-								</div>
-								
-								<div>
-									<input id="menuSearchForm" type="button" value="검색" />
-								</div>
-							</form>
+			    	
+			    		<div class="card shadow ml-3 mt-3 mb-3">
+				    		<div class="card-body">
+							검색 조건
+								<form action="menuResult" id="menuSearch">
+									<%-- 체크박스일 경우 값들을 배열로 받아서 처리해야함 --%>
+									<div>
+									브랜드
+									</div>
+									<div>
+										<c:forEach var="brand" items="${brand}">
+											<input class="custom-checkbox" type='checkbox' name='brandCode' value='${brand.brandCode}' />${brand.brandName}
+										</c:forEach>
+									</div>
+									
+									<div>
+									재료
+									</div>
+									<div>
+										<c:forEach var="menuIng" items="${menuIng}">
+											<input type='checkbox' name='menuIngredients' value='${menuIng.menuIngredients}' />${menuIng.menuIngredients}
+										</c:forEach>
+									</div>
+									
+									<div>
+									최대 가격
+									</div>
+									<div>
+										<input type='number' id="menuPrice" name='menuPrice' min='0' max='100000' /> <br>
+									</div>
+									
+									<div>
+									이름
+									</div>
+									<div>
+										<input type="text" id="menuName" name="menuName">
+									</div>
+									
+									<div>
+										<input id="menuSearchForm" type="button" value="검색" />
+									</div>
+								</form>
+							</div>
 						</div>
-			        </div>
-			        <div class="flexbox">
+						<div class="flexbox">
 			            <div class="item">
 							<c:forEach var="menu" items="${menu}">
 								<div class="card shadow ml-3 mb-3">
-									<div class="card-body">
+									<div style="width:700px; height:300px;" class="card-body">
 										<div class="menu-grid">
-											<div class="menuImg">
-												<img src="<c:out value="resources/${menu.menuImg}"/>" alt="메뉴 이미지" height="250" width="250" />
+											<div class="menuImg mt-3">
+												<img src="<c:out value="resources/${menu.menuImg}"/>" alt="메뉴 이미지" height="200" width="200" />
 											</div>
 											
 											<div class="menuTitle">
@@ -98,18 +99,20 @@
 													<c:out value="${menu.menuDescription}" />
 												</div>
 											</div>
+										<c:url value="menuDetail" var="menuDetail">
+											<c:param name="brandCode" value="${menu.brandCode}"/>
+											<c:param name="menuCode" value="${menu.menuCode}"/>
+											<c:param name="menuName" value="${menu.menuName}" />
+										</c:url>
+										<div class="menuReview">
+										<a class="h4" href="${menuDetail}">리뷰</a>
 										</div>
-									<c:url value="menuDetail" var="menuDetail">
-										<c:param name="brandCode" value="${menu.brandCode}"/>
-										<c:param name="menuCode" value="${menu.menuCode}"/>
-										<c:param name="menuName" value="${menu.menuName}" />
-									</c:url>
-									<a class="h4" href="${menuDetail}">상품 리뷰</a>
-									</div>
+									</div>										
 								</div>
-							</c:forEach>
-			            </div>
-			        </div>
+							</div>
+						</c:forEach>
+		            </div>
+		        </div>
 			    </article>
 			    <aside>
 					<div class="card shadow mt-3 mb-3 mr-3">
