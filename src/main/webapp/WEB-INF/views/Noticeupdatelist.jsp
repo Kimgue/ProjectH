@@ -16,14 +16,14 @@
 	<script src="https://kit.fontawesome.com/730c440743.js" crossorigin="anonymous"></script>
 	<script src="resources/js/jquery-3.4.1.min.js"></script>
 	<script src="resources/js/notice/Noticeupdatelist.js"></script>
-    
+
 </head>
 
 <body>
 	<!-- 페이지 Wrapper 시작 -->
 	<div id="wrapper">
 	<!-- 사이드바 -->
-	<jsp:include page="PageSide.jsp" flush="false"/>
+	<jsp:include page="AdminPageSide.jsp" flush="false"/>
 	<!-- 컨텐츠 Wrapper 시작 -->
 	<div id="content-wrapper" class="d-flex flex-column">
 	<!-- 상단 -->
@@ -40,7 +40,7 @@
 			</nav>
 			<hr />
 			<section id="container">
-				<form role="form" method="post" action="Noticeupdate">
+				<form id="noticeupdate" role="form" method="post" action="Noticeupdate" encType="multipart/form-data">
 					<table>
 						<tbody>
 							<tr>
@@ -57,6 +57,13 @@
 							<tr>
 								<td>
 									<label for="noticeContent">내용 : </label><textarea id="noticeContent" name="noticeContent">${person.noticeContent }</textarea>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<label for="noticeImg"> 사진 :</label> 
+									<img src="<c:url value='${person.noticeImg }' />" alt="${person.noticeImg }" height="150" width="150" onError="this.style.visibility='hidden'" />
+									
 								</td>
 							</tr>
 							<tr>
