@@ -15,7 +15,8 @@
    	<link href="resources/css/sb-admin-2.css" rel="stylesheet">
 	<script src="https://kit.fontawesome.com/730c440743.js" crossorigin="anonymous"></script>
 	<script src="resources/js/jquery-3.4.1.min.js"></script>
-    <script src="resources/js/qna/answerconfirmList.js"></script>
+	<script src="resources/js/qna/answerconfirmList.js"></script>
+    
 </head>
 
 <body>
@@ -30,35 +31,49 @@
 					
 		<!-- 메인 -->
 		<div id="content">
-			<form name="paging">
-				<table border="1">
-					<thead>
-						<tr>
-							<td width=100 >회원 번호</td>
-							<td width=100>글 번호</td>
-							<td width=350 height=40>제목</td>
-							<td width=250>작성일</td>
-							<td width=100>답변여부</td>
-						</tr>
-					</thead>
-					<c:forEach var="list" items="${ selectNlist }">
-						<tr>
-							<td><c:out value="${ list.qesDto.memberCode }" /></td>
-							<td><c:out value="${ list.qesDto.qstnCode }" /></td> 
-							<td><a href="javascript:reply1('${ list.qesDto.memberCode }','${ list.qesDto.qstnCode }')"><c:out value="${ list.qesDto.qstnTitle }" /></a></td> 
-							<td><c:out value="${ list.qesDto.qstnDate }" /></td>
-							<td><c:out value="${ list.qesDto.qstnConfirm }" /></td>
-						</tr>
-					</c:forEach>
-				</table>
-					<br>
-					<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
-						<a href="Nconfirm?page=${idx}">${idx}</a>
-					</c:forEach>
-					<hr>
-					<input type="hidden" name="memberCode" /> 
-					<input type="hidden"name="qstnCode" />
-			</form>
+			<div class="container-fluid">
+				<div class="row">
+					<div class="card d-inline-block w-100 h-100 shadow mt-3 mb-3">
+						<div class="card-body">
+							<div class="h1 mb-3">
+								답변 등록
+							</div>
+							<form name="paging">
+								<table class="table">
+									<thead>
+										<tr>
+											<td width=100 >회원 번호</td>
+											<td width=100>글 번호</td>
+											<td width=350 height=40>제목</td>
+											<td width=250>작성일</td>
+											<td width=100>답변여부</td>
+										</tr>
+									</thead>
+									<c:forEach var="list" items="${ selectNlist }">
+										<tr>
+											<td><c:out value="${ list.qesDto.memberCode }" /></td>
+											<td><c:out value="${ list.qesDto.qstnCode }" /></td> 
+											<td><a href="javascript:reply1('${ list.qesDto.memberCode }','${ list.qesDto.qstnCode }')"><c:out value="${ list.qesDto.qstnTitle }" /></a></td> 
+											<td><c:out value="${ list.qesDto.qstnDate }" /></td>
+											<td><c:out value="${ list.qesDto.qstnConfirm }" /></td>
+										</tr>
+									</c:forEach>
+								</table>
+									<br>
+									<hr>
+									<div class="text-center">
+										<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
+											<a class="mr-1" href="Nconfirm?page=${idx}">${idx}</a>
+										</c:forEach>
+									</div>
+									
+									<input type="hidden" name="memberCode" /> 
+									<input type="hidden"name="qstnCode" />
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 		<!-- 메인 컨텐츠 끝 -->
 			
