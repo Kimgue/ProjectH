@@ -39,36 +39,45 @@
 								답변 등록
 							</div>
 							<form name="paging">
-								<table class="table">
-									<thead>
-										<tr>
-											<td width=80 class="text-center">글 번호</td>
-											<td width=100 class="text-center">작성자</td>
-											<td width=350>제목</td>
-											<td width=150 class="text-center">작성일</td>
-											<td width=100 class="text-center">답변여부</td>
-										</tr>
-									</thead>
-									<c:forEach var="list" items="${ selectNlist }">
-										<tr>
-											<td class="text-center"><c:out value="${ list.qesDto.qstnCode }" /></td>
-											<td class="text-center"><c:out value="${ list.memberDto.memberName }" /></td>
-											<td><a href="javascript:reply1('${ list.qesDto.memberCode }','${ list.qesDto.qstnCode }')"><c:out value="${ list.qesDto.qstnTitle }" /></a></td> 
-											<td class="text-center"><c:out value="${ list.qesDto.qstnDate }" /></td>
-											<td class="text-center"><c:out value="${ list.qesDto.qstnConfirm }" /></td>
-										</tr>
-									</c:forEach>
-								</table>
-									<br>
-									<hr>
-									<div class="text-center">
-										<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
-											<a class="mr-1" href="Questionlist?page=${idx}">${idx}</a>
-										</c:forEach>
-									</div>
+								<c:choose>
+									<c:when test="${not empty selectNlist}">
+										<table class="table">
+											<thead>
+												<tr>
+													<td width=80 class="text-center">글 번호</td>
+													<td width=100 class="text-center">작성자</td>
+													<td width=350>제목</td>
+													<td width=150 class="text-center">작성일</td>
+													<td width=100 class="text-center">답변여부</td>
+												</tr>
+											</thead>
+											<c:forEach var="list" items="${ selectNlist }">
+												<tr>
+													<td class="text-center"><c:out value="${ list.qesDto.qstnCode }" /></td>
+													<td class="text-center"><c:out value="${ list.memberDto.memberName }" /></td>
+													<td><a href="javascript:reply1('${ list.qesDto.memberCode }','${ list.qesDto.qstnCode }')"><c:out value="${ list.qesDto.qstnTitle }" /></a></td> 
+													<td class="text-center"><c:out value="${ list.qesDto.qstnDate }" /></td>
+													<td class="text-center"><c:out value="${ list.qesDto.qstnConfirm }" /></td>
+												</tr>
+											</c:forEach>
+										</table>
+										<br>
+										<hr>
+										<div class="text-center">
+											<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
+												<a class="mr-1" href="Questionlist?page=${idx}">${idx}</a>
+											</c:forEach>
+										</div>
+										
+										<input type="hidden" name="memberCode" /> 
+										<input type="hidden"name="qstnCode" />									
+									</c:when>
 									
-									<input type="hidden" name="memberCode" /> 
-									<input type="hidden"name="qstnCode" />
+									<c:otherwise>
+										<div class="h4 text-center">등록된 질문이 없습니다</div>
+									</c:otherwise>
+								</c:choose>
+
 							</form>
 						</div>
 					</div>

@@ -38,32 +38,41 @@
 								공지사항 조회
 							</div>
 						<form name="paging">
-							<table class="table">
-								<tr>
-									<td class="text-center" width=60>번호</td>
-									<td width=350>제목</td>
-									<td class="text-center"  width=100>관리자</td>
-									<td class="text-center"  width=250>작성날짜</td>
+							<c:choose>
+									<c:when test="${not empty listpage}">
+										<table class="table">
+											<tr>
+												<td class="text-center" width=60>번호</td>
+												<td width=350>제목</td>
+												<td class="text-center"  width=100>관리자</td>
+												<td class="text-center"  width=250>작성날짜</td>
+												
+											</tr>
+											<c:forEach var="list" items="${listpage}">
+												<tr>
+													<td class="text-center" ><c:out value="${list.mbrDto.noticeCode}" /></td>
+													<td><a href="view2?adminCode=${ list.mbrDto.adminCode }&noticeCode=${list.mbrDto.noticeCode}"><c:out value="${list.mbrDto.noticeTitle}" /></a></td>
+													<td class="text-center" ><c:out value="${list.adminDto.adminName }"></c:out>
+													<td class="text-center" ><c:out value="${list.mbrDto.noticeDate}" /></td>
+												</tr>
+											</c:forEach>
+										</table>	
+										<br>
+										<div class="text-center">
+											<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
+										    	<a class="mr-1" href="Notice?page=${idx}">${idx}</a> 
+										    </c:forEach>
+									    </div>
+										<hr>
+										<input type="hidden" name="adminCode" />
+										<input type="hidden" name="noticeCode" />									
+									</c:when>
 									
-								</tr>
-								<c:forEach var="list" items="${listpage}">
-									<tr>
-										<td class="text-center" ><c:out value="${list.mbrDto.noticeCode}" /></td>
-										<td><a href="view2?adminCode=${ list.mbrDto.adminCode }&noticeCode=${list.mbrDto.noticeCode}"><c:out value="${list.mbrDto.noticeTitle}" /></a></td>
-										<td class="text-center" ><c:out value="${list.adminDto.adminName }"></c:out>
-										<td class="text-center" ><c:out value="${list.mbrDto.noticeDate}" /></td>
-									</tr>
-								</c:forEach>
-							</table>	
-							<br>
-							<div class="text-center">
-								<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
-							    	<a class="mr-1" href="Notice?page=${idx}">${idx}</a> 
-							    </c:forEach>
-						    </div>
-							<hr>
-							<input type="hidden" name="adminCode" />
-							<input type="hidden" name="noticeCode" />
+									<c:otherwise>
+										<div class="h4 text-center">등록된 공지사항이 없습니다</div>
+									</c:otherwise>
+							</c:choose>
+
 						</form>	
 						</div>
 					</div>

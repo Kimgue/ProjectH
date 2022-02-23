@@ -39,21 +39,30 @@
 								나의 질문
 							</div>
 							<form name="paging">
-								<table class="table">
-									<thead>
-										<tr>
-											<td width=350>제목</td>
-											<td width=150 class="text-center">작성일</td>
-										</tr>
-									</thead>
-									<c:forEach var="list" items="${ listpage }">
-										<tr>
-											<td><a href="javascript:view('${list.qesDto.memberCode }','${list.qesDto.qstnCode }')"><c:out value="${list.qesDto.qstnTitle}" /></a></td>
-											<td class="text-center"><c:out value="${list.qesDto.qstnDate}" /></td>
-										</tr>
-									</c:forEach>
-								</table>
-									<br>
+								<c:choose>
+									<c:when test="${not empty listpage}">
+										<table class="table">
+											<thead>
+												<tr>
+													<td width=350>제목</td>
+													<td width=150 class="text-center">작성일</td>
+													<td width=80 class="text-center">답변여부</td>
+												</tr>
+											</thead>
+											<c:forEach var="list" items="${ listpage }">
+												<tr>
+													<td><a href="javascript:view('${list.qesDto.memberCode }','${list.qesDto.qstnCode }')"><c:out value="${list.qesDto.qstnTitle}" /></a></td>
+													<td class="text-center"><c:out value="${list.qesDto.qstnDate}" /></td>
+													<td class="text-center"><c:out value="${list.qesDto.qstnConfirm}" /></td>
+												</tr>
+											</c:forEach>
+										</table>
+									</c:when>
+									
+									<c:otherwise>
+										<div class="h4 text-center">작성한 질문이 없습니다</div>
+									</c:otherwise>
+								</c:choose>
 									<hr>
 									<div class="text-center">
 										<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">

@@ -13,9 +13,12 @@
     <title>헝픽</title>
     
    	<link href="resources/css/sb-admin-2.css" rel="stylesheet">
+   	<link href="resources/css/GridLayout.css" rel="stylesheet">
+   	<link href="resources/css/fileBtnHidden.css" rel="stylesheet">
 	<script src="https://kit.fontawesome.com/730c440743.js" crossorigin="anonymous"></script>
 	<script src="resources/js/jquery-3.4.1.min.js"></script>
 	<script src="resources/js/qna/Questionupdatelist.js"></script>
+	<script src="resources/js/textareaHeight.js"></script>
     
 </head>
 
@@ -31,75 +34,48 @@
 					
 		<!-- 메인 -->
 		<div id="content">
-			<div>
-				<header>
-					<h1> 게시판</h1>
-				</header>
-				<hr />
-				<nav>
-				홈 - 글 수정
-				</nav>
-				<hr/>
-				<section id="container">
-					<form name="paging" >
-						<table>
-							<tbody>
-								<tr>
-									<td>
-										<label for="memberCode" id="memberCode">작성자 번호 :${ sltOne.memberDto.memberName }</label>
+			<div class="container-fluid">
+				<div class="row">
+					<div class="card d-inline-block h-100 shadow mt-3 mb-3 overflow-hidden">
+						<div class="card-body">
+							<div class="h1 mb-3">
+								질문 수정
+							</div>
+							<form name="paging">
+								<div class="noticeGrid">
+									<div class="one">
+										<input type="text" class="form-control mb-3" id="qstnTitle" name="qstnTitle" placeholder="${ sltOne.qesDto.qstnTitle }">
 										<input type="hidden" id="memberCode" name="memberCode" value="${ sltOne.qesDto.memberCode }">
 										<input type="hidden" id="qstnCode" name="qstnCode" value="${ sltOne.qesDto.qstnCode }">
-								</tr>	
-								<tr>
-									<td>
-										<label for="qstnTitle">제목 : </label><input type="text" id="qstnTitle" name="qstnTitle"  value=${ sltOne.qesDto.qstnTitle } >
-									</td>
-								</tr>	
-								<tr>
-										<td>
-											<label for="qstnContent">내용 : </label><textarea id="qstnContent" name="qstnContent" >${ sltOne.qesDto.qstnContent } 
-											</textarea>		
-											<input type="hidden" id="qstnImg" name="qstnImg" value="${sltOne.qesDto.qstnImg }" />
-										</td>	
-								</tr>
-							<tr>
-								<td>
-									<div id="test" contentEditable="true" style="overflow-x:auto; width:1000px; height: 150px; border: solid; 1px; margin: 20px; line-height: 20px; background-image: ; " >
-									<img src="<c:url value='${sltOne.qesDto.qstnImg }' />" alt="${sltOne.qesDto.qstnImg }" height="150" width="150"/>
-									</div>								
-									</td>
-								</tr>
-									<tr>
-										<td> 
-											<label for="qstnDate" id="qstnDate">작성날짜 : ${ sltOne.qesDto.qstnDate }</label>
-											<input type="hidden" id="qstnDate" name="qstnDate" value="${ date }">  
-										</td>
-										</tr>
-										<tr>
-											<td> <input type="hidden" id="qstnConfirm" name="qstnConfirm" value="n"> </td>
-											</tr>
-									<tr>
-										<td><button type="submit" onclick="commit()" >등록</button></td>
-									</tr>			
-								</tbody>			
-							</table>
-						</form>
-						</section>
-						<hr>
-				<div id="reply">	
-					<h3>관리자 댓글</h3>
-		  				<ol >
-		     			 <li>
-		       				 <p>
-		       				 작성자 :  ${ selectOne.qesDto.memberCode }<br /><br />
-		       				 작성 내용: ${ selectOne.answerDto.answerContent }<br/><br />
-		       				 작성 날짜 : ${ selectOne.answerDto.answerDate }
-		        			</p>
-		      			</li>
-		  			</ol>
+										<input type="hidden" id="qstnImg" name="qstnImg" value="${sltOne.qesDto.qstnImg }">
+										<input type="hidden" id="qstnDate" name="qstnDate" value="${date }">
+										<input type="hidden" id="qstnConfirm" name="qstnConfirm" value="n">
+									</div>
+									<div class="two">
+										<textarea onkeydown="resize(this)" onkeyup="resize(this)" style="width:665px; min-height:180px;" class="form-control" id="qstnContent" name="qstnContent">${ sltOne.qesDto.qstnContent }</textarea>
+									</div>
+									<input type="file" id="input-image" name="uploadfile" required="required">
+									<div class="three">
+										<img style="width: 350px; height:200px;" class="img img-fluid img-thumbnail mb-3" id="preview-image" src="${sltOne.qesDto.qstnImg }">
+									</div>
+									<div class="four">
+										<div class="float-left">
+											<label for="input-image">
+												<i style="width:150px; height:38px;" class="fas fa-solid fa-file-image btn btn-warning"> 파일 첨부</i>
+											</label>
+										</div>
+									</div>
+									<div class="five">
+										<div class="float-right">
+											<input style="width:150px;" type="button" class="btn btn-warning" value="수정" onclick="commit()">
+										</div>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
 				</div>
-			<hr />
-			</div>			
+			</div>
 		</div>
 		<!-- 메인 컨텐츠 끝 -->
 			
@@ -111,6 +87,7 @@
 	</div>
 	<!-- 페이지 상단 버튼 -->
 	<jsp:include page="PageTopBtn.jsp" flush="false"/>
+
     <script src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="resources/js/sb-admin-2.min.js"></script>	
 </body>

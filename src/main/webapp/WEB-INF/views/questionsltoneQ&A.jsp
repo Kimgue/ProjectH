@@ -31,79 +31,59 @@
 					
 		<!-- 메인 -->
 		<div id="content">
-			<h1> 게시판</h1>
-			<hr />	 
-			<nav>
-			  홈 - 글 수정
-			</nav>
-			<hr/>
-			<section id="container">
-				<form name="paging" >
-					<table>
-						<tbody>
-							<tr>
-								<td>
-									<label for="memberCode" id="memberCode">작성자 이름 :${ sltOne.memberDto.memberName }</label>
-									<input type="hidden" id="memberCode" name="memberCode" value="${ sltOne.qesDto.memberCode }">
-									<input type="hidden" id="qstnCode" name="qstnCode" value="${ sltOne.qesDto.qstnCode }">
-							</tr>	
-							<tr>
-								<td>
-									<label for="qstnTitle">제목 : ${ sltOne.qesDto.qstnTitle }</label>
-									 <input type="hidden" id="qstnTitle" name="qstnTitle"  value=${ sltOne.qesDto.qstnTitle } > 
-								</td>
-							</tr>	
-							<tr>
-								<td>
-									<label for="qstnContent">내용 :${ sltOne.qesDto.qstnContent } </label><!-- <textarea id="qstnContent" name="qstnContent" >
-									</textarea>	 -->	</td>
-									
-									<input type="hidden" id="qstnContent" name="qstnContent" value="${ sltOne.qesDto.qstnContent } " />
-									<input type="hidden" id="qstnImg" name="qstnImg" value="${sltOne.qesDto.qstnImg }" /> 
-									<%-- <td>
-									<div id="test" contentEditable="true" style="overflow-x:auto; width:500px; height: 300px; border: solid; 1px; margin: 20px; line-height: 20px; background-image: ; " >
-									<img src="<c:url value='${sltOne.qstnImg }' />" alt="${sltOne.qstnImg }" height="150" width="150"/>
+			<div class="container-fluid">
+				<div class="row">
+					<div class="card d-inline-block w-100 h-100 shadow mt-3 mb-3">
+						<div class="card-body">
+							<form name="paging" >
+								<c:if test="${sltOne.qesDto.qstnConfirm eq 'n'}">
+									<div>
+										<input class="btn btn-warning" type="button" value="수정" onclick="update()" >
+										<input class="btn btn-warning" type="button" value="삭제" onclick="Quesdelete('${ sltOne.qesDto.memberCode }','${ sltOne.qesDto.qstnCode }')">
 									</div>									
-								</td> --%>
-							</tr>
-							<tr>
-								<td>								
+								</c:if>
+							
+								<div class="h4 text-center">${ sltOne.qesDto.qstnTitle }</div>
+								<hr>
+								<div class="d-flex justify-content-between">
+									<div>${ sltOne.memberDto.memberName }</div>
+									<div>작성일자 : ${ sltOne.qesDto.qstnDate }</div>
+								</div>
+								<hr>
+								<div>
+									${ sltOne.qesDto.qstnContent }
+								</div>
+								<div>
 									<img src="<c:url value='${sltOne.qesDto.qstnImg }' />" alt="${sltOne.qesDto.qstnImg }" height="150" width="150" onError="this.style.visibility='hidden'" />
-								</td>
-							</tr>
-							<tr>
-								<td> 
-									<label for="qstnDate" id="qstnDate">작성날짜 : ${ sltOne.qesDto.qstnDate }</label>
-								 <input type="hidden" id="qstnDate" name="qstnDate" value="${ date }">   
-								</td>
-								</tr>
-								<tr>
-									<td>
-									 <input type="hidden" id="qstnConfirm" name="qstnConfirm" value="n"> </td>
-									</tr>
-									<tr>
-									<td>
-									<button type="submit"  onclick="update()" >수정하기</button>
-									<button type="submit"  onclick="Quesdelete('${ sltOne.qesDto.memberCode }','${ sltOne.qesDto.qstnCode }')">삭제하기</button>
-								</td>
-							</tr>					
-						</tbody>			
-					</table>
-				</form>
-				</section>
-				<hr>	
-		<div id="reply">	
-			<h3>관리자 댓글</h3>
-  				<ol >
-     			 <li>
-       				 <p>
-       				 작성자 :  ${ selectOne.qesDto.memberCode }<br /><br />
-       				 작성 내용: ${ selectOne.answerDto.answerContent }<br/><br />
-       				 작성 날짜 : ${ selectOne.answerDto.answerDate }
-        			</p>
-      			</li>
-  			</ol>
-		</div>		
+								</div>
+								<input type="hidden" id="memberCode" name="memberCode" value="${ sltOne.qesDto.memberCode }">
+								<input type="hidden" id="qstnCode" name="qstnCode" value="${ sltOne.qesDto.qstnCode }">
+								<input type="hidden" id="qstnTitle" name="qstnTitle"  value=${ sltOne.qesDto.qstnTitle } >
+								<input type="hidden" id="qstnContent" name="qstnContent" value="${ sltOne.qesDto.qstnContent } " />
+								<input type="hidden" id="qstnImg" name="qstnImg" value="${sltOne.qesDto.qstnImg }" />
+								<input type="hidden" id="qstnDate" name="qstnDate" value="${ date }">
+								<input type="hidden" id="qstnConfirm" name="qstnConfirm" value="n">
+							</form>
+						</div>
+					</div>
+					<c:if test="${not empty selectOne}">
+						<div class="card d-inline-block w-100 h-100 shadow mt-3 mb-3">
+							<div class="card-body">
+								<div id="reply">	
+									<div class="h4 text-center">답변</div>
+									<div class="d-flex justify-content-between">
+										<div>${ selectOne.qesDto.memberCode }</div>
+										<div>답변일자 : ${ selectOne.answerDto.answerDate }</div>
+									</div>
+									<hr>
+									<div>${ selectOne.answerDto.answerContent }</div>
+								</div>						
+							</div>
+						</div>
+					</c:if>
+
+				</div>
+			</div>
 		</div>
 		<!-- 메인 컨텐츠 끝 -->
 			
