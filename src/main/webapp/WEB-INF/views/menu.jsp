@@ -37,7 +37,7 @@
 			    	
 			    		<div class="card shadow ml-3 mt-3 mb-3">
 				    		<div class="card-body">
-							검색 조건
+							<h4>검색 조건</h4>
 								<form action="menuResult" id="menuSearch">
 									<%-- 체크박스일 경우 값들을 배열로 받아서 처리해야함 --%>
 									<div>
@@ -64,21 +64,24 @@
 									<div>
 										<input type='number' id="menuPrice" name='menuPrice' min='0' max='100000' /> <br>
 									</div>
-									
+									<br>
 									<div>
 									이름
 									</div>
 									<div>
 										<input type="text" id="menuName" name="menuName">
 									</div>
-									
+									<br>
 									<div>
-										<input id="menuSearchForm" type="button" value="검색" />
+										<button id="menuSearch" type="button" class="btn btn-outline-warning" onclick="inputCheck()">검색</button>
 									</div>
 								</form>
+								<br>
+								<a href="javascript:menuPriceHigh();"><button type="button" class="btn btn-outline-warning">높은가격순</button></a>
+								<a href="javascript:menuPriceLow();"><button type="button" class="btn btn-outline-warning">낮은가격순</button></a>
 							</div>
 						</div>
-						<div class="flexbox">
+						<div id="menu_list" class="flexbox">
 			            <div class="item">
 							<c:forEach var="menu" items="${menu}">
 								<div class="card shadow ml-3 mb-3">

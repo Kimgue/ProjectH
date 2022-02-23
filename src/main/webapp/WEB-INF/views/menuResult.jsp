@@ -19,7 +19,6 @@
 	<script src="resources/js/menu/menu.js"></script>
     
 </head>
-
 <body>
 	<!-- 페이지 Wrapper 시작 -->
 	<div id="wrapper">
@@ -36,7 +35,7 @@
 			    <article>
 			    	<div class="card shadow ml-3 mt-3 mb-3">
 			    		<div class="card-body">
-						검색 조건
+						<h4>검색 조건</h4>
 							<form action="menuResult" id="menuSearch">
 								<%-- 체크박스일 경우 값들을 배열로 받아서 처리해야함 --%>
 								<div>
@@ -63,33 +62,36 @@
 								<div>
 									<input type='number' id="menuPrice" name='menuPrice' min='0' max='100000' /> <br>
 								</div>
-								
-								<div>
-								이름
-								</div>
-								<div>
-									<input type="text" id="menuName" name="menuName">
-								</div>
-								
-								<div>
-									<input id="menuSearchForm" type="button" value="검색" />
-								</div>
-							</form>
+							<br>
+									<div>
+									이름
+									</div>
+									<div>
+										<input type="text" id="menuName" name="menuName">
+									</div>
+									<br>
+									<div>
+										<button id="menuSearch" type="button" class="btn btn-outline-warning" onclick="inputCheck()">검색</button>
+									</div>
+								</form>
+								<br>
+								<a href="javascript:menuPriceHigh();"><button type="button" class="btn btn-outline-warning">높은가격순</button></a>
+								<a href="javascript:menuPriceLow();"><button type="button" class="btn btn-outline-warning">낮은가격순</button></a>
 						</div>
 			        </div>
-			        <div class="flexbox">
+			        <div id="menu_list" class="flexbox">
 			            <div class="item">
 							<c:forEach var="menuVo" items="${menuVo}">
 								<div class="card shadow ml-3 mb-3">
-									<div class="card-body">
+									<div style="width:700px; height:300px;" class="card-body">
 										<div class="menu-grid">
-											<div class="menuImg">
-												<img class="overflow-hidden" src="<c:out value="resources/${menuVo.menuDto.menuImg}"/>" alt="메뉴 이미지" height="250" width="250" />
+											<div class="menuImg mt-3">
+												<img src="<c:out value="resources/${menuVo.menuDto.menuImg}"/>" alt="메뉴 이미지" height="200" width="200" />
 											</div>
 											
 											<div class="menuTitle">
 												<div class="h3 font-weight-bolder"><c:out value="${menuVo.menuDto.menuName}" /></div>
-												<div><c:out value="${menuVo.menuDto.menuPrice}" />원</div>
+												<div><c:out value="${menuVo.menuDto.menuPrice}"/>원</div>
 												<div><c:out value="${menuVo.menuDto.menuIngredients}" /></div>
 											</div>
 											
@@ -98,34 +100,36 @@
 													<c:out value="${menuVo.menuDto.menuDescription}" />
 												</div>
 											</div>
-										</div>
 									<c:url value="menuDetail" var="menuDetail">
 										<c:param name="brandCode" value="${menuVo.brandDto.brandCode}"/>
 										<c:param name="menuCode" value="${menuVo.menuDto.menuCode}"/>
 										<c:param name="menuName" value="${menuVo.menuDto.menuName}" />
 									</c:url>
-									<a class="h4" href="${menuDetail}">상품 리뷰</a>
+									<div class="menuReview">
+									<a class="h4" href="${menuDetail}">리뷰</a>
 									</div>
 								</div>
-							</c:forEach>
-			            </div>
-			        </div>
+							</div>
+						</div>	
+					 </c:forEach>
+			       </div>
+			    </div>
 			    </article>
 			    <aside>
 					<div class="card shadow mt-3 mb-3 mr-3">
 						<div class="card-body">
 							<h4>메뉴 리뷰 점수순위</h4>
 							
-							<div>1</div>
-							<div>2</div>
-							<div>3</div>
-							<div>4</div>
-							<div>5</div>
-							<div>6</div>
-							<div>7</div>
-							<div>8</div>
-							<div>9</div>
-							<div>10</div>
+							<c:forEach var="rank" items="${ reviewRanking }">
+							<c:set var="i" value="${i+1}"/>
+							<tr>
+							<td><c:out value="${i}" />등</td>
+							<td><c:out value="${rank.brandDto.brandName}" /></td>
+							<td><c:out value="${rank.menuDto.menuName}" /></td>
+							<td><c:out value="${rank.reviewDto.reviewScore}"></c:out>
+							</tr>
+							<br>
+							</c:forEach>			
 						</div>
 					</div>
 			    </aside>
