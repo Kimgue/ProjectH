@@ -34,30 +34,6 @@
 					
 		<!-- 메인 -->
 		<div id="content">
-<<<<<<< HEAD
-			<div id="root">
-				<header>
-					<h1> 공지사항</h1>
-				</header>
-				<hr />	 
-				<nav>
-				  홈 - 공지사항 작성
-				</nav>
-				<hr />
-				
-				<section id="container">
-					<form id="noticeInsert" role="form" method="post" action="Noticeinsert" encType="multipart/form-data">
-						<table>
-							<tbody>
-							<thead>
-							<tr>
-							<th style="background-color: #eeeee; text-align: center;">공지사항 글쓰기 </th>
-								</tr>
-							</thead>		
-								<tr>
-									<td>
-										<label for="adminCode" id="adminName">작성자 이름 :${ person.adminDto.adminName }</label>
-=======
 			<div class="container-fluid">
 				<div class="row">
 					<div class="card d-inline-block h-100 shadow mt-3 mb-3 overflow-hidden">
@@ -69,7 +45,6 @@
 								<div class="noticeGrid">
 									<div class="one">
 										<input type="text" class="form-control mb-3" id="noticeTitle" name="noticeTitle" placeholder="제목">
->>>>>>> branch 'master' of https://github.com/Kimgue/WebProject.git
 										<input type="hidden" id="adminCode" name="adminCode" value="${ adminCode }">
 										<input type="hidden" id="noticeCode" name="noticeCode" value="noticeCode">
 										<input type="hidden" id="noticeDate" name="noticeDate" value="${ date }">
