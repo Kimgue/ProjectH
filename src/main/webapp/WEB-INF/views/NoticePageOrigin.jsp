@@ -30,39 +30,34 @@
 					
 		<!-- 메인 -->
 		<div id="content">
-			<div class="container-fluid">
-				<div class="row text-center">
-					<div class="card d-inline-block w-100 h-100 shadow mt-3 mb-3">
-						<div class="card-body">
-							<div class="card bg-gradient-secondary d-inline-block w-100 h-100 shadow mt-3">
-								<div class="card-body">
-									<div style="color:#fff;" class="h4">${ noticecontent.noticeTitle }</div>
-								</div>
-							</div>
-							<div class="card d-inline-block w-100 h-100 shadow mb-3">
-								<div class="card-body">
-									<div class="d-flex justify-content-between">
-										<div>
-											${noticecontent.adminCode}
-										</div>
-										<div>
-											${noticecontent.noticeDate}
-										</div>
-									</div>
-									<hr>
-									<div>
-										${noticecontent.noticeContent}
-									</div>
-									<div>
-										<img src="<c:url value='${noticecontent.noticeImg }' />" alt="${noticecontent.noticeImg }" height="150" width="150" onError="this.style.visibility='hidden'" />
-									</div>
-								</div>
-							</div>							
-							
-						</div>
-					</div>
-				</div>
-			</div>
+			<H4>공지사항</H4>ㅎㅇㅎㅇ
+			<form>
+				<table border="1">
+					<tr>
+						<td width=40>번호</td>
+						<td width=200 height=40>제목</td>
+						<td width=200>관리자</td>
+						<td width=150>작성날짜</td>	
+					</tr>
+					<c:forEach var="list" items="${ listpage }">
+						<tr>
+							<td><c:out value="${ list.noticeCode}" /></td>
+							<td><a href="view2?adminCode=${ list.adminCode }&noticeCode=${list.noticeCode}"><c:out value="${list.noticeTitle}" /></a></td>
+							<td><c:out value="${list.adminCode }"></c:out>
+							<td><c:out value="${list.noticeDate}" /></td>
+						</tr>
+					</c:forEach>
+				</table>	
+				<input type="hidden" name="adminCode" /> 
+				<input type="hidden"name="noticeCode" />
+			</form>
+			<br>
+			<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
+				<a href="Notice?page=${idx}">${idx}</a>
+			</c:forEach>
+			<hr>
+			
+			<div class="board"></div>
 		</div>
 		<!-- 메인 컨텐츠 끝 -->
 			
