@@ -42,7 +42,7 @@
 								<table class="table">
 									<thead>
 										<tr>
-											<td width=100 >회원 번호</td>
+											<td width=100 >회원 이름</td>
 											<td width=100>글 번호</td>
 											<td width=350 height=40>제목</td>
 											<td width=250>작성일</td>
@@ -51,7 +51,7 @@
 									</thead>
 									<c:forEach var="list" items="${ selectNlist }">
 										<tr>
-											<td><c:out value="${ list.qesDto.memberCode }" /></td>
+											<td><c:out value="${ list.memberDto.memberName }" /></td>
 											<td><c:out value="${ list.qesDto.qstnCode }" /></td> 
 											<td><a href="javascript:reply1('${ list.qesDto.memberCode }','${ list.qesDto.qstnCode }')"><c:out value="${ list.qesDto.qstnTitle }" /></a></td> 
 											<td><c:out value="${ list.qesDto.qstnDate }" /></td>
@@ -63,7 +63,7 @@
 									<hr>
 									<div class="text-center">
 										<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
-											<a class="mr-1" href="Nconfirm?page=${idx}">${idx}</a>
+											<a class="mr-1" href="Questionlist?page=${idx}">${idx}</a>
 										</c:forEach>
 									</div>
 									

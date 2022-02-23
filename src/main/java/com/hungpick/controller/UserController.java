@@ -389,6 +389,7 @@ public class UserController {
 	
 	//------------------------------answer 질문-------------------------------
 	
+	
 	@RequestMapping("reply")
 	public String reply(Model model,String memberCode,String qstnCode,@ModelAttribute("cri") Criteria cri,HttpSession session) 
 	{

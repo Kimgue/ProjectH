@@ -12,7 +12,7 @@ import com.hungpick.dto.QuestionVo;
 
 public interface IQuestionSerivce {
 	
-	Question sltOne(@Param("memberCode")String memberCode,@Param("qstnCode")String qstnCode); // 단건조회
+	QuestionVo sltOne(@Param("memberCode")String memberCode,@Param("qstnCode")String qstnCode); // 단건조회
 
 	List<QuestionVo>  listPage(@Param("cri")Criteria cri
 			,@Param("memberCode")String memberCode) throws Exception;/// 회원 목록 page

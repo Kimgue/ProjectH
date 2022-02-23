@@ -43,23 +43,23 @@
 						<tbody>
 							<tr>
 								<td>
-									<label for="memberCode" id="memberCode">작성자 번호 :${ sltOne.memberCode }</label>
-									<input type="hidden" id="memberCode" name="memberCode" value="${ sltOne.memberCode }">
-									<input type="hidden" id="qstnCode" name="qstnCode" value="${ sltOne.qstnCode }">
+									<label for="memberCode" id="memberCode">작성자 이름 :${ sltOne.qesDto.memberName }</label>
+									<input type="hidden" id="memberCode" name="memberCode" value="${ sltOne.qesDto.memberCode }">
+									<input type="hidden" id="qstnCode" name="qstnCode" value="${ sltOne.qesDto.qstnCode }">
 							</tr>	
 							<tr>
 								<td>
-									<label for="qstnTitle">제목 : ${ sltOne.qstnTitle }</label>
-									 <input type="hidden" id="qstnTitle" name="qstnTitle"  value=${ sltOne.qstnTitle } > 
+									<label for="qstnTitle">제목 : ${ sltOne.qesDto.qstnTitle }</label>
+									 <input type="hidden" id="qstnTitle" name="qstnTitle"  value=${ sltOne.qesDto.qstnTitle } > 
 								</td>
 							</tr>	
 							<tr>
 								<td>
-									<label for="qstnContent">내용 :${ sltOne.qstnContent } </label><!-- <textarea id="qstnContent" name="qstnContent" >
+									<label for="qstnContent">내용 :${ sltOne.qesDto.qstnContent } </label><!-- <textarea id="qstnContent" name="qstnContent" >
 									</textarea>	 -->	</td>
 									
-									<input type="hidden" id="qstnContent" name="qstnContent" value="${ sltOne.qstnContent } " />
-									<input type="hidden" id="qstnImg" name="qstnImg" value="${sltOne.qstnImg }" /> 
+									<input type="hidden" id="qstnContent" name="qstnContent" value="${ sltOne.qesDto.qstnContent } " />
+									<input type="hidden" id="qstnImg" name="qstnImg" value="${sltOne.qesDto.qstnImg }" /> 
 									<%-- <td>
 									<div id="test" contentEditable="true" style="overflow-x:auto; width:500px; height: 300px; border: solid; 1px; margin: 20px; line-height: 20px; background-image: ; " >
 									<img src="<c:url value='${sltOne.qstnImg }' />" alt="${sltOne.qstnImg }" height="150" width="150"/>
@@ -68,12 +68,12 @@
 							</tr>
 							<tr>
 								<td>								
-									<img src="<c:url value='${sltOne.qstnImg }' />" alt="${sltOne.qstnImg }" height="150" width="150" onError="this.style.visibility='hidden'" />
+									<img src="<c:url value='${sltOne.qesDto.qstnImg }' />" alt="${sltOne.qesDto.qstnImg }" height="150" width="150" onError="this.style.visibility='hidden'" />
 								</td>
 							</tr>
 							<tr>
 								<td> 
-									<label for="qstnDate" id="qstnDate">작성날짜 : ${ sltOne.qstnDate }</label>
+									<label for="qstnDate" id="qstnDate">작성날짜 : ${ sltOne.qesDto.qstnDate }</label>
 								 <input type="hidden" id="qstnDate" name="qstnDate" value="${ date }">   
 								</td>
 								</tr>
@@ -84,7 +84,7 @@
 									<tr>
 									<td>
 									<button type="submit"  onclick="update()" >수정하기</button>
-									<button type="submit"  onclick="Quesdelete('${ sltOne.memberCode }','${ sltOne.qstnCode }')">삭제하기</button>
+									<button type="submit"  onclick="Quesdelete('${ sltOne.qesDto.memberCode }','${ sltOne.qesDto.qstnCode }')">삭제하기</button>
 								</td>
 							</tr>					
 						</tbody>			
