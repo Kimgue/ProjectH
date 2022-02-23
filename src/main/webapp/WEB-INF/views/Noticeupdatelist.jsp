@@ -13,10 +13,13 @@
     <title>헝픽</title>
     
    	<link href="resources/css/sb-admin-2.css" rel="stylesheet">
+   	<link href="resources/css/GridLayout.css" rel="stylesheet">
+   	<link href="resources/css/fileBtnHidden.css" rel="stylesheet">
 	<script src="https://kit.fontawesome.com/730c440743.js" crossorigin="anonymous"></script>
 	<script src="resources/js/jquery-3.4.1.min.js"></script>
 	<script src="resources/js/notice/Noticeupdatelist.js"></script>
-
+	<script src="resources/js/textareaHeight.js"></script>
+    
 </head>
 
 <body>
@@ -31,6 +34,7 @@
 					
 		<!-- 메인 -->
 		<div id="content">
+<<<<<<< HEAD
 			<header>
 				<h1> 공지사항 작성내용</h1>
 			</header>
@@ -82,6 +86,49 @@
 				</form>
 			</section>
 			<hr />
+=======
+			<div class="container-fluid">
+				<div class="row">
+					<div class="card d-inline-block h-100 shadow mt-3 mb-3 overflow-hidden">
+						<div class="card-body">
+							<div class="h1 mb-3">
+								공지사항 수정
+							</div>
+							<form id="noticeupdate" role="form" action="Noticeupdate" method="post" enctype="multipart/form-data">
+								<div class="noticeGrid">
+									<div class="one">
+										<input type="text" class="form-control mb-3" id="noticeTitle" name="noticeTitle" value="${person.noticeTitle}">
+										<input type="hidden" id="adminCode" name="adminCode" value="${person.adminCode }">
+										<input type="hidden" id="noticeCode" name="noticeCode" value="${ person.noticeCode }">
+										<input type="hidden" id="noticeDate" name="noticeDate" value="${ date }">
+									</div>
+									<div class="two">
+										<textarea onkeydown="resize(this)" onkeyup="resize(this)" style="width:665px; min-height:180px;" class="form-control" id="noticeContent" name="noticeContent">${person.noticeContent}</textarea>
+									</div>
+									<input type="file" id="input-image" name="uploadfile" required="required">
+									<div class="three">
+										<img style="width: 350px; height:200px;" class="img img-fluid img-thumbnail mb-3" id="preview-image" src="${person.noticeImg}">
+										<input type="hidden" id="noticeImg" name="noticeImg" value="${person.noticeImg}">
+									</div>
+									<div class="four">
+										<div class="float-left">
+											<label for="input-image">
+												<i style="width:150px; height:38px;" class="fas fa-solid fa-file-image btn btn-warning"> 파일 첨부</i>
+											</label>
+										</div>
+									</div>
+									<div class="five">
+										<div class="float-right">
+											<input style="width:150px;" type="button" class="btn btn-warning" value="수정" onclick="update()">
+										</div>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+>>>>>>> branch 'master' of https://github.com/Kimgue/WebProject.git
 		</div>
 		<!-- 메인 컨텐츠 끝 -->
 			
