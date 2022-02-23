@@ -134,7 +134,7 @@ public class UserController {
 		String time1 = format1.format(date);
 
 		model.addAttribute("member", memberCode);
-
+		model.addAttribute("sltOne", question.sltOne(memberCode, qstnCode));
 		model.addAttribute("date", time1);
 
 		return "QuestioninsertQ";
@@ -297,7 +297,7 @@ public class UserController {
 	
 	/*-------------------------Notice insert 공지사항 -----------------*/
 	@RequestMapping("Noticeinsert")
-	public String insertNoticeC(Notice noti,@ModelAttribute("cri") Criteria cri,HttpSession session,Model model) throws Exception {
+	public String insertNoticeC(Notice noti,@ModelAttribute("cri") Criteria cri,HttpSession session,Model model,String noticeCode) throws Exception {
 		
 		notice.insert(noti);
 		PageMaker pageMaker = new PageMaker();
@@ -312,7 +312,8 @@ public class UserController {
 		model.addAttribute("noticecode", notice.noticeCode(adminCode));
 		model.addAttribute("pageMaker", pageMaker);
 		model.addAttribute("currentPage", currentPage);
-	
+		model.addAttribute("person", notice.sltOneNoice(adminCode, noticeCode));
+		
 		return "redirect:/AdminNoticelist";
 
 	}
@@ -388,6 +389,7 @@ public class UserController {
 	}
 	
 	//------------------------------answer 질문-------------------------------
+	
 	
 	@RequestMapping("reply")
 	public String reply(Model model,String memberCode,String qstnCode,@ModelAttribute("cri") Criteria cri,HttpSession session) 

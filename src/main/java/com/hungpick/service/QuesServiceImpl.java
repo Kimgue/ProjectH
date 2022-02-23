@@ -27,9 +27,9 @@ public class QuesServiceImpl implements IQuestionSerivce{
 	
 	/*---------단건조회---------------*/
 	@Override
-	public Question sltOne(String memberCode, String qstnCode) {
+	public QuestionVo sltOne(String memberCode, String qstnCode) {
 		
-		Question hm = daoQes.sltOne(memberCode, qstnCode); 
+		QuestionVo hm = daoQes.sltOne(memberCode, qstnCode); 
 		
 		return hm;
 	}
@@ -54,7 +54,7 @@ public class QuesServiceImpl implements IQuestionSerivce{
 	@Transactional
 	public void insert(Question qes) throws Exception {
 		
-		Question check = daoQes.sltOne(qes.getMemberCode(), qes.getQstnCode());
+		QuestionVo check = daoQes.sltOne(qes.getMemberCode(), qes.getQstnCode());
 		
 		if(check != null)
 		{
@@ -125,7 +125,7 @@ public class QuesServiceImpl implements IQuestionSerivce{
 		logger.info("입력한 CODE : {}",  memberCode);
 		logger.info("입력한 CODE : {}",  qstnCode);
 		
-		Question check = daoQes.sltOne(memberCode, qstnCode);
+		QuestionVo check = daoQes.sltOne(memberCode, qstnCode);
 		
 		if(check == null)
 		{

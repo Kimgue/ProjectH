@@ -15,6 +15,7 @@
    	<link href="resources/css/sb-admin-2.css" rel="stylesheet">
 	<script src="https://kit.fontawesome.com/730c440743.js" crossorigin="anonymous"></script>
 	<script src="resources/js/jquery-3.4.1.min.js"></script>
+	<script src="resources/js/notice/NoticeSWD.js"></script>
     
 </head>
 
@@ -22,7 +23,7 @@
 	<!-- 페이지 Wrapper 시작 -->
 	<div id="wrapper">
 	<!-- 사이드바 -->
-	<jsp:include page="PageSide.jsp" flush="false"/>
+	<jsp:include page="AdminPageSide.jsp" flush="false"/>
 	<!-- 컨텐츠 Wrapper 시작 -->
 	<div id="content-wrapper" class="d-flex flex-column">
 	<!-- 상단 -->
@@ -30,39 +31,38 @@
 					
 		<!-- 메인 -->
 		<div id="content">
-			<div class="container-fluid">
-				<div class="row text-center">
-					<div class="card d-inline-block w-100 h-100 shadow mt-3 mb-3">
-						<div class="card-body">
-							<div class="card bg-gradient-secondary d-inline-block w-100 h-100 shadow mt-3">
-								<div class="card-body">
-									<div style="color:#fff;" class="h4">${ noticecontent.mbrDto.noticeTitle }</div>
-								</div>
-							</div>
-							<div class="card d-inline-block w-100 h-100 shadow mb-3">
-								<div class="card-body">
-									<div class="d-flex justify-content-between">
-										<div>
-											${noticecontent.adminDto.adminCode}
-										</div>
-										<div>
-											${noticecontent.mbrDto.noticeDate}
-										</div>
-									</div>
-									<hr>
-									<div>
-										${noticecontent.mbrDto.noticeContent}
-									</div>
-									<div>
-										<img src="<c:url value='${noticecontent.mbrDto.noticeImg }' />" alt="${noticecontent.mbrDto.noticeImg }" height="150" width="150" onError="this.style.visibility='hidden'" />
-									</div>
-								</div>
-							</div>							
-							
-						</div>
-					</div>
-				</div>
-			</div>
+			<form name="paging">
+			<H4>공지사항</H4>
+				<table border="1">
+					<tr>
+						<td width=40>번호</td>
+						<td width=350 height=40>제목</td>
+						<td width=100>관리자</td>
+						<td width=250>작성날짜</td>
+						<td width=150>수정</td>
+						<td width=100>삭제</td>
+						
+					</tr>
+					<c:forEach var="list" items="${listpage}">
+						<tr>
+							<td><c:out value="${list.noticeCode}" /></td>
+							<td><a href="javascript:view2('${ list.adminCode }','${list.noticeCode}')"><c:out value="${ list.noticeTitle }" /></a></td>
+							<td><c:out value="${list.adminCode }"></c:out>
+							<td><c:out value="${list.noticeDate}" /></td>	
+							<td><a href="javascript:Noticeupdatelist('${ list.adminCode }','${list.noticeCode}' )">수정</a></td>
+							<td><a href="javascript:Noticedelete('${ list.adminCode }','${list.noticeCode}')">삭제</a></td>
+						</tr>
+					</c:forEach>
+				</table>	
+				<br>
+				<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
+			    	<a href="AdminNoticelist?page=${idx}">${idx}</a>
+			    </c:forEach>
+			    
+				<hr>
+				<input type="hidden" name="adminCode" />
+				<input type="hidden" name="noticeCode" />
+			</form>			
 		</div>
 		<!-- 메인 컨텐츠 끝 -->
 			

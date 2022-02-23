@@ -6,11 +6,12 @@ import org.apache.ibatis.annotations.Param;
 
 import com.hungpick.dto.Criteria;
 import com.hungpick.dto.Notice;
+import com.hungpick.dto.adminVo;
 
 
 public interface INoticeService {
 
-	Notice sltOneNoice(@Param("adminCode") String adminCode,@Param("noticeCode")String noticeCode); //  단건 조회
+	adminVo sltOneNoice(@Param("adminCode") String adminCode,@Param("noticeCode")String noticeCode); //  단건 조회
 
 	void insert(Notice noti) throws Exception; // 공지사항입력 후 hist에 값 넣고 트랜잭션 처리
 

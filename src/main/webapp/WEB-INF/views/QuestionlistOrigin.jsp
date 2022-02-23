@@ -16,11 +16,11 @@
 	<script src="https://kit.fontawesome.com/730c440743.js" crossorigin="anonymous"></script>
 	<script src="resources/js/jquery-3.4.1.min.js"></script>
 	<script src="resources/js/qna/Questionlist.js"></script>
-    
+ 
 </head>
 
 <body>
-	<!-- 페이지 Wrapper 시작 -->
+	<!-- 페이지 Wrapper 시작 --> 
 	<div id="wrapper">
 	<!-- 사이드바 -->
 	<jsp:include page="PageSide.jsp" flush="false"/>
@@ -31,45 +31,39 @@
 					
 		<!-- 메인 -->
 		<div id="content">
-			<div class="container-fluid">
-				<div class="row">
-					<div class="card d-inline-block w-100 h-100 shadow mt-3 mb-3">
-						<div class="card-body">
-							<div class="h1 mb-3">
-								나의 질문
-							</div>
-							<form name="paging">
-								<table class="table">
-									<thead>
-										<tr>
-											<td width=350>제목</td>
-											<td width=150 class="text-center">작성일</td>
-										</tr>
-									</thead>
-									<c:forEach var="list" items="${ listpage }">
-										<tr>
-											<td><a href="javascript:view('${list.qesDto.memberCode }','${list.qesDto.qstnCode }')"><c:out value="${list.qesDto.qstnTitle}" /></a></td>
-											<td class="text-center"><c:out value="${list.qesDto.qstnDate}" /></td>
-										</tr>
-									</c:forEach>
-								</table>
-									<br>
-									<hr>
-									<div class="text-center">
-										<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
-											<a class="mr-1" href="Questionlist?page=${idx}">${idx}</a>
-										</c:forEach>
-									</div>
-									<input class="btn btn-warning" type="button" value="작성" onClick="insert()">
-									<input type="hidden" name="memberCode" /> 
-									<input type="hidden"name="qstnCode" />
-									<input type="hidden" id="code" value="${list.qesDto.qstnCode}"/>
-									<input type="hidden" id="name" value="${list.memberDto.memberName}"/>
-							</form>
-						</div>
-					</div>
+			<HR>
+			<form name="paging">
+				<H4>Q.A</H4>gdgd
+				<table style="text-align: center; border: 1px solid #ddddd">
+				<thead>
+					<tr>
+						<th style="background-color:#fafafa; text-align:center;">번호</th>
+						<th style="background-color:#fafafa; text-align:center;">제목</th>
+						<th style="background-color:#fafafa; text-align:center;">작성자</th>
+						<th style="background-color:#fafafa; text-align:center;">작성일</th>
+					</tr>
+					</thead>
+					<c:forEach var="list" items="${ listpage }">
+						<tr>
+							<td id="code"><c:out value="${list.qesDto.qstnCode}" /></td>
+							<td><a href="javascript:view('${list.qesDto.memberCode }','${list.qesDto.qstnCode }')"><c:out value="${list.qesDto.qstnTitle}" /></a></td>
+							<td id="name"><c:out value="${list.memberDto.memberName }"></c:out>
+							<td><c:out value="${list.qesDto.qstnDate}" /></td>
+						</tr>
+					</c:forEach>
+				</table>
+				<br>
+				<div id="pagingDiv">
+				<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}"
+					var="idx">
+					<a href="Questionlist?page=${idx}">${idx}</a>
+				</c:forEach>
 				</div>
-			</div>
+				<hr>
+				<input type="button" value="작성" onClick="insert()"> 
+				<input type="hidden" name="memberCode" /> 
+				<input type="hidden"name="qstnCode" />
+			</form>		
 		</div>
 		<!-- 메인 컨텐츠 끝 -->
 			

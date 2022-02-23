@@ -30,42 +30,12 @@
 					
 		<!-- 메인 -->
 		<div id="content">
-			<div class="container-fluid">
-				<div class="row text-center">
-					<div class="card d-inline-block w-100 h-100 shadow mt-3 mb-3">
-						<div class="card-body">
-							<div class="card bg-gradient-secondary d-inline-block w-100 h-100 shadow mt-3">
-								<div class="card-body">
-									<div style="color:#fff;" class="h4">${ noticecontent.noticeTitle }</div>
-								</div>
-							</div>
-							<div class="card d-inline-block w-100 h-100 shadow mb-3">
-								<div class="card-body">
-									<div class="d-flex justify-content-between">
-										<div>
-											${noticecontent.adminCode}
-										</div>
-										<div>
-											${noticecontent.noticeDate}
-										</div>
-									</div>
-									<hr>
-									<div>
-										${noticecontent.noticeContent}
-									</div>
-									<div>
-										<img src="<c:url value='${noticecontent.noticeImg }' />" alt="${noticecontent.noticeImg }" height="150" width="150" onError="this.style.visibility='hidden'" />
-									</div>
-								</div>
-							</div>							
-							
-						</div>
-					</div>
-				</div>
-			</div>
+			<P> ${ noticecontent.noticeContent }
+			<p><img src="<c:url value='${noticecontent.noticeImg }' />" alt="${noticecontent.noticeImg }" height="150" width="150" onError="this.style.visibility='hidden'" />
 		</div>
 		<!-- 메인 컨텐츠 끝 -->
 			
+		
 	<!-- 하단 -->
 	<jsp:include page="PageFooter.jsp" flush="false"/>
 	<!-- 컨텐츠 Wrapper 끝 -->

@@ -31,38 +31,49 @@
 					
 		<!-- 메인 -->
 		<div id="content">
-			<form name="paging">
-			<H4>공지사항</H4>
-				<table border="1">
-					<tr>
-						<td width=40>번호</td>
-						<td width=350 height=40>제목</td>
-						<td width=100>관리자</td>
-						<td width=250>작성날짜</td>
-						<td width=150>수정</td>
-						<td width=100>삭제</td>
-						
-					</tr>
-					<c:forEach var="list" items="${listpage}">
-						<tr>
-							<td><c:out value="${list.noticeCode}" /></td>
-							<td><a href="javascript:view2('${ list.adminCode }','${list.noticeCode}')"><c:out value="${ list.noticeTitle }" /></a></td>
-							<td><c:out value="${list.adminCode }"></c:out>
-							<td><c:out value="${list.noticeDate}" /></td>	
-							<td><a href="javascript:Noticeupdatelist('${ list.adminCode }','${list.noticeCode}' )">수정</a></td>
-							<td><a href="javascript:Noticedelete('${ list.adminCode }','${list.noticeCode}')">삭제</a></td>
-						</tr>
-					</c:forEach>
-				</table>	
-				<br>
-				<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
-			    	<a href="AdminNoticelist?page=${idx}">${idx}</a>
-			    </c:forEach>
-			    
-				<hr>
-				<input type="hidden" name="adminCode" />
-				<input type="hidden" name="noticeCode" />
-			</form>			
+			<div class="container-fluid">
+				<div class="row">
+					<div class="card d-inline-block w-100 h-100 shadow mt-3 mb-3">
+						<div class="card-body">
+							<div class="h1 mb-3">
+								공지사항 조회
+							</div>
+						<form name="paging">
+							<table class="table">
+								<tr>
+									<td width=60>번호</td>
+									<td width=350 height=40>제목</td>
+									<td width=100>관리자</td>
+									<td width=250>작성날짜</td>
+									<td width=150>수정</td>
+									<td width=100>삭제</td>
+									
+								</tr>
+								<c:forEach var="list" items="${listpage}">
+									<tr>
+										<td><c:out value="${list.mbrDto.noticeCode}" /></td>
+										<td><a href="javascript:view2('${ list.mbrDto.adminCode }','${list.mbrDto.noticeCode}')"><c:out value="${ list.mbrDto.noticeTitle }" /></a></td>
+										<td><c:out value="${list.adminDto.adminName }"></c:out>
+										<td><c:out value="${list.mbrDto.noticeDate}" /></td>	
+										<td><a href="javascript:Noticeupdatelist('${ list.mbrDto.adminCode }','${list.mbrDto.noticeCode}' )">수정</a></td>
+										<td><a href="javascript:Noticedelete('${ list.mbrDto.adminCode }','${list.mbrDto.noticeCode}')">삭제</a></td>
+									</tr>
+								</c:forEach>
+							</table>	
+							<br>
+							<div class="text-center">
+								<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
+							    	<a class="mr-1" href="AdminNoticelist?page=${idx}">${idx}</a>
+							    </c:forEach>
+						    </div>
+							<hr>
+							<input type="hidden" name="adminCode" />
+							<input type="hidden" name="noticeCode" />
+						</form>	
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 		<!-- 메인 컨텐츠 끝 -->
 			

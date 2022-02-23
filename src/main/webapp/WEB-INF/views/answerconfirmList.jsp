@@ -42,20 +42,20 @@
 								<table class="table">
 									<thead>
 										<tr>
-											<td width=100 >회원 번호</td>
-											<td width=100>글 번호</td>
-											<td width=350 height=40>제목</td>
-											<td width=250>작성일</td>
-											<td width=100>답변여부</td>
+											<td width=80 class="text-center">글 번호</td>
+											<td width=100 class="text-center">작성자</td>
+											<td width=350>제목</td>
+											<td width=150 class="text-center">작성일</td>
+											<td width=100 class="text-center">답변여부</td>
 										</tr>
 									</thead>
 									<c:forEach var="list" items="${ selectNlist }">
 										<tr>
-											<td><c:out value="${ list.qesDto.memberCode }" /></td>
-											<td><c:out value="${ list.qesDto.qstnCode }" /></td> 
+											<td class="text-center"><c:out value="${ list.qesDto.qstnCode }" /></td>
+											<td class="text-center"><c:out value="${ list.memberDto.memberName }" /></td>
 											<td><a href="javascript:reply1('${ list.qesDto.memberCode }','${ list.qesDto.qstnCode }')"><c:out value="${ list.qesDto.qstnTitle }" /></a></td> 
-											<td><c:out value="${ list.qesDto.qstnDate }" /></td>
-											<td><c:out value="${ list.qesDto.qstnConfirm }" /></td>
+											<td class="text-center"><c:out value="${ list.qesDto.qstnDate }" /></td>
+											<td class="text-center"><c:out value="${ list.qesDto.qstnConfirm }" /></td>
 										</tr>
 									</c:forEach>
 								</table>
@@ -63,7 +63,7 @@
 									<hr>
 									<div class="text-center">
 										<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
-											<a class="mr-1" href="Nconfirm?page=${idx}">${idx}</a>
+											<a class="mr-1" href="Questionlist?page=${idx}">${idx}</a>
 										</c:forEach>
 									</div>
 									
