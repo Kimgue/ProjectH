@@ -17,7 +17,6 @@
 	<script src="https://kit.fontawesome.com/730c440743.js" crossorigin="anonymous"></script>
 	<script src="resources/js/jquery-3.4.1.min.js"></script>
 	<script src="resources/js/menu/menu.js"></script>
-    
 </head>
 
 <body>
@@ -37,48 +36,55 @@
 			    	
 			    		<div class="card shadow ml-3 mt-3 mb-3">
 				    		<div class="card-body">
-							<h4>검색 조건</h4>
+							<h3>검색 조건</h3>
 								<form action="menuResult" id="menuSearch">
 									<%-- 체크박스일 경우 값들을 배열로 받아서 처리해야함 --%>
 									<div>
-									브랜드
+									<h5>브랜드</h5>
 									</div>
 									<div>
 										<c:forEach var="brand" items="${brand}">
-											<input class="custom-checkbox" type='checkbox' name='brandCode' value='${brand.brandCode}' />${brand.brandName}
+											<input class="custom-checkbox" type='checkbox' name='brandCode' value='${brand.brandCode}' />
+											<label class="form-check-label" for="inlineCheckbox1">${brand.brandName}</label>
 										</c:forEach>
 									</div>
-									
+									<br>
 									<div>
-									재료
+									<h5>재료</h5>
 									</div>
 									<div>
 										<c:forEach var="menuIng" items="${menuIng}">
-											<input type='checkbox' name='menuIngredients' value='${menuIng.menuIngredients}' />${menuIng.menuIngredients}
+											<input class="custom-checkbox" type='checkbox' name='menuIngredients' value='${menuIng.menuIngredients}' />
+											<label class="form-check-label" for="inlineCheckbox1">${menuIng.menuIngredients}</label>
 										</c:forEach>
 									</div>
-									
+									<br>
 									<div>
-									최대 가격
+									<h5>최대 가격</h5>
 									</div>
-									<div>
-										<input type='number' id="menuPrice" name='menuPrice' min='0' max='100000' /> <br>
+									<div class="col-md-2">
+									<div class="input-group">
+										<input type='number' class="form-control" name='menuPrice' min='0' max='100000' step="100" placeholder="가격을 입력해주세요"/>
+										<div class="input-group-append">
+											<span class="input-group-text">₩</span>
+										</div>
+										</div>
 									</div>
 									<br>
 									<div>
-									이름
+									<h5>메뉴이름</h5>
 									</div>
-									<div>
-										<input type="text" id="menuName" name="menuName">
+									<div class="col-md-2">
+										<input type="text" class="form-control" id="menuName" name="menuName">
 									</div>
 									<br>
 									<div>
-										<button id="menuSearch" type="button" class="btn btn-outline-warning" onclick="inputCheck()">검색</button>
+										<button id="menuSearch" type="button" class="btn btn-warning" onclick="inputCheck()">검색</button>
 									</div>
 								</form>
 								<br>
-								<a href="javascript:menuPriceHigh();"><button type="button" class="btn btn-outline-warning">높은가격순</button></a>
-								<a href="javascript:menuPriceLow();"><button type="button" class="btn btn-outline-warning">낮은가격순</button></a>
+								<a href="javascript:menuPriceHigh();"><button type="button" class="btn btn-warning">높은가격순</button></a>
+								<a href="javascript:menuPriceLow();"><button type="button" class="btn btn-warning">낮은가격순</button></a>
 							</div>
 						</div>
 						<div id="menu_list" class="flexbox">
