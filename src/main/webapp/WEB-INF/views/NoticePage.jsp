@@ -58,7 +58,7 @@
 							<br>
 							<div class="text-center">
 								<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
-							    	<a class="mr-1" href="AdminNoticelist?page=${idx}">${idx}</a> 
+							    	<a class="mr-1" href="Notice?page=${idx}">${idx}</a> 
 							    </c:forEach>
 						    </div>
 							<hr>
