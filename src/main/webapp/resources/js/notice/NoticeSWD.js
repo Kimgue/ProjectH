@@ -4,7 +4,7 @@
 		
 		f.adminCode.value = adminCode;
 		f.noticeCode.value = noticeCode;
-		f.action = "./view2"
+		f.action = "./noticeandminview"
 		
 		f.method= "post"
 		f.submit();

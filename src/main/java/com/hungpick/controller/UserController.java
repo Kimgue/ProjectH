@@ -288,7 +288,12 @@ public class UserController {
 
 		return "Noticeview2";
 	}
+	@RequestMapping("noticeandminview")
+	public void adminview2(Model model, String adminCode, String noticeCode,HttpSession session) throws Exception {
 
+		model.addAttribute("noticecontent", notice.sltOneNoice(adminCode, noticeCode));
+
+	}
 	
 	/*-------------------------Notice insert 공지사항 -----------------*/
 	@RequestMapping("Noticeinsert")

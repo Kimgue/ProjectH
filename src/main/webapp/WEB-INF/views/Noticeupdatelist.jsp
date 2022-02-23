@@ -63,7 +63,7 @@
 								<td>
 									<label for="noticeImg"> 사진 :</label> 
 									<img src="<c:url value='${person.noticeImg }' />" alt="${person.noticeImg }" height="150" width="150" onError="this.style.visibility='hidden'" />
-									
+									<input type="hidden" id="noticeImg" name="noticeImg" value="${person.noticeImg }">
 								</td>
 							</tr>
 							<tr>
