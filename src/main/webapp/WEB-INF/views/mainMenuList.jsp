@@ -34,7 +34,6 @@
 					</a>	
 					<div class="h2"><c:out value="${menu.menuName}" /></div>
 					<div><c:out value="${menu.menuPrice}"/>원</div>
-					<div><c:out value="${menu.menuIngredients}" /></div>
 					<div><c:out value="${menu.menuDescription}" /></div>
 				</div>
 			</div>
