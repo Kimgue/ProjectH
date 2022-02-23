@@ -90,8 +90,8 @@
 	 <!-- 게시판 글 작성 -->
    <insert id="insert" parameterType="qesDto">
 	   INSERT  INTO QUESTION       
-	                 VALUES(   #{ memberCode} ,  QUESTION_SEQ.NEXTVAL 
-	                  , #{ qstnTitle } , #{ qstnContent }, TO_DATE( #{ qstnDate } ,'YYYY-MM-DD HH24:MI:SS') ,  #{ qstnConfirm } , #{qstnImg} )
+	                 VALUES(   #{ memberCode} ,  (SELECT NVL(MAX(TO_NUMBER(QSTN_CODE)),0)+1 FROM QUESTION) 
+	                  , #{ qstnTitle } , #{ qstnContent }, TO_DATE( #{ qstnDate } ,'YYYY-MM-DD HH24:MI') ,  #{ qstnConfirm } , #{qstnImg} )
    </insert>
 	
 	<update id="update" parameterType="qesDto">

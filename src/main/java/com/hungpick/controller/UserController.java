@@ -43,7 +43,7 @@ public class UserController {
 	/*--------------------- 공지사항 등록 페이지로 이동 ---------------------*/
 	@RequestMapping("noticeinsertN")
 	public void noticeinsertN(Model model) {
-		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 		Date date = new Date();
 		String time1 = format1.format(date);
 		model.addAttribute("date", time1);
@@ -102,7 +102,7 @@ public class UserController {
 		logger.info("update in");
 		/*memberCode = (String) session.getAttribute("memberCode");*/
 		
-		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 		Date date = new Date(); 
 		String time1 = format1.format(date);
 		model.addAttribute("sltOne", question.sltOne(memberCode, qstnCode));
@@ -129,7 +129,7 @@ public class UserController {
 
 		memberCode = (String) session.getAttribute("memberCode");
 		System.out.println(memberCode);
-		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 		Date date = new Date();
 		String time1 = format1.format(date);
 
@@ -318,7 +318,7 @@ public class UserController {
 		logger.info("updatelist");
 		 
 		adminCode = (String)session.getAttribute("adminCode");
-		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 		Date date = new Date();
 		String time1 = format1.format(date);
 		model.addAttribute("date", time1);
@@ -343,7 +343,7 @@ public class UserController {
 		notice.update(noti);
 		
 		model.addAttribute("listpage", notice.listPage(cri));
-		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 		Date date = new Date();
 		String time1 = format1.format(date);
 		model.addAttribute("date", time1);
@@ -370,7 +370,7 @@ public class UserController {
 		pageMaker.setTotalCount(notice.listCount());
 		int currentPage = cri.getPage();
 		Date date = new Date();
-		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 		String time1 = format1.format(date);
 		
 		model.addAttribute("adminCode", adminCode);
@@ -391,7 +391,7 @@ public class UserController {
 		
 		String adminCode = (String)session.getAttribute("adminCode");
 		Date date = new Date();
-		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 		String time1 = format1.format(date);
 		
 		model.addAttribute("date", time1);

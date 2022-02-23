@@ -71,7 +71,7 @@
 	
 	
 	<insert id="insert" parameterType="answerDto">
-		INSERT INTO ANSWER VALUES ( #{memberCode},  #{qstnCode} , ANSWER_SEQ.NEXTVAL , #{ adminCode }, #{ answerContent }, TO_DATE( #{answerDate} ,'YYYY-MM-DD HH24:MI:SS') )
+		INSERT INTO ANSWER VALUES ( #{memberCode},  #{qstnCode} ,(SELECT NVL(MAX(TO_NUMBER(ANSWER_CODE)),0)+1 FROM ANSWER) , #{ adminCode }, #{ answerContent }, TO_DATE( #{answerDate} ,'YYYY-MM-DD HH24:MI') )
 	</insert> 
 
 	<update id="update" parameterType="answerDto">
