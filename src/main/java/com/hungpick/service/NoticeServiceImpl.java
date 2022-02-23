@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.hungpick.dao.IDaoNotice;
 import com.hungpick.dto.Criteria;
 import com.hungpick.dto.Notice;
+import com.hungpick.dto.adminVo;
 
 
 @Service("notice")
@@ -42,7 +43,7 @@ public class NoticeServiceImpl implements INoticeService {
 	@Override
 	public void insert(Notice noti)throws Exception {
 
-		Notice check = daoNotice.sltOneNoice(noti.getAdminCode(),  noti.getNoticeCode());
+		adminVo check = daoNotice.sltOneNoice(noti.getAdminCode(),  noti.getNoticeCode());
 		
 		if(check != null)
 		{
@@ -102,7 +103,7 @@ public class NoticeServiceImpl implements INoticeService {
 		logger.info("입력한 CODE : {}",  adminCode);
 		logger.info("입력한 CODE : {}",  noticeCode);
 		
-		Notice check = daoNotice.sltOneNoice(adminCode,  noticeCode);
+		adminVo check = daoNotice.sltOneNoice(adminCode,  noticeCode);
 		
 		if(check == null)
 		{
@@ -116,7 +117,7 @@ public class NoticeServiceImpl implements INoticeService {
 	}
 
 	@Override
-	public Notice sltOneNoice(String adminCode, String NoticeCode) {
+	public adminVo sltOneNoice(String adminCode, String NoticeCode) {
 		
 		
 		return daoNotice.sltOneNoice(adminCode,NoticeCode);

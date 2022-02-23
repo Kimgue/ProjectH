@@ -34,6 +34,59 @@
 					
 		<!-- 메인 -->
 		<div id="content">
+<<<<<<< HEAD
+			<header>
+				<h1> 공지사항 작성내용</h1>
+			</header>
+			<hr />	 
+			<nav>
+				홈 - 공지사항 수정
+			</nav>
+			<hr />
+			<section id="container">
+				<form id="noticeupdate" role="form" method="post" action="Noticeupdate" encType="multipart/form-data">
+					<table>
+						<tbody>
+							<tr>
+								<td>
+									<label for="adminCode" id="adminName">작성자 이름 :${ person.adminDto.adminName }</label>
+									<input type="hidden" id="adminCode" name="adminCode" value="${person.mbrDto.adminCode }">
+									<input type="hidden" id="noticeCode" name="noticeCode" value="${ person.mbrDto.noticeCode }">
+							</tr>	
+							<tr>
+								<td>
+									<label for="noticeTitle">제목 : </label><input type="text" id="noticeTitle" name="noticeTitle"  value=${person.mbrDto.noticeTitle } >
+								</td>
+							</tr>	
+							<tr>
+								<td>
+									<label for="noticeContent">내용 : </label><textarea id="noticeContent" name="noticeContent">${person.mbrDto.noticeContent }</textarea>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<label for="noticeImg"> 사진 :</label> 
+									<img src="<c:url value='${person.mbrDto.noticeImg }' />" alt="${person.mbrDto.noticeImg }" height="150" width="150" onError="this.style.visibility='hidden'" />
+									<input type="hidden" id="noticeImg" name="noticeImg" value="${person.mbrDto.noticeImg }">
+								</td>
+							</tr>
+							<tr>
+								<td> 
+									<label for="noticeDate" id="noticeDate">작성날짜 : ${ person.mbrDto.noticeDate }</label>
+									<input type="hidden" id="noticeDate" name="noticeDate" value="${ date }">  
+								</td>
+								</tr>
+							<tr>
+								<td>						
+									<button type="submit" id="submit">수정</button>
+								</td>
+							</tr>			
+						</tbody>			
+					</table>
+				</form>
+			</section>
+			<hr />
+=======
 			<div class="container-fluid">
 				<div class="row">
 					<div class="card d-inline-block h-100 shadow mt-3 mb-3 overflow-hidden">
@@ -75,6 +128,7 @@
 					</div>
 				</div>
 			</div>
+>>>>>>> branch 'master' of https://github.com/Kimgue/WebProject.git
 		</div>
 		<!-- 메인 컨텐츠 끝 -->
 			

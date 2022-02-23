@@ -88,6 +88,7 @@
 	</div>
 	<!-- 페이지 상단 버튼 -->
 	<jsp:include page="PageTopBtn.jsp" flush="false"/>
+
     <script src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="resources/js/sb-admin-2.min.js"></script>	
 </body>

@@ -8,11 +8,12 @@ import org.apache.ibatis.annotations.Param;
 
 import com.hungpick.dto.Criteria;
 import com.hungpick.dto.Notice;
+import com.hungpick.dto.adminVo;
 
 
 public interface IDaoNotice {
 
-	Notice sltOneNoice(@Param("adminCode")String adminCode,@Param("noticeCode")String noticeCode); // 단건조회
+	adminVo sltOneNoice(@Param("adminCode")String adminCode,@Param("noticeCode")String noticeCode); // 단건조회
 
 	List<Notice> listPage(Criteria cri)throws Exception;
 	
