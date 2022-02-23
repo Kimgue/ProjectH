@@ -45,30 +45,30 @@
 						<tbody>
 							<tr>
 								<td>
-									<label for="adminCode" id="adminCode">작성자 번호 :${ person.adminCode }</label>
-									<input type="hidden" id="adminCode" name="adminCode" value="${person.adminCode }">
-									<input type="hidden" id="noticeCode" name="noticeCode" value="${ person.noticeCode }">
+									<label for="adminCode" id="adminName">작성자 이름 :${ person.adminDto.adminName }</label>
+									<input type="hidden" id="adminCode" name="adminCode" value="${person.mbrDto.adminCode }">
+									<input type="hidden" id="noticeCode" name="noticeCode" value="${ person.mbrDto.noticeCode }">
 							</tr>	
 							<tr>
 								<td>
-									<label for="noticeTitle">제목 : </label><input type="text" id="noticeTitle" name="noticeTitle"  value=${person.noticeTitle } >
+									<label for="noticeTitle">제목 : </label><input type="text" id="noticeTitle" name="noticeTitle"  value=${person.mbrDto.noticeTitle } >
 								</td>
 							</tr>	
 							<tr>
 								<td>
-									<label for="noticeContent">내용 : </label><textarea id="noticeContent" name="noticeContent">${person.noticeContent }</textarea>
+									<label for="noticeContent">내용 : </label><textarea id="noticeContent" name="noticeContent">${person.mbrDto.noticeContent }</textarea>
 								</td>
 							</tr>
 							<tr>
 								<td>
 									<label for="noticeImg"> 사진 :</label> 
-									<img src="<c:url value='${person.noticeImg }' />" alt="${person.noticeImg }" height="150" width="150" onError="this.style.visibility='hidden'" />
-									<input type="hidden" id="noticeImg" name="noticeImg" value="${person.noticeImg }">
+									<img src="<c:url value='${person.mbrDto.noticeImg }' />" alt="${person.mbrDto.noticeImg }" height="150" width="150" onError="this.style.visibility='hidden'" />
+									<input type="hidden" id="noticeImg" name="noticeImg" value="${person.mbrDto.noticeImg }">
 								</td>
 							</tr>
 							<tr>
 								<td> 
-									<label for="noticeDate" id="noticeDate">작성날짜 : ${ person.noticeDate }</label>
+									<label for="noticeDate" id="noticeDate">작성날짜 : ${ person.mbrDto.noticeDate }</label>
 									<input type="hidden" id="noticeDate" name="noticeDate" value="${ date }">  
 								</td>
 								</tr>

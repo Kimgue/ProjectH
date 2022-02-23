@@ -22,7 +22,7 @@
 		<typeAlias type="com.hungpick.dto.QuestionVo" alias="questionVo"></typeAlias>
 		<typeAlias type="com.hungpick.dto.AnswerDto" alias="answerDto"></typeAlias>
 		<typeAlias type="com.hungpick.dto.AnswerVo" alias="answerVo"></typeAlias>
-		
+		<typeAlias type="com.hungpick.dto.adminVo" alias="adminVo"></typeAlias>
 		
 		<typeAlias type="com.hungpick.dto.UserVo" alias="userVo"></typeAlias>
 		<typeAlias type="com.hungpick.dto.MemberDto" alias="memberDto"></typeAlias>

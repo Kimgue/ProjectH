@@ -46,7 +46,7 @@
 							<tbody>
 								<tr>
 									<td>
-										<label for="memberCode" id="memberCode">작성자 번호 :${ sltOne.qesDto.memberCode }</label>
+										<label for="memberCode" id="memberCode">작성자 번호 :${ sltOne.memberDto.memberName }</label>
 										<input type="hidden" id="memberCode" name="memberCode" value="${ sltOne.qesDto.memberCode }">
 										<input type="hidden" id="qstnCode" name="qstnCode" value="${ sltOne.qesDto.qstnCode }">
 								</tr>	

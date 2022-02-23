@@ -49,7 +49,7 @@
                         </tr>
                      </thead>
                      <tr>
-                        <td><label for="memberCode" id="memberCode">작성자 번호 :${ member }</label> 
+                        <td><label for="memberName" id="memberName">작성자 이름 :${ sltOne.memberDto.memberName }</label> 
                         <input type="hidden" id="memberCode" name="memberCode" value="${ member }"> 
                         <input type="hidden" id="qstnCode" name="qstnCode" value="qstnCode">
                         <input type="hidden" id="qstnConfirm" name="qstnConfirm" value="n"/>

@@ -41,10 +41,10 @@
 					</tr>
 					<c:forEach var="list" items="${ listpage }">
 						<tr>
-							<td><c:out value="${ list.noticeCode}" /></td>
-							<td><a href="view2?adminCode=${ list.adminCode }&noticeCode=${list.noticeCode}"><c:out value="${list.noticeTitle}" /></a></td>
-							<td><c:out value="${list.adminCode }"></c:out>
-							<td><c:out value="${list.noticeDate}" /></td>
+							<td><c:out value="${ list.mbrDto.noticeCode}" /></td>
+							<td><a href="view2?adminCode=${ list.mbrDto.adminCode }&noticeCode=${list.mbrDto.noticeCode}"><c:out value="${list.mbrDto.noticeTitle}" /></a></td>
+							<td><c:out value="${list.adminDto.adminName }"></c:out>
+							<td><c:out value="${list.mbrDto.noticeDate}" /></td>
 						</tr>
 					</c:forEach>
 				</table>	

@@ -3,13 +3,37 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.hungpick.dao.IDaoNotice"> <!-- "<" 는 문법오류나서  "<![CDATA[ < ]]>" 이렇게 해야한다. -->
+	
+	<resultMap type="mbrDto" id="mbrDtoRm">
+	<id column="ADMIN_CODE" property="adminCode"/>
+	<id column="NOTICE_CODE" property="noticeCode"/>
+    <result column="NOTICE_TITLE" property="noticeTitle"/>
+    <result column="NOTICE_CONTENT" property="noticeContent"/>
+    <result column="NOTICE_DATE" property="noticeDate"/>
+    <result column="NOTICE_IMG" property="noticeImg"/>
+    
+	</resultMap>
+ 
+	<resultMap type="adminDto" id="adminDtoRm">
+	<id column="ADMIN_CODE" property="adminCode"/>
+    <result column="ADMIN_ID" property="adminId"/>
+    <result column="ADMIN_PW" property="adminPw"/>
+    <result column="ADMIN_NAME" property="adminName"/>
 
-	<select id="sltOneNoice" parameterType="String" resultType="mbrDto">
-		SELECT * 
-		FROM 
-		NOTICE
-		WHERE ADMIN_CODE = #{ adminCode } AND
-		NOTICE_CODE = #{ noticeCode } 
+	</resultMap>
+	
+	<resultMap type="adminVo" id="adminVoRm">
+		<collection property="mbrDto" resultMap="mbrDtoRm"></collection >
+        <collection property="adminDto" resultMap="adminDtoRm"></collection >
+	</resultMap>
+	
+	<select id="sltOneNoice" parameterType="String" resultMap="adminVoRm">
+		SELECT n.*,a.* 
+		FROM NOTICE n
+		join ADMINS a
+		on n.admin_Code = a.admin_Code
+		WHERE n.ADMIN_CODE = #{ adminCode } AND
+		n.NOTICE_CODE = #{ noticeCode } 
 	</select>
 	
 	<select id="listCount" resultType="int">
@@ -20,9 +44,12 @@
 		]]>
 	</select>
 	
-	<select id="listPage" resultType="mbrDto" parameterType="Criteria">
+	<select id="listPage" resultMap="adminVoRm" parameterType="Criteria">
 		SELECT  * FROM (   SELECT   ROW_NUMBER() OVER(ORDER BY NOTICE_CODE DESC)
-		 NUM, A.* FROM NOTICE A ORDER BY NOTICE_CODE) 
+		NUM, A.*, b.admin_Name FROM NOTICE A 
+		join ADMINS b 
+        on A.admin_Code = b.admin_Code
+        ORDER BY NOTICE_CODE) 
 		WHERE NUM BETWEEN #{rowStart} AND #{rowEnd}
 		ORDER BY NOTICE_CODE DESC
 	</select>

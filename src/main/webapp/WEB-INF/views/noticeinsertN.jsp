@@ -52,7 +52,7 @@
 							</thead>		
 								<tr>
 									<td>
-										<label for="adminCode" id="adminCode">작성자 번호 :${ adminCode }</label>
+										<label for="adminCode" id="adminName">작성자 이름 :${ person.adminDto.adminName }</label>
 										<input type="hidden" id="adminCode" name="adminCode" value="${ adminCode }">
 										<input type="hidden" id="noticeCode" name="noticeCode" value="noticeCode">
 								</tr>	
