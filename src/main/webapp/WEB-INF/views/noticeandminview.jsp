@@ -36,25 +36,25 @@
 						<div class="card-body">
 							<div class="card bg-gradient-secondary d-inline-block w-100 h-100 shadow mt-3">
 								<div class="card-body">
-									<div style="color:#fff;" class="h4">${ noticecontent.noticeTitle }</div>
+									<div style="color:#fff;" class="h4">${ noticecontent.mbrDto.noticeTitle }</div>
 								</div>
 							</div>
 							<div class="card d-inline-block w-100 h-100 shadow mb-3">
 								<div class="card-body">
 									<div class="d-flex justify-content-between">
 										<div>
-											${noticecontent.adminCode}
+											${noticecontent.mbrDto.adminCode}
 										</div>
 										<div>
-											${noticecontent.noticeDate}
+											${noticecontent.mbrDto.noticeDate}
 										</div>
 									</div>
 									<hr>
 									<div>
-										${noticecontent.noticeContent}
+										${noticecontent.mbrDto.noticeContent}
 									</div>
 									<div>
-										<img src="<c:url value='${noticecontent.noticeImg }' />" alt="${noticecontent.noticeImg }" height="150" width="150" onError="this.style.visibility='hidden'" />
+										<img src="<c:url value='${noticecontent.mbrDto.noticeImg }' />" alt="${noticecontent.mbrDto.noticeImg }" height="150" width="150" onError="this.style.visibility='hidden'" />
 									</div>
 								</div>
 							</div>							

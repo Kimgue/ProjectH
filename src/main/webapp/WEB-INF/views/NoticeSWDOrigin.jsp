@@ -46,11 +46,11 @@
 					<c:forEach var="list" items="${listpage}">
 						<tr>
 							<td><c:out value="${list.noticeCode}" /></td>
-							<td><a href="javascript:view2('${ list.adminCode }','${list.noticeCode}')"><c:out value="${ list.noticeTitle }" /></a></td>
-							<td><c:out value="${list.adminCode }"></c:out>
-							<td><c:out value="${list.noticeDate}" /></td>	
-							<td><a href="javascript:Noticeupdatelist('${ list.adminCode }','${list.noticeCode}' )">수정</a></td>
-							<td><a href="javascript:Noticedelete('${ list.adminCode }','${list.noticeCode}')">삭제</a></td>
+							<td><a href="javascript:view2('${ list.mbrDto.adminCode }','${list.mbrDto.noticeCode}')"><c:out value="${ list.mbrDto.noticeTitle }" /></a></td>
+							<td><c:out value="${list.adminDto.adminName }"></c:out>
+							<td><c:out value="${list.mbrDto.noticeDate}" /></td>	
+							<td><a href="javascript:Noticeupdatelist('${ list.mbrDto.adminCode }','${list.mbrDto.noticeCode}' )">수정</a></td>
+							<td><a href="javascript:Noticedelete('${ list.mbrDto.adminCode }','${list.mbrDto.noticeCode}')">삭제</a></td>
 						</tr>
 					</c:forEach>
 				</table>	

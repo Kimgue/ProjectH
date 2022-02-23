@@ -44,9 +44,9 @@
 							<form id="noticeupdate" role="form" action="Noticeupdate" method="post" enctype="multipart/form-data">
 								<div class="noticeGrid">
 									<div class="one">
-										<input type="text" class="form-control mb-3" id="noticeTitle" name="noticeTitle" value="${person.noticeTitle}">
-										<input type="hidden" id="adminCode" name="adminCode" value="${person.adminCode }">
-										<input type="hidden" id="noticeCode" name="noticeCode" value="${ person.noticeCode }">
+										<input type="text" class="form-control mb-3" id="noticeTitle" name="noticeTitle" value="${person.mbrDto.noticeTitle}">
+										<input type="hidden" id="adminCode" name="adminCode" value="${person.mbrDto.adminCode }">
+										<input type="hidden" id="noticeCode" name="noticeCode" value="${ person.mbrDto.noticeCode }">
 										<input type="hidden" id="noticeDate" name="noticeDate" value="${ date }">
 									</div>
 									<div class="two">
@@ -54,8 +54,8 @@
 									</div>
 									<input type="file" id="input-image" name="uploadfile" required="required">
 									<div class="three">
-										<img style="width: 350px; height:200px;" class="img img-fluid img-thumbnail mb-3" id="preview-image" src="${person.noticeImg}">
-										<input type="hidden" id="noticeImg" name="noticeImg" value="${person.noticeImg}">
+										<img style="width: 350px; height:200px;" class="img img-fluid img-thumbnail mb-3" id="preview-image" src="${person.mbrDto.noticeImg}">
+										<input type="hidden" id="noticeImg" name="noticeImg" value="${person.mbrDto.noticeImg}">
 									</div>
 									<div class="four">
 										<div class="float-left">

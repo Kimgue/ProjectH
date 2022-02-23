@@ -28,7 +28,8 @@
 
 	<select id="sltOneNoice" parameterType="String"
 		resultMap="adminVoRm">
-		SELECT n.*,a.*
+		SELECT n.NOTICE_CODE,n.NOTICE_TITLE,n.NOTICE_CONTENT,TO_CHAR(n.NOTICE_DATE,'YYYY"년" MM"월" DD"일" HH24"시" MI"분"') AS NOTICE_DATE,
+		n.NOTICE_IMG,a.ADMIN_CODE,a.ADMIN_ID,a.ADMIN_PW,a.ADMIN_NAME
 		FROM NOTICE n
 		join ADMINS a
 		on n.admin_Code = a.admin_Code
@@ -47,7 +48,9 @@
 	<select id="listPage" resultMap="adminVoRm"
 		parameterType="Criteria">
 		SELECT * FROM ( SELECT ROW_NUMBER() OVER(ORDER BY NOTICE_CODE DESC)
-		NUM, A.*, b.admin_Name FROM NOTICE A
+		NUM, A.ADMIN_CODE,A.NOTICE_CODE,A.NOTICE_TITLE,A.NOTICE_CONTENT,TO_CHAR(A.NOTICE_DATE,'YYYY"년" MM"월" DD"일" HH24"시" MI"분"') AS NOTICE_DATE,
+		A.NOTICE_IMG,
+		 b.admin_Name FROM NOTICE A
 		join ADMINS b
 		on A.admin_Code = b.admin_Code
 		ORDER BY NOTICE_CODE)

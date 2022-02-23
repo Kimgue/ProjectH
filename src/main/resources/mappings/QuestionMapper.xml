@@ -5,7 +5,9 @@
 <mapper namespace="com.hungpick.dao.IDaoQuestion"> <!-- "<" 는 문법오류나서  "<![CDATA[ < ]]>" 이렇게 해야한다. -->
 
 	<select id="sltOne" parameterType="String" resultMap="QuestionVoRm">
-			SELECT q.*,m.* 
+			SELECT q.MEMBER_CODE, q.QSTN_CODE, q.QSTN_TITLE, q.QSTN_CONTENT, TO_CHAR(q.QSTN_DATE,'YYYY"년" MM"월" DD"일" HH24"시" MI"분"') AS QSTN_DATE,
+			q.QSTN_CONFIRM , q.QSTN_IMG,
+			m.MEMBER_CODE, m.MEMBER_ID, m. MEMBER_PW, m.MEMBER_NAME, m.MEMBER_NICKNAME
 			FROM QUESTION q
 			join members m
 			on q.member_Code = m.member_Code
@@ -62,7 +64,8 @@
 	<select id="listPage" resultMap="QuestionVoRm" parameterType="map">
 		SELECT  * FROM (   
 		SELECT   ROW_NUMBER() OVER(ORDER BY QSTN_CODE DESC)
-		 NUM, A.*,M.MEMBER_NAME FROM QUESTION A 
+		 NUM, A.MEMBER_CODE,A.QSTN_CODE,A.QSTN_TITLE,A.QSTN_CONTENT,TO_CHAR(A.QSTN_DATE,'YYYY"년" MM"월" DD"일" HH24"시" MI"분"') AS QSTN_DATE,A.QSTN_CONFIRM,A.QSTN_IMG
+		 ,M.MEMBER_NAME FROM QUESTION A 
         JOIN MEMBERS M
         ON A.MEMBER_CODE = M.MEMBER_CODE
         ORDER BY QSTN_CODE DESC)  
