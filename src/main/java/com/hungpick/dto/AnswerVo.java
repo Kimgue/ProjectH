@@ -4,6 +4,14 @@ public class AnswerVo {
 
 	private AnswerDto answerDto;
 	private Question qesDto;
+	private MemberDto memberDto;
+	
+	public MemberDto getMemberDto() {
+		return memberDto;
+	}
+	public void setMemberDto(MemberDto memberDto) {
+		this.memberDto = memberDto;
+	}
 	public AnswerDto getAnswerDto() {
 		return answerDto;
 	}

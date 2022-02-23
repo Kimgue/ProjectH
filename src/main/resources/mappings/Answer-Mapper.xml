@@ -14,13 +14,18 @@
     <result column="ANSWER_DATE" property="answerDate"/>
 	</resultMap>
 	
-	<!--  <resultMap type="adminDto" id="adminDtoRm">
-	<id column="ADMIN_Code" property="adminCode"/>
-    <result column="ADMIN_ID" property="adminId"/>
-    <result column="ADMIN_PW" property="adminPw"/>
-    <result column="ADMIN_NAME" property="adminName"/>
+	<resultMap type="memberDto" id="memberDtoRm">
+	<id column="MEMBER_CODE" property="memberCode"/>
+    <result column="MEMBER_ID" property="memberId"/>
+    <result column="MEMBER_PW" property="memberPw"/>
+    <result column="MEMBER_NAME" property="memberName"/>
+    <result column="MEMBER_NICKNAME" property="memberNickname"/>
+    <result column="MEMBER_EMAIL" property="memberEmail"/>
+    <result column="MEMBER_NUMBER" property="memberNumber"/>
+     <result column="MEMBER_DATE" property="memberDate"/>
+      <result column="HOLD_POINT" property="holdPoint"/>
 	</resultMap>
- -->
+
 	<resultMap type="qesDto" id="QuestionRm">
 	<id column="Member_Code" property="memberCode"/>
 	<id column="QSTN_CODE" property="qstnCode"/>
@@ -34,6 +39,7 @@
 	<resultMap type="answerVo" id="AnswerVoRm">
 		<collection property="answerDto" resultMap="AnswerDtoRm"></collection >
         <collection property="qesDto" resultMap="QuestionRm"></collection >
+         <collection property="memberDto" resultMap="memberDtoRm"></collection >
 	</resultMap>
 	
 	<select id="selectQuestionview" parameterType="String" resultMap="AnswerVoRm">
@@ -53,7 +59,9 @@
 	<select id="selectN" resultMap="AnswerVoRm"  parameterType="Criteria">
 	 SELECT * FROM (   
 		SELECT   ROW_NUMBER() OVER(ORDER BY q.QSTN_CODE DESC)
-		NUM, q.* FROM QUESTION q 
+		NUM, q.*,M.member_Name FROM QUESTION q 
+        join members M
+        on q.member_Code = m.member_Code
         WHERE q.QSTN_CONFIRM = 'n'
         ORDER BY q.QSTN_CODE DESC)  
 		WHERE NUM BETWEEN #{ rowStart }

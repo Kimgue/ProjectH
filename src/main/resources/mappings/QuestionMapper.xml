@@ -4,12 +4,13 @@
 
 <mapper namespace="com.hungpick.dao.IDaoQuestion"> <!-- "<" 는 문법오류나서  "<![CDATA[ < ]]>" 이렇게 해야한다. -->
 
-	<select id="sltOne" parameterType="String" resultType="qesDto">
-			SELECT * 
-			FROM 
-			QUESTION
-			WHERE MEMBER_CODE = #{ memberCode } AND
-			QSTN_CODE = #{ qstnCode  } 
+	<select id="sltOne" parameterType="String" resultMap="QuestionVoRm">
+			SELECT q.*,m.* 
+			FROM QUESTION q
+			join members m
+			on q.member_Code = m.member_Code
+			WHERE q.MEMBER_CODE = #{ memberCode } AND
+			q.QSTN_CODE = #{ qstnCode  } 
 	</select>
 	
 	<select id="answerCount" resultType="int" parameterType="String">
@@ -31,16 +32,16 @@
 	</select>
 	
 	
-	<resultMap type="memberDto" id="MemberDtoRm">
-	<id column="Member_Code" property="memberCode"/>
+	<resultMap type="memberDto" id="memberDtoRm">
+	<id column="MEMBER_CODE" property="memberCode"/>
     <result column="MEMBER_ID" property="memberId"/>
     <result column="MEMBER_PW" property="memberPw"/>
     <result column="MEMBER_NAME" property="memberName"/>
     <result column="MEMBER_NICKNAME" property="memberNickname"/>
     <result column="MEMBER_EMAIL" property="memberEmail"/>
     <result column="MEMBER_NUMBER" property="memberNumber"/>
-    <result column="MEMBER_DATE" property="memberDate"/>
-    <result column="HOLD_POINT" property="memberPoint"/>
+     <result column="MEMBER_DATE" property="memberDate"/>
+      <result column="HOLD_POINT" property="holdPoint"/>
 	</resultMap>
  
 	<resultMap type="qesDto" id="QuestionRm">
@@ -54,7 +55,7 @@
 	</resultMap>
 	
 	<resultMap type="questionVo" id="QuestionVoRm">
-		<collection property="memberDto" resultMap="MemberDtoRm"></collection >
+		<collection property="memberDto" resultMap="memberDtoRm"></collection >
         <collection property="qesDto" resultMap="QuestionRm"></collection >
 	</resultMap>
 	
