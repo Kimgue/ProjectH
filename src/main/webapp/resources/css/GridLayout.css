@@ -65,8 +65,38 @@ article {
 	grid-auto-flow: row;
 }
 
-.gifticonGrid {
-	display: grid;
-	grid-template-columns: 500px;
-	grid-template-rows: 800px;
+.insertGrid {
+  display: grid;
+  grid-template-columns: 300px 350px;
+  grid-template-rows: 200px auto auto;
+  grid-gap:16px;
+}
+
+.one {
+	grid-column: 1;
+	grid-row: 1;
+}
+
+.two {
+	grid-column: 1/2;
+	grid-row: 2;
+}
+
+.three {
+	grid-column: 2;
+	grid-row: 1;
+}
+
+.four {
+	grid-column:1;
+	grid-row: 3;
+}
+
+.five {
+	grid-column:2;
+	grid-row: 3;
+}
+
+.inputWidth {
+	width:320px;
 }

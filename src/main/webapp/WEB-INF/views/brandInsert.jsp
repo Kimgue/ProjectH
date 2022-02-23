@@ -18,6 +18,7 @@
 	<script src="https://kit.fontawesome.com/730c440743.js" crossorigin="anonymous"></script>
 	<script src="resources/js/jquery-3.4.1.min.js"></script>
 	<script src="resources/js/brand/brandInsert.js"></script>
+	<script src="resources/js/textareaHeight.js"></script>
     
 </head>
 
@@ -33,31 +34,42 @@
 					
 		<!-- 메인 -->
 		<div id="content">
-			<div class="gifticonGrid text-center">
-				<div class="card d-inline-block shadow h-100 m-3">
-					<div class="card-body">
-						<div class="h1 mb-3">
-							브랜드 등록
+			<div class="container-fluid">
+				<div class="row">
+					<div class="card d-inline-block h-100 shadow mt-3 mb-3 overflow-hidden">
+						<div class="card-body">
+							<div class="h1 mb-3">
+								브랜드 등록
+							</div>
+							<form id="insertForm" action="insertBrand" method="post" enctype="multipart/form-data">
+								<div class="insertGrid">
+									<div class="one">
+										<input type="text" class="form-control mb-2" id="brandName" name="brandName" placeholder="브랜드 이름">
+										<textarea style="min-height:158px;" class="form-control" id="brandLink" name="brandLink" placeholder="브랜드 링크"></textarea>
+									</div>
+									<div class="two">
+										<textarea onkeydown="resize(this)" onkeyup="resize(this)" style="width:665px; min-height:180px;" class="form-control" id="brandDescription" name="brandDescription" placeholder="브랜드 설명"></textarea>
+									</div>
+									<input type="file" id="input-image" name="uploadfile" required="required">
+									<div class="three">
+										<img style="width: 350px;" class="img img-fluid img-thumbnail mb-3" id="preview-image" src="">
+										<input type="hidden" id="brandImg" name="brandImg">
+									</div>
+									<div class="four">
+										<div class="float-left">
+											<label for="input-image">
+												<i style="width:150px; height:38px;" class="fas fa-solid fa-file-image btn btn-warning"> 파일 첨부</i>
+											</label>
+										</div>
+									</div>
+									<div class="five">
+										<div class="float-right">
+											<input style="width:150px;" type="button" class="btn btn-warning" value="등록" onclick="insert()">
+										</div>
+									</div>
+								</div>
+							</form>
 						</div>
-						<form id="insertForm" action="insertBrand" method="post" enctype="multipart/form-data">
-							<input type="text" class="form-control mb-3" id="brandName" name="brandName" placeholder="브랜드 이름">
-							<input type="text" class="form-control mb-3" id="brandDescription" name="brandDescription" placeholder="브랜드 설명">
-							<input type="text" class="form-control mb-3" id="brandLink" name="brandLink" placeholder="브랜드 링크">
-							
-							<img style="width: 500px;" class="img img-fluid img-thumbnail mb-3" id="preview-image" src="">
-							<input type="hidden" id="brandImg" name="brandImg">
-								
-							<div>
-								<label for="input-image">
-									<i class="fas fa-solid fa-file-image btn btn-warning"> 파일 첨부</i>
-								</label>
-							</div>
-							<div>
-								<input type="button" class="btn btn-warning" value="등록" onclick="insert()">
-							</div>
-								<input type="file" id="input-image" name="uploadfile" required="required">
-							
-						</form>
 					</div>
 				</div>
 			</div>

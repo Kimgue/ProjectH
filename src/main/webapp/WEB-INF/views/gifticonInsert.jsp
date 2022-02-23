@@ -18,6 +18,7 @@
 	<script src="https://kit.fontawesome.com/730c440743.js" crossorigin="anonymous"></script>
 	<script src="resources/js/jquery-3.4.1.min.js"></script>
 	<script src="resources/js/gifticon/gifticonInsert.js"></script>
+	<script src="resources/js/textareaHeight.js"></script>
     
 </head>
 
@@ -33,39 +34,48 @@
 					
 		<!-- 메인 -->
 		<div id="content">
-			<div class="gifticonGrid text-center">
-				<div class="card d-inline-block shadow h-100 m-3">
-					<div class="card-body">
-						<div class="h1 mb-3">
-							기프티콘 등록
+			<div class="container-fluid">
+				<div class="row">
+					<div class="card d-inline-block h-100 shadow mt-3 mb-3 overflow-hidden">
+						<div class="card-body">
+							<div class="h1 mb-3">
+								기프티콘 등록
+							</div>
+							<form id="insertForm" action="gifticonInsertSubmit" method="post" enctype="multipart/form-data">
+								<div class="insertGrid">
+									<div class="one">
+										<input type="text" class="form-control mb-3" id="gifticonName" name="gifticonName" placeholder="기프티콘 이름">
+										<input type="text" class="form-control mb-3" id="gifticonPrice" name="gifticonPrice" placeholder="기프티콘 가격">
+										<select class="custom-select mb-3 gifticonInputWidth" id="brandCode" name="brandCode" onchange="brandSelect()">
+											<option value="" selected disabled>브랜드 선택</option>
+											<c:forEach var="brand" items="${brand}">
+											<option value="${brand.brandCode}">${brand.brandName}</option>
+											</c:forEach>
+										</select>
+										<select class="custom-select mb-3" id="menuCode" name="menuCode" onchange="menuSelect()">
+											<option value="" selected disabled>-- 브랜드를 먼저 선택해주세요 --</option>
+										</select>										
+									</div>
+									<input type="file" id="input-image" name="uploadfile" required="required">
+									<div class="three">
+										<img style="width: 350px;" class="img img-fluid img-thumbnail mb-3" id="preview-image" src="">
+										<input type="hidden" id="gifticonImg" name="gifticonImg">
+									</div>
+									<div class="four mt-3">
+										<div class="float-left">
+											<label for="input-image">
+												<i style="width:150px; height:38px;" class="fas fa-solid fa-file-image btn btn-warning"> 파일 첨부</i>
+											</label>
+										</div>
+									</div>
+									<div class="five mt-3">
+										<div class="float-right">
+											<input style="width:150px;" type="button" class="btn btn-warning" value="등록" onclick="insert()">
+										</div>
+									</div>
+								</div>
+							</form>
 						</div>
-						<form id="insertForm" action="gifticonInsertSubmit" method="post" enctype="multipart/form-data">
-							<input type="text" class="form-control mb-3" id="gifticonName" name="gifticonName" placeholder="기프티콘 이름">
-							<input type="text" class="form-control mb-3" id="gifticonPrice" name="gifticonPrice" placeholder="기프티콘 가격">
-							<select class="custom-select mb-3" id="brandCode" name="brandCode" onchange="brandSelect()">
-								<option value="" selected disabled>브랜드 선택</option>
-								<option value="1">맥도날드</option>
-								<option value="2">롯데리아</option>
-							</select>
-							
-							<select class="custom-select mb-3" id="menuCode" name="menuCode" onchange="menuSelect()">
-								<option value="" selected disabled>-- 브랜드를 먼저 선택해주세요 --</option>
-							</select>
-							
-							<img style="width: 500px;" class="img img-fluid img-thumbnail mb-3" id="preview-image" src="">
-							<input type="hidden" id="gifticonImg" name="gifticonImg">
-								
-							<div>
-								<label for="input-image">
-									<i class="fas fa-solid fa-file-image btn btn-warning"> 파일 첨부</i>
-								</label>
-							</div>
-							<div>
-								<input type="button" class="btn btn-warning" value="등록" onclick="insert()">
-							</div>
-								<input type="file" id="input-image" name="uploadfile" required="required">
-							
-						</form>
 					</div>
 				</div>
 			</div>

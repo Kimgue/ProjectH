@@ -312,7 +312,8 @@ input[type="checkbox"] {
 
 textarea {
   overflow: auto;
-  resize: vertical;
+  resize: none;
+  border: none;
 }
 
 fieldset {
@@ -11500,5 +11501,4 @@ body.sidebar-toggled footer.sticky-footer {
 	-webkit-box-orient: vertical;
 	vertical-align: middle;
 }
-
 

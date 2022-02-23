@@ -62,7 +62,7 @@
 				<c:otherwise>
 					<li class="nav-item">
 						<a class="nav-link collapsed" href="userLogin">
-							<i class="fas fa-solid fa-right-to-bracket"></i><span> 로그인</span>					
+							<i class="fas fa-solid fa-right-to-bracket"></i><span class="align-middle"> 로그인</span>
 						</a>
 						<a class="nav-link collapsed" href="userSignUp">
 							<i class="fas fa-user fa-sm fa-fw"></i><span>회원가입</span>					

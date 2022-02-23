@@ -18,6 +18,7 @@
 	<script src="https://kit.fontawesome.com/730c440743.js" crossorigin="anonymous"></script>
 	<script src="resources/js/jquery-3.4.1.min.js"></script>
 	<script src="resources/js/menu/menuInsert.js"></script>
+	<script src="resources/js/textareaHeight.js"></script>
     
 </head>
 
@@ -33,38 +34,49 @@
 					
 		<!-- 메인 -->
 		<div id="content">
-			<div class="gifticonGrid text-center">
-				<div class="card d-inline-block shadow h-100 m-3">
-					<div class="card-body">
-						<div class="h1 mb-3">
-							메뉴 등록
+			<div class="container-fluid">
+				<div class="row">
+					<div class="card d-inline-block h-100 shadow mt-3 mb-3 overflow-hidden">
+						<div class="card-body">
+							<div class="h1 mb-3">
+								메뉴 등록
+							</div>
+							<form id="insertForm" action="insertMenu" method="post" enctype="multipart/form-data">
+								<div class="insertGrid">
+									<div class="one">
+										<input type="text" class="form-control mb-3" id="menuName" name="menuName" placeholder="메뉴 이름">
+										<input type="text" class="form-control mb-3" id="menuPrice" name="menuPrice" placeholder="메뉴 가격">
+										<input type="text" class="form-control mb-3" id="menuIngredients" name="menuIngredients" placeholder="메뉴 재료">
+										<select class="custom-select mb-3 gifticonInputWidth" id="brandCode" name="brandCode" onchange="brandSelect()">
+											<option value="" selected disabled>브랜드 선택</option>
+											<c:forEach var="brand" items="${brand}">
+											<option value="${brand.brandCode}">${brand.brandName}</option>
+											</c:forEach>
+										</select>
+									</div>
+									<div class="two">
+										<textarea onkeydown="resize(this)" onkeyup="resize(this)" style="width:665px; min-height:180px;" class="form-control" id="menuDescription" name="menuDescription" placeholder="메뉴 설명"></textarea>
+									</div>
+									<input type="file" id="input-image" name="uploadfile" required="required">
+									<div class="three">
+										<img style="width: 350px;" class="img img-fluid img-thumbnail mb-3" id="preview-image" src="">
+										<input type="hidden" id="menuImg" name="menuImg">
+									</div>
+									<div class="four">
+										<div class="float-left">
+											<label for="input-image">
+												<i style="width:150px; height:38px;" class="fas fa-solid fa-file-image btn btn-warning"> 파일 첨부</i>
+											</label>
+										</div>
+									</div>
+									<div class="five">
+										<div class="float-right">
+											<input style="width:150px;" type="button" class="btn btn-warning" value="등록" onclick="insert()">
+										</div>
+									</div>
+								</div>
+							</form>
 						</div>
-						<form id="insertForm" action="insertMenu" method="post" enctype="multipart/form-data">
-							<input type="text" class="form-control mb-3" id="menuName" name="menuName" placeholder="메뉴 이름">
-							<input type="text" class="form-control mb-3" id="menuPrice" name="menuPrice" placeholder="메뉴 가격">
-							<input type="text" class="form-control mb-3" id="menuDescription" name="menuDescription" placeholder="메뉴 설명">
-							<input type="text" class="form-control mb-3" id="menuIngredients" name="menuIngredients" placeholder="메뉴 재료">
-							<select class="custom-select mb-3" id="brandCode" name="brandCode" onchange="brandSelect()">
-								<option value="" selected disabled>브랜드 선택</option>
-								<c:forEach var="brand" items="${brand}">
-								<option value="${brand.brandCode}">${brand.brandName}</option>
-								</c:forEach>
-							</select>
-							
-							<img style="width: 500px;" class="img img-fluid img-thumbnail mb-3" id="preview-image" src="">
-							<input type="hidden" id="menuImg" name="menuImg">
-								
-							<div>
-								<label for="input-image">
-									<i class="fas fa-solid fa-file-image btn btn-warning"> 파일 첨부</i>
-								</label>
-							</div>
-							<div>
-								<input type="button" class="btn btn-warning" value="등록" onclick="insert()">
-							</div>
-								<input type="file" id="input-image" name="uploadfile" required="required">
-							
-						</form>
 					</div>
 				</div>
 			</div>
