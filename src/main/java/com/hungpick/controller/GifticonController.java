@@ -8,12 +8,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.hungpick.dto.GifticonDto;
 import com.hungpick.service.IBrandService;
 import com.hungpick.service.IGifticonService;
+import com.hungpick.service.IMenuService;
 
 @Controller
 public class GifticonController {
 	
 	@Autowired
 	private IBrandService brandService;
+	
+	@Autowired
+	private IMenuService menuService;
 	
 	@Autowired
 	private IGifticonService gifticonService;
@@ -53,6 +57,7 @@ public class GifticonController {
 	@RequestMapping("gifticonInsert")
 	public void gifticonInsert(Model model) {
 		model.addAttribute("brand", brandService.sltMulti());
+		model.addAttribute("menu", menuService.sltMulti());
 	}
 	
 	/*--------------------- 기프티콘 등록 완료 눌렀을 때 ---------------------*/

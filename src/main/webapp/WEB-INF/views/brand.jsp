@@ -52,14 +52,14 @@
 								<div class="h4 font-weight-bold text-gray-800 m-3 textHeight">
 									<input type="hidden" id="val${brand.brandCode}" value="https://map.kakao.com/link/search/${brand.brandName}">
 									<%-- <a href="https://map.kakao.com/link/search/${brand.brandName}" target="_blank">가까운 매장찾기</a> --%>
-									<a class="store" id="brand${brand.brandCode}" href="#">
+									<a class="store" id="brand${brand.brandCode}" href="#" onclick="return false;">
 										근처 매장 검색
 									</a>
 								</div>
 
 								<div class="h4 font-weight-bold text-gray-800 m-3 textHeight">
 									<input type="hidden" id="menuVal${brand.brandCode}" value="menuResultTest?brandCode=${brand.brandCode}&menuPrice=&menuName=">										
-									<a class="menu" id="menu${brand.brandCode}" href="#">
+									<a class="menu" id="menu${brand.brandCode}" href="#" onclick="return false;">
 										메뉴 보기
 									</a>
 								</div>
@@ -67,36 +67,37 @@
 					</div>
 				</c:forEach>
 			</div>
-			
-			<div class="w-75 float-right">
-				<div id="store" class="h-auto m-3 ml-n1 mb-n1">
-				<div class="card shadow h-100 py-2">
-					<div class="card-body">
-					<input type="button" id="storeClose" class="btn-primary border-0 rounded-top" value="닫기">
-						<div class="col text-center">
-						<fieldset>
-							<iframe class="border-0 embed-responsive" id="nearStore" src="" height="500"></iframe>
-						</fieldset>
+			<div class="brand-fix">
+				<div class="w-100">
+					<div id="store" class="h-auto m-3 ml-n1">
+					<div class="card shadow h-100 py-2 m-3">
+						<div class="card-body">
+						<input type="button" id="storeClose" class="btn-primary border-0 rounded-top" value="닫기">
+							<div class="col text-center">
+							<fieldset>
+								<iframe class="border-0 embed-responsive" id="nearStore" src="" height="340"></iframe>
+							</fieldset>
+							</div>
 						</div>
 					</div>
+					</div>
 				</div>
+				
+				<div class="w-100">
+					<div id="menu" class="h-auto m-3 ml-n1">
+					<div class="card shadow h-100 py-2 m-3">
+						<div class="card-body">
+						<input type="button" id="menuClose" class="btn-primary border-0 rounded-top" value="닫기">
+							<div class="col text-center">
+							<fieldset>
+								<iframe class="border-0 embed-responsive" id="brandMenu" src="" height="340"></iframe>
+							</fieldset>
+							</div>
+						</div>
+					</div>
+					</div>
 				</div>
 			</div>
-			
-			<div class="w-75 float-right">
-				<div id="menu" class="h-auto m-3 ml-n1">
-				<div class="card shadow h-100 py-2">
-					<div class="card-body">
-					<input type="button" id="menuClose" class="btn-primary border-0 rounded-top" value="닫기">
-						<div class="col text-center">
-						<fieldset>
-							<iframe class="border-0 embed-responsive" id="brandMenu" src="" height="500"></iframe>
-						</fieldset>
-						</div>
-					</div>
-				</div>
-				</div>
-			</div>			
 		</div>
 		<!-- 메인 컨텐츠 끝 -->
 			

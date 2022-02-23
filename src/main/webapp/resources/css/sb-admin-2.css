@@ -9865,6 +9865,7 @@ a:focus {
   color: #fff;
   background: rgba(90, 92, 105, 0.5);
   line-height: 46px;
+  z-index:2;
 }
 
 .scroll-to-top:focus, .scroll-to-top:hover {
@@ -11468,6 +11469,7 @@ form.user .btn-user {
 footer.sticky-footer {
   padding: 2rem 0;
   flex-shrink: 0;
+  z-index:1;
 }
 
 footer.sticky-footer .copyright {
@@ -11502,3 +11504,9 @@ body.sidebar-toggled footer.sticky-footer {
 	vertical-align: middle;
 }
 
+.brand-fix {
+  position: fixed;
+  top: 70px;  
+  right:0;
+  left: 33%;
+}

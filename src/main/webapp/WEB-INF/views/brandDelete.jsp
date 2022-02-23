@@ -30,36 +30,43 @@
 	<jsp:include page="PageHeader.jsp" flush="false"/>
 					
 		<!-- 메인 -->
-			<div id="content">
-			<c:choose>
-				<c:when test="${not empty brand}">
-					<c:forEach var="brand" items="${brand}">
-						<div class="col-xl-3 col-md-6 mb-4">
-							<div class="card border-left-primary shadow h-100 py-2">
-								<div class="card-body">
-									<div class="row no-gutters align-items-center">
-										<div class="col mr-2">
-											<form id="formbtn${brand.brandCode}" action="deleteBrand" method="post">
-												<input type="hidden" value="${brand.brandCode}" name="brandCode">
-												<input type="hidden" class="imgbtn${brand.brandCode}" value="${brand.brandImg}" name="brandImg">
-											</form>
-											<div class="h2 font-weight-bold text-primary">
-												<c:out value="${brand.brandName}" />
+		<div id="content">
+			<div class="h1 mt-3 mb-3 text-center">
+				브랜드 삭제
+			</div>		
+			<div class="row justify-content-center">
+				<c:choose>
+					<c:when test="${not empty brand}">
+						<c:forEach var="brand" items="${brand}">
+							<div class="m-3">
+								<div class="card shadow h-100 py-2">
+									<div class="card-body">
+										<div class="row no-gutters align-items-center">
+											<div class="col mr-2 text-center">
+												<form id="formbtn${brand.brandCode}" action="deleteBrand" method="post">
+													<input type="hidden" value="${brand.brandCode}" name="brandCode">
+													<input type="hidden" class="imgbtn${brand.brandCode}" value="${brand.brandImg}" name="brandImg">
+												</form>
+												<div class="h1 font-weight-bold m-3">
+													<c:out value="${brand.brandName}" />
+												</div>
+												<img class="m-3" src="<c:url value='${brand.brandImg}' />" alt="${brand.brandImg}" height="270" width="270" /><br>
+												<div class="m-3">
+													<input type="button" class="form-control btn btn-warning" id="btn${brand.brandCode}" value="삭제">
+												</div>
 											</div>
-											<img src="<c:url value='${brand.brandImg}' />" alt="${gift.brandImg}" height="270" width="270" /><br>
-											<input type="button" class="btn btn-primary" id="btn${brand.brandCode}" value="삭제">
 										</div>
 									</div>
 								</div>
 							</div>
-						</div>
-					</c:forEach>
-				</c:when>
-				
-				<c:otherwise>
-					<div class="h2 font-weight-bold text-primary">현재 등록된 브랜드가 없습니다</div>
-				</c:otherwise>
-			</c:choose>
+						</c:forEach>
+					</c:when>
+	
+					<c:otherwise>
+						<div class="h2 font-weight-bold text-primary">현재 등록된 브랜드가 없습니다</div>
+					</c:otherwise>
+				</c:choose>
+			</div>
 		</div>
 		<!-- 메인 컨텐츠 끝 -->
 			

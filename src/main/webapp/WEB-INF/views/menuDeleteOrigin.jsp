@@ -13,13 +13,10 @@
     <title>헝픽</title>
     
    	<link href="resources/css/sb-admin-2.css" rel="stylesheet">
-   	<link href="resources/css/GridLayout.css" rel="stylesheet">
-   	<link href="resources/css/fileBtnHidden.css" rel="stylesheet">
 	<script src="https://kit.fontawesome.com/730c440743.js" crossorigin="anonymous"></script>
 	<script src="resources/js/jquery-3.4.1.min.js"></script>
 	<script src="resources/js/menu/menuDelete.js"></script>
-	<script src="resources/js/textareaHeight.js"></script>
-    
+ 
 </head>
 
 <body>
@@ -33,39 +30,31 @@
 	<jsp:include page="PageHeader.jsp" flush="false"/>
 					
 		<!-- 메인 -->
-		<div id="content">
-			<div class="container-fluid">
-				<div class="row">
-					<div class="card d-inline-block h-100 shadow mt-3 mb-3 overflow-hidden">
-						<div class="card-body">
-							<div class="h1 mb-3">
-								메뉴 삭제
-							</div>
-							<form id="deleteForm" action="deleteMenu" method="post">
-								<div class="insertGrid">
-									<div class="one">
-										<select class="custom-select mb-3 gifticonInputWidth" id="brandCode" name="brandCode" onchange="brandSelect(this.value);">
-											<option value="" selected disabled>브랜드 선택</option>
-											<c:forEach var="brand" items="${brand}">
-											<option value="${brand.brandCode}">${brand.brandName}</option>
-											</c:forEach>
-										</select>
-										
-										<select class="custom-select mb-3 gifticonInputWidth" id="menuCode" name="menuCode">
-											<option value="">메뉴 선택</option>
-										</select>
-									</div>
-									<div class="five">
-										<div class="float-right">
-											<input class="btn btn-warning" type="button" value="삭제" onclick="inputCheck()">
-										</div>
-									</div>
-								</div>
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
+			<div id="content">
+			<form id="deleteForm" action="deleteMenu" method="post">
+				<table class="table">	
+					<tr>
+						<td class="align-middle">브랜드</td>
+						<td class="align-middle">
+							<select id="brandCode" name="brandCode" onChange="brandSelect(this.value);">
+							<option value="" selected disabled>브랜드 선택</option>
+							<c:forEach var="brand" items="${brand}">
+							<option value="${brand.brandCode}">${brand.brandName}</option>
+							</c:forEach>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td class="align-middle">메뉴 선택</td>
+						<td class="align-middle">
+							<select id="menuCode" name="menuCode" >
+							<option value="">메뉴 선택</option>
+							</select>
+						</td>
+					</tr>												
+				</table>
+				<input type="submit" value="삭제">
+			</form>
 		</div>
 		<!-- 메인 컨텐츠 끝 -->
 			

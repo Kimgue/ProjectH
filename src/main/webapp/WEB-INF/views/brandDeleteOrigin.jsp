@@ -13,12 +13,9 @@
     <title>헝픽</title>
     
    	<link href="resources/css/sb-admin-2.css" rel="stylesheet">
-   	<link href="resources/css/GridLayout.css" rel="stylesheet">
-   	<link href="resources/css/fileBtnHidden.css" rel="stylesheet">
 	<script src="https://kit.fontawesome.com/730c440743.js" crossorigin="anonymous"></script>
 	<script src="resources/js/jquery-3.4.1.min.js"></script>
-	<script src="resources/js/menu/menuDelete.js"></script>
-	<script src="resources/js/textareaHeight.js"></script>
+	<script src="resources/js/brand/brandDelete.js"></script>
     
 </head>
 
@@ -33,39 +30,36 @@
 	<jsp:include page="PageHeader.jsp" flush="false"/>
 					
 		<!-- 메인 -->
-		<div id="content">
-			<div class="container-fluid">
-				<div class="row">
-					<div class="card d-inline-block h-100 shadow mt-3 mb-3 overflow-hidden">
-						<div class="card-body">
-							<div class="h1 mb-3">
-								메뉴 삭제
-							</div>
-							<form id="deleteForm" action="deleteMenu" method="post">
-								<div class="insertGrid">
-									<div class="one">
-										<select class="custom-select mb-3 gifticonInputWidth" id="brandCode" name="brandCode" onchange="brandSelect(this.value);">
-											<option value="" selected disabled>브랜드 선택</option>
-											<c:forEach var="brand" items="${brand}">
-											<option value="${brand.brandCode}">${brand.brandName}</option>
-											</c:forEach>
-										</select>
-										
-										<select class="custom-select mb-3 gifticonInputWidth" id="menuCode" name="menuCode">
-											<option value="">메뉴 선택</option>
-										</select>
-									</div>
-									<div class="five">
-										<div class="float-right">
-											<input class="btn btn-warning" type="button" value="삭제" onclick="inputCheck()">
+			<div id="content">
+			<c:choose>
+				<c:when test="${not empty brand}">
+					<c:forEach var="brand" items="${brand}">
+						<div class="col-xl-3 col-md-6 mb-4">
+							<div class="card border-left-primary shadow h-100 py-2">
+								<div class="card-body">
+									<div class="row no-gutters align-items-center">
+										<div class="col mr-2">
+											<form id="formbtn${brand.brandCode}" action="deleteBrand" method="post">
+												<input type="hidden" value="${brand.brandCode}" name="brandCode">
+												<input type="hidden" class="imgbtn${brand.brandCode}" value="${brand.brandImg}" name="brandImg">
+											</form>
+											<div class="h2 font-weight-bold text-primary">
+												<c:out value="${brand.brandName}" />
+											</div>
+											<img src="<c:url value='${brand.brandImg}' />" alt="${gift.brandImg}" height="270" width="270" /><br>
+											<input type="button" class="btn btn-primary" id="btn${brand.brandCode}" value="삭제">
 										</div>
 									</div>
 								</div>
-							</form>
+							</div>
 						</div>
-					</div>
-				</div>
-			</div>
+					</c:forEach>
+				</c:when>
+				
+				<c:otherwise>
+					<div class="h2 font-weight-bold text-primary">현재 등록된 브랜드가 없습니다</div>
+				</c:otherwise>
+			</c:choose>
 		</div>
 		<!-- 메인 컨텐츠 끝 -->
 			

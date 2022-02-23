@@ -59,7 +59,7 @@
 									</div>
 									<input type="file" id="input-image" name="uploadfile" required="required">
 									<div class="three">
-										<img style="width: 350px;" class="img img-fluid img-thumbnail mb-3" id="preview-image" src="">
+										<img style="width: 350px; height:200px;" class="img img-fluid img-thumbnail mb-3" id="preview-image" src="">
 										<input type="hidden" id="menuImg" name="menuImg">
 									</div>
 									<div class="four">

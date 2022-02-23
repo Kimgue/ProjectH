@@ -31,6 +31,9 @@
 					
 		<!-- 메인 -->
 		<div id="content">
+			<div class="h1 mb-3 mt-3 text-center">
+				기프티콘 삭제
+			</div>
 			<div class="row justify-content-center">
 				<c:choose>
 					<c:when test="${not empty gifticonList}">

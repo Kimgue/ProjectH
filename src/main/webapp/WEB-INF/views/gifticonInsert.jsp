@@ -19,6 +19,28 @@
 	<script src="resources/js/jquery-3.4.1.min.js"></script>
 	<script src="resources/js/gifticon/gifticonInsert.js"></script>
 	<script src="resources/js/textareaHeight.js"></script>
+	
+	<script>
+		function brandSelect() {
+			var brandCode = $("#brandCode").val();
+				
+			switch(brandCode) {
+
+			case brandCode:
+				$("#menuCode option").remove();
+				$("#menuCode").append("<option selected disabled>메뉴를 선택해주세요</option>");
+				
+				<c:forEach var="menu" items="${menu}">
+				if(${menu.brandCode} == brandCode) {
+					$("#menuCode").append("<option value=${menu.menuCode}>${menu.menuName}</option>");	
+				}
+				</c:forEach>
+				
+				break;
+			}
+		}
+		
+	</script>
     
 </head>
 
@@ -58,7 +80,7 @@
 									</div>
 									<input type="file" id="input-image" name="uploadfile" required="required">
 									<div class="three">
-										<img style="width: 350px;" class="img img-fluid img-thumbnail mb-3" id="preview-image" src="">
+										<img style="width: 350px; height:250px;"  class="img img-fluid img-thumbnail mb-3" id="preview-image" src="">
 										<input type="hidden" id="gifticonImg" name="gifticonImg">
 									</div>
 									<div class="four mt-3">
