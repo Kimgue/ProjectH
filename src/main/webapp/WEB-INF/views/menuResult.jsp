@@ -36,7 +36,7 @@
 		    		<div style="width:750px; height:530px;" class="card shadow ml-3 mt-3 mb-3">
 			    		<div class="card-body">
 							<h3>검색 조건</h3>
-							<form action="menuResult" id="menuSearch">
+							<form action="menuResult">
 								<%-- 체크박스일 경우 값들을 배열로 받아서 처리해야함 --%>
 								<div>
 								<h5>브랜드</h5>
@@ -78,7 +78,7 @@
 								</div>
 								<br>
 								<div>
-									<button id="menuSearch" type="button" class="btn btn-warning" onclick="inputCheck()">검색</button>
+									<button type="button" class="btn btn-warning" onclick="inputCheck()">검색</button>
 								</div>
 							</form>
 							<br>
