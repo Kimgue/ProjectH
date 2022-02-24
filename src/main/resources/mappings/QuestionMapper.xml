@@ -99,7 +99,7 @@
    </insert>
 	
 	<update id="update" parameterType="qesDto">
-		UPDATE QUESTION SET QSTN_TITLE = #{ qstnTitle }, QSTN_CONTENT = #{ qstnContent } , QSTN_DATE = TO_DATE( #{qstnDate} ,'YYYY-MM-DD HH24:MI:SS'), QSTN_CONFIRM = #{qstnConfirm}, QSTN_IMG = #{qstnImg} WHERE MEMBER_CODE = #{ memberCode } AND QSTN_CODE = #{ qstnCode }  
+		UPDATE QUESTION SET QSTN_TITLE = #{ qstnTitle }, QSTN_CONTENT = #{ qstnContent } , QSTN_DATE = TO_DATE( #{qstnDate} ,'YYYY-MM-DD HH24:MI:SS') , QSTN_IMG = #{qstnImg} WHERE MEMBER_CODE = #{ memberCode } AND QSTN_CODE = #{ qstnCode }  
 	</update>
 	
 	
