@@ -39,7 +39,7 @@
 									<c:out value="${brand.brandName}" />
 								</div>
 								
-								<div class="h4 font-weight-bold text-gray-800 m-3 textHeight">
+								<div class="m-3">
 									<c:out value="${brand.brandDescription}" />
 								</div>
 

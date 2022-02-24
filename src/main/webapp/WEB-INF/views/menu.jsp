@@ -91,7 +91,6 @@
 					<div style="width:750px;" class="card shadow mt-3 mb-3 mr-3">
 						<div class="card-body">
 							<h4>메뉴 리뷰 점수순위</h4>
-							
 							<c:forEach var="rank" items="${ reviewRanking }">
 							<c:set var="i" value="${i+1}"/>
 							<tr>
