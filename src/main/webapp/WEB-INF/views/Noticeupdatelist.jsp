@@ -50,7 +50,7 @@
 										<input type="hidden" id="noticeDate" name="noticeDate" value="${ date }">
 									</div>
 									<div class="two">
-										<textarea onkeydown="resize(this)" onkeyup="resize(this)" style="width:665px; min-height:180px;" class="form-control" id="noticeContent" name="noticeContent">${person.noticeContent}</textarea>
+										<textarea onkeydown="resize(this)" onkeyup="resize(this)" style="width:665px; min-height:180px;" class="form-control" id="noticeContent" name="noticeContent">${person.mbrDto.noticeContent}</textarea>
 									</div>
 									<input type="file" id="input-image" name="uploadfile" required="required">
 									<div class="three">

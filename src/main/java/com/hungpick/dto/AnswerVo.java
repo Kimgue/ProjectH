@@ -5,7 +5,14 @@ public class AnswerVo {
 	private AnswerDto answerDto;
 	private Question qesDto;
 	private MemberDto memberDto;
+	private AdminDto adminDto;
 	
+	public AdminDto getAdminDto() {
+		return adminDto;
+	}
+	public void setAdminDto(AdminDto adminDto) {
+		this.adminDto = adminDto;
+	}
 	public MemberDto getMemberDto() {
 		return memberDto;
 	}

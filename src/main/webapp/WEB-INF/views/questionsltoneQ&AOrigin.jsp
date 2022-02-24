@@ -97,7 +97,7 @@
   				<ol >
      			 <li>
        				 <p>
-       				 작성자 :  ${ selectOne.qesDto.memberCode }<br /><br />
+       				 작성자 :  ${ selectOne.adminDto.adminName }<br /><br />
        				 작성 내용: ${ selectOne.answerDto.answerContent }<br/><br />
        				 작성 날짜 : ${ selectOne.answerDto.answerDate }
         			</p>

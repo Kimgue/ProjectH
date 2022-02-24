@@ -54,7 +54,7 @@
 									${ sltOne.qesDto.qstnContent }
 								</div>
 								<div>
-									<img src="<c:url value='${sltOne.qesDto.qstnImg }' />" alt="${sltOne.qesDto.qstnImg }" height="150" width="150" onError="this.style.visibility='hidden'" />
+									<img src="<c:url value='${ sltOne.qesDto.qstnImg }' />" alt="${ sltOne.qesDto.qstnImg }" height="150" width="150" onError="this.style.visibility='hidden'" />
 								</div>
 								<input type="hidden" id="memberCode" name="memberCode" value="${ sltOne.qesDto.memberCode }">
 								<input type="hidden" id="qstnCode" name="qstnCode" value="${ sltOne.qesDto.qstnCode }">
@@ -72,7 +72,7 @@
 								<div id="reply">	
 									<div class="h4 text-center">답변</div>
 									<div class="d-flex justify-content-between">
-										<div>${ selectOne.qesDto.memberCode }</div>
+										<div>${ selectOne.adminDto.adminName }</div>
 										<div>답변일자 : ${ selectOne.answerDto.answerDate }</div>
 									</div>
 									<hr>
