@@ -16,60 +16,62 @@
 
 	
 	function UserSignUp() {
-		var val_Id 			= $("#memberId").val();
-		var val_Pw 			= $("#memberPw").val();
-		var val_Name 		= $("#memberName").val();
-		var val_Nickname	= $("#memberNickname").val();
-		var val_Email 		= $("#memberEmail").val();
-		var val_Number 		= $("#memberNumber").val();
-
-		if (val_Id == "") {
-			$("#memberId").focus();
-			$("#resultId").text("아이디를 입력해주세요").css("color", "red");
-			return;
-		}
-		if (val_Pw == "") {
-			$("#memberPw").focus();
-			$("#resultPw").text("비밀번호를 입력해주세요").css("color", "red");
-			return;
-		}
-		if (val_Name == "") {
-			$("#memberName").focus();
-			$("#resultName").text("이름을 입력해주세요").css("color", "red");
-			return;
-		}
-		if (val_Nickname == "") {
-			$("#memberNickname").focus();
-			$("#resultNickname").text("닉네임을 입력해주세요").css("color", "red");
-			return;
-		}
-		if (val_Email == "") {
-			$("#memberEmail").focus();
-			$("#resultEmail").text("이메일을 입력해주세요").css("color", "red");
-			return;
-		} else if (checkEmail == false) {
-			$("#memberEmail").focus();
-			$("#resultEmail").text("이메일 인증을 진행해주세요").css("color", "red");
-			return;
-		} 
-		if (val_Number == "") {
-			$("#memberNumber").focus();
-			$("#resultNumber").text("전화번호를 입력해주세요").css("color", "red");
-			return;
-		}
-
-		if (
-		checkId == true &&
-		checkPw == true &&
-		checkName == true &&
-		checkNick == true && 
-		checkEmail == true &&
-		checkNumber == true 
-		) {
-			$("#UserSignUp").submit();
-		} else {
-			return;
-		}
+		
+		$("#UserSignUp").submit();
+//		var val_Id 			= $("#memberId").val();
+//		var val_Pw 			= $("#memberPw").val();
+//		var val_Name 		= $("#memberName").val();
+//		var val_Nickname	= $("#memberNickname").val();
+//		var val_Email 		= $("#memberEmail").val();
+//		var val_Number 		= $("#memberNumber").val();
+//
+//		if (val_Id == "") {
+//			$("#memberId").focus();
+//			$("#resultId").text("아이디를 입력해주세요").css("color", "red");
+//			return;
+//		}
+//		if (val_Pw == "") {
+//			$("#memberPw").focus();
+//			$("#resultPw").text("비밀번호를 입력해주세요").css("color", "red");
+//			return;
+//		}
+//		if (val_Name == "") {
+//			$("#memberName").focus();
+//			$("#resultName").text("이름을 입력해주세요").css("color", "red");
+//			return;
+//		}
+//		if (val_Nickname == "") {
+//			$("#memberNickname").focus();
+//			$("#resultNickname").text("닉네임을 입력해주세요").css("color", "red");
+//			return;
+//		}
+//		if (val_Email == "") {
+//			$("#memberEmail").focus();
+//			$("#resultEmail").text("이메일을 입력해주세요").css("color", "red");
+//			return;
+//		} else if (checkEmail == false) {
+//			$("#memberEmail").focus();
+//			$("#resultEmail").text("이메일 인증을 진행해주세요").css("color", "red");
+//			return;
+//		} 
+//		if (val_Number == "") {
+//			$("#memberNumber").focus();
+//			$("#resultNumber").text("전화번호를 입력해주세요").css("color", "red");
+//			return;
+//		}
+//
+//		if (
+//		checkId == true &&
+//		checkPw == true &&
+//		checkName == true &&
+//		checkNick == true && 
+//		checkEmail == true &&
+//		checkNumber == true 
+//		) {
+//			$("#UserSignUp").submit();
+//		} else {
+//			return;
+//		}
 	}
 
 $(document).ready(function() {

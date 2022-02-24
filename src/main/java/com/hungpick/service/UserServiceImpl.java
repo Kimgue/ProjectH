@@ -1,7 +1,8 @@
 package com.hungpick.service;
 
 import java.io.PrintWriter;
-
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -60,9 +61,10 @@ public class UserServiceImpl implements IUserService {
 	// 로그인
 	@Override
 	public String userLogin(String memberId, String memberPw, HttpSession session) throws Exception {
+		
 		UserDto Dto = userDao.userLogin(memberId, memberPw);
 		
-		System.out.println("확인 : " + Dto.getMemberDate());
+		System.out.println("날짜 : " + Dto.getMemberDate());
 		
 		Boolean loginBool = false;
 		
@@ -79,6 +81,8 @@ public class UserServiceImpl implements IUserService {
 			session.setAttribute("memberEmail", Dto.getMemberEmail());
 			session.setAttribute("memberDate", Dto.getMemberDate());
 			session.setAttribute("holdPoint", Dto.getHoldPoint());
+			
+			System.out.println("날짜 : " + Dto.getMemberDate());
 			
 			String prevUrl = (String) session.getAttribute("prevUrl");
 			if(prevUrl != null ) {
