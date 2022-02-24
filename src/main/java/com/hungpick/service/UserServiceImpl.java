@@ -61,6 +61,9 @@ public class UserServiceImpl implements IUserService {
 	@Override
 	public String userLogin(String memberId, String memberPw, HttpSession session) throws Exception {
 		UserDto Dto = userDao.userLogin(memberId, memberPw);
+		
+		System.out.println("확인 : " + Dto.getMemberDate());
+		
 		Boolean loginBool = false;
 		
 		if (Dto != null) {
@@ -239,12 +242,12 @@ public class UserServiceImpl implements IUserService {
 	}
 
 	public void certifiedPhoneNumber(String userPhoneNumber, String key) { 
-		String api_key = "NCSC5D9IHLHKFF82"; 
-		String api_secret = "DM9RVLWFT99OJDTDIJFOWNSKWEFEMKKT";
+		String api_key = "NCSXZFNQ4Y99V4IZ"; 
+		String api_secret = "KMUAYBBHM1AR5EMILYLHIQFLZSQDGSGJ";
 		Message coolsms = new Message(api_key, api_secret); 
 		HashMap<String, String> params = new HashMap<String, String>(); 
 		params.put("to", userPhoneNumber); // 수신전화번호 
-		params.put("from", "01094626942"); // 발신전화번호. 테스트시에는 발신,수신 둘다 본인 번호로 하면 됨 
+		params.put("from", "01066351927"); // 발신전화번호. 테스트시에는 발신,수신 둘다 본인 번호로 하면 됨 
 		params.put("type", "SMS"); 
 		params.put("text", "인증번호는" + "["+key+"]" + "입니다."); 
 		//문자 내용 입력 

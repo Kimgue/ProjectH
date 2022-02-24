@@ -56,7 +56,7 @@
 			#{memberNickname},
 			#{memberEmail},
 			#{memberNumber},
-			TO_DATE(SYSDATE,'yyyy-mm-dd hh24:mi'),
+			SYSDATE,
 			'0'
 		)
 	</insert>

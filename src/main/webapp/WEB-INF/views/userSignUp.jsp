@@ -96,7 +96,6 @@
 		                           		<div id="resultNumberChk" class="result-text"></div> 
 	                            	</div>
 	                            	</div>
-	                            	
 	                           		<input type="button" class="form-control btn btn-warning" value="회원가입" onclick="UserSignUp()">
 	                                <hr>
 		                                	
