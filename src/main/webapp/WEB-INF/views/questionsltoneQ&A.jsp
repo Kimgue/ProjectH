@@ -63,7 +63,7 @@
 								<input type="hidden" id="qstnContent" name="qstnContent" value="${ sltOne.qesDto.qstnContent } " />
 								<input type="hidden" id="qstnImg" name="qstnImg" value="${sltOne.qesDto.qstnImg }" />
 								<input type="hidden" id="qstnDate" name="qstnDate" value="${ date }">
-								<input type="hidden" id="qstnConfirm" name="qstnConfirm" value="n">
+								<input type="hidden" id="qstnConfirm" name="qstnConfirm" value="n"> 
 							</form>
 						</div>
 					</div>
