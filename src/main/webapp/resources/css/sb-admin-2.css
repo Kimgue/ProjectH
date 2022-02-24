@@ -216,6 +216,8 @@ img {
   vertical-align: middle;
   border-style: none;
   object-fit: cover;
+  max-width: 100%;
+  height: auto;
 }
 
 svg {
@@ -11494,14 +11496,13 @@ body.sidebar-toggled footer.sticky-footer {
 }
 
 .textHeight {
-	overflow : hidden;
-	text-overflow : ellipsis;
-	height : 30px;
-	word-wrap : brek-word; 
-	display : -webkit-box;
-	-webkit-line-clamp : 1;
-	-webkit-box-orient: vertical;
-	vertical-align: middle;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 16px;  
+    max-height: 32px;  
+    display: -webkit-box;  
+    -webkit-line-clamp: 1; /* 표시하고자 하는 라인 수 */
+    -webkit-box-orient: vertical;
 }
 
 .brand-fix {

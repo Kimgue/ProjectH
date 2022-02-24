@@ -117,10 +117,10 @@ article {
 
 /* menu.jsp Grid */
 .m-Grid {
-	width: 1600px;
+	width: 1500px;
 	display: grid;
 	grid-gap:16px;
-	grid-template-columns: 766px 800px;
+	grid-template-columns: 750px 750px;
 	grid-template-rows: 566px;
 }
 
@@ -139,4 +139,20 @@ article {
 	display:flex;
     flex-direction: row;
     flex-wrap: wrap;
+}
+
+.b-Div {
+	width:100%;
+	display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+
+/* review.jsp Grid */
+.review-Grid {
+  display: grid;
+  grid-template-columns: 300px 350px;
+  grid-template-rows: 100px auto auto;
+  grid-gap:16px;
 }

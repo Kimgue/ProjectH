@@ -11,19 +11,16 @@
     <meta name="author" content="">
 
     <title>헝픽</title>
-    
+     
    	<link href="resources/css/sb-admin-2.css" rel="stylesheet">
-   	<link href="resources/css/GridLayout.css" rel="stylesheet">
-   	<link href="resources/css/fileBtnHidden.css" rel="stylesheet">
-	<script src="https://kit.fontawesome.com/730c440743.js" crossorigin="anonymous"></script>
+   	<script src="https://kit.fontawesome.com/730c440743.js" crossorigin="anonymous"></script>
 	<script src="resources/js/jquery-3.4.1.min.js"></script>
-	<script src="resources/js/textareaHeight.js"></script>
-	<script>
+	<%-- import해서 쓰면 문제있음
+	<script src="resources/js/review/reviewWrite.js"></script>
+	 --%>
+   	<script>
     var msg = "<c:out value='${msg}'/>";
 	var url = "<c:out value='${url}'/>";
-	var preImg = new Array();
-
-	
 	
 	if(msg != null && msg !='')
 	{
@@ -35,8 +32,6 @@
 			// input file 파일 첨부시 fileCheck 함수 실행
 			{
 				$("#input_file").on("change", fileCheck);
-				$("#preview-image-0").hide();
-				$("#preview-image-1").hide();
 			});
 
 	/**
@@ -59,7 +54,6 @@
 	var content_files = new Array();
 
 	function fileCheck(e) {
-		
 	    var files = e.target.files;
 	    
 	    // 파일 배열 담기
@@ -67,7 +61,7 @@
 	    
 	    // 파일 개수 확인 및 제한
 	    if (fileCount + filesArr.length > totalCount) {
-	      alert('파일은 최대 '+totalCount+'개까지 업로드 할 수 있습니다.');
+	      $.alert('파일은 최대 '+totalCount+'개까지 업로드 할 수 있습니다.');
 	      return;
 	    } else {
 	    	 fileCount = fileCount + filesArr.length;
@@ -76,19 +70,8 @@
 	    // 각각의 파일 배열담기 및 기타
 	    filesArr.forEach(function (f) {
 	      var reader = new FileReader();
-	      
 	      reader.onload = function (e) {
-	    	  
-	    	  if(content_files.length == 0) {
-	    		  fileNum = 0;
-	    	  }
-	    	  console.log("체크길이 : " + content_files.length);
-	    	  console.log("체크 : " + fileNum);
-	    	  var previewImage = document.getElementById("preview-image-"+fileNum);
-	    	  previewImage.src = e.target.result;
-	    	  $(previewImage).show();
-	    	  
-	    	  content_files.push(f);
+	        content_files.push(f);
 	        $('#articlefileChange').append(
 	       		'<div id="file' + fileNum + '" onclick="fileDelete(\'file' + fileNum + '\')">'
 	       		+ '<font style="font-size:12px">' + f.name + '</font>'  
@@ -99,45 +82,24 @@
 	      };
 	      reader.readAsDataURL(f);
 	    });
+	    console.log(content_files);
+	 
 	  }
 
 	// 파일 부분 삭제 함수
 	function fileDelete(fileNum){
-		var no = fileNum.replace(/[^0-9]/g, "");
-		var previewImage;
-		
-		console.log(content_files.length);
-		
-		if(content_files.length > 1) {
-			content_files[no].is_delete = true;
-			previewImage = document.getElementById("preview-image-"+no);
-			content_files.splice(no,1);
-		} else if(no != 0) {
-			content_files[no-1].is_delete = true;
-			previewImage = document.getElementById("preview-image-"+no);
-			content_files.splice(0,1);
-		} else {
-			content_files[no].is_delete = true;
-			previewImage = document.getElementById("preview-image-"+no);
-			content_files.splice(0,1);
-		}
-		
+	    var no = fileNum.replace(/[^0-9]/g, "");
+	    content_files[no].is_delete = true;
 		$('#' + fileNum).remove();
 		fileCount --;
-		
-		$(previewImage).attr("src","");
-		$(previewImage).hide();
-		
-		console.log(content_files.length);
-		console.log(content_files);
-
+	    console.log(content_files);
 	}
 
 	/*
 	 * 폼 submit 로직
 	 */
 		function registerAction(){
-		
+			
 		var form = $("form")[0];        
 	 	var formData = new FormData(form);
 			for (var x = 0; x < content_files.length; x++) {
@@ -180,8 +142,9 @@
 	   	    });
 	   	    return false;
 		}
-   	</script>
    	
+   	</script>
+	
 </head>
 
 <body>
@@ -196,65 +159,37 @@
 					
 		<!-- 메인 -->
 		<div id="content">
-			<div class="container-fluid">
-				<div class="row">
-					<div class="card d-inline-block h-100 shadow mt-3 mb-3 overflow-hidden">
-						<div class="card-body">
-							<div class="d-flex justify-content-between">
-								<div class="h1 mb-3">
-									리뷰 등록
-								</div>
-								<div>
-									<input type="button" class="btn btn-warning" value="이전" onclick="history.back()">
-								</div>
-							</div>
-							
-							<form id="dataForm" name="dataForm" action="reviewWriteSubmit">
-								<input type='hidden' name='brandCode' value='${brandCode}'/>
-								<input type='hidden' name='menuCode' value='${menuCode}'/>
-								<input type="hidden" id="reviewImg" name="reviewImg">
-								
-								<div class="review-Grid">
-									<div class="one">
-										<input type="text" class="form-control mb-3" name="menuName" placeholder="${menuName}" readonly/>
-										<input type="text" class="form-control mb-3" name="reviewScore" placeholder="리뷰 점수">
-									</div>
-									<div class="two">
-										<textarea onkeydown="resize(this)" onkeyup="resize(this)" style="width:665px; min-height:180px;" class="form-control" name="reviewContent" placeholder="리뷰 작성"></textarea>
-									</div>
-									
-									<div class="four">
-										<div class="float-left">
-											<label for="input-image">
-												<i style="width:150px; height:38px;" id="btn-upload" class="fas fa-solid fa-file-image btn btn-warning"> 파일 첨부</i>
-											</label>
-										
-											<input id="input_file" multiple="multiple" type="file" accept="image/*" style="display:none; ">
-											<div style="font-size:12px;">
-												※첨부 파일은 최대 2개까지 등록이 가능합니다.
-											</div>
-											<div class="data_file_txt" id="data_file_txt">
-												<div id="articlefileChange">
-												</div>
-											</div>	
-										</div>
-							  												
-									</div>
-									<div class="five">
-										<div class="float-right">
-											<input style="width:150px;" type="button" class="btn btn-warning" value="등록" onclick="return registerAction()">
-										</div>
-									</div>
-								</div>
-								<div class="float-left">
-									<img style="width: 300px; height:200px;" class="img img-fluid img-thumbnail mb-3 mr-3" id="preview-image-0" src="">
-									<img style="width: 300px; height:200px;" class="img img-fluid img-thumbnail mb-3" id="preview-image-1" src="">
-								</div>								
-							</form>
-						</div>
+			<div align="center">
+				<button onclick="history.back()">돌아가기</button>	
+				<form action="reviewWriteSubmit" name="dataForm"  id="dataForm">
+					<br> 
+					<input type='hidden' name='brandCode' value='${brandCode}' readonly/>
+					<br> 
+					<input type='hidden' name='menuCode' value='${menuCode}' readonly/>
+					<br> 
+					메뉴명:
+					<input type='text' name='menuName' value='${menuName}' readonly/>
+					<br> 
+					리뷰점수: 
+					<input type='number' name='reviewScore' min='1' max='5' step='0.5' required/>
+					<br> 
+					리뷰내용:
+					<input type='text' name='reviewContent' style="width:300px;height:200px;" required/>
+					<br> 
+		  			<h3>리뷰 이미지</h3>
+		  			<button id="btn-upload" type="button" style="border: 1px solid #ddd; outline: none;">파일 추가</button>
+		  			<input type="hidden" id="reviewImg" name="reviewImg">
+		  			<input id="input_file" multiple="multiple" type="file" accept="image/*" style="display:none; ">
+		  			<span style="font-size:10px; color: gray;">※첨부파일은 최대 2개까지 등록이 가능합니다.</span>
+		  			<div class="data_file_txt" id="data_file_txt" style="margin:40px;">
+					<span>첨부 파일</span>
+					<br />
+					<div id="articlefileChange">
 					</div>
-				</div>
-			</div>
+					</div>
+		  			<button type="submit" onclick="return registerAction()">전송</button>
+				</form>
+			</div>		
 		</div>
 		<!-- 메인 컨텐츠 끝 -->
 			

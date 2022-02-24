@@ -88,7 +88,7 @@
 					</div>
 				</div>
 				<div class="m-Grid-Rank">
-					<div style="width:750px; height:530px;" class="card shadow mt-3 mb-3 mr-3">
+					<div style="width:750px; height:530px;" class="card shadow ml-3 mt-3 mb-3 mr-3">
 						<div class="card-body">
 							<h4>메뉴 리뷰 점수순위</h4>
 							<c:forEach var="rank" items="${ reviewRanking }">

@@ -21,25 +21,15 @@
 
 <body>	
 	<div id="content">
-		<div id="menu_list" class="m-Div text-center">
+		<div id="menu_list" class="b-Div text-center">
 			<c:forEach var="menuVo" items="${menuVo}">
-				<div style="width:400px; height:500px;" class="card shadow ml-3 mb-3">
-					<div class="card-body">
-						<div class="mt-3">
-							<img src="<c:out value="resources/${menuVo.menuDto.menuImg}"/>" alt="메뉴 이미지" height="200" width="200" />
-						</div>
-						
-						<div class="">
-							<div class="h3 font-weight-bolder"><c:out value="${menuVo.menuDto.menuName}" /></div>
-							<div><c:out value="${menuVo.menuDto.menuPrice}"/>원</div>
-							<div><c:out value="${menuVo.menuDto.menuIngredients}" /></div>
-						</div>
-						
-						<div class="">
-							<div class="font-weight-bold text-gray-800 mt-3">
-								<c:out value="${menuVo.menuDto.menuDescription}" />
-							</div>
-						</div>
+				<div style="width:380px; height:500px;" class="card shadow mr-3 mb-3">
+					<div class="card-body overflow-hidden">
+						<img src="<c:out value="resources/${menuVo.menuDto.menuImg}"/>" alt="메뉴 이미지" height="200" width="200" />
+						<div class="h3 font-weight-bolder"><c:out value="${menuVo.menuDto.menuName}" /></div>
+						<div><c:out value="${menuVo.menuDto.menuPrice}"/>원</div>
+						<div><c:out value="${menuVo.menuDto.menuIngredients}" /></div>
+						<div class="font-weight-bold text-gray-800 mt-3"><c:out value="${menuVo.menuDto.menuDescription}" /></div>
 					</div>
 				</div>
 			</c:forEach>

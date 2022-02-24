@@ -69,63 +69,72 @@
 					
 		<!-- 메인 -->
 		<div id="content">
-			<div align="center">
-				<h2>${menuName}</h2>
-				<br>
-				<a href="menu">메뉴 페이지로</a>
-				<br>
-				<a href="#"> 
-				<img src="<c:out value="resources/${menu.menuImg}"/>" alt="메뉴 이미지" height="270" width="270" />
-				</a>
-				<p style="font-size: 15pt">
-					<c:out value="메뉴명: ${menu.menuName}" />
-				</p>
-				<p style="font-size: 15pt">
-					<c:out value="메뉴가격: ${menu.menuPrice}" />
-				</p>
-				<p style="font-size: 12pt">
-					<c:out value="메뉴설명: ${menu.menuDescription}" />
-				</p>
-				<p style="font-size: 12pt">
-					<c:out value="메뉴재료: ${menu.menuIngredients}" />
-				</p>
-				<table id="menuReview" class="table table-bordered"  style="width:100%">
-					<thead>
-						<tr>
-							<th>닉네임</th>
-							<th>점수</th>
-							<th>리뷰날짜</th>
-							<th>내용</th>
-							<th>상세리뷰</th>	
-					</tr>
-					</thead>
-					<tbody>
-				<c:forEach var="review" items="${review}">
-					<tr>
-						<td><c:out value="${review.memberDto.memberNickname}" /></td>
-						<td><c:out value="${review.reviewDto.reviewScore}" /></td>
-						<td><c:out value="${review.reviewDto.reviewDate}" /></td>
-						<td><c:out value="${review.reviewDto.reviewContent}" /></td>
+			<div class="w-100 text-center">
+				<div style="width:1660px;" class="card shadow m-3">
+					<div class="card-body">
+						<div class="mt-3">
+							<img src="<c:out value="resources/${menu.menuImg}"/>" alt="메뉴 이미지" height="200" width="200" />
+						</div>
 						
-						<c:url value="reviewLookup" var="reviewLookup">
-							<c:param name="brandCode" value="${review.reviewDto.brandCode}"/>
-							<c:param name="menuCode" value="${review.reviewDto.menuCode}" />
-							<c:param name="reviewCode" value="${review.reviewDto.reviewCode}" />
-							<c:param name="memberCode" value="${review.reviewDto.memberCode}" />
-						</c:url>
-						<td><a href="${reviewLookup}">상세 리뷰 보기</a></td>
-					</tr>
-					<br>
-				</c:forEach>
-				</tbody>
-				</table>	
-				<hr>
-				<c:url value="reviewWrite" var="reviewWrite">
-					<c:param name="brandCode" value="${menu.brandCode}"/>
-					<c:param name="menuCode" value="${menu.menuCode}" />
-					<c:param name="menuName" value="${menu.menuName}" />
-				</c:url>
-				<a href="${reviewWrite}">리뷰 작성하기</a>
+						<div class="">
+							<div class="h3 font-weight-bolder"><c:out value="${menu.menuName}" /></div>
+							<div><c:out value="${menu.menuPrice}"/>원</div>
+							<div><c:out value="${menu.menuIngredients}" /></div>
+						</div>
+						
+						<div class="">
+							<div class="font-weight-bold text-gray-800 mt-3">
+								<c:out value="${menu.menuDescription}" />
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div style="width:1660px;" class="card shadow m-3">
+					<div class="card-body">
+						<table id="menuReview" class="table table-bordered">
+							<thead>
+								<tr>
+									<th width="150">닉네임</th>
+									<th width="80">점수</th>
+									<th width="130">리뷰날짜</th>
+									<th>내용</th>
+									<th width="130">상세리뷰</th>	
+								</tr>
+							</thead>
+							<tbody>
+								<c:forEach var="review" items="${review}">
+									<tr>
+										<td><c:out value="${review.memberDto.memberNickname}" /></td>
+										<td><c:out value="${review.reviewDto.reviewScore}" /></td>
+										<td><c:out value="${review.reviewDto.reviewDate}" /></td>
+									
+										<td style="width:970px; text-overflow: ellipsis;" class="d-inline-block text-nowrap overflow-hidden">
+											<c:out value="${review.reviewDto.reviewContent}" />
+										</td>
+										
+										
+										<c:url value="reviewLookup" var="reviewLookup">
+											<c:param name="brandCode" value="${review.reviewDto.brandCode}"/>
+											<c:param name="menuCode" value="${review.reviewDto.menuCode}" />
+											<c:param name="reviewCode" value="${review.reviewDto.reviewCode}" />
+											<c:param name="memberCode" value="${review.reviewDto.memberCode}" />
+										</c:url>
+										<td><a href="${reviewLookup}">상세 리뷰 보기</a></td>
+									</tr>
+								</c:forEach>
+							</tbody>
+						</table>
+						<div>	
+							<c:url value="reviewWrite" var="reviewWrite">
+								<c:param name="brandCode" value="${menu.brandCode}"/>
+								<c:param name="menuCode" value="${menu.menuCode}" />
+								<c:param name="menuName" value="${menu.menuName}" />
+							</c:url>
+							<a href="${reviewWrite}">리뷰 작성하기</a>
+						</div>				
+					</div>
+				</div>			
 			</div>
 		</div>
 		<!-- 메인 컨텐츠 끝 -->
