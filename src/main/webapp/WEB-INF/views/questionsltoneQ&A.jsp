@@ -53,6 +53,7 @@
 								<div>
 									${ sltOne.qesDto.qstnContent }
 								</div>
+								이미지 : ${ sltOne.qesDto.qstnImg }
 								<div>
 									<img src="<c:url value='${ sltOne.qesDto.qstnImg }' />" alt="${ sltOne.qesDto.qstnImg }" height="150" width="150" onError="this.style.visibility='hidden'" />
 								</div>

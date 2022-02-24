@@ -16,47 +16,45 @@
    	<link href="resources/css/GridLayout.css" rel="stylesheet">
 	<script src="https://kit.fontawesome.com/730c440743.js" crossorigin="anonymous"></script>
 	<script src="resources/js/jquery-3.4.1.min.js"></script>
-    
 </head>
 
 <body>
-		<!-- 메인 -->
-		<div id="menu_list" class="flexbox">
-			            <div class="item">
-							<c:forEach var="menu" items="${menu}">
-								<div class="card shadow ml-3 mb-3">
-									<div style="width:700px; height:300px;" class="card-body">
-										<div class="menu-grid">
-											<div class="menuImg mt-3">
-												<img src="<c:out value="resources/${menu.menuImg}"/>" alt="메뉴 이미지" height="200" width="200" />
-											</div>
-											
-											<div class="menuTitle">
-												<div class="h3 font-weight-bolder"><c:out value="${menu.menuName}" /></div>
-												<div><c:out value="${menu.menuPrice}"/>원</div>
-												<div><c:out value="${menu.menuIngredients}" /></div>
-											</div>
-											
-											<div class="menuDescription">
-												<div class="font-weight-bold text-gray-800 mt-3">
-													<c:out value="${menu.menuDescription}" />
-												</div>
-											</div>
-										<c:url value="menuDetail" var="menuDetail">
-											<c:param name="brandCode" value="${menu.brandCode}"/>
-											<c:param name="menuCode" value="${menu.menuCode}"/>
-											<c:param name="menuName" value="${menu.menuName}" />
-										</c:url>
-										<div class="menuReview">
-										<a class="h4" href="${menuDetail}">리뷰</a>
-										</div>
-									</div>										
-								</div>
+	<!-- 메인 -->
+	<div id="content">
+		<div id="menu_list" class="m-Div text-center">
+			<c:forEach var="menu" items="${menu}">
+				<div style="width:750px; height:500px;" class="card shadow ml-3 mb-3">
+					<div class="card-body">
+						<div class="mt-3">
+							<img src="<c:out value="resources/${menu.menuImg}"/>" alt="메뉴 이미지" height="200" width="200" />
+						</div>
+						
+						<div class="">
+							<div class="h3 font-weight-bolder"><c:out value="${menu.menuName}" /></div>
+							<div><c:out value="${menu.menuPrice}"/>원</div>
+							<div><c:out value="${menu.menuIngredients}" /></div>
+						</div>
+						
+						<div class="">
+							<div class="font-weight-bold text-gray-800 mt-3">
+								<c:out value="${menu.menuDescription}" />
 							</div>
-						</c:forEach>
-		            </div>
-		        </div>	
-	<jsp:include page="PageTopBtn.jsp" flush="false"/>
+						</div>
+						<c:url value="menuDetail" var="menuDetail">
+							<c:param name="brandCode" value="${menu.brandCode}"/>
+							<c:param name="menuCode" value="${menu.menuCode}"/>
+							<c:param name="menuName" value="${menu.menuName}" />
+						</c:url>
+						<div class="">
+							<a class="h4" href="${menuDetail}">리뷰</a>
+						</div>
+					</div>
+				</div>
+			</c:forEach>
+		</div>
+	</div>
+	<!-- 메인 컨텐츠 끝 -->
+	
     <script src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="resources/js/sb-admin-2.min.js"></script>	
 </body>
