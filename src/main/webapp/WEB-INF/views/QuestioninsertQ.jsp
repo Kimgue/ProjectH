@@ -47,7 +47,7 @@
 										<input type="text" class="form-control mb-3" id="qstnTitle" name="qstnTitle" placeholder="제목">
 										<input type="hidden" id="memberCode" name="memberCode" value="${ member }">
 										<input type="hidden" id="qstnCode" name="qstnCode" value="qstnCode">
-										<input type="hidden" id="qstnConfirm" name="qstnConfirm" value="n">
+										<input type="hidden" id="qstnConfirm" name="qstnConfirm" value="미답변">
 										<input type="hidden" id="qstnDate" name="qstnDate" value="${date }">
 										<input type="hidden" id="qstnImg" name="qstnImg">
 									</div>

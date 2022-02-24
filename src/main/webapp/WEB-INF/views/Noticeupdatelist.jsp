@@ -54,8 +54,8 @@
 									</div>
 									<input type="file" id="input-image" name="uploadfile" required="required">
 									<div class="three">
-										<img style="width: 350px; height:200px;" class="img img-fluid img-thumbnail mb-3" id="preview-image" src="${person.mbrDto.noticeImg}">
-										<input type="hidden" id="noticeImg" name="noticeImg" value="${person.mbrDto.noticeImg}">
+										<img style="width: 350px; height:200px;" class="img img-fluid img-thumbnail mb-3" id="preview-image" src="${person.mbrDto.noticeImg}" onError="this.style.visibility='hidden'">
+										<input type="hidden" id="noticeImg" name="noticeImg" src="${person.mbrDto.noticeImg}">
 									</div>
 									<div class="four">
 										<div class="float-left">
