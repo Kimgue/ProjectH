@@ -120,6 +120,7 @@ public class UserController {
 		model.addAttribute("sltOne", question.sltOne(memberCode, qstnCode));	
 		model.addAttribute("selectOne", answer.selectQuestionview(memberCode, qstnCode));
 		
+		
 		return "questionsltoneQ&A";
 	}
 	
