@@ -77,7 +77,7 @@
 		M.member_Name FROM QUESTION q 
         join members M
         on q.member_Code = m.member_Code
-        WHERE q.QSTN_CONFIRM = 'n'
+        WHERE q.QSTN_CONFIRM = '미답변'
         ORDER BY q.QSTN_CODE DESC)  
 		WHERE NUM BETWEEN #{ rowStart }
 		AND #{ rowEnd } 

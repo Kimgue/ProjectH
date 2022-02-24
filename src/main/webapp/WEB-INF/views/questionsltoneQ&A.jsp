@@ -36,14 +36,15 @@
 					<div class="card d-inline-block w-100 h-100 shadow mt-3 mb-3">
 						<div class="card-body">
 							<form name="paging" >
-								<c:if test="${sltOne.qesDto.qstnConfirm eq 'n'}">
+								<c:if test="${sltOne.qesDto.qstnConfirm eq '미답변'}">
 									<div>
 										<input class="btn btn-warning" type="button" value="수정" onclick="update()" >
-										<input class="btn btn-warning" type="button" value="삭제" onclick="Quesdelete('${ sltOne.qesDto.memberCode }','${ sltOne.qesDto.qstnCode }')">
 									</div>									
 								</c:if>
 							
-								<div class="h4 text-center">${ sltOne.qesDto.qstnTitle }</div>
+									<input class="btn btn-warning" type="button" value="삭제" onclick="Quesdelete('${ sltOne.qesDto.memberCode }','${ sltOne.qesDto.qstnCode }')">
+								
+								<div class="h4 text-center">${ sltOne.qesDto.qstnTitle }</div> 
 								<hr>
 								<div class="d-flex justify-content-between">
 									<div>${ sltOne.memberDto.memberName }</div>
@@ -63,7 +64,7 @@
 								<input type="hidden" id="qstnContent" name="qstnContent" value="${ sltOne.qesDto.qstnContent } " />
 								<input type="hidden" id="qstnImg" name="qstnImg" value="${sltOne.qesDto.qstnImg }" />
 								<input type="hidden" id="qstnDate" name="qstnDate" value="${ date }">
-								<input type="hidden" id="qstnConfirm" name="qstnConfirm" value="n"> 
+								<input type="hidden" id="qstnConfirm" name="qstnConfirm" value="미답변"> 
 							</form>
 						</div>
 					</div>
