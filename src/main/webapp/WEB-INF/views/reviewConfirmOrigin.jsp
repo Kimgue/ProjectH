@@ -15,7 +15,7 @@
    	<link href="resources/css/sb-admin-2.css" rel="stylesheet">
 	<script src="https://kit.fontawesome.com/730c440743.js" crossorigin="anonymous"></script>
 	<script src="resources/js/jquery-3.4.1.min.js"></script>
-	<script>
+    <script>
 
 	function confirm(){
 			
@@ -35,7 +35,7 @@
 		contentType: "application/x-www-form-urlencoded; charset=UTF-8",
 		success: function(jdata){
 				console.log(jdata)
-				alert(jdata.memberNickname + "님의 포인트가 "+ jdata.holdPoint+"점이 되었습니다.")
+				alert(jdata.memberNickname + "고객님의 포인트가 "+ jdata.holdPoint+"점이 되었습니다.")
 				document.location.href = document.location.href;
 			}, 
 		error: function(request, status, error){
@@ -65,7 +65,7 @@
 			contentType: "application/x-www-form-urlencoded; charset=UTF-8",
 			success: function(jdata){
 					console.log(jdata)
-					alert(jdata.memberNickname + "님의 리뷰를 승인하지 않았습니다.")
+					alert(jdata.memberNickname + "고객의 리뷰가 불승인되어 삭제되었습니다.")
 					document.location.href = document.location.href;
 				}, 
 			error: function(request, status, error){
@@ -75,14 +75,16 @@
 			}
 		});
 		};
-	</script>
+    
+    
+    		
+ </script>
 </head>
-
 <body>
 	<!-- 페이지 Wrapper 시작 -->
 	<div id="wrapper">
 	<!-- 사이드바 -->
-	<jsp:include page="AdminPageSide.jsp" flush="false"/>
+	<jsp:include page="PageSide.jsp" flush="false"/>
 	<!-- 컨텐츠 Wrapper 시작 -->
 	<div id="content-wrapper" class="d-flex flex-column">
 	<!-- 상단 -->
@@ -90,58 +92,46 @@
 					
 		<!-- 메인 -->
 		<div id="content">
-			<div class="w-100">
-				<div style="width:1660px;" class="card shadow m-3">
-					<div class="card-body">
-						<div class="h1 mb-3">
-							리뷰 승인
-						</div>
-						<c:choose>
-								<c:when test="${not empty review}">
-									<table id="menuReview" class="table text-center">
-										<thead>
-										<tr>
-											<th width="100">회원코드</th>
-											<th width="80">점수</th>
-											<th width="200">리뷰날짜</th>
-											<th>내용</th>
-											<th width="150">리뷰보기</th>	
-											<th width="100">승인</th>
-											<th width="100">취소</th>
-										</tr>
-										</thead>
-										<tbody>
-											<c:forEach var="review" items="${review}">	
-												<tr>
-													<td style="vertical-align : middle;"><c:out value="${review.memberCode}" /></td>
-													<td style="vertical-align : middle;"><c:out value="${review.reviewScore}" /></td>
-													<td style="vertical-align : middle;"><c:out value="${review.reviewDate}" /></td>
-													<td style="vertical-align : middle;"><c:out value="${review.reviewContent}" /></td>
-														<c:url value="reviewLookup" var="reviewLookup">
-															<c:param name="brandCode" value="${review.brandCode}"/>
-															<c:param name="menuCode" value="${review.menuCode}" />
-															<c:param name="reviewCode" value="${review.reviewCode}" />
-															<c:param name="memberCode" value="${review.memberCode}" />
-														</c:url>											
-													<td style="vertical-align : middle;"><a href="${reviewLookup}">상세 리뷰</a></td>
-													<td style="vertical-align : middle;"><button class="btn btn-warning" onclick="confirm( )">승인</button></td>
-													<td style="vertical-align : middle;"><button class="btn btn-warning" onclick="confirmNo( )">취소</button></td>		
-												</tr>
-												<input name="memberCode" type="hidden" value="${review.memberCode}" />
-												<input name="reviewCode" type="hidden" value="${review.reviewCode}" />
-												<input name="brandCode" type="hidden" value="${review.brandCode}" />
-												<input name="menuCode" type="hidden" value="${review.menuCode}" />
-											</c:forEach>
-										</tbody>
-									</table>								
-								</c:when>
-								
-								<c:otherwise>
-									<div class="h4 text-center">등록된 리뷰가 없습니다</div>
-								</c:otherwise>
-						</c:choose>
-					</div>
-				</div>
+			<div align="center">
+			
+				<table id="menuReview" class="table table-bordered"  style="width:100%">
+					<thead>
+					<tr>
+						<th>회원코드</th>
+						<th>점수</th>
+						<th>리뷰날짜</th>
+						<th>내용</th>
+						<th>리뷰보기</th>	
+						<th>승인</th>
+						<th>불승인</th>
+					</tr>
+					</thead>
+					<tbody>
+				<c:forEach var="review" items="${review}">
+				<input name="memberCode" type="hidden" value="${review.memberCode}" />
+				<input name="reviewCode" type="hidden" value="${review.reviewCode}" />
+				<input name="brandCode" type="hidden" value="${review.brandCode}" />
+				<input name="menuCode" type="hidden" value="${review.menuCode}" />		
+					<tr>
+						<td><c:out value="${review.memberCode}" /></td>
+						<td><c:out value="${review.reviewScore}" /></td>
+						<td><c:out value="${review.reviewDate}" /></td>
+						<td><c:out value="${review.reviewContent}" /></td>
+							
+							<c:url value="reviewLookup" var="reviewLookup">
+							<c:param name="brandCode" value="${review.brandCode}"/>
+							<c:param name="menuCode" value="${review.menuCode}" />
+							<c:param name="reviewCode" value="${review.reviewCode}" />
+							<c:param name="memberCode" value="${review.memberCode}" />
+						</c:url>
+						<td><a href="${reviewLookup}">상세 리뷰 보기</a></td>
+						<td><button onclick="confirm( )">승인</button></td>
+						<td><button onclick="confirmNo( )">불승인</button></td>		
+					</tr>										
+				</c:forEach>
+				</tbody>
+				</table>
+				
 			</div>
 		</div>
 		<!-- 메인 컨텐츠 끝 -->
