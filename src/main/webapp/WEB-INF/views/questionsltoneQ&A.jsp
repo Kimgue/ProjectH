@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -63,7 +63,7 @@
 								<input type="hidden" id="qstnContent" name="qstnContent" value="${ sltOne.qesDto.qstnContent } " />
 								<input type="hidden" id="qstnImg" name="qstnImg" value="${sltOne.qesDto.qstnImg }" />
 								<input type="hidden" id="qstnDate" name="qstnDate" value="${ date }">
-								<input type="hidden" id="qstnConfirm" name="qstnConfirm" value="n">
+								<input type="hidden" id="qstnConfirm" name="qstnConfirm" value="n"> 
 							</form>
 						</div>
 					</div>
