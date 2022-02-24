@@ -72,7 +72,9 @@
 	<select id="selectN" resultMap="AnswerVoRm"  parameterType="Criteria">
 	 SELECT * FROM (   
 		SELECT   ROW_NUMBER() OVER(ORDER BY q.QSTN_CODE DESC)
-		NUM, q.*,M.member_Name FROM QUESTION q 
+		NUM, q.MEMBER_CODE, q.QSTN_CODE, q.QSTN_TITLE, q.QSTN_CONTENT, TO_CHAR(q.QSTN_DATE,'YYYY"년" MM"월" DD"일" HH24"시" MI"분"') AS QSTN_DATE,
+		q.QSTN_CONFIRM , q.QSTN_IMG,
+		M.member_Name FROM QUESTION q 
         join members M
         on q.member_Code = m.member_Code
         WHERE q.QSTN_CONFIRM = 'n'
