@@ -131,7 +131,9 @@
 								<c:param name="menuCode" value="${menu.menuCode}" />
 								<c:param name="menuName" value="${menu.menuName}" />
 							</c:url>
-							<a href="${reviewWrite}">리뷰 작성하기</a>
+							<c:if test="${empty adminDTO}">
+								<a href="${reviewWrite}">리뷰 작성하기</a>
+							</c:if>
 						</div>				
 					</div>
 				</div>			

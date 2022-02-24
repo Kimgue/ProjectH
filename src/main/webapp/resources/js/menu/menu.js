@@ -1,17 +1,16 @@
 		function inputCheck(){
 		
-		if(
-			$("input:checkbox[name='brandCode']").is(":checked") == false &&
+			$("form").submit();
+		/*if(
+				
+		$("input:checkbox[name='brandCode']").is(":checked") == false &&
 			$("input:checkbox[name='menuIngredients']").is(":checked") == false &&
 			$("input[name='menuPrice']").val().trim() == '' &&
 			$("input[name='menuName']").val().trim() == '')
 			{
 				alert("검색 조건을 입력해주세요");
-				return false;
-			};
-			
-			$("form").submit();
-			
+				
+			};*/	
 	}
 	
 	var menuPriceHigh = function(url){
