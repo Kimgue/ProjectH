@@ -21,29 +21,25 @@
 
 <body>	
 	<div id="content">
-		<div id="menuResult">
+		<div id="menu_list" class="m-Div text-center">
 			<c:forEach var="menuVo" items="${menuVo}">
-				<div class="card shadow h-100 py-2 rounded-0">
+				<div style="width:400px; height:500px;" class="card shadow ml-3 mb-3">
 					<div class="card-body">
-					<div class="menu-grid">
-						<div class="menuImg ml-n3">
-							<img class="overflow-hidden" src="<c:out value="resources/${menuVo.menuDto.menuImg}"/>" alt="메뉴 이미지" height="250" width="250" />
+						<div class="mt-3">
+							<img src="<c:out value="resources/${menuVo.menuDto.menuImg}"/>" alt="메뉴 이미지" height="200" width="200" />
 						</div>
 						
-						<div class="menuTitle">
-							<div class="h3 font-weight-bolder">
-								<c:out value="${menuVo.menuDto.menuName}" />
-							</div>
-							<div><c:out value="${menuVo.menuDto.menuPrice}" />원</div>
+						<div class="">
+							<div class="h3 font-weight-bolder"><c:out value="${menuVo.menuDto.menuName}" /></div>
+							<div><c:out value="${menuVo.menuDto.menuPrice}"/>원</div>
 							<div><c:out value="${menuVo.menuDto.menuIngredients}" /></div>
 						</div>
-	
-						<div class="menuDescription">
+						
+						<div class="">
 							<div class="font-weight-bold text-gray-800 mt-3">
 								<c:out value="${menuVo.menuDto.menuDescription}" />
 							</div>
 						</div>
-					</div>
 					</div>
 				</div>
 			</c:forEach>

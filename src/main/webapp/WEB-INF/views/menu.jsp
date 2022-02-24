@@ -33,7 +33,7 @@
 		<div id="content">
 			<div class="m-Grid">
 				<div class="m-Grid-Search">
-		    		<div style="width:750px;" class="card shadow ml-3 mt-3 mb-3">
+		    		<div style="width:750px; height:530px;" class="card shadow ml-3 mt-3 mb-3">
 			    		<div class="card-body">
 							<h3>검색 조건</h3>
 							<form action="menuResult" id="menuSearch">
@@ -88,10 +88,9 @@
 					</div>
 				</div>
 				<div class="m-Grid-Rank">
-					<div style="width:750px;" class="card shadow mt-3 mb-3 mr-3">
+					<div style="width:750px; height:530px;" class="card shadow mt-3 mb-3 mr-3">
 						<div class="card-body">
 							<h4>메뉴 리뷰 점수순위</h4>
-							
 							<c:forEach var="rank" items="${ reviewRanking }">
 							<c:set var="i" value="${i+1}"/>
 							<tr>
