@@ -44,7 +44,7 @@
 							
 									<input class="btn btn-warning" type="button" value="삭제" onclick="Quesdelete('${ sltOne.qesDto.memberCode }','${ sltOne.qesDto.qstnCode }')">
 								
-								<div class="h4 text-center">${ sltOne.qesDto.qstnTitle }</div>
+								<div class="h4 text-center">${ sltOne.qesDto.qstnTitle }</div> 
 								<hr>
 								<div class="d-flex justify-content-between">
 									<div>${ sltOne.memberDto.memberName }</div>
