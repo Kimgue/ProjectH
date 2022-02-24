@@ -10,52 +10,42 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>헝픽</title>
+    <title>헝픽 리뷰 검토</title>
     
    	<link href="resources/css/sb-admin-2.css" rel="stylesheet">
 	<script src="https://kit.fontawesome.com/730c440743.js" crossorigin="anonymous"></script>
 	<script src="resources/js/jquery-3.4.1.min.js"></script>
 	<script>
-
-	function confirm(){
-			
-	 var brandCode = $("input[name='brandCode']").val();
-	 var menuCode = $("input[name='menuCode']").val();	
-	 var reviewCode = $("input[name='reviewCode']").val();
-	 var memberCode = $("input[name='memberCode']").val();
-	
-	 console.log(brandCode)
-	 
-	$.ajax({
-		type: 'POST',
-		url: 'confirmReview.do',
-		async: true,
-		data: {"brandCode" : brandCode,"menuCode" : menuCode,"reviewCode" : reviewCode,"memberCode" : memberCode },
-		dataType: "json",
-		contentType: "application/x-www-form-urlencoded; charset=UTF-8",
-		success: function(jdata){
-				console.log(jdata)
-				alert(jdata.memberNickname + "님의 포인트가 "+ jdata.holdPoint+"점이 되었습니다.")
-				document.location.href = document.location.href;
-			}, 
-		error: function(request, status, error){
-			console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-			alert("지금은 시스템 사정으로 요청하신 작업을 처리할 수 없습니다.");
-			return;
-		}
-	});
+	function confirm() {
+		var brandCode = $("input[name='brandCode']").val();
+		var menuCode = $("input[name='menuCode']").val();
+		var reviewCode = $("input[name='reviewCode']").val();
+		var memberCode = $("input[name='memberCode']").val();
+		
+		$.ajax({
+			type: 'POST',
+			url: 'confirmReview.do',
+			async: true,
+			data: {"brandCode" : brandCode,"menuCode" : menuCode,"reviewCode" : reviewCode,"memberCode" : memberCode },
+			dataType: "json",
+			contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+			success: function(jdata){
+					alert(jdata.memberNickname + "님의 포인트가 "+ jdata.holdPoint+"점이 되었습니다.")
+					document.location.href = document.location.href;
+				}, 
+			error: function(request, status, error){
+				alert("지금은 시스템 사정으로 요청하신 작업을 처리할 수 없습니다.");
+				return;
+			}
+		});
 	};	
 	
-	
-	function confirmNo(){
+	function confirmNo() {
+		var brandCode = $("input[name='brandCode']").val();
+		var menuCode = $("input[name='menuCode']").val();
+		var reviewCode = $("input[name='reviewCode']").val();
+		var memberCode = $("input[name='memberCode']").val();
 		
-		 var brandCode = $("input[name='brandCode']").val();
-		 var menuCode = $("input[name='menuCode']").val();	
-		 var reviewCode = $("input[name='reviewCode']").val();
-		 var memberCode = $("input[name='memberCode']").val();
-		
-		 console.log(brandCode)
-		 
 		$.ajax({
 			type: 'POST',
 			url: 'confirmNoReview.do',
@@ -64,18 +54,17 @@
 			dataType: "json",
 			contentType: "application/x-www-form-urlencoded; charset=UTF-8",
 			success: function(jdata){
-					console.log(jdata)
 					alert(jdata.memberNickname + "님의 리뷰를 승인하지 않았습니다.")
 					document.location.href = document.location.href;
 				}, 
 			error: function(request, status, error){
-				console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 				alert("지금은 시스템 사정으로 요청하신 작업을 처리할 수 없습니다.");
 				return;
 			}
 		});
-		};
+	};
 	</script>
+	
 </head>
 
 <body id="page-top">
@@ -154,7 +143,11 @@
 	</div>
 	<!-- 페이지 상단 버튼 -->
 	<jsp:include page="PageTopBtn.jsp" flush="false"/>
+	
+	<script src="resources/vendor/jquery/jquery.min.js"></script>
+	<script src="resources/vendor/jquery-easing/jquery.easing.min.js"></script>
     <script src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="resources/js/sb-admin-2.min.js"></script>	
+    <script src="resources/js/sb-admin-2.min.js"></script>
+    
 </body>
 </html>

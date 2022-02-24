@@ -4,13 +4,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>헝픽</title>
+    <title>헝픽 리뷰 작성</title>
     
    	<link href="resources/css/sb-admin-2.css" rel="stylesheet">
    	<link href="resources/css/GridLayout.css" rel="stylesheet">
@@ -23,25 +24,14 @@
 	var url = "<c:out value='${url}'/>";
 	var preImg = new Array();
 
-	
-	
-	if(msg != null && msg !='')
-	{
-	alert(msg);
-	location.href = url;
-	};
+	if(msg != null && msg !='') { alert(msg); location.href = url;};
 
-	$(document).ready(function()
-			// input file 파일 첨부시 fileCheck 함수 실행
-			{
-				$("#input_file").on("change", fileCheck);
-				$("#preview-image-0").hide();
-				$("#preview-image-1").hide();
-			});
+	$(document).ready(function() {
+		$("#input_file").on("change", fileCheck);
+		$("#preview-image-0").hide();
+		$("#preview-image-1").hide();
+	});
 
-	/**
-	 * 첨부파일로직
-	 */
 	$(function () {
 	    $('#btn-upload').click(function (e) {
 	        e.preventDefault();
@@ -133,53 +123,49 @@
 
 	}
 
-	/*
-	 * 폼 submit 로직
-	 */
-		function registerAction(){
-		
-		var form = $("form")[0];        
-	 	var formData = new FormData(form);
-			for (var x = 0; x < content_files.length; x++) {
-				// 삭제 안한것만 담아 준다. 
-				if(!content_files[x].is_delete){
-					 formData.append("article_file", content_files[x]);
-				}
+	/* 폼 submit 로직 */
+	function registerAction(){
+		var form = $("form")[0];
+		var formData = new FormData(form);
+		for (var x = 0; x < content_files.length; x++) {
+			// 삭제 안한것만 담아 준다. 
+			if(!content_files[x].is_delete) {
+				 formData.append("article_file", content_files[x]);
 			}
-	   /*
-	   * 파일업로드 multiple ajax처리
-	   */    
-		$.ajax({
-	   	      type: "POST",
-	   	   	  enctype: "multipart/form-data",
-	   	      url: "file-upload",
-	       	  data : formData,
-	       	  processData: false,
-	   	      contentType: false,
-	   	      success: function (data) {
-	   	    	if($('input[name=reviewScore]').val() =="" || $('input[name=reviewContent]').val() ==""){
-	 	    			alert("리뷰 작성란에 빈칸이 있습니다.")
-	 	    			return;	  
-	   	    	}
-	   	    	if(JSON.parse(data)['result'] == "OK"){
-	   	    		var result = confirm("등록하시겠습니까?");
-	   	 			if(result) {
-	   	 				alert("등록되었습니다");
-	   	    			//초기화 한다.
-	   	 	    		$("#input_file").val("");  	    			
-	   	 	    		$("#reviewImg").attr("value", JSON.parse(data)['reviewImg']);
-	   	 	    		$("form").submit();
-	   	 	    		}
-				} else
-					alert("서버내 오류로 처리가 지연되고있습니다. 잠시 후 다시 시도해주세요");
-	   	      },
-	   	      error: function (xhr, status, error) {
-	   	    	alert("서버오류로 지연되고있습니다. 잠시 후 다시 시도해주시기 바랍니다.");
-	   	     return false;
-	   	      }
-	   	    });
-	   	    return false;
 		}
+   
+		/* 파일업로드 multiple ajax처리 */
+		$.ajax({
+   	      type: "POST",
+   	   	  enctype: "multipart/form-data",
+   	      url: "file-upload",
+       	  data : formData,
+       	  processData: false,
+   	      contentType: false,
+   	      success: function (data) {
+   	    	if($('input[name=reviewScore]').val() =="" || $('input[name=reviewContent]').val() ==""){
+ 	    			alert("리뷰 작성란에 빈칸이 있습니다.")
+ 	    			return;	  
+   	    	}
+   	    	if(JSON.parse(data)['result'] == "OK"){
+   	    		var result = confirm("등록하시겠습니까?");
+   	 			if(result) {
+   	 				alert("등록되었습니다");
+   	    			//초기화 한다.
+   	 	    		$("#input_file").val("");  	    			
+   	 	    		$("#reviewImg").attr("value", JSON.parse(data)['reviewImg']);
+   	 	    		$("form").submit();
+   	 	    		}
+			} else
+				alert("서버내 오류로 처리가 지연되고있습니다. 잠시 후 다시 시도해주세요");
+   	      },
+   	      error: function (xhr, status, error) {
+   	    	alert("서버오류로 지연되고있습니다. 잠시 후 다시 시도해주시기 바랍니다.");
+   	     return false;
+   	      }
+   	    });
+   	    return false;
+	}
    	</script>
    	
 </head>
@@ -266,7 +252,11 @@
 	</div>
 	<!-- 페이지 상단 버튼 -->
 	<jsp:include page="PageTopBtn.jsp" flush="false"/>
+	
+	<script src="resources/vendor/jquery/jquery.min.js"></script>
+	<script src="resources/vendor/jquery-easing/jquery.easing.min.js"></script>
     <script src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="resources/js/sb-admin-2.min.js"></script>	
+    <script src="resources/js/sb-admin-2.min.js"></script>
+    	
 </body>
 </html>

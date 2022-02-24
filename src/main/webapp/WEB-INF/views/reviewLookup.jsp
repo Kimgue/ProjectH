@@ -4,13 +4,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>헝픽</title>
+    <title>헝픽 상세 리뷰</title>
     
    	<link href="resources/css/sb-admin-2.css" rel="stylesheet">
    	<link href="resources/css/GridLayout.css" rel="stylesheet">
@@ -18,7 +19,7 @@
 	<script src="https://kit.fontawesome.com/730c440743.js" crossorigin="anonymous"></script>
 	<script src="resources/js/jquery-3.4.1.min.js"></script>
 	<script src="resources/js/textareaHeight.js"></script>
-		<script>
+	<script>
 	var reviewImg = '<c:out value= "${Lookup.reviewDto.reviewImg}"/>';
 	var imgFile = reviewImg.split(',');
 	var filePath = "images/review/"
@@ -34,7 +35,6 @@
 			{
 				ImgAttr();
 			});
-	
 	</script>
    	
 </head>
@@ -91,7 +91,11 @@
 	</div>
 	<!-- 페이지 상단 버튼 -->
 	<jsp:include page="PageTopBtn.jsp" flush="false"/>
+	
+	<script src="resources/vendor/jquery/jquery.min.js"></script>
+	<script src="resources/vendor/jquery-easing/jquery.easing.min.js"></script>
     <script src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="resources/js/sb-admin-2.min.js"></script>	
+    <script src="resources/js/sb-admin-2.min.js"></script>
+    
 </body>
 </html>

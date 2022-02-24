@@ -4,13 +4,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>헝픽</title>
+    <title>헝픽 메인 이미지 슬라이드</title>
     
    	<link href="resources/css/sb-admin-2.css" rel="stylesheet">
    	<link href="resources/css/main.css" rel="stylesheet">

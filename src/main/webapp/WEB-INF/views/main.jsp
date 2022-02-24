@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -11,7 +12,6 @@
     <meta name="author" content="">
 
     <title>헝픽</title>
-    
     
    	<link href="resources/css/sb-admin-2.css" rel="stylesheet">
    	<link href="resources/css/main.css" rel="stylesheet">
@@ -28,6 +28,7 @@
 		location.href = url;
 		}
     </script>
+    
 </head>
 
 <body id="page-top">
@@ -43,15 +44,13 @@
 		<!-- 메인 -->
 		<div id="content">
 			
-			
-		<!-- 이미지 슬라이드 -->
-		<jsp:include page="mainSlide.jsp" flush="false"/>		
-
-		<!-- 메인 메뉴 리스트 -->
-		<div class="d-flex align-items-center justify-content-center mt-5">
-			<jsp:include page="mainMenuList.jsp" flush="false"/>
-		</div>
-		
+			<!-- 이미지 슬라이드 -->
+			<jsp:include page="mainSlide.jsp" flush="false"/>		
+	
+			<!-- 메인 메뉴 리스트 -->
+			<div class="d-flex align-items-center justify-content-center mt-5">
+				<jsp:include page="mainMenuList.jsp" flush="false"/>
+			</div>
 		
 		</div>
 		<!-- 메인 컨텐츠 끝 -->
@@ -68,6 +67,7 @@
 	<script src="resources/vendor/jquery/jquery.min.js"></script>
 	<script src="resources/vendor/jquery-easing/jquery.easing.min.js"></script>
     <script src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="resources/js/sb-admin-2.min.js"></script>	
+    <script src="resources/js/sb-admin-2.min.js"></script>
+    
 </body>
 </html>

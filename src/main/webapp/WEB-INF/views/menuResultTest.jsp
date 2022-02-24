@@ -4,13 +4,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>헝픽</title>
+    <title>헝픽 브랜드 메뉴보기</title>
     
    	<link href="resources/css/sb-admin-2.css" rel="stylesheet">
    	<link href="resources/css/GridLayout.css" rel="stylesheet">
@@ -23,7 +24,7 @@
 	<div id="content">
 		<div id="menu_list" class="b-Div text-center">
 			<c:forEach var="menuVo" items="${menuVo}">
-				<div style="width:380px; height:500px;" class="card shadow mr-3 mb-3">
+				<div style="width:380px; height:400px;" class="card shadow mr-3 mb-3">
 					<div class="card-body overflow-hidden">
 						<img src="<c:out value="resources/${menuVo.menuDto.menuImg}"/>" alt="메뉴 이미지" height="200" width="200" />
 						<div class="h3 font-weight-bolder"><c:out value="${menuVo.menuDto.menuName}" /></div>

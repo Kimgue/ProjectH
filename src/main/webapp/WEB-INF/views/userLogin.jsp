@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -16,6 +17,7 @@
 	<script src="https://kit.fontawesome.com/730c440743.js" crossorigin="anonymous"></script>
 	<script src="resources/js/jquery-3.4.1.min.js"></script>
 	<script src="resources/js/user/userLogin.js"></script>
+	
 </head>
 
 <body class="bg-gradient-light">
@@ -23,7 +25,7 @@
 	<header class="d-flex align-items-center justify-content-center">
 			<div class="card border-0 my-5 text-center bg-transparent">
 				<a href="main" class="text-decoration-none">
-                	<img src="images/gifticon/hungpicklogo.png" width="300">
+                	<img src="images/etc/hungpicklogo.png" width="300">
             	</a>
 			</div>
     </header>
@@ -36,7 +38,6 @@
 			<div class="col-xl-10 col-lg-12 col-md-9">
 				<div class="card o-hidden border-0 shadow-lg my-5">
 					<div class="card-body p-0">
-						<!-- Nested Row within Card Body -->
 						<div class="row">
 							<div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
 							<div class="col-lg-6">
@@ -78,9 +79,10 @@
 			</div>
 		</div>
 	</div>
-
-	<script src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-	<script src="resources/js/sb-admin-2.min.js"></script>
+	
+	<script src="resources/vendor/jquery/jquery.min.js"></script>
+	<script src="resources/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="resources/js/sb-admin-2.min.js"></script>	
 </body>
-
 </html>

@@ -4,13 +4,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>헝픽</title>
+    <title>헝픽 메뉴 조회</title>
     
    	<link href="resources/css/sb-admin-2.css" rel="stylesheet">
 	<script src="https://kit.fontawesome.com/730c440743.js" crossorigin="anonymous"></script>
@@ -18,7 +19,6 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"></link>
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
     <script>
-    
     var lang_kor = {
             "decimal" : "",
             "emptyTable" : "데이터가 없습니다.",
@@ -50,11 +50,9 @@
         	searching: true,
         	language : lang_kor
         });
-    } );
-    
-    
-    
+    });
     </script>
+    
 </head>
 
 <body id="page-top">
@@ -149,7 +147,11 @@
 	</div>
 	<!-- 페이지 상단 버튼 -->
 	<jsp:include page="PageTopBtn.jsp" flush="false"/>
+	
+	<script src="resources/vendor/jquery/jquery.min.js"></script>
+	<script src="resources/vendor/jquery-easing/jquery.easing.min.js"></script>
     <script src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="resources/js/sb-admin-2.min.js"></script>	
+    <script src="resources/js/sb-admin-2.min.js"></script>
+    
 </body>
 </html>
