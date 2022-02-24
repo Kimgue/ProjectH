@@ -67,9 +67,16 @@ article {
 	display: grid;
 	grid-template-columns: 300px 300px 300px;
 	grid-gap: 15px;
-	grid-template-rows: repeat(3, 400px);
+	grid-template-rows: 100px repeat(3, 230px);
 	grid-auto-flow: row;
 }
+
+.mainMenuGridText {
+	grid-column: 1/4;
+	grid-row: 1;
+}
+
+
 
 .insertGrid {
   display: grid;

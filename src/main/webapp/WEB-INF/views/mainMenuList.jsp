@@ -21,8 +21,11 @@
 </head>
 <body>
 	<div class="mainMenuGrid text-center">
+		<div class="h1 mainMenuGridText mb-3">
+			각종 메뉴를 리뷰해보세요!
+		</div>
 		<c:forEach var="menu" items="${menu}">
-			<div class="card d-inline-block shadow h-100">
+			<div style="height:230px; "class="card d-inline-block shadow overflow-hidden mainMenu">
 				<div class="card-body">
 					<c:url value="menuDetail" var="menuDetail">
 					<c:param name="brandCode" value="${menu.brandCode}"/>
@@ -32,9 +35,7 @@
 					<a href="${menuDetail}">
 						<img src="<c:out value="resources/${menu.menuImg}"/>" alt="메뉴 이미지" height="200" width="200" />				
 					</a>	
-					<div class="h2"><c:out value="${menu.menuName}" /></div>
-					<div><c:out value="${menu.menuPrice}"/>원</div>
-					<div><c:out value="${menu.menuDescription}" /></div>
+					<div class="h4"><c:out value="${menu.menuName}" /></div>
 				</div>
 			</div>
 		</c:forEach>

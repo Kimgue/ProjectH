@@ -29,16 +29,16 @@
 			<input type="radio" name="radio-btn" id="radio4">
 
 			<div class="slide first">
-				<img src="images/gifticon/e.gif" alt="">
+				<img src="images/etc/slideImg1.png" alt="">
 			</div>
 			<div class="slide">
-				<img src="images/gifticon/f.gif" alt="">
+				<img src="images/etc/slideImg2.png" alt="">
 			</div>
 			<div class="slide">
-				<img src="images/gifticon/g.jpg" alt="">
+				<img src="images/etc/slideImg3.png" alt="">
 			</div>
 			<div class="slide">
-				<img src="images/gifticon/h.jpg" alt="">
+				<img src="images/etc/slideImg4.png" alt="">
 			</div>
 
 			<div class="navigation-auto">

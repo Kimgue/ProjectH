@@ -90,16 +90,14 @@
 				<div class="m-Grid-Rank">
 					<div style="width:750px; height:530px;" class="card shadow ml-3 mt-3 mb-3">
 						<div class="card-body">
-							<h4>메뉴 리뷰 점수순위</h4>
+							<div class="h1 text-center mb-3">메뉴 리뷰 점수 순위</div>
 							<c:forEach var="rank" items="${ reviewRanking }">
-							<c:set var="i" value="${i+1}"/>
-							<tr>
-							<td><c:out value="${i}" />등</td>
-							<td><c:out value="${rank.brandDto.brandName}" /></td>
-							<td><c:out value="${rank.menuDto.menuName}" /></td>
-							<td><c:out value="${rank.reviewDto.reviewScore}"></c:out>
-							</tr>
-							<br>
+								<c:set var="i" value="${i+1}"/>
+								<div class="h4 text-center mb-2">
+									<c:out value="${i}" />등
+									<c:out value="${rank.brandDto.brandName}" /> - <c:out value="${rank.menuDto.menuName}" />
+									<c:out value="${rank.reviewDto.reviewScore}"/>점
+								</div>
 							</c:forEach>
 						</div>
 					</div>
@@ -113,13 +111,13 @@
 								<img src="<c:out value="resources/${menuVo.menuDto.menuImg}"/>" alt="메뉴 이미지" height="200" width="200" />
 							</div>
 							
-							<div class="">
+							<div>
 								<div class="h3 font-weight-bolder"><c:out value="${menuVo.menuDto.menuName}" /></div>
 								<div><c:out value="${menuVo.menuDto.menuPrice}"/>원</div>
 								<div><c:out value="${menuVo.menuDto.menuIngredients}" /></div>
 							</div>
 							
-							<div class="">
+							<div>
 								<div class="font-weight-bold text-gray-800 mt-3">
 									<c:out value="${menuVo.menuDto.menuDescription}" />
 								</div>
@@ -129,8 +127,8 @@
 								<c:param name="menuCode" value="${menuVo.menuDto.menuCode}"/>
 								<c:param name="menuName" value="${menuVo.menuDto.menuName}" />
 							</c:url>
-							<div class="">
-								<a class="h4" href="${menuDetail}">리뷰</a>
+							<div class="mt-5">
+								<a class="btn btn-warning" href="${menuDetail}">상세보기</a>
 							</div>
 						</div>
 					</div>

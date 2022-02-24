@@ -11063,19 +11063,19 @@ a:focus {
 }
 
 .bg-login-image {
-  background: url("https://source.unsplash.com/K4mSJ7kc0As/600x800");
+  background: url("/WebProject/resources/images/etc/food4.jpg");
   background-position: center;
   background-size: cover;
 }
 
 .bg-register-image {
-  background: url("https://source.unsplash.com/Mv9hjnEUHR4/600x800");
+  background-image: url("/WebProject/resources/images/etc/food3.jpg");
   background-position: center;
   background-size: cover;
 }
 
 .bg-password-image {
-  background: url("https://source.unsplash.com/oWTW-jNGl9I/600x800");
+  background-image: url("/WebProject/resources/images/etc/food5.jpg");
   background-position: center;
   background-size: cover;
 }
@@ -11510,4 +11510,8 @@ body.sidebar-toggled footer.sticky-footer {
   top: 70px;  
   right:0;
   left: 33%;
+}
+
+.mainMenu:last-child {
+	margin-bottom: 1rem !important;
 }

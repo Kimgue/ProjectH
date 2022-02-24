@@ -29,13 +29,13 @@
 							<img src="<c:out value="resources/${menu.menuImg}"/>" alt="메뉴 이미지" height="200" width="200" />
 						</div>
 						
-						<div class="">
+						<div>
 							<div class="h3 font-weight-bolder"><c:out value="${menu.menuName}" /></div>
 							<div><c:out value="${menu.menuPrice}"/>원</div>
 							<div><c:out value="${menu.menuIngredients}" /></div>
 						</div>
 						
-						<div class="">
+						<div>
 							<div class="font-weight-bold text-gray-800 mt-3">
 								<c:out value="${menu.menuDescription}" />
 							</div>
@@ -45,8 +45,8 @@
 							<c:param name="menuCode" value="${menu.menuCode}"/>
 							<c:param name="menuName" value="${menu.menuName}" />
 						</c:url>
-						<div class="">
-							<a class="h4" href="${menuDetail}">리뷰</a>
+						<div class="mt-5">
+							<a class="btn btn-warning" href="${menuDetail}">상세보기</a>
 						</div>
 					</div>
 				</div>

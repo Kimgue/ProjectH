@@ -20,7 +20,15 @@
 	<footer class="sticky-footer bg-white">
 		<div class="container my-auto">
 			<div class="copyright text-center my-auto">
-				<span>하단 메뉴</span>
+				<div>
+					헝픽 대표 : 김혜성 정진욱 김규성
+					Copyright©헝픽 All rights reserved.
+
+				</div>
+				<div>
+					고객센터 010-9462-6942
+					대구광역시 동구 신천역 까사밀라 203호
+				</div>
 			</div>
 		</div>
 	</footer>

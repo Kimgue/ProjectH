@@ -49,7 +49,7 @@
 
 		<!-- 메인 메뉴 리스트 -->
 		<div class="d-flex align-items-center justify-content-center mt-5">
-		<jsp:include page="mainMenuList.jsp" flush="false"/>
+			<jsp:include page="mainMenuList.jsp" flush="false"/>
 		</div>
 		
 		
