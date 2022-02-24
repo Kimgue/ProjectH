@@ -1,5 +1,8 @@
 package com.hungpick.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -89,7 +92,13 @@ public class UserController3 {
 
 	/*--------------------- 회원가입 완료 눌렀을 때 ---------------------*/
 	@RequestMapping("userSignUpSubmit")
-	public String userSignUp(UserDto Dto) throws Exception {
+	public String userSignUp(UserDto Dto, Model model) throws Exception {
+		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		Date date = new Date();
+		String time1 = format1.format(date);
+		
+		Dto.setMemberDate(time1);
+
 		String view = userService.registMember(Dto);
 		return view;
 	}
