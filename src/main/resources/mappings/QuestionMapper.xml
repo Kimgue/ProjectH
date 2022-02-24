@@ -53,7 +53,7 @@
     <result column="QSTN_CONTENT" property="qstnContent"/>
     <result column="QSTN_DATE" property="qstnDate"/>
     <result column="QSTN_CONFIRM" property="qstnConfirm"/>
-
+	<result column="QSTN_IMG" property="qstnImg"/>
 	</resultMap>
 	
 	<resultMap type="questionVo" id="QuestionVoRm">
