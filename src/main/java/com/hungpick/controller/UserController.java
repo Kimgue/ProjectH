@@ -2,431 +2,147 @@ package com.hungpick.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.annotations.Param;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
-import com.hungpick.dto.AnswerDto;
-import com.hungpick.dto.Criteria;
-import com.hungpick.dto.Notice;
-import com.hungpick.dto.PageMaker;
-import com.hungpick.dto.Question;
-import com.hungpick.dto.QuestionVo;
-import com.hungpick.service.IAnswerService;
-import com.hungpick.service.INoticeService;
-import com.hungpick.service.IQuestionSerivce;
+import com.hungpick.dto.UserDto;
+import com.hungpick.dto.UserVo;
+import com.hungpick.service.IUserService;
 
 @Controller
 public class UserController {
 
 	@Autowired
-	private INoticeService notice;
+	private IUserService userService;
 
-	@Autowired
-	private IQuestionSerivce question;
+	/*--------------------- 아이디 찾기 페이지로 이동 ---------------------*/
+	@RequestMapping("userFindId")
+	public void userFindId() {
+	}
+
+	/*--------------------- 아이디 찾은 결과 페이지로 이동 ---------------------*/
+	@RequestMapping("userFindIdComplete")
+	public void userFindIdComplete() {
+	}
+
+	/*--------------------- 비밀번호 찾기 페이지로 이동 ---------------------*/
+	@RequestMapping("userFindPw")
+	public void userFindPw() {
+	}
+
+	/*--------------------- 비밀번호 찾기 결과 페이지로 이동 ---------------------*/
+	@RequestMapping("userFindPwComplete")
+	public void userFindPwComplete() {
+	}
+
+	/*--------------------- 내 정보 페이지로 이동 ---------------------*/
+	@RequestMapping("userMyInfo")
+	public void userMyInfo() {
+	}
 	
-	@Autowired
-	private IAnswerService answer;
- 	
-	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
+	/*--------------------- 회원가입 페이지로 이동 ---------------------*/
+	@RequestMapping("userSignUp")
+	public void userSignUp() {
+	}
+	
+	/*--------------------- 로그인 페이지로 이동 ---------------------*/
+	@RequestMapping("userLogin")
+	public void userLogin() {
+	}
+	
+	/*--------------------- 회원탈퇴 페이지로 이동 ---------------------*/
+	@RequestMapping("userDelete")
+	public void userDelete() {
+	}
+	
+	/*--------------------- 회원탈퇴완료 페이지로 이동 ---------------------*/
+	@RequestMapping("userDeleteComplete")
+	public void userDeleteComplete() {
+	}
+	
+	/*--------------------- 보유 기프티콘 페이지로 이동 ---------------------*/
+	@RequestMapping("userGifticon")
+	public void userGifticon(UserVo Vo, Model model) throws Exception {
+		userService.userGifticonMulti(Vo, model);
+	}
+	
+	
+	
+	
+	/*--------------------- 회원 조회 페이지로 이동 ---------------------*/
+	@RequestMapping("userInfo")
+	public String userInfo(UserDto Dto, Model model) throws Exception {
+		String view = userService.sltMulti(Dto, model);
+		return view;
+	}
 
-	/*--------------------- 공지사항 등록 페이지로 이동 ---------------------*/
-	@RequestMapping("noticeinsertN")
-	public void noticeinsertN(Model model) {
+	/*--------------------- 로그아웃 기능 ---------------------*/
+	@RequestMapping("userLogout")
+	public String userLogout(HttpSession session) throws Exception {
+		String view = userService.userLogout(session);
+		return view;
+	}
+
+	/*--------------------- 회원가입 완료 눌렀을 때 ---------------------*/
+	@RequestMapping("userSignUpSubmit")
+	public String userSignUp(UserDto Dto, Model model) throws Exception {
 		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 		Date date = new Date();
 		String time1 = format1.format(date);
-		model.addAttribute("date", time1);
+		
+		Dto.setMemberDate(time1);
+
+		String view = userService.registMember(Dto);
+		return view;
 	}
 
-	/*------------------- Q&A 리스트 조회 -----------------*/
-	@RequestMapping("Questionlist")
-	public String QA(Model model, String memberCode, @ModelAttribute("cri") Criteria cri, HttpSession session)
-			throws Exception {
-		logger.info("Q&A called ========== ");
-		
-		
-		memberCode = (String)session.getAttribute("memberCode");
-		String adminCode = (String)session.getAttribute("adminCode");
-		System.out.println("확인 : " + adminCode);
-		
-		if(memberCode == null && adminCode == null)
-		{
-			String msg = "로그인이 필요합니다.";
-			String url = "userLogin";
-			model.addAttribute("msg", msg);
-			model.addAttribute("url", url);
-			
-			return "main";        
-		} else if(memberCode != null) {
-			PageMaker pageMaker = new PageMaker();
-			pageMaker.setCri(cri);
-			pageMaker.setTotalCount(question.listCount(memberCode));
-			int currentPage = cri.getPage();
-			
-			model.addAttribute("pageMaker", pageMaker);
-			model.addAttribute("currentPage", currentPage);
-			model.addAttribute("listpage", question.listPage(cri, memberCode));
-			model.addAttribute("member", question.MemberCode(memberCode));
-			
-			return "Questionlist";
-			
-		} else {
-			PageMaker pageMaker = new PageMaker();
-			pageMaker.setCri(cri);
-			pageMaker.setTotalCount(question.answerCount());
-			int currentPage = cri.getPage();
-			
-			model.addAttribute("selectNlist", answer.selectN(cri));
-			model.addAttribute("pageMaker", pageMaker);
-			model.addAttribute("currentPage", currentPage);
-			
-			return "answerconfirmList";
-		}
+	/*--------------------- 로그인 시도했을 때 ---------------------*/
+	@RequestMapping("userLoginTry")
+	public String userLoginTry(@Param("memberId") String memberId, @Param("memberPw") String memberPw, HttpSession session) throws Exception {
+		String view = userService.userLogin(memberId, memberPw, session);
+		return view;
+	}
+
+	/*--------------------- 회원탈퇴 시도했을 때 ---------------------*/
+	@RequestMapping("userDeleteSubmit")
+	public String userDeleteSubmit(UserDto Dto, HttpSession session) throws Exception {
+		String view = userService.deleteMember(Dto, session);
+		session.invalidate();
+		return view;
 	}
 	
-	@RequestMapping("view1")
-	public String view1(Model model, @RequestParam("memberCode") String memberCode,
-			@RequestParam("qstnCode") String qstnCode, HttpSession session) {
-		
-		logger.info("update in");
-		/*memberCode = (String) session.getAttribute("memberCode");*/
-		
-		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-		Date date = new Date(); 
-		String time1 = format1.format(date);
-		model.addAttribute("sltOne", question.sltOne(memberCode, qstnCode));
-		model.addAttribute("selectOne", answer.selectQuestionview(memberCode, qstnCode));
-		model.addAttribute("date", time1);		
-		
-		return "Questionupdatelist";
+	/*--------------------- 아이디 찾기 눌렀을 때 ---------------------*/
+	@RequestMapping("userFindIdSubmit")
+	public String userFindIdSubmit(@Param("memberName") String memberName, @Param("memberEmail") String memberEmail, Model model) throws Exception {
+		String view = userService.findId(memberName, memberEmail, model);
+		return view;
 	}
 
-	@RequestMapping("sltOneQnA")
-	public String sltOneQnA(Model model, @RequestParam("memberCode") String memberCode, String qstnCode,
-			HttpSession session) throws Exception {
-
-		memberCode = (String) session.getAttribute("memberCode");
-		model.addAttribute("sltOne", question.sltOne(memberCode, qstnCode));	
-		model.addAttribute("selectOne", answer.selectQuestionview(memberCode, qstnCode));
-		
-		
-		return "questionsltoneQ&A";
+	/*--------------------- 비밀번호 찾기 (아이디 확인) ---------------------*/
+	@RequestMapping("userFindPwSubmit")
+	public String userFindPwSubmit(String memberId, HttpSession session) throws Exception {
+		String view = userService.findPw(memberId, session);
+		return view;
 	}
 	
-	@RequestMapping("insertQnA")
-	public String insertUser(Model model, @RequestParam("memberCode") String memberCode, String qstnCode,
-			HttpSession session) throws Exception {
-
-		memberCode = (String) session.getAttribute("memberCode");
-		System.out.println(memberCode);
-		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-		Date date = new Date();
-		String time1 = format1.format(date);
-
-		model.addAttribute("member", memberCode);
-		model.addAttribute("sltOne", question.sltOne(memberCode, qstnCode));
-		model.addAttribute("date", time1);
-
-		return "QuestioninsertQ";
-	}
-
-	
-	/*-------------------------Q&A 작성 ------------------*/
-	@RequestMapping("Questioninsert")
-	public String updateView(Question qes, Model model, @RequestParam("memberCode") String memberCode, Criteria cri,
-			HttpSession session) throws Exception {
-		logger.info("insertCn");
-
-		question.insert(qes);
-
-		memberCode = (String) session.getAttribute("memberCode");
-
-		PageMaker pageMaker = new PageMaker();
-		pageMaker.setCri(cri);
-		pageMaker.setTotalCount(question.listCount(memberCode));
-		int currentPage = cri.getPage();
-
-		
-		model.addAttribute("pageMaker", pageMaker);
-		model.addAttribute("currentPage", currentPage);
-		model.addAttribute("listpage", question.listPage(cri, memberCode));
-		model.addAttribute("member",question.MemberCode(memberCode));
-
-		return "redirect:/Questionlist";
-	}
-
-	/*-----------------------Q&A 업데이트 -------------------------*/
-	@RequestMapping("QuestionUpdate")
-	public String updateE(Model model, @RequestParam("memberCode") String memberCode, Question qes, Criteria cri,
-			HttpSession session,String qstnCode) throws Exception {
-		logger.info("updatelist");
-		
-		question.update(qes);
-		memberCode = (String) session.getAttribute("memberCode");
-
-		PageMaker pageMaker = new PageMaker();
-		pageMaker.setCri(cri);
-		pageMaker.setTotalCount(question.listCount(memberCode));
-		int currentPage = cri.getPage();
-
-		model.addAttribute("sltOne", question.sltOne(memberCode, qstnCode));
-		model.addAttribute("pageMaker", pageMaker);
-		model.addAttribute("currentPage", currentPage);
-		Question member = question.MemberCode(memberCode);
-		model.addAttribute("listpage", question.listPage(cri, memberCode));
-		model.addAttribute("member", member);
-
-		return "redirect:/Questionlist";
+	/*--------------------- 비밀번호 찾기 (이름과 이메일 확인) ---------------------*/
+	@RequestMapping("userFindPwChk")
+	public String userFindPwChk(String memberName, String memberEmail, HttpSession session) throws Exception {
+		String view = userService.userUpdatePw(memberName, memberEmail, session);
+		return view;
 	}
 	
-	
-	/*-----------------------------Q&A 삭제-----------------------*/
-	@RequestMapping("Questiondelete")
-	public String delete(Model model, @RequestParam("memberCode") String memberCode, String qstnCode, Question qes,
-			Criteria cri, HttpSession session) throws Exception {
-
-		question.delete(memberCode, qstnCode);
-		memberCode = (String)session.getAttribute("memberCode");
-
-
-		List<QuestionVo> list = question.listPage(cri, memberCode);
-		PageMaker pageMaker = new PageMaker();
-		pageMaker.setCri(cri);
-		pageMaker.setTotalCount(question.listCount(memberCode));
-		int currentPage = cri.getPage();
-
-		model.addAttribute("pageMaker", pageMaker);
-		model.addAttribute("currentPage", currentPage);
-		model.addAttribute("listpage", list);
-		model.addAttribute("member", question.MemberCode(memberCode));
-
-		return "redirect:/Questionlist";
-
+	/*--------------------- 비밀번호 찾기 (비밀번호 변경) ---------------------*/
+	@RequestMapping("userFindPwUpdate")
+	public String userFindPwUpdate(UserDto Dto, HttpSession session, HttpServletResponse response) throws Exception {
+		String view = userService.updatePw(Dto, session, response);
+		return view;
 	}
-
-	// ----------------------------------------공지사항-----------------------------//
-
-	@SuppressWarnings("unused")
-	@RequestMapping("Notice")
-	public String listPage(Model model, @Param("adminCode") String adminCode, String noticeCode,
-			@ModelAttribute("cri") Criteria cri, HttpSession session) throws Exception {
-		logger.info("get list page");
-		String memberCode = (String) session.getAttribute("memberCode");
-		PageMaker pageMaker = new PageMaker();
-		pageMaker.setCri(cri);
-		pageMaker.setTotalCount(notice.listCount());
-		int currentPage = cri.getPage();
-		
-		model.addAttribute("adminCode", adminCode);
-		model.addAttribute("listpage", notice.listPage(cri));
-		model.addAttribute("pageMaker", pageMaker);
-		model.addAttribute("currentPage", currentPage);
-		
-		return "NoticePage";	
-			
-	}
-	
-	@RequestMapping("AdminNoticelist")
-	public String admin(Model model,  String noticeCode, @ModelAttribute("cri") Criteria cri,HttpSession session)
-			throws Exception {
-		logger.info("list page");
-		
-		
-		PageMaker pageMaker = new PageMaker();
-		pageMaker.setCri(cri);
-		pageMaker.setTotalCount(notice.listCount());
-		int currentPage = cri.getPage();
-		
-		String adminCode = (String)session.getAttribute("adminCode");
-		System.out.println(adminCode);
-		model.addAttribute("adminCode", adminCode);
-		model.addAttribute("listpage", notice.listPage(cri));
-		model.addAttribute("noticecode", notice.noticeCode(adminCode));
-		model.addAttribute("pageMaker", pageMaker);
-		model.addAttribute("currentPage", currentPage);
-		
-
-		return "NoticeSWD";
-
-	}
-
-	@RequestMapping("NoticeMember")
-	public String listPage1(Model model, String noticeCode, @ModelAttribute("cri") Criteria cri,HttpSession session)
-			throws Exception {
-		logger.info("list page");
-
-		PageMaker pageMaker = new PageMaker();
-		pageMaker.setCri(cri);
-		pageMaker.setTotalCount(notice.listCount());
-		int currentPage = cri.getPage();
-		String adminCode = (String)session.getAttribute("adminCode"); 
-		
-		
-		model.addAttribute("adminCode", adminCode);
-		model.addAttribute("listpage", notice.listPage(cri));
-		model.addAttribute("pageMaker", pageMaker);
-		model.addAttribute("currentPage", currentPage);
-
-		return "NoticePage";
-
-	}
-
-	@RequestMapping("view2")
-	public String view2(Model model, String adminCode, String noticeCode,HttpSession session) throws Exception {
-
-		model.addAttribute("noticecontent", notice.sltOneNoice(adminCode, noticeCode));
-
-		return "Noticeview2";
-	}
-	@RequestMapping("noticeandminview")
-	public void adminview2(Model model, String adminCode, String noticeCode,HttpSession session) throws Exception {
-
-		model.addAttribute("noticecontent", notice.sltOneNoice(adminCode, noticeCode));
-
-	}
-	
-	/*-------------------------Notice insert 공지사항 -----------------*/
-	@RequestMapping("Noticeinsert")
-	public String insertNoticeC(Notice noti,@ModelAttribute("cri") Criteria cri,HttpSession session,Model model,String noticeCode) throws Exception {
-		
-		notice.insert(noti);
-		PageMaker pageMaker = new PageMaker();
-		pageMaker.setCri(cri);
-		pageMaker.setTotalCount(notice.listCount());
-		int currentPage = cri.getPage();
-		
-		String adminCode = (String)session.getAttribute("adminCode");
-		System.out.println(adminCode);
-		model.addAttribute("adminCode", adminCode);
-		model.addAttribute("listpage", notice.listPage(cri));
-		model.addAttribute("noticecode", notice.noticeCode(adminCode));
-		model.addAttribute("pageMaker", pageMaker);
-		model.addAttribute("currentPage", currentPage);
-		model.addAttribute("person", notice.sltOneNoice(adminCode, noticeCode));
-		
-		return "redirect:/AdminNoticelist";
-
-	}
-	
-	/*---------------------------공지사항 수정전 확인 --------------------------*/
-	@RequestMapping("Noticeupdatepage")
-	public String Noticeupdatelist(Model model, String adminCode ,String noticeCode,HttpSession session) throws Exception {
-		logger.info("updatelist");
-		 
-		adminCode = (String)session.getAttribute("adminCode");
-		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-		Date date = new Date();
-		String time1 = format1.format(date);
-		model.addAttribute("date", time1);
-		model.addAttribute("person", notice.sltOneNoice(adminCode, noticeCode));
-
-		return "Noticeupdatelist";
-	}
-	
-
-	/*---------------------------공지사항 수정 --------------------------*/
-	@RequestMapping("Noticeupdate")
-	public String Noticeupdate(Model model, String adminCode, String noticeCode, Notice noti, Criteria cri,HttpSession session)
-			throws Exception {
-		logger.info("update해서 간다");
-		
-		PageMaker pageMaker = new PageMaker();
-		pageMaker.setCri(cri);
-		pageMaker.setTotalCount(notice.listCount());
-		int currentPage = cri.getPage();
-		
-		
-		notice.update(noti);
-		
-		model.addAttribute("listpage", notice.listPage(cri));
-		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-		Date date = new Date();
-		String time1 = format1.format(date);
-		model.addAttribute("date", time1);
-		model.addAttribute("pageMaker", pageMaker);
-		model.addAttribute("currentPage", currentPage);
-
-		return "redirect:/AdminNoticelist";
-
-	}
-	
-	/*----------------------------공지사항 삭제-----------------------------*/
-	@RequestMapping("Noticedelete")
-	public String Noticedelete(Model model,  String noticeCode, Notice noti, Criteria cri,HttpSession session)
-			throws Exception {
-		
-		String adminCode = (String)session.getAttribute("adminCode");
-		
-		
-		notice.delete(adminCode, noticeCode);
-
-		
-		PageMaker pageMaker = new PageMaker();
-		pageMaker.setCri(cri);
-		pageMaker.setTotalCount(notice.listCount());
-		int currentPage = cri.getPage();
-		Date date = new Date();
-		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-		String time1 = format1.format(date);
-		
-		model.addAttribute("adminCode", adminCode);
-		model.addAttribute("date", time1);
-		model.addAttribute("listpage", notice.listPage(cri));
-		model.addAttribute("pageMaker", pageMaker);
-		model.addAttribute("currentPage", currentPage);
-
-		return "redirect:/AdminNoticelist";
-	}
-	
-	//------------------------------answer 질문-------------------------------
-	
-	
-	@RequestMapping("reply")
-	public String reply(Model model,String memberCode,String qstnCode,@ModelAttribute("cri") Criteria cri,HttpSession session) 
-	{
-
-		
-		String adminCode = (String)session.getAttribute("adminCode");
-		Date date = new Date();
-		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-		String time1 = format1.format(date);
-		
-		model.addAttribute("date", time1);
-		model.addAttribute("adminCode", adminCode);
-		model.addAttribute("sltOne", question.sltOne(memberCode, qstnCode));
-		
-		return "answerview";
-		
-	}
-	@RequestMapping("insertreply")
-	public String insertreply(Model model,@Param("memberCode") String memberCode,@Param("qstnCode")String qstnCode,@ModelAttribute("cri") Criteria cri,AnswerDto ans
-		) throws Exception 
-	{
-		
-		answer.insert(ans);
-		logger.info("insert 성공");
-		PageMaker pageMaker = new PageMaker();
-		pageMaker.setCri(cri);
-		pageMaker.setTotalCount(question.answerCount());
-		int currentPage = cri.getPage();
-		
-		model.addAttribute("selectNlist", answer.selectN(cri));
-		model.addAttribute("pageMaker", pageMaker);
-		model.addAttribute("currentPage", currentPage);
-		
-		return "answerconfirmList";
-			
-	}
-	
 }

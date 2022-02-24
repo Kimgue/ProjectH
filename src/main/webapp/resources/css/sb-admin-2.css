@@ -11515,3 +11515,7 @@ body.sidebar-toggled footer.sticky-footer {
 .mainMenu:last-child {
 	margin-bottom: 1rem !important;
 }
+
+#input-image {
+    visibility: hidden;
+}

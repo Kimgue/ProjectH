@@ -14,7 +14,7 @@
     
 </head>
 
-<body>
+<body id="page-top">
 
 	<!-- 하단 시작 -->
 	<footer class="sticky-footer bg-white">

@@ -20,7 +20,7 @@
     
 </head>
 
-<body>
+<body id="page-top">
 	<div class="slider">
 		<div class="slides">
 			<input type="radio" name="radio-btn" id="radio1"> 

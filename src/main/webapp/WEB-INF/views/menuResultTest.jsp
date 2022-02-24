@@ -19,7 +19,7 @@
     
 </head>
 
-<body>	
+<body id="page-top">	
 	<div id="content">
 		<div id="menu_list" class="b-Div text-center">
 			<c:forEach var="menuVo" items="${menuVo}">

@@ -19,7 +19,7 @@
 	<script src="resources/js/menu/menu.js"></script>
     
 </head>
-<body>
+<body id="page-top">
 	<div class="mainMenuGrid text-center">
 		<div class="h1 mainMenuGridText mb-3">
 			각종 메뉴를 리뷰해보세요!

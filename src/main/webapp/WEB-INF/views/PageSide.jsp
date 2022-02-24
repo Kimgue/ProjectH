@@ -14,14 +14,14 @@
 
 </head>
 
-<body>
+<body id="page-top">
 	
 	<!-- 사이드바 시작 -->
 	<ul class="navbar-nav bg-gradient-warning sidebar sidebar-dark accordion" id="accordionSidebar">
 		<div class="sticky-left">
 			<!-- 사이드바 : 메인 페이지 -->
 			<a class="sidebar-brand d-flex align-items-center justify-content-center" href="main">
-				<img src="images/gifticon/hplogo.png" width="50">
+				<img src="images/etc/hplogo.png" width="50">
 			<div class="sidebar-brand-text mx-3">메인 페이지</div>
 			</a>
 

@@ -18,7 +18,7 @@
 	<script src="resources/js/jquery-3.4.1.min.js"></script>
 </head>
 
-<body>
+<body id="page-top">
 	<!-- 메인 -->
 	<div id="content">
 		<div id="menu_list" class="m-Div text-center">
