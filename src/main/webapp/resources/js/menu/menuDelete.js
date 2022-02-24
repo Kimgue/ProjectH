@@ -38,26 +38,20 @@ function brandSelect(brandCode) {
 function inputCheck() {
 	var brandInput = $("#brandCode").val()
 	var menuInput = $("#menuCode").val()
-	console.log(brandInput);
-	console.log(menuInput);
 
 	if (brandInput == '' || menuInput == '') {
 		alert('모든 항목을 선택해주세요.');
-	} else {
-		
+	} else {	
 		var result = confirm("삭제하시겠습니까?");
 		if(result) {
 			alert("삭제되었습니다.")
 			$("#deleteForm").submit();
-		} else {
-			
 		}
-
 	}
 };
 
 $(document).ready(function() {
-	$("form").submit(function() {
-		inputCheck();
+	$("#deleteBtn").click(function() {	
+		inputCheck();	
 	});
-});
+	});

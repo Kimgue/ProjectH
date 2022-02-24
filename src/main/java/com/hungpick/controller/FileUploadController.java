@@ -130,8 +130,7 @@ public class FileUploadController {
 				}
 				
 				strResult = strResult + "\"}";
-				
-				System.out.println(strResult);
+			
 				
 			}
 			// 파일 아무것도 첨부 안했을때 탄다.(게시판일때, 업로드 없이 글을 등록하는경우)

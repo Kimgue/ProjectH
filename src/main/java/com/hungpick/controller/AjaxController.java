@@ -277,9 +277,7 @@ public class AjaxController {
 		System.out.println(brandCode);
 		
 		ObjectMapper mapper = new ObjectMapper();
-		String jsonStr = mapper.writeValueAsString(menuService.sltBrandMenu(brandCode));
-		
-		System.out.println(jsonStr);
+		String jsonStr = mapper.writeValueAsString(menuService.sltBrandMenu(brandCode));		
 		
 		return jsonStr;
 	}
@@ -300,9 +298,7 @@ public class AjaxController {
 		reviewService.updateHoldPoint(memberCode);
 		
 		ObjectMapper mapper = new ObjectMapper();
-		String jsonStr = mapper.writeValueAsString(userService.sltSearch(memberCode));
-		
-		System.out.println(jsonStr);
+		String jsonStr = mapper.writeValueAsString(userService.sltSearch(memberCode));		
 		
 		return jsonStr;
 	}
@@ -322,9 +318,7 @@ public class AjaxController {
 		reviewService.deleteReview(brandCode, menuCode, reviewCode, memberCode);
 		
 		ObjectMapper mapper = new ObjectMapper();
-		String jsonStr = mapper.writeValueAsString(userService.sltSearch(memberCode));
-		
-		System.out.println(jsonStr);
+		String jsonStr = mapper.writeValueAsString(userService.sltSearch(memberCode));		
 		
 		return jsonStr;
 	}

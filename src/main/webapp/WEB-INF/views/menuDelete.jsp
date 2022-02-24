@@ -57,7 +57,7 @@
 									</div>
 									<div class="five">
 										<div class="float-right">
-											<input class="btn btn-warning" type="button" value="삭제" onclick="inputCheck()">
+											<input class="btn btn-warning" id="deleteBtn" type="button" value="삭제">
 										</div>
 									</div>
 								</div>
