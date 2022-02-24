@@ -58,7 +58,7 @@
 									<div class="three">
 										<img src="<c:url value='${ sltOne.qesDto.qstnImg }' />" alt="${ sltOne.qesDto.qstnImg }" height="150" width="150" onError="this.style.visibility='hidden'" />
 										<img style="width: 350px; height:200px;" class="img img-fluid img-thumbnail mb-3" id="preview-image" src="">
-									</div>
+									</div> 
 									<div class="four">
 										<div class="float-left">
 											<label for="input-image">
