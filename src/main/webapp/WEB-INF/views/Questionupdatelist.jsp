@@ -41,22 +41,23 @@
 							<div class="h1 mb-3">
 								질문 수정
 							</div>
-							<form name="paging">
+							<form name="paging" id="qstnupdate" enctype="multipart/form-data" action="QuestionUpdate" method="post">
 								<div class="noticeGrid">
 									<div class="one">
-										<input type="text" class="form-control mb-3" id="qstnTitle" name="qstnTitle" placeholder="${ sltOne.qesDto.qstnTitle }">
+										<input type="text" class="form-control mb-3" id="qstnTitle" name="qstnTitle" value="${ sltOne.qesDto.qstnTitle }">
 										<input type="hidden" id="memberCode" name="memberCode" value="${ sltOne.qesDto.memberCode }">
 										<input type="hidden" id="qstnCode" name="qstnCode" value="${ sltOne.qesDto.qstnCode }">
 										<input type="hidden" id="qstnImg" name="qstnImg" value="${sltOne.qesDto.qstnImg }">
 										<input type="hidden" id="qstnDate" name="qstnDate" value="${date }">
-										<input type="hidden" id="qstnConfirm" name="qstnConfirm" value="n">
+										
 									</div>
 									<div class="two">
 										<textarea onkeydown="resize(this)" onkeyup="resize(this)" style="width:665px; min-height:180px;" class="form-control" id="qstnContent" name="qstnContent">${ sltOne.qesDto.qstnContent }</textarea>
 									</div>
 									<input type="file" id="input-image" name="uploadfile" required="required">
 									<div class="three">
-										<img style="width: 350px; height:200px;" class="img img-fluid img-thumbnail mb-3" id="preview-image" src="${sltOne.qesDto.qstnImg }">
+										<img src="<c:url value='${ sltOne.qesDto.qstnImg }' />" alt="${ sltOne.qesDto.qstnImg }" height="150" width="150" onError="this.style.visibility='hidden'" />
+										<img style="width: 350px; height:200px;" class="img img-fluid img-thumbnail mb-3" id="preview-image" src="">
 									</div>
 									<div class="four">
 										<div class="float-left">
@@ -67,7 +68,7 @@
 									</div>
 									<div class="five">
 										<div class="float-right">
-											<input style="width:150px;" type="button" class="btn btn-warning" value="수정" onclick="commit()">
+											<input style="width:150px;" type="button" class="btn btn-warning" value="수정" onclick="update()">
 										</div>
 									</div>
 								</div>
