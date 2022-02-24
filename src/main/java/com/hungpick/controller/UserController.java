@@ -73,9 +73,6 @@ public class UserController {
 		userService.userGifticonMulti(Vo, model);
 	}
 	
-	
-	
-	
 	/*--------------------- 회원 조회 페이지로 이동 ---------------------*/
 	@RequestMapping("userInfo")
 	public String userInfo(UserDto Dto, Model model) throws Exception {

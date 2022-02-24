@@ -37,14 +37,16 @@
 					<div class="card d-inline-block w-100 h-100 shadow mt-3 mb-3">
 						<div class="card-body">
 							<form name="paging" >
-								<c:if test="${sltOne.qesDto.qstnConfirm eq '미답변'}">
-									<div>
-										<input class="btn btn-warning" type="button" value="수정" onclick="update()" >
-									</div>									
-								</c:if>
-							
-									<input class="btn btn-warning" type="button" value="삭제" onclick="Quesdelete('${ sltOne.qesDto.memberCode }','${ sltOne.qesDto.qstnCode }')">
-								
+								<div class="d-flex">
+									<c:if test="${sltOne.qesDto.qstnConfirm eq '미답변'}">
+										<div>
+											<input class="btn btn-warning mr-3" type="button" value="수정" onclick="update()" >
+										</div>									
+									</c:if>
+										<div>
+											<input class="btn btn-warning" type="button" value="삭제" onclick="Quesdelete('${ sltOne.qesDto.memberCode }','${ sltOne.qesDto.qstnCode }')">
+										</div>
+								</div>
 								<div class="h4 text-center">${ sltOne.qesDto.qstnTitle }</div> 
 								<hr>
 								<div class="d-flex justify-content-between">

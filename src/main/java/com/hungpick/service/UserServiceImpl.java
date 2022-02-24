@@ -53,7 +53,7 @@ public class UserServiceImpl implements IUserService {
 		userDao.registMember(Dto);
 		userDaoHist.userRegistHist("Insert " + Dto.toString());
 
-		return "main";
+		return "redirect:/main";
 	}
 
 	// 로그인

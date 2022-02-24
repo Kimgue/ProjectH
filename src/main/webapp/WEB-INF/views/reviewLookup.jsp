@@ -43,7 +43,16 @@
 	<!-- 페이지 Wrapper 시작 -->
 	<div id="wrapper">
 	<!-- 사이드바 -->
-	<jsp:include page="PageSide.jsp" flush="false"/>
+	<c:choose>
+		<c:when test="${not empty adminDTO}">
+			<jsp:include page="AdminPageSide.jsp" flush="false"/>
+		</c:when>
+		
+		<c:otherwise>
+			<jsp:include page="PageSide.jsp" flush="false"/>
+		</c:otherwise>
+	</c:choose>
+	
 	<!-- 컨텐츠 Wrapper 시작 -->
 	<div id="content-wrapper" class="d-flex flex-column">
 	<!-- 상단 -->

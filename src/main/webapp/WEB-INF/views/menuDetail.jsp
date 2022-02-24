@@ -95,7 +95,7 @@
 								<tr>
 									<th width="150">닉네임</th>
 									<th width="80">점수</th>
-									<th width="130">리뷰날짜</th>
+									<th width="150">리뷰날짜</th>
 									<th>내용</th>
 									<th width="130">상세리뷰</th>	
 								</tr>
@@ -107,7 +107,7 @@
 										<td><c:out value="${review.reviewDto.reviewScore}" /></td>
 										<td><c:out value="${review.reviewDto.reviewDate}" /></td>
 									
-										<td style="width:970px; text-overflow: ellipsis;" class="d-inline-block text-nowrap overflow-hidden">
+										<td>
 											<c:out value="${review.reviewDto.reviewContent}" />
 										</td>
 										

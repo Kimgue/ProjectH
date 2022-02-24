@@ -208,9 +208,9 @@
 							emailData = data;
 							
 							$("#Number_Check").click(function() {
-								var numberChk = $("Number_Number").val();
+								var numberChk = $("#Number_Number").val();
 
-								if(numberChk == data.key) {
+								if(numberChk == data) {
 									$("#resultNumber").text("인증 완료되었습니다").css("color", "blue");
 									$("#Number_Transmit").hide();
 									$("#Number_Number").hide();
