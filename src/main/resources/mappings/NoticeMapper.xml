@@ -47,15 +47,15 @@
 
 	<select id="listPage" resultMap="adminVoRm"
 		parameterType="Criteria">
-		SELECT * FROM ( SELECT ROW_NUMBER() OVER(ORDER BY NOTICE_CODE DESC)
+		SELECT * FROM ( SELECT ROW_NUMBER() OVER(ORDER BY TO_NUMBER(NOTICE_CODE) DESC)
 		NUM, A.ADMIN_CODE,A.NOTICE_CODE,A.NOTICE_TITLE,A.NOTICE_CONTENT,TO_CHAR(A.NOTICE_DATE,'YYYY"년" MM"월" DD"일" HH24"시" MI"분"') AS NOTICE_DATE,
 		A.NOTICE_IMG,
 		 b.admin_Name FROM NOTICE A
 		join ADMINS b
 		on A.admin_Code = b.admin_Code
-		ORDER BY NOTICE_CODE)
+		ORDER BY TO_NUMBER(NOTICE_CODE))
 		WHERE NUM BETWEEN #{rowStart} AND #{rowEnd}
-		ORDER BY NOTICE_CODE DESC
+		ORDER BY TO_NUMBER(NOTICE_CODE) DESC
 	</select>
 
 	<select id="noticeCode" resultType="mbrDto">
