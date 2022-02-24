@@ -52,7 +52,7 @@
 													<c:out value="${brand.brandName}" />
 												</div>
 												<img class="m-3" src="<c:url value='${brand.brandImg}' />" alt="${brand.brandImg}" height="270" width="270" /><br>
-												<div class="m-3">
+												<div style="position: absolute; bottom: 0px; left:50px; width:200px;" class="m-3">
 													<input type="button" class="form-control btn btn-warning" id="btn${brand.brandCode}" value="삭제">
 												</div>
 											</div>
